@@ -4,17 +4,30 @@
 import os
 import sys
 
-def construir_lexema(fuente):
+def construir_lexema(fuente, caracter):
+    # print("DEBUG: CHECKPOINT 1")
     lexema = "lexema "
     while caracter:
+        # print("DEBUG: CHECKPOINT 2")
+        # print("DEBUG:", caracter)
         if not (caracter == " " or caracter == "\t" or caracter == "\n"):
-            if (caracter.isAlpha()):
+            # print("DEBUG: CHECKPOINT 3")
+            if (caracter.isalpha()):
+                # print("DEBUG: CHECKPOINT 4")
                 lexema += caracter
                 caracter = fuente.read(1)
-                while (caracter.isalpha or caracter.isdigit):
+                while (caracter.isalpha() or caracter.isdigit()):
+                    # print("DEBUG: CHECKPOINT 5" + caracter)
                     lexema += caracter
                     caracter = fuente.read(1)
-                return lexema + ", token(ident, puntero-a-ts)"
+                return lexema + ", token(id, puntero-a-ts)"
+            elif (caracter.isdigit()):
+                lexema += caracter
+                caracter = fuente.read(1)
+                while (caracter.isdigit()):
+                    lexema += caracter
+                    caracter = fuente.read(1)
+                return lexema + ", token(enteroDato, null)"
             elif (caracter==";"):
                 lexema += caracter 
                 return lexema + ", token(puntoComa, null)"
@@ -51,13 +64,13 @@ def construir_lexema(fuente):
                 return lexema + ", token(operadorRelacional, mayor)"
             elif (caracter == "+"):
                 lexema += caracter
-                return lexema + "token(operadorAritmetico, suma)"
+                return lexema + ", token(operadorAritmetico, suma)"
             elif (caracter == "-"):
                 lexema += caracter
-                return lexema + "token(operadorAritmetico, resta)"
+                return lexema + ", token(operadorAritmetico, resta)"
             elif (caracter == "{"):
                 lexema += caracter
-                while (caracter.isdigit or caracter.isalpha or caracter == " " or caracter == "\t" or caracter == "\n"):
+                while (caracter.isdigit() or caracter.isalpha() or caracter == " " or caracter == "\t" or caracter == "\n"):
                     lexema += caracter
                     caracter = fuente.read(1)
                 if (caracter == "}"):
@@ -66,6 +79,7 @@ def construir_lexema(fuente):
                     return "token(null, null)"
                 else:
                     return "Error: digit not recognized."
+            # faltan los casos de true y false
         caracter = fuente.read(1)
 
 def leer_fuente(ruta):
@@ -73,7 +87,7 @@ def leer_fuente(ruta):
         with open(ruta, 'r') as fuente:
             caracter = fuente.read(1)
             while caracter:
-                lexema = construir_lexema(fuente)
+                lexema = construir_lexema(fuente, caracter)
                 print(lexema)
                 caracter = fuente.read(1)
     except FileNotFoundError:
@@ -85,4 +99,4 @@ if __name__ == "__main__":
         sys.exit(1)
 
     ruta_archivo = sys.argv[1]
-    leer_archivo(ruta_archivo)
+    leer_fuente(ruta_archivo)
