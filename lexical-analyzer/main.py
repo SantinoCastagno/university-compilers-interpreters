@@ -14,24 +14,58 @@ def construir_lexema(fuente):
                 while (caracter.isalpha or caracter.isdigit):
                     lexema += caracter
                     caracter = fuente.read(1)
-                lexema += ", token(ident, puntero a ts)"
-                    return lexema
+                return lexema + ", token(ident, puntero-a-ts)"
             elif (caracter==";"):
-                lexema += caracter + "token(puntoComa, null)"
-                return lexema
+                lexema += caracter 
+                return lexema + ", token(puntoComa, null)"
             elif (caracter=="."):
-                lexema += caracter + "token(punto, null)"
-                return lexema
+                lexema += caracter 
+                return lexema + ", token(punto, null)"
             elif (caracter==":"):
+                lexema += caracter
                 caracter = fuente.read(1)
                 if (caracter == "="):
-                    lexema += caracter + "token(asignacion, null)"
+                    lexema += caracter + ", token(asignacion, null)"
                     return lexema
-                lexema += caracter + "token(dosPuntos, null)"
+                lexema += caracter + ", token(dosPuntos, null)"
                 return lexema
-            elif (caracter=="<"):
-                if 
-
+            elif (caracter ==","):
+                lexema += caracter
+                return lexema + ", token(coma, null)"
+            elif (caracter =="<"):
+                lexema += caracter
+                caracter = fuente.read(1)
+                if (caracter == "="):
+                    lexema += caracter 
+                    return lexema + ", token(asignacion, menorIgual)"
+                elif (caracter == ">"):
+                    lexema += caracter 
+                    return lexema + ", token(operadorRelacional, distinto)"
+                return lexema + ", token(operadorRelacional, menor)"
+            elif (caracter == ">"):
+                lexema += caracter
+                caracter = fuente.read(1)
+                if (caracter == "="):
+                    lexema += caracter
+                    return lexema + ", token(operadorRelacional, mayorIgual)"
+                return lexema + ", token(operadorRelacional, mayor)"
+            elif (caracter == "+"):
+                lexema += caracter
+                return lexema + "token(operadorAritmetico, suma)"
+            elif (caracter == "-"):
+                lexema += caracter
+                return lexema + "token(operadorAritmetico, resta)"
+            elif (caracter == "{"):
+                lexema += caracter
+                while (caracter.isdigit or caracter.isalpha or caracter == " " or caracter == "\t" or caracter == "\n"):
+                    lexema += caracter
+                    caracter = fuente.read(1)
+                if (caracter == "}"):
+                    lexema += caracter 
+                    caracter = fuente.read(1)
+                    return "token(null, null)"
+                else:
+                    return "Error: digit not recognized."
         caracter = fuente.read(1)
 
 def leer_fuente(ruta):
