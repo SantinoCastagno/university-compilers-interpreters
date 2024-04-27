@@ -4,21 +4,21 @@
 import os
 import sys
 
+keyword_list = ["program", "begin", "if", "else", "then", "while", "end"]
+
 def construir_lexema(fuente, caracter):
-    # print("DEBUG: CHECKPOINT 1")
     lexema = "lexema "
     while caracter:
-        # print("DEBUG: CHECKPOINT 2")
-        # print("DEBUG:", caracter)
         if not (caracter == " " or caracter == "\t" or caracter == "\n"):
-            # print("DEBUG: CHECKPOINT 3")
             if (caracter.isalpha()):
-                # print("DEBUG: CHECKPOINT 4")
                 lexema += caracter
+                palabra = caracter
                 caracter = fuente.read(1)
                 while (caracter.isalpha() or caracter.isdigit()):
-                    # print("DEBUG: CHECKPOINT 5" + caracter)
+                    palabra += caracter
                     lexema += caracter
+                    if (palabra in keyword_list):
+                        return lexema + ", token(keyword, null)"
                     caracter = fuente.read(1)
                 return lexema + ", token(id, puntero-a-ts)"
             elif (caracter.isdigit()):
