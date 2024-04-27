@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-# Importa los módulos necesarios
 import os
 import sys
 
-keyword_list = ["program", "begin", "if", "else", "then", "while", "end"]
+keyword_list = ["program", "begin", "if", "else", "then", "while", "end"] ## ¿operadores logicos?
+boolean_list = ["true", "false"]
 
 def construir_lexema(fuente, caracter):
     lexema = "lexema "
@@ -19,6 +19,11 @@ def construir_lexema(fuente, caracter):
                     lexema += caracter
                     if (palabra in keyword_list):
                         return lexema + ", token(keyword, null)"
+                    if (palabra in boolean_list):
+                        if palabra == "true":
+                            return lexema + ", token(booleanDato, trueValor)"
+                        else:
+                            return lexema + ", token(booleanDato, falseValor)"
                     caracter = fuente.read(1)
                 return lexema + ", token(id, puntero-a-ts)"
             elif (caracter.isdigit()):
@@ -82,21 +87,30 @@ def construir_lexema(fuente, caracter):
             # faltan los casos de true y false
         caracter = fuente.read(1)
 
-def leer_fuente(ruta):
+def leer_fuente(ruta_fuente, ruta_destino):
     try:
-        with open(ruta, 'r') as fuente:
-            caracter = fuente.read(1)
-            while caracter:
-                lexema = construir_lexema(fuente, caracter)
-                print(lexema)
-                caracter = fuente.read(1)
+        with open(ruta_fuente, 'r') as fuente:
+            try:
+                # if not os.path.exists(ruta_destino):
+                #     open(ruta_destino, 'w').close()
+                with open(ruta_destino, 'w') as destino:
+                    caracter = fuente.read(1)
+                    while caracter:
+                        lexema = construir_lexema(fuente, caracter)
+                        if (lexema):
+                            destino.write(lexema + "\n")
+                        else:
+                            print("Finalizacion del analisis lexico.")
+                        caracter = fuente.read(1)
+            except IOError:
+                 print("Error al escribir en el archivo destino.")
     except FileNotFoundError:
         print("El fuente no existe o no se pudo abrir.")
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Uso: python script.py <ruta_del_archivo>")
+    if len(sys.argv) != 3:
+        print("Uso: python script.py <ruta_del_fuente_origen> <ruta_del_archivo_destino")
         sys.exit(1)
-
-    ruta_archivo = sys.argv[1]
-    leer_fuente(ruta_archivo)
+    ruta_fuente = sys.argv[1]
+    ruta_destino = sys.argv[2]
+    leer_fuente(ruta_fuente, ruta_destino)
