@@ -30,10 +30,10 @@ def construir_lexema(fuente):
                     return lexema + ", token(keyword, null)"
                 return lexema + ", token(id, puntero-a-ts)"
             elif (caracter.isdigit()):
-                lexema += caracter
+                lexema += str(caracter)
                 caracter = fuente.read(1)
                 while (caracter.isdigit()):
-                    lexema += caracter
+                    lexema += str(caracter)
                     caracter = fuente.read(1)
                 return lexema + ", token(enteroDato, null)"
             elif (caracter==";"):
@@ -51,8 +51,7 @@ def construir_lexema(fuente):
                     lexema += caracter + ", token(asignacion, null)"
                     caracter = fuente.read(1)
                     return lexema
-                lexema += caracter + ", token(dosPuntos, null)"
-                caracter = fuente.read(1)
+                lexema += ", token(dosPuntos, null)"
                 return lexema
             elif (caracter ==","):
                 lexema += caracter

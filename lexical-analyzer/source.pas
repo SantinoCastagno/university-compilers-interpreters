@@ -11,8 +11,8 @@ begin
   readln(numero2);
   
   { Realizar operaciones basicas }
-  suma := numero1 + numero2;;;;;;varxd;;;begin;;; 
-  resta := numero1 - numero2 ;;;;;; varxd ;;; begin ;;; 
+  suma := numero1 + numero2;
+  resta := numero1 - numero2;
   multiplicacion := numero1 * numero2;
   
   { Verificar division por cero }
