@@ -3,10 +3,13 @@
 import os
 import sys
 
-keyword_list = ["program", "begin", "if", "else", "then", "while", "end"] ## ¿operadores logicos?
+keyword_list = ["program", "begin", "if", "else", "then", "while", "end"]
 boolean_list = ["true", "false"]
 
-def construir_lexema(fuente, caracter):
+caracter = "\0"
+
+def construir_lexema(fuente):
+    global caracter
     lexema = "lexema "
     while caracter:
         if not (caracter == " " or caracter == "\t" or caracter == "\n"):
@@ -24,7 +27,7 @@ def construir_lexema(fuente, caracter):
                             return lexema + ", token(booleanDato, falseValor)"
                     caracter = fuente.read(1)
                 if (palabra in keyword_list):
-                        return lexema + ", token(keyword, null)"
+                    return lexema + ", token(keyword, null)"
                 return lexema + ", token(id, puntero-a-ts)"
             elif (caracter.isdigit()):
                 lexema += caracter
@@ -35,70 +38,90 @@ def construir_lexema(fuente, caracter):
                 return lexema + ", token(enteroDato, null)"
             elif (caracter==";"):
                 lexema += caracter 
+                caracter = fuente.read(1)
                 return lexema + ", token(puntoComa, null)"
             elif (caracter=="."):
                 lexema += caracter 
+                caracter = fuente.read(1)
                 return lexema + ", token(punto, null)"
             elif (caracter==":"):
                 lexema += caracter
                 caracter = fuente.read(1)
                 if (caracter == "="):
                     lexema += caracter + ", token(asignacion, null)"
+                    caracter = fuente.read(1)
                     return lexema
                 lexema += caracter + ", token(dosPuntos, null)"
+                caracter = fuente.read(1)
                 return lexema
             elif (caracter ==","):
                 lexema += caracter
+                caracter = fuente.read(1)
                 return lexema + ", token(coma, null)"
             elif (caracter =="<"):
                 lexema += caracter
                 caracter = fuente.read(1)
                 if (caracter == "="):
                     lexema += caracter 
+                    caracter = fuente.read(1)
                     return lexema + ", token(asignacion, menorIgual)"
                 elif (caracter == ">"):
                     lexema += caracter 
+                    caracter = fuente.read(1)
                     return lexema + ", token(operadorRelacional, distinto)"
+                caracter = fuente.read(1)
                 return lexema + ", token(operadorRelacional, menor)"
             elif (caracter == ">"):
                 lexema += caracter
                 caracter = fuente.read(1)
                 if (caracter == "="):
                     lexema += caracter
+                    caracter = fuente.read(1)
                     return lexema + ", token(operadorRelacional, mayorIgual)"
+                caracter = fuente.read(1)
                 return lexema + ", token(operadorRelacional, mayor)"
             elif (caracter == "+"):
                 lexema += caracter
+                caracter = fuente.read(1)
                 return lexema + ", token(operadorAritmetico, suma)"
             elif (caracter == "-"):
                 lexema += caracter
+                caracter = fuente.read(1)
                 return lexema + ", token(operadorAritmetico, resta)"
             elif (caracter == "{"):
                 lexema += caracter
-                while (caracter.isdigit() or caracter.isalpha() or caracter == " " or caracter == "\t" or caracter == "\n"):
+                while (caracter != "}"):
                     lexema += caracter
                     caracter = fuente.read(1)
                 if (caracter == "}"):
                     lexema += caracter 
                     caracter = fuente.read(1)
                     return "token(null, null)"
-                else:
-                    return "Error: digit not recognized."
+            elif (caracter == "'"):
+                lexema += caracter
+                while (caracter != "'"):
+                    lexema += caracter
+                    caracter = fuente.read(1)
+                if (caracter == "'"):
+                    lexema += caracter 
+                    caracter = fuente.read(1)
+                    return "token(null, null)"
+            # else:
+            #    return "Error: digit not recognized."        
         caracter = fuente.read(1)
 
 def leer_fuente(ruta_fuente, ruta_destino):
+    global caracter
     try:
         with open(ruta_fuente, 'r') as fuente:
             try:
                 with open(ruta_destino, 'w') as destino:
-                    caracter = fuente.read(1)
                     while caracter:
-                        lexema = construir_lexema(fuente, caracter)
+                        lexema = construir_lexema(fuente)
                         if (lexema):
                             destino.write(lexema + "\n")
                         else:
                             print("Finalizacion del analisis lexico.")
-                        caracter = fuente.read(1)
             except IOError:
                  print("Error al escribir en el archivo destino.")
     except FileNotFoundError:
