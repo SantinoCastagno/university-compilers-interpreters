@@ -106,8 +106,7 @@ def construir_lexema(fuente):
                     lexema += caracter 
                     caracter = fuente.read(1)
                     return "token(null, null)"
-            # else:
-            #    return "Error: digit not recognized."        
+            print("Error: digit not recognized.")        
         caracter = fuente.read(1)
 
 def leer_fuente(ruta_fuente, ruta_destino):
