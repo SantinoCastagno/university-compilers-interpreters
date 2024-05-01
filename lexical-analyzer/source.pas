@@ -11,13 +11,13 @@ begin
   readln(numero2);
   
   { Realizar operaciones básicas }
-  suma := numero1 + numero2;
-  resta := numero1 - numero2;
+  suma := numero1 + numero2;;;;;;varxd;;;begin;;; 
+  resta := numero1 - numero2 ;;;;;; varxd ;;; begin ;;; 
   multiplicacion := numero1 * numero2;
   
   { Verificar división por cero }
   if numero2 <> 0 then
-    division := numero1 / numero2
+    division := numero1 / numero2;
   else
     writeln('Error: No se puede dividir por cero');
   

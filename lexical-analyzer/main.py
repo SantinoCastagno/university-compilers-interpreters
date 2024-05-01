@@ -10,21 +10,21 @@ def construir_lexema(fuente, caracter):
     lexema = "lexema "
     while caracter:
         if not (caracter == " " or caracter == "\t" or caracter == "\n"):
-            if (caracter.isalpha()):
+            if (caracter.isalpha()): 
                 lexema += caracter
                 palabra = caracter
                 caracter = fuente.read(1)
                 while (caracter.isalpha() or caracter.isdigit()):
                     palabra += caracter
                     lexema += caracter
-                    if (palabra in keyword_list):
-                        return lexema + ", token(keyword, null)"
                     if (palabra in boolean_list):
                         if palabra == "true":
                             return lexema + ", token(booleanDato, trueValor)"
                         else:
                             return lexema + ", token(booleanDato, falseValor)"
                     caracter = fuente.read(1)
+                if (palabra in keyword_list):
+                        return lexema + ", token(keyword, null)"
                 return lexema + ", token(id, puntero-a-ts)"
             elif (caracter.isdigit()):
                 lexema += caracter
@@ -84,15 +84,12 @@ def construir_lexema(fuente, caracter):
                     return "token(null, null)"
                 else:
                     return "Error: digit not recognized."
-            # faltan los casos de true y false
         caracter = fuente.read(1)
 
 def leer_fuente(ruta_fuente, ruta_destino):
     try:
         with open(ruta_fuente, 'r') as fuente:
             try:
-                # if not os.path.exists(ruta_destino):
-                #     open(ruta_destino, 'w').close()
                 with open(ruta_destino, 'w') as destino:
                     caracter = fuente.read(1)
                     while caracter:
