@@ -6,7 +6,7 @@ import sys
 keyword_list = ["program", "begin", "if", "else", "then", "while", "end"]
 boolean_list = ["true", "false"]
 
-caracter = "\0"
+caracter = " "
 
 def construir_lexema(fuente):
     global caracter
@@ -88,6 +88,22 @@ def construir_lexema(fuente):
                 lexema += caracter
                 caracter = fuente.read(1)
                 return lexema + ", token(operadorAritmetico, resta)"
+            elif (caracter == "*"):
+                lexema += caracter
+                caracter = fuente.read(1)
+                return lexema + ", token(operadorAritmetico, multi)"
+            elif (caracter == "/"):
+                lexema += caracter
+                caracter = fuente.read(1)
+                return lexema + ", token(operadorAritmetico, div)"
+            elif (caracter == "("):
+                lexema += caracter
+                caracter = fuente.read(1)
+                return lexema + ", token(parentesis, resta)"
+            elif (caracter == ")"):
+                lexema += caracter
+                caracter = fuente.read(1)
+                return lexema + ", token(parentesis, resta)"
             elif (caracter == "{"):
                 lexema += caracter
                 while (caracter != "}"):
@@ -106,7 +122,7 @@ def construir_lexema(fuente):
                     lexema += caracter 
                     caracter = fuente.read(1)
                     return "token(null, null)"
-            print("Error: digit not recognized.")        
+            print("Error: digit not recognized:"+ caracter)        
         caracter = fuente.read(1)
 
 def leer_fuente(ruta_fuente, ruta_destino):
