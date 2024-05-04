@@ -3,7 +3,7 @@
 import os
 import sys
 
-keyword_list = ["program", "begin", "if", "else", "then", "while", "end"]
+keyword_list = ["program", "begin", "if", "else", "then", "while", "end", "and", "or", "var", "procedure", "function", "do"]
 boolean_list = ["true", "false"]
 
 caracter = " "
