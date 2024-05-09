@@ -1,7 +1,7 @@
 program OperacionesBasicas;
 
 var
-  numero1, numero2, suma, resta, multiplicacion, division: real;
+  numero1, numero2, suma, resta, multiplicacion, division: integer;
 
 begin
   { Solicitar al usuario ingresar dos números }
