@@ -3,7 +3,7 @@
 import os
 import sys
 
-keyword_list = ["program", "begin", "if", "else", "then", "while", "end"]
+keyword_list = ["program", "begin", "if", "else", "then", "while", "end", "and", "or", "var", "procedure", "function", "do", "integer", "boolean"]
 boolean_list = ["true", "false"]
 
 caracter = " "
@@ -27,15 +27,15 @@ def construir_lexema(fuente):
                             return lexema + ", token(booleanDato, falseValor)"
                     caracter = fuente.read(1)
                 if (palabra in keyword_list):
-                    return lexema + ", token(keyword, null)"
+                    return lexema + ", token(keyword," + palabra + ")"
                 return lexema + ", token(id, puntero-a-ts)"
             elif (caracter.isdigit()):
-                lexema += str(caracter)
+                numero = str(caracter)
                 caracter = fuente.read(1)
                 while (caracter.isdigit()):
-                    lexema += str(caracter)
+                    numero += str(caracter)
                     caracter = fuente.read(1)
-                return lexema + ", token(enteroDato, null)"
+                return lexema + numero + ", token(enteroDato,"+ numero + ")"
             elif (caracter==";"):
                 lexema += caracter 
                 caracter = fuente.read(1)
@@ -98,11 +98,11 @@ def construir_lexema(fuente):
             elif (caracter == "("):
                 lexema += caracter
                 caracter = fuente.read(1)
-                return lexema + ", token(parentesis, resta)"
+                return lexema + ", token(parentesis, '\(')"
             elif (caracter == ")"):
                 lexema += caracter
                 caracter = fuente.read(1)
-                return lexema + ", token(parentesis, resta)"
+                return lexema + ", token(parentesis, '\)')"
             elif (caracter == "{"):
                 lexema += caracter
                 while (caracter != "}"):
