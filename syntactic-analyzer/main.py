@@ -7,6 +7,13 @@ def m(terminal):
     else:
         print("error de sintaxis")
 
+def m_list(terminales):
+    if(preanalisis in terminales):
+        preanalisis = siguiente_terminal()
+    else:
+        print("error de sintaxis")
+
+
 def en_primeros(simbolo):
     for primero in primeros[simbolo]:
         if type(primero) == str and simbolo == primero:
@@ -83,7 +90,7 @@ def declaraciones_subrutinas():
 
 def declaracion_procedimiento():
     if preanalisis == 'procedure':
-        m('procedure');identificador();parametro_formales_opcional();m(';');bloque()
+        m('procedure');identificador();parametros_formales_opcional();m(';');bloque()
     else:
         print('error de sintaxis')
 
@@ -142,7 +149,7 @@ def instruccion_aux():
     else:
         print('error de sintaxis')
 
-def asingacion():
+def asignacion():
     if preanalisis == ':=':
         m(':=');expresion()
     else:
@@ -170,11 +177,87 @@ def else_opcional():
 
 def instruccion_repetitiva():
     if preanalisis == 'while':
-        m('while');exprecion();m('do');instruccion()
+        m('while');expresion();m('do');instruccion()
     else:
         print('error de analisis')
 
-# EXPRESIONES 
+# EXPRESIONES
+def lista_expresiones():
+    if en_primeros('expresion'):
+        expresion();lista_expresiones_repetitiva()
+    else:
+        print('error de sintaxis') 
+
+def lista_expresiones_repetitiva():
+    if preanalisis ==',':
+        m(',');expresion();lista_expresiones_repetitiva()
+
+def expresion():
+    if en_primeros('expresion_simple'):
+        expresion_simple();relacion_opcional()
+    else:
+        print('error de sintaxis')
+
+def relacion_opcional():
+    if en_primeros(relacion):
+        relacion();expresion_simple()
+
+def relacion():
+    # esta es una forma reducida de calcular el primero() y el match para cada elemento
+    terminales = ['=','<>','<=','<','>','>=']
+    if preanalisis in terminales:
+        m_list(terminales)
+    else:
+        print('error de sintaxis')
+
+def expresion_simple():
+    if en_primeros('mas_menos_opcional'):
+        mas_menos_opcional();termino();expresion_simple_repetitiva()
+
+def mas_menos_opcional():
+    terminales = ['+','-']
+    if preanalisis in terminales:
+        m_list(terminales)
+
+def expresion_simple_repetitiva():
+    if en_primeros(mas_menos_or_opcional):
+        mas_menos_or_opcional();termino();expresion_simple_repetitiva()
+
+def mas_menos_or_opcional():
+    terminales = ['+','-','or']
+    if preanalisis in terminales:
+        m_list(terminales)
+
+def termino():
+    if en_primeros('factor'):
+        factor();termino_repetitiva()
+    else:
+        print('error de analisis: termino()')
+
+def termino_repetitiva():
+    #PREGUNTAR santino que pingo es esta aprte de la gramatica
+    print()
+
+def factor():
+    if en_primeros('identificador'):
+        identificador(); factor_opcional()
+    elif en_primeros('numero'):
+        numero()
+    elif preanalisis == '(': #PREGUNTAR aca esta bien?
+        m('(');expresion();m(')')
+    elif preanalisis == 'not':
+        m('not');factor()
+    else:
+        print('error de analisis: factor()')
+
+def factor_opcional():
+    if en_primeros('llamada_funcion'):
+        llamada_funcion()
+
+def llamada_funcion():
+    if en_primeros('lista_expresiones_opcional'):
+        lista_expresiones_opcional()
+
 
 if __name__ == "__main__":
     primeros = {
@@ -184,15 +267,40 @@ if __name__ == "__main__":
         "declaraciones_subrutinas_opcional": [declaraciones_subrutinas,None],
 
         "declaraciones_variables":["var"],
-        "declaraciones_variables_repetitiva":[lista_identificadores],
+        "declaraciones_variables_repetitiva":['var',None],
+        "declaracion_variable":[lista_identificadores],
         "tipo": ["integer","boolean"],
         "lista_identificadores":[identificador],
-        "lista_identificadores_repetitiva":[","],
+        "lista_identificadores_repetitiva":[",",None],
         "declaraciones_subrutinas":[declaracion_procedimiento,declaracion_funcion,None],
         "declaracion_procedimiento":["procedure"],
         "declaracion_funcion":["function"],
         "parametros_formales_opcional":[parametros_formales,None],
         "parametros_formales":["("],
-        "parametros_formales_repetitiva":[";"],
-        "seccion_parametrod_formales":[lista_identificadores],
+        "parametros_formales_repetitiva":[";",None],
+        "seccion_parametros_formales":[lista_identificadores],
+
+        "instruccion_compuesta":['begin'],
+        'instruccion_compuesta_repetitiva':[instruccion,None],
+        'instruccion':[identificador,instruccion_compuesta,instruccion_condicional,instruccion_repetitiva],
+        'instruccion_aux':[asignacion,llamada_procedimiento],
+        'asignacion':[':='],
+        'llamada_procedimiento':[lista_expresiones_opcional],
+        'instruccion_condicional':['if'],
+        'else_opcional':['else',None],
+        'instruccion_repetitiva':['while'],
+
+        'lista_expresiones':[expresion],
+        'lista_expresiones_repetitiva':[',',None],
+        'expresion':[expresion_simple],
+        'relacion':['=','<>','<=','<','>','>='],
+        'expresion_simple':[mas_menos_opcional],
+        'mas_menos_opcional':['+','-',None],
+        'expresion_simple_repetitiva':[mas_menos_or_opcional,None],
+        'mas_menos_or_opcional':['+','-','or',None],
+        'termino':[factor],
+        'termino_repetitiva':[],#PREGUNTAR
+        'factor':[identificador,numero,'(','not'],
+        'factor_opcional':[llamada_funcion,None],
+        'llamada_funcion':[lista_expresiones_opcional]
     }
