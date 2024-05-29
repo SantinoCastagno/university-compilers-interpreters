@@ -1,5 +1,5 @@
 # Analizador Léxico para Pascal Lite en Python
-
+|
 ## Descripción
 
 Este proyecto es un analizador léxico en Python para analizar código fuente escrito en Pascal Lite, una versión simplificada del lenguaje de programación Pascal. El analizador léxico es capaz de tokenizar código Pascal Lite, identificando elementos léxicos como palabras clave, identificadores, literales y operadores.

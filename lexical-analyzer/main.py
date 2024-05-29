@@ -105,26 +105,26 @@ def construir_lexema(fuente):
                 return lexema + ", token('parentesis', ')')"
             elif (caracter == "{"):
                 lexema += caracter
+                caracter = fuente.read(1)
                 while (caracter != "}"):
                     lexema += caracter
                     caracter = fuente.read(1)
-                if (caracter == "}"):
-                    lexema += caracter 
-                    caracter = fuente.read(1)
-                    return "token(None, None)"
+                lexema += caracter 
+                caracter = fuente.read(1)
+                return ""
             elif (caracter == "'"):
                 lexema += caracter
+                caracter = fuente.read(1)
                 while (caracter != "'"):
                     lexema += caracter
                     caracter = fuente.read(1)
-                if (caracter == "'"):
-                    lexema += caracter 
-                    caracter = fuente.read(1)
-                    return "token(None, None)"
+                lexema += caracter 
+                caracter = fuente.read(1)
+                return ""
             print("Error: digit not recognized:"+ caracter)        
         caracter = fuente.read(1)
 
-def leer_fuente(ruta_fuente, ruta_destino):
+def leer_fuente(ruta_fuente, ruta_destino):#
     global caracter
     try:
         with open(ruta_fuente, 'r') as fuente:
@@ -132,7 +132,7 @@ def leer_fuente(ruta_fuente, ruta_destino):
                 with open(ruta_destino, 'w') as destino:
                     while caracter:
                         lexema = construir_lexema(fuente)
-                        if (lexema):
+                        if (lexema ):
                             destino.write(lexema + "\n")
                         else:
                             print("Finalizacion del analisis lexico.")
