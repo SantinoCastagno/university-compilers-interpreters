@@ -1,3 +1,4 @@
+import inspect
 
 preanalisis = {'v':''}
 
@@ -17,8 +18,7 @@ def m_list(terminales):
 def en_primeros(simbolo):
     #print(simbolo)
     for primero in primeros[simbolo]:
-        if simbolo == 'identificador':
-            return True
+        #print(preanalisis['v'],',',primero,'--',type(primero))
         if type(primero) == str and preanalisis['v'] == primero:
             return True
         elif callable(primero) and en_primeros(str(primero.__name__)):
@@ -27,9 +27,13 @@ def en_primeros(simbolo):
 
 def siguiente_terminal():
     preanalisis['v'] = leer_siguiente_linea(archivo)
+    #print('SIGUIENTE LINEA: ',preanalisis['v'])
+    if preanalisis['v'] == None:
+        return
     preanalisis['v'] = preanalisis['v'][preanalisis['v'].find('token'):]
     preanalisis['v'] = eval(preanalisis['v'])
-    print('SIGUIENTE TERMINAL:',preanalisis['v'])
+    #print('SIGUIENTE TERMINAL:',preanalisis['v'],'\n')
+
 
 
 def token(arg0,arg1):
@@ -38,14 +42,14 @@ def token(arg0,arg1):
         'coma':',',
         'dosPuntos':':',
         'asignacion':':=',
-        'suma':'+',
-        'resta':'-',
-        'div':'/',
-        'distinto':'<>',
+        'punto':'.'
     }
     if (arg0 == 'keyword'
         or arg0 == 'id'
         or arg0 == 'parentesis'
+        or arg0 == 'operadorAritmetico'
+        or arg0 == 'operadorRelacional'
+
         ):
         return arg1
     if arg0 == 'enteroDato':
@@ -148,13 +152,13 @@ def seccion_parametros_formales():
 # INSTRUCCIONES
 def instruccion_compuesta():
     if preanalisis['v'] == 'begin':
-        m('begin');instruccion();instruccion_compuesta_repetitiva()
+        m('begin');instruccion();m(';');instruccion_compuesta_repetitiva();m('end')
     else:
         print('error de sintaxis: instruccion_compuesta()')
 
 def instruccion_compuesta_repetitiva():
     if en_primeros('instruccion'):
-        instruccion();m('m');instruccion_compuesta_repetitiva
+        instruccion();m(';');instruccion_compuesta_repetitiva()
 
 def instruccion():
     if en_primeros('identificador'):
@@ -171,7 +175,7 @@ def instruccion():
 def instruccion_aux():
     if en_primeros('asignacion'):
         asignacion()
-    if en_primeros('llamada_procedimiento'):
+    elif en_primeros('llamada_procedimiento'):
         llamada_procedimiento()
     else:
         print('error de sintaxis: instruccion_aux()')
@@ -190,11 +194,11 @@ def llamada_procedimiento():
 
 def lista_expresiones_opcional():
     if preanalisis['v'] == '(':
-        m('(');lista_expresiones();m(')')
+        m('(');lista_expresiones_procedimiento();m(')')
 
 def instruccion_condicional():
     if preanalisis['v'] == 'if':
-        m('if');expresion();m('then');instruccion();else_opcional()
+        m('if');expresion();m('then');instruccion();else_opcional();
     else:
         print('error de sintaxis: instruccion_condicional()')
 
@@ -209,6 +213,14 @@ def instruccion_repetitiva():
         print('error de analisis: else_opcional()')
 
 # EXPRESIONES
+
+def lista_expresiones_procedimiento():
+    if en_primeros('identificador'):
+        identificador()
+    elif preanalisis['v'] == 'enteroDato':
+        numero()
+
+
 def lista_expresiones():
     if en_primeros('expresion'):
         expresion();lista_expresiones_repetitiva()
@@ -226,7 +238,7 @@ def expresion():
         print('error de sintaxis: expresion()')
 
 def relacion_opcional():
-    if en_primeros(relacion):
+    if en_primeros('relacion'):
         relacion();expresion_simple()
 
 def relacion():
@@ -238,8 +250,11 @@ def relacion():
         print('error de sintaxis: relacion()')
 
 def expresion_simple():
-    if en_primeros('mas_menos_opcional'):
+    if en_primeros('mas_menos_opcional') or  en_primeros('termino'):
         mas_menos_opcional();termino();expresion_simple_repetitiva()
+    else:
+        print('error de sintaxis: expresion_simple()')
+
 
 def mas_menos_opcional():
     terminales = ['+','-']
@@ -247,7 +262,7 @@ def mas_menos_opcional():
         m_list(terminales)
 
 def expresion_simple_repetitiva():
-    if en_primeros(mas_menos_or_opcional):
+    if en_primeros('mas_menos_or_opcional') or  en_primeros('termino'):
         mas_menos_or_opcional();termino();expresion_simple_repetitiva()
 
 def mas_menos_or_opcional():
@@ -264,8 +279,8 @@ def termino():
 def termino_repetitiva():
     if preanalisis['v'] == '*':
         m('*');factor();termino_repetitiva()
-    elif preanalisis['v'] == 'div':
-         m('div');factor();termino_repetitiva()
+    elif preanalisis['v'] == '/':
+         m('/');factor();termino_repetitiva()
     elif preanalisis['v'] == 'and':
          m('and');factor();termino_repetitiva()
 
@@ -291,12 +306,15 @@ def llamada_funcion():
 
 # OTROS
 def identificador():
-    #PREGUNTAR
     siguiente_terminal()
 
+
+
 def numero():
-    #PREGUNTAR
-    siguiente_terminal()
+    if preanalisis['v'] == 'enteroDato':
+        siguiente_terminal()
+    else:
+        print('error de sintaxis: numero()')
 
 
 # AUX
@@ -325,7 +343,7 @@ def leer_siguiente_linea(f):
 if __name__ == "__main__":
     primeros = {       
         "programa": ["program"],
-        "bloque":[declaraciones_variables_opcional],
+        "bloque":[declaraciones_variables_opcional,declaraciones_subrutinas_opcional,instruccion_compuesta],
         "declaraciones_variables_opcional": [declaraciones_variables,None],
         "declaraciones_subrutinas_opcional": [declaraciones_subrutinas,None],
 
@@ -358,21 +376,23 @@ if __name__ == "__main__":
         'lista_expresiones_repetitiva':[',',None],
         'expresion':[expresion_simple],
         'relacion':['=','<>','<=','<','>','>='],
-        'expresion_simple':[mas_menos_opcional],
+        'expresion_simple':[mas_menos_opcional,termino],
         'mas_menos_opcional':['+','-',None],
-        'expresion_simple_repetitiva':[mas_menos_or_opcional,None],
+        'expresion_simple_repetitiva':[mas_menos_or_opcional,termino,None],
         'mas_menos_or_opcional':['+','-','or',None],
         'termino':[factor],
-        'termino_repetitiva':['*','div','and'],
+        'termino_repetitiva':['*','/','and',None],
         'factor':[identificador,numero,'(','not'],
         'factor_opcional':[llamada_funcion,None],
         'llamada_funcion':[lista_expresiones_opcional],
 
-        'identificador':[None]
+        'identificador':['id'],
+        'numero':['enteroDato']
     }
 
-    directorio = '../lexical-analyzer/output.pas'
+    directorio = '../lexical-analyzer/output.out'
     archivo = abrir_archivo(directorio)
     siguiente_terminal()
     programa()
+    print('ANALISIS TERMINADO')
 

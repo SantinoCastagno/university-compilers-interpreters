@@ -27,8 +27,8 @@ def construir_lexema(fuente):
                             return lexema + ", token('booleanDato', 'falseValor')"
                     caracter = fuente.read(1)
                 if (palabra in keyword_list):
-                    return lexema + ", token('keyword','" + palabra + "')"
-                return lexema + ", token('id', 'puntero-a-ts')"
+                    return lexema + ", token('keyword', '" + palabra + "')"
+                return lexema + ", token('id', 'id')"
             elif (caracter.isdigit()):
                 numero = str(caracter)
                 caracter = fuente.read(1)
@@ -63,38 +63,38 @@ def construir_lexema(fuente):
                 if (caracter == "="):
                     lexema += caracter 
                     caracter = fuente.read(1)
-                    return lexema + ", token('asignacion', 'menorIgual')"
+                    return lexema + ", token('asignacion', '<=')"
                 elif (caracter == ">"):
                     lexema += caracter 
                     caracter = fuente.read(1)
-                    return lexema + ", token('operadorRelacional', 'distinto')"
+                    return lexema + ", token('operadorRelacional', '<>')"
                 caracter = fuente.read(1)
-                return lexema + ", token('operadorRelacional', 'menor')"
+                return lexema + ", token('operadorRelacional', '<')"
             elif (caracter == ">"):
                 lexema += caracter
                 caracter = fuente.read(1)
                 if (caracter == "="):
                     lexema += caracter
                     caracter = fuente.read(1)
-                    return lexema + ", token('operadorRelacional', 'mayorIgual')"
+                    return lexema + ", token('operadorRelacional', '>=')"
                 caracter = fuente.read(1)
-                return lexema + ", token('operadorRelacional', 'mayor')"
+                return lexema + ", token('operadorRelacional', '>')"
             elif (caracter == "+"):
                 lexema += caracter
                 caracter = fuente.read(1)
-                return lexema + ", token('operadorAritmetico', 'suma')"
+                return lexema + ", token('operadorAritmetico', '+')"
             elif (caracter == "-"):
                 lexema += caracter
                 caracter = fuente.read(1)
-                return lexema + ", token('operadorAritmetico', 'resta')"
+                return lexema + ", token('operadorAritmetico', '-')"
             elif (caracter == "*"):
                 lexema += caracter
                 caracter = fuente.read(1)
-                return lexema + ", token('operadorAritmetico', 'multi')"
+                return lexema + ", token('operadorAritmetico', '*')"
             elif (caracter == "/"):
                 lexema += caracter
                 caracter = fuente.read(1)
-                return lexema + ", token('operadorAritmetico', 'div')"
+                return lexema + ", token('operadorAritmetico', '/')"
             elif (caracter == "("):
                 lexema += caracter
                 caracter = fuente.read(1)

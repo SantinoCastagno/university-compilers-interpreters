@@ -17,16 +17,20 @@ begin
   
   { Verificar division por cero }
   if numero2 <> 0 then
-    division := numero1 / numero2;
+    division := numero1 / numero2
   else
     writeln('Error: No se puede dividir por cero');
   
   { Mostrar resultados }
-  writeln('Suma:', suma:0:2);
-  writeln('Resta:', resta:0:2);
-  writeln('Multiplicacion:', multiplicacion:0:2);
+  writeln('Suma:');
+  writeln(suma);
+  writeln('Resta:');
+  writeln(resta);
+  writeln('Multiplicacion:');
+  writeln(multiplicacion);
   if numero2 <> 0 then
-    writeln('Division:', division:0:2);
+    writeln('Division:');
+    writeln(division);
     
-  readln; { Esperar a que el usuario presione Enter para salir }
+  readln();   
 end.
