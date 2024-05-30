@@ -1,4 +1,5 @@
 import inspect
+import sys
 
 preanalisis = {'v':''}
 
@@ -6,13 +7,13 @@ def m(terminal):
     if(terminal == preanalisis['v']):
         siguiente_terminal()
     else:
-        print("error de sintaxis: match con ",terminal)
+        print("error de sintaxis: se esperaba '",terminal,"', se encontro '",preanalisis['v'],"'")
 
 def m_list(terminales):
     if(preanalisis['v'] in terminales):
         siguiente_terminal()
     else:
-        print("error de sintaxis: match con ",terminales)
+        print("error de sintaxis: se esperaba ",terminales)
 
 
 def en_primeros(simbolo):
@@ -62,13 +63,15 @@ def programa():
     if preanalisis['v'] == 'program':
         m("program");identificador();m(';');bloque()
     else:
-        print("error de sintaxis: programa()")
+        print_debug('programa()')
+        print("error de sintaxis: se esperaba 'program', se encontro '",preanalisis['v'],"'")
 
 def bloque():
-    if en_primeros('declaraciones_variables_opcional'):
+    if en_primeros('declaraciones_variables_opcional') or en_primeros('declaraciones_subrutinas_opcional') or en_primeros('instruccion_compuesta'):
         declaraciones_variables_opcional();declaraciones_subrutinas_opcional();instruccion_compuesta();m('.')
     else:
-        print('error de sintaxis: bloque()')
+        print_debug('bloque()')
+        print('error de sintaxis: no se ha declarado el inicio de la función principal del programa')
 
 def declaraciones_variables_opcional():
     if en_primeros("declaraciones_variables"):
@@ -83,17 +86,19 @@ def declaraciones_variables():
     if preanalisis['v'] =='var':
         m("var");declaracion_variable();m(';');declaraciones_variables_repetitivas()
     else:
-        print('error de sintaxis: declaraciones_variables()')
+        print_debug('declaraciones_variables()')
+        print("error de sintaxis: se esperaba 'var', se encontro '",preanalisis['v'],"'")
 
 def declaraciones_variables_repetitivas():
     if preanalisis['v'] == 'var':
-         m("var");declaracion_variable();declaraciones_variables_repetitivas()
+         m("var");declaracion_variable();m(';');declaraciones_variables_repetitivas()
 
 def declaracion_variable():
     if en_primeros('lista_identificadores'):
         lista_identificadores();m(':');tipo()
     else:
-        print('error de sintaxis: declaracion_variable()')
+        print_debug('declaracion_variable()')
+        print("error de sintaxis: no se definieron las variables")
 
 def tipo():
     if preanalisis['v'] == 'integer':
@@ -101,13 +106,15 @@ def tipo():
     elif preanalisis['v'] == 'boolean':
         m('boolean')
     else:
-        print('error de sintaxis: tipo()')
+        print_debug('tipo()')
+        print('error de sintaxis: solo se permite tipo integer o boolean')
 
 def lista_identificadores():
     if en_primeros('identificador'):
         identificador();lista_identificadores_repetitiva()
     else:
-        print('error de sintaxis: lista_identificadores()')
+        print_debug('lista_identificadores()')
+        print('error de sintaxis: aca deberia ir un identificador')
 
 def lista_identificadores_repetitiva():
     if preanalisis['v'] == ',':
@@ -123,13 +130,16 @@ def declaracion_procedimiento():
     if preanalisis['v'] == 'procedure':
         m('procedure');identificador();parametros_formales_opcional();m(';');bloque()
     else:
-        print('error de sintaxis: declaracion_procedimiento()')
+        print_debug('declaracion_procedimiento()')
+        print("error de sintaxis: se esperaba 'procedure', se encontro '",preanalisis['v'],"'")
 
 def declaracion_funcion():
     if preanalisis['v']=='function':
         m('function');identificador();parametros_formales_opcional();m(':');tipo();m(';');bloque()
     else:
-        print('error de analisis: declaracion_funcion()')
+        print_debug('declaracion_funcion()')
+        print("error de sintaxis: se esperaba 'function', se encontro '",preanalisis['v'],"'")
+
 
 def parametros_formales_opcional():
     if en_primeros('parametros_formales'):
@@ -139,7 +149,8 @@ def parametros_formales():
     if preanalisis['v'] == '(':
         m('(');seccion_parametros_formales();parametros_formales_repetitiva();m(')')
     else:
-        print('error de sintaxis: parametros_formales()')
+        print_debug('parametros_formales()')
+        print("error de sintaxis: se esperaba '(', se encontro '",preanalisis['v'],"'")
 
 def parametros_formales_repetitiva():
     if preanalisis['v'] == ';':
@@ -154,7 +165,8 @@ def instruccion_compuesta():
     if preanalisis['v'] == 'begin':
         m('begin');instruccion();m(';');instruccion_compuesta_repetitiva();m('end')
     else:
-        print('error de sintaxis: instruccion_compuesta()')
+        print_debug('instruccion_compuesta()')
+        print("error de sintaxis: se esperaba 'begin', se encontro '",preanalisis['v'],"'")
 
 def instruccion_compuesta_repetitiva():
     if en_primeros('instruccion'):
@@ -170,7 +182,8 @@ def instruccion():
     elif en_primeros('instruccion_repetitiva'):
         instruccion_repetitiva()
     else:
-        print('error de sintaxis: instruccion()')
+        print_debug('instruccion()')
+        print('error de sintaxis: no se encontro una instruccion valida')
 
 def instruccion_aux():
     if en_primeros('asignacion'):
@@ -178,19 +191,22 @@ def instruccion_aux():
     elif en_primeros('llamada_procedimiento'):
         llamada_procedimiento()
     else:
-        print('error de sintaxis: instruccion_aux()')
+        print_debug('instruccion_aux()')
+        print('error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento')
 
 def asignacion():
     if preanalisis['v'] == ':=':
         m(':=');expresion()
     else:
-        print('error de analisis: asignacion()')
+        print_debug('asignacion()')
+        print("error de analisis: se esperaba ':=', se encontro '",preanalisis['v'],"'")
 
 def llamada_procedimiento():
     if en_primeros('lista_expresiones_opcional'):
         lista_expresiones_opcional()
     else:
-        print('error de analisis: llamada_procedimiento()')
+        print_debug('llamada_procedimiento()')
+        print("error de analisis: NO SE ")
 
 def lista_expresiones_opcional():
     if preanalisis['v'] == '(':
@@ -198,9 +214,11 @@ def lista_expresiones_opcional():
 
 def instruccion_condicional():
     if preanalisis['v'] == 'if':
-        m('if');expresion();m('then');instruccion();else_opcional();
+        m('if');expresion();m('then');instruccion();else_opcional()
     else:
-        print('error de sintaxis: instruccion_condicional()')
+        print_debug('instruccion_condicional()')
+        print("error de analisis:  se esperaba'if', se encontro '",preanalisis['v'],"'")
+
 
 def else_opcional():
     if preanalisis['v'] == 'else':
@@ -210,7 +228,9 @@ def instruccion_repetitiva():
     if preanalisis['v'] == 'while':
         m('while');expresion();m('do');instruccion()
     else:
-        print('error de analisis: else_opcional()')
+        print_debug('error de analisis: else_opcional()')
+        print("error de analisis:  se esperaba 'while', se encontro '",preanalisis['v'],"'")
+
 
 # EXPRESIONES
 
@@ -235,7 +255,8 @@ def expresion():
     if en_primeros('expresion_simple'):
         expresion_simple();relacion_opcional()
     else:
-        print('error de sintaxis: expresion()')
+        print_debug('expresion()')
+        print('error de sintaxis: la expresión no se inicio de manera correcta')
 
 def relacion_opcional():
     if en_primeros('relacion'):
@@ -247,13 +268,15 @@ def relacion():
     if preanalisis['v'] in terminales:
         m_list(terminales)
     else:
-        print('error de sintaxis: relacion()')
+        print_debug('relacion()')
+        print("error de sintaxis: se esperaba un operrador relacional, sea '=','<>','<=','<','>' o '>='")
 
 def expresion_simple():
     if en_primeros('mas_menos_opcional') or  en_primeros('termino'):
         mas_menos_opcional();termino();expresion_simple_repetitiva()
     else:
-        print('error de sintaxis: expresion_simple()')
+        print_debug('expresion_simple()')
+        print('error de sintaxis: se espera un termino valido.')
 
 
 def mas_menos_opcional():
@@ -274,7 +297,8 @@ def termino():
     if en_primeros('factor'):
         factor();termino_repetitiva()
     else:
-        print('error de analisis: termino()')
+        print_debug('termino()')
+        print('error de sintaxis: se espera un factor valido')
 
 def termino_repetitiva():
     if preanalisis['v'] == '*':
@@ -294,7 +318,8 @@ def factor():
     elif preanalisis['v'] == 'not':
         m('not');factor()
     else:
-        print('error de analisis: factor()')
+        print_debug('factor()')
+        print('error de sintaxis: se espera un factor valido')
 
 def factor_opcional():
     if en_primeros('llamada_funcion'):
@@ -308,7 +333,10 @@ def llamada_funcion():
 def identificador():
     siguiente_terminal()
 
-
+def print_debug(nombre_func):
+    activo = True
+    if activo:
+        print('en ',nombre_func)
 
 def numero():
     if preanalisis['v'] == 'enteroDato':
@@ -390,8 +418,13 @@ if __name__ == "__main__":
         'numero':['enteroDato']
     }
 
-    directorio = '../lexical-analyzer/output.out'
-    archivo = abrir_archivo(directorio)
+    if len(sys.argv) != 2:
+        print("Uso: python main.py <ruta_del_fuente_origen>")
+        sys.exit(1)
+    ruta_fuente = sys.argv[1]
+    #directorio = '../lexical-analyzer/output.out'
+
+    archivo = abrir_archivo(ruta_fuente)
     siguiente_terminal()
     programa()
     print('ANALISIS TERMINADO')

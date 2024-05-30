@@ -1,7 +1,21 @@
-program OperacionesBasicas;
+program source1;
 
 var
   numero1, numero2, suma, resta, multiplicacion, division: integer;
+ 
+var relacion1,relacion2,relacion3: boolean;
+
+procedure miproc1(minum,otronum:integer;mibool,otrobool,ultimobool:boolean);
+begin
+   readln();
+   relacion1 := (-3 > 4) and 1000 + 2 - 4 = suma or 3 <> 3;
+   relacion2 := relacion1;
+   while relacion2 <> relacion1 do
+   suma := -5;
+
+end.;
+
+
 
 begin
   { Solicitar al usuario ingresar dos números }
