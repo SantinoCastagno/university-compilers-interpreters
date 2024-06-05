@@ -1,8 +1,11 @@
 import inspect
 import sys
+import os
 from lexical_analyzer import obtener_siguiente_token
 
 preanalisis = {'v':''}
+archivo = ''
+
 
 def m(terminal):
     if(terminal == preanalisis['v']):
@@ -29,7 +32,7 @@ def en_primeros(simbolo):
 
 def siguiente_terminal():
     preanalisis['v'] = obtener_siguiente_token(archivo)
-    #print('SIGUIENTE LINEA: ',preanalisis['v'])
+    print('SIGUIENTE LINEA: ',preanalisis['v'])
     if preanalisis['v'] == None:
         return
     preanalisis['v'] = preanalisis['v'][preanalisis['v'].find('token'):]
@@ -129,14 +132,14 @@ def declaraciones_subrutinas():
 
 def declaracion_procedimiento():
     if preanalisis['v'] == 'procedure':
-        m('procedure');identificador();parametros_formales_opcional();m(';');bloque()
+        m('procedure');identificador();parametros_formales_opcional();m(';');instruccion_compuesta()#bloque()
     else:
         print_debug('declaracion_procedimiento()')
         print("error de sintaxis: se esperaba 'procedure', se encontro '",preanalisis['v'],"'")
 
 def declaracion_funcion():
     if preanalisis['v']=='function':
-        m('function');identificador();parametros_formales_opcional();m(':');tipo();m(';');bloque()
+        m('function');identificador();parametros_formales_opcional();m(':');tipo();m(';');instruccion_compuesta()#bloque()
     else:
         print_debug('declaracion_funcion()')
         print("error de sintaxis: se esperaba 'function', se encontro '",preanalisis['v'],"'")
@@ -207,7 +210,7 @@ def llamada_procedimiento():
         lista_expresiones_opcional()
     else:
         print_debug('llamada_procedimiento()')
-        print("error de analisis: NO SE ")
+        print("error de analisis: No se cumple la estructura para llamar un procedimiento")
 
 def lista_expresiones_opcional():
     if preanalisis['v'] == '(':
@@ -236,10 +239,12 @@ def instruccion_repetitiva():
 # EXPRESIONES
 
 def lista_expresiones_procedimiento():
-    if en_primeros('identificador'):
-        identificador()
-    elif preanalisis['v'] == 'enteroDato':
-        numero()
+    if en_primeros('lista_expresiones'):
+        lista_expresiones()
+    #if en_primeros('identificador'):
+   #     identificador();lista_expresiones_procedimiento_repetitiva()
+   # elif preanalisis['v'] == 'enteroDato':
+   #     numero();lista_expresiones_procedimiento_repetitiva()
 
 
 def lista_expresiones():
@@ -332,10 +337,17 @@ def llamada_funcion():
 
 # OTROS
 def identificador():
-    siguiente_terminal()
+    reservadas = ['program' , ';' , '.' ,  'var' , ':' , 'integer' , 'boolean' , ',' , 'procedure' , 'function' , 
+'(' , ')' ,  'begin' , 'end' , ':=' , 'if' , 'then' , 'else' , 'while' , 'do' , '*' , '/' , 'and' ,
+'not']
+    if preanalisis['v'] in reservadas:
+        print_debug('identificador()')
+        print('error de sintaxis: se esperaba un id, se encontro una palabra reservada: ',preanalisis['v'])
+    else:
+        siguiente_terminal()
 
 def print_debug(nombre_func):
-    activo = True
+    activo = False
     if activo:
         print('en ',nombre_func)
 
@@ -368,6 +380,8 @@ def leer_siguiente_linea(f):
             return None
     else:
         return None
+
+
 
 if __name__ == "__main__":
     primeros = {       
@@ -422,9 +436,11 @@ if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Uso: python main.py <ruta_del_fuente_origen>")
         sys.exit(1)
+    
+    global caracter
+
     ruta_fuente = sys.argv[1]
     #directorio = '../lexical-analyzer/output.out'
-    global caracter
     archivo = abrir_archivo(ruta_fuente)
     siguiente_terminal()
     programa()

@@ -1,0 +1,14 @@
+'pruebas/ej01b.pas' - B (falla)
+'pruebas/ej03c.pas' - B (falla)
+'pruebas/ej03b.pas' - B (compila)
+'pruebas/ej04b.pas' - B (falla)
+'pruebas/ej04c.pas' - B (falla)
+'pruebas/ej05b.pas' - B (falla)
+'pruebas/ej06b.pas' - B (falla)
+'pruebas/ej08c.pas' - B (falla)
+'pruebas/ej10d.pas' - B (falla) corroborar porfa
+'pruebas/ej11d.pas' - B (falla)
+'pruebas/ej13b.pas' - B (falla)
+'pruebas/ej15c.pas' - B (compila)
+
+

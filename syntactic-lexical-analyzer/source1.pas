@@ -13,7 +13,7 @@ begin
    while relacion2 <> relacion1 do
    suma := -5;
 
-end.;
+end;
 
 
 
