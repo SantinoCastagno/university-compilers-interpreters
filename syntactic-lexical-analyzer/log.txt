@@ -1,0 +1,1376 @@
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej01a.pas
+error de sintaxis: se esperaba 'program', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej01b.pas
+error de sintaxis: se esperaba un id, se encontro una palabra reservada:  program
+error de sintaxis: se esperaba ' ; ', se encontro ' program '
+error de sintaxis: no se ha declarado el inicio de la función principal del programa
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej01c.pas
+error de sintaxis: se esperaba un id, se encontro una palabra reservada:  ;
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej02a.pas
+error de sintaxis: se esperaba un id, se encontro una palabra reservada:  ;
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej02b.pas
+error de sintaxis: se esperaba ' ; ', se encontro ' id '
+error de sintaxis: no se ha declarado el inicio de la función principal del programa
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej03a.pas
+error de sintaxis: no se ha declarado el inicio de la función principal del programa
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej03b.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej03c.pas
+error de sintaxis: no se definieron las variables
+error de sintaxis: se esperaba ' ; ', se encontro ' var '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej04a.pas
+error de sintaxis: se esperaba ' : ', se encontro ' id '
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ; ', se encontro ' id '
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej04b.pas
+error de sintaxis: se esperaba un id, se encontro una palabra reservada:  ,
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej04c.pas
+error de sintaxis: se esperaba ' : ', se encontro ' id '
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ; ', se encontro ' id '
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej05a.pas
+error de sintaxis: se esperaba ' : ', se encontro ' integer '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej05b.pas
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ; ', se encontro ' : '
+error de sintaxis: se esperaba 'begin', se encontro ' : '
+error de sintaxis: se esperaba ' . ', se encontro ' : '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej06a.pas
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ; ', se encontro ' program '
+error de sintaxis: se esperaba 'begin', se encontro ' program '
+error de sintaxis: se esperaba ' . ', se encontro ' program '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej06b.pas
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ; ', se encontro ' id '
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej07a.pas
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ; ', se encontro ' id '
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej08a.pas
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ; ', se encontro ' procedure '
+error de sintaxis: se esperaba un id, se encontro una palabra reservada:  ;
+error de sintaxis: se esperaba ' ; ', se encontro ' . '
+error de sintaxis: se esperaba 'begin', se encontro ' . '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej08b.pas
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ; ', se encontro ' enteroDato '
+error de sintaxis: se esperaba 'begin', se encontro ' enteroDato '
+error de sintaxis: se esperaba ' . ', se encontro ' enteroDato '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej08c.pas
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ; ', se encontro ' None '
+error de sintaxis: se esperaba 'begin', se encontro ' None '
+error de sintaxis: se esperaba ' . ', se encontro ' None '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej08d.pas
+error de sintaxis: se esperaba ' : ', se encontro ' id '
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ; ', se encontro ' id '
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej09a.pas
+error de sintaxis: se esperaba ' ; ', se encontro ' . '
+error de sintaxis: se esperaba ' end ', se encontro ' . '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej10a.pas
+error de sintaxis: se esperaba un id, se encontro una palabra reservada:  procedure
+error de sintaxis: se esperaba ' ; ', se encontro ' procedure '
+error de sintaxis: se esperaba 'begin', se encontro ' procedure '
+error de sintaxis: se esperaba ' ; ', se encontro ' procedure '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej10b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej10c.pas
+error de sintaxis: se esperaba un id, se encontro una palabra reservada:  function
+error de sintaxis: se esperaba ' : ', se encontro ' function '
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ; ', se encontro ' function '
+error de sintaxis: se esperaba 'begin', se encontro ' function '
+error de sintaxis: se esperaba ' ; ', se encontro ' function '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej10d.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej10e.pas
+error de sintaxis: se esperaba un id, se encontro una palabra reservada:  function
+error de sintaxis: se esperaba ' ; ', se encontro ' function '
+error de sintaxis: se esperaba 'begin', se encontro ' function '
+error de sintaxis: se esperaba ' ; ', se encontro ' function '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej11a.pas
+error de sintaxis: se esperaba ' ; ', se encontro ' : '
+error de sintaxis: se esperaba 'begin', se encontro ' : '
+error de sintaxis: se esperaba ' ; ', se encontro ' : '
+error de sintaxis: se esperaba 'begin', se encontro ' : '
+error de sintaxis: se esperaba ' . ', se encontro ' : '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej11b.pas
+error de sintaxis: se esperaba ' ; ', se encontro ' begin '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej11c.pas
+error de sintaxis: se esperaba ' : ', se encontro ' ; '
+error de sintaxis: solo se permite tipo integer o boolean
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej11d.pas
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ; ', se encontro ' procedure '
+error de sintaxis: se esperaba 'begin', se encontro ' procedure '
+error de sintaxis: se esperaba ' ; ', se encontro ' procedure '
+error de sintaxis: se esperaba un id, se encontro una palabra reservada:  ;
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej12a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' var '
+error de sintaxis: se esperaba ' ; ', se encontro ' var '
+error de sintaxis: se esperaba 'begin', se encontro ' var '
+error de sintaxis: se esperaba ' . ', se encontro ' var '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej13a.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej13b.pas
+error de sintaxis: se esperaba un id, se encontro una palabra reservada:  ,
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej13c.pas
+error de sintaxis: se esperaba ' : ', se encontro ' id '
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ) ', se encontro ' id '
+error de sintaxis: se esperaba ' : ', se encontro ' id '
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ; ', se encontro ' id '
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' ; ', se encontro ' id '
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej14a.pas
+error de sintaxis: se esperaba un id, se encontro una palabra reservada:  var
+error de sintaxis: se esperaba ' : ', se encontro ' var '
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ) ', se encontro ' var '
+error de sintaxis: se esperaba ' : ', se encontro ' var '
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ; ', se encontro ' var '
+error de sintaxis: se esperaba 'begin', se encontro ' var '
+error de sintaxis: se esperaba ' ; ', se encontro ' var '
+error de sintaxis: se esperaba 'begin', se encontro ' var '
+error de sintaxis: se esperaba ' . ', se encontro ' var '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej15a.pas
+error de sintaxis: se esperaba ' : ', se encontro ' + '
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ) ', se encontro ' + '
+error de sintaxis: se esperaba ' : ', se encontro ' + '
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ; ', se encontro ' + '
+error de sintaxis: se esperaba 'begin', se encontro ' + '
+error de sintaxis: se esperaba ' ; ', se encontro ' + '
+error de sintaxis: se esperaba 'begin', se encontro ' + '
+error de sintaxis: se esperaba ' . ', se encontro ' + '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej15b.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej15c.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej15d.pas
+error de sintaxis: la expresión no se inicio de manera correcta
+error de sintaxis: se esperaba ' ) ', se encontro ' None '
+error de sintaxis: se esperaba ' ; ', se encontro ' None '
+error de sintaxis: se esperaba ' end ', se encontro ' None '
+error de sintaxis: se esperaba ' . ', se encontro ' None '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej15e.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej16a.pas
+error de sintaxis: se esperaba ' ; ', se encontro ' . '
+error de sintaxis: se esperaba ' end ', se encontro ' . '
+error de sintaxis: se esperaba ' ; ', se encontro ' . '
+error de sintaxis: se esperaba 'begin', se encontro ' . '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej16b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' ; ', se encontro ' id '
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej16c.pas
+error de sintaxis: se esperaba ' ; ', se encontro ' . '
+error de sintaxis: se esperaba ' end ', se encontro ' . '
+error de sintaxis: se esperaba ' ; ', se encontro ' . '
+error de sintaxis: se esperaba 'begin', se encontro ' . '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej16d.pas
+error de sintaxis: se esperaba ' ; ', se encontro ' end '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej16e.pas
+error de sintaxis: se esperaba 'begin', se encontro ' end '
+error de sintaxis: se esperaba ' . ', se encontro ' end '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej16f.pas
+error de sintaxis: se esperaba 'begin', se encontro ' end '
+error de sintaxis: se esperaba ' . ', se encontro ' end '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej16g.pas
+error de sintaxis: se esperaba 'begin', se encontro ' end '
+error de sintaxis: se esperaba ' . ', se encontro ' end '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej16h.pas
+error de sintaxis: no se encontro una instruccion valida
+error de sintaxis: se esperaba ' ; ', se encontro ' end '
+error de sintaxis: se esperaba ' ; ', se encontro ' . '
+error de sintaxis: se esperaba ' end ', se encontro ' . '
+error de sintaxis: se esperaba ' ; ', se encontro ' . '
+error de sintaxis: se esperaba 'begin', se encontro ' . '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej16i.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej16j.pas
+error de sintaxis: no se encontro una instruccion valida
+error de sintaxis: se esperaba ' ; ', se encontro ' end '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej16k.pas
+error de sintaxis: se esperaba ' ; ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej17a.pas
+error de sintaxis: se esperaba ' ; ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej17b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' end '
+error de sintaxis: se esperaba ' ; ', se encontro ' end '
+error de sintaxis: se esperaba 'begin', se encontro ' end '
+error de sintaxis: se esperaba ' . ', se encontro ' end '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej17c.pas
+error de sintaxis: se esperaba 'begin', se encontro ' end '
+error de sintaxis: se esperaba ' ; ', se encontro ' end '
+error de sintaxis: se esperaba 'begin', se encontro ' end '
+error de sintaxis: se esperaba ' . ', se encontro ' end '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej17d.pas
+error de sintaxis: se esperaba 'begin', se encontro ' end '
+error de sintaxis: se esperaba ' ; ', se encontro ' end '
+error de sintaxis: se esperaba 'begin', se encontro ' end '
+error de sintaxis: se esperaba ' . ', se encontro ' end '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej17e.pas
+error de sintaxis: no se encontro una instruccion valida
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej17f.pas
+error de sintaxis: se esperaba ' end ', se encontro ' ; '
+error de sintaxis: se esperaba 'begin', se encontro ' end '
+error de sintaxis: se esperaba ' . ', se encontro ' end '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej18a.pas
+error de sintaxis: se esperaba ' end ', se encontro ' ; '
+error de sintaxis: se esperaba 'begin', se encontro ' end '
+error de sintaxis: se esperaba ' . ', se encontro ' end '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej18b.pas
+error de sintaxis: se esperaba ' end ', se encontro ' ; '
+error de sintaxis: se esperaba 'begin', se encontro ' end '
+error de sintaxis: se esperaba ' . ', se encontro ' end '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej18c.pas
+error de sintaxis: se esperaba ' end ', se encontro ' ; '
+error de sintaxis: se esperaba 'begin', se encontro ' end '
+error de sintaxis: se esperaba ' . ', se encontro ' end '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej19a.pas
+error de sintaxis: se espera un factor valido
+error de sintaxis: se esperaba ' ; ', se encontro ' None '
+error de sintaxis: se esperaba ' end ', se encontro ' None '
+error de sintaxis: se esperaba ' . ', se encontro ' None '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej19b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej20a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej20b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej20c.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej20d.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej20e.pas
+error de sintaxis: se espera un factor valido
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej21a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej21b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej22a.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej22b.pas
+error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej22c.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej22d.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej23a.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej23b.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej23c.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej23d.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej23e.pas
+error de sintaxis: la expresión no se inicio de manera correcta
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej23f.pas
+error de sintaxis: la expresión no se inicio de manera correcta
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej24a.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej24b.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej24c.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej24d.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej25a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej25b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej26a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej27a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej27b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej27c.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej28a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej28b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej29a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej29b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej30a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej30b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej30c.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej30d.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej30.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej31a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej31b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej31c.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej31.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej32a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej32b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej32c.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej32.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej33a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej33b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej34a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej34b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej34c.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej34d.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej35a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej36a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej36b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej36c.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej39a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej40a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej40b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej41a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej41b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej41c.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej41d.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej42a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej42b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej42c.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej43a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej43b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej43c.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej01a.pas
+error de sintaxis: se esperaba 'program', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej01b.pas
+error de sintaxis: se esperaba un id, se encontro una palabra reservada:  program
+error de sintaxis: se esperaba ' ; ', se encontro ' program '
+error de sintaxis: no se ha declarado el inicio de la función principal del programa
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej01c.pas
+error de sintaxis: se esperaba un id, se encontro una palabra reservada:  ;
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej02a.pas
+error de sintaxis: se esperaba un id, se encontro una palabra reservada:  ;
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej02b.pas
+error de sintaxis: se esperaba ' ; ', se encontro ' id '
+error de sintaxis: no se ha declarado el inicio de la función principal del programa
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej03a.pas
+error de sintaxis: no se ha declarado el inicio de la función principal del programa
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej03b.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej03c.pas
+error de sintaxis: no se definieron las variables
+error de sintaxis: se esperaba ' ; ', se encontro ' var '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej04a.pas
+error de sintaxis: se esperaba ' : ', se encontro ' id '
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ; ', se encontro ' id '
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej04b.pas
+error de sintaxis: se esperaba un id, se encontro una palabra reservada:  ,
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej04c.pas
+error de sintaxis: se esperaba ' : ', se encontro ' id '
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ; ', se encontro ' id '
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej05a.pas
+error de sintaxis: se esperaba ' : ', se encontro ' integer '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej05b.pas
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ; ', se encontro ' : '
+error de sintaxis: se esperaba 'begin', se encontro ' : '
+error de sintaxis: se esperaba ' . ', se encontro ' : '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej06a.pas
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ; ', se encontro ' program '
+error de sintaxis: se esperaba 'begin', se encontro ' program '
+error de sintaxis: se esperaba ' . ', se encontro ' program '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej06b.pas
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ; ', se encontro ' id '
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej07a.pas
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ; ', se encontro ' id '
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej08a.pas
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ; ', se encontro ' procedure '
+error de sintaxis: se esperaba un id, se encontro una palabra reservada:  ;
+error de sintaxis: se esperaba ' ; ', se encontro ' . '
+error de sintaxis: se esperaba 'begin', se encontro ' . '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej08b.pas
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ; ', se encontro ' enteroDato '
+error de sintaxis: se esperaba 'begin', se encontro ' enteroDato '
+error de sintaxis: se esperaba ' . ', se encontro ' enteroDato '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej08c.pas
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ; ', se encontro ' None '
+error de sintaxis: se esperaba 'begin', se encontro ' None '
+error de sintaxis: se esperaba ' . ', se encontro ' None '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej08d.pas
+error de sintaxis: se esperaba ' : ', se encontro ' id '
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ; ', se encontro ' id '
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej09a.pas
+error de sintaxis: se esperaba ' ; ', se encontro ' . '
+error de sintaxis: se esperaba ' end ', se encontro ' . '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej10a.pas
+error de sintaxis: se esperaba un id, se encontro una palabra reservada:  procedure
+error de sintaxis: se esperaba ' ; ', se encontro ' procedure '
+error de sintaxis: se esperaba 'begin', se encontro ' procedure '
+error de sintaxis: se esperaba ' ; ', se encontro ' procedure '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej10b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej10c.pas
+error de sintaxis: se esperaba un id, se encontro una palabra reservada:  function
+error de sintaxis: se esperaba ' : ', se encontro ' function '
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ; ', se encontro ' function '
+error de sintaxis: se esperaba 'begin', se encontro ' function '
+error de sintaxis: se esperaba ' ; ', se encontro ' function '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej10d.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej10e.pas
+error de sintaxis: se esperaba un id, se encontro una palabra reservada:  function
+error de sintaxis: se esperaba ' ; ', se encontro ' function '
+error de sintaxis: se esperaba 'begin', se encontro ' function '
+error de sintaxis: se esperaba ' ; ', se encontro ' function '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej11a.pas
+error de sintaxis: se esperaba ' ; ', se encontro ' : '
+error de sintaxis: se esperaba 'begin', se encontro ' : '
+error de sintaxis: se esperaba ' ; ', se encontro ' : '
+error de sintaxis: se esperaba 'begin', se encontro ' : '
+error de sintaxis: se esperaba ' . ', se encontro ' : '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej11b.pas
+error de sintaxis: se esperaba ' ; ', se encontro ' begin '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej11c.pas
+error de sintaxis: se esperaba ' : ', se encontro ' ; '
+error de sintaxis: solo se permite tipo integer o boolean
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej11d.pas
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ; ', se encontro ' procedure '
+error de sintaxis: se esperaba 'begin', se encontro ' procedure '
+error de sintaxis: se esperaba ' ; ', se encontro ' procedure '
+error de sintaxis: se esperaba un id, se encontro una palabra reservada:  ;
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej12a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' var '
+error de sintaxis: se esperaba ' ; ', se encontro ' var '
+error de sintaxis: se esperaba 'begin', se encontro ' var '
+error de sintaxis: se esperaba ' . ', se encontro ' var '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej13a.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej13b.pas
+error de sintaxis: se esperaba un id, se encontro una palabra reservada:  ,
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej13c.pas
+error de sintaxis: se esperaba ' : ', se encontro ' id '
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ) ', se encontro ' id '
+error de sintaxis: se esperaba ' : ', se encontro ' id '
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ; ', se encontro ' id '
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' ; ', se encontro ' id '
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej14a.pas
+error de sintaxis: se esperaba un id, se encontro una palabra reservada:  var
+error de sintaxis: se esperaba ' : ', se encontro ' var '
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ) ', se encontro ' var '
+error de sintaxis: se esperaba ' : ', se encontro ' var '
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ; ', se encontro ' var '
+error de sintaxis: se esperaba 'begin', se encontro ' var '
+error de sintaxis: se esperaba ' ; ', se encontro ' var '
+error de sintaxis: se esperaba 'begin', se encontro ' var '
+error de sintaxis: se esperaba ' . ', se encontro ' var '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej15a.pas
+error de sintaxis: se esperaba ' : ', se encontro ' + '
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ) ', se encontro ' + '
+error de sintaxis: se esperaba ' : ', se encontro ' + '
+error de sintaxis: solo se permite tipo integer o boolean
+error de sintaxis: se esperaba ' ; ', se encontro ' + '
+error de sintaxis: se esperaba 'begin', se encontro ' + '
+error de sintaxis: se esperaba ' ; ', se encontro ' + '
+error de sintaxis: se esperaba 'begin', se encontro ' + '
+error de sintaxis: se esperaba ' . ', se encontro ' + '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej15b.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej15c.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej15d.pas
+error de sintaxis: la expresión no se inicio de manera correcta
+error de sintaxis: se esperaba ' ) ', se encontro ' None '
+error de sintaxis: se esperaba ' ; ', se encontro ' None '
+error de sintaxis: se esperaba ' end ', se encontro ' None '
+error de sintaxis: se esperaba ' . ', se encontro ' None '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej15e.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej16a.pas
+error de sintaxis: se esperaba ' ; ', se encontro ' . '
+error de sintaxis: se esperaba ' end ', se encontro ' . '
+error de sintaxis: se esperaba ' ; ', se encontro ' . '
+error de sintaxis: se esperaba 'begin', se encontro ' . '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej16b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' ; ', se encontro ' id '
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej16c.pas
+error de sintaxis: se esperaba ' ; ', se encontro ' . '
+error de sintaxis: se esperaba ' end ', se encontro ' . '
+error de sintaxis: se esperaba ' ; ', se encontro ' . '
+error de sintaxis: se esperaba 'begin', se encontro ' . '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej16d.pas
+error de sintaxis: se esperaba ' ; ', se encontro ' end '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej16e.pas
+error de sintaxis: se esperaba 'begin', se encontro ' end '
+error de sintaxis: se esperaba ' . ', se encontro ' end '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej16f.pas
+error de sintaxis: se esperaba 'begin', se encontro ' end '
+error de sintaxis: se esperaba ' . ', se encontro ' end '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej16g.pas
+error de sintaxis: se esperaba 'begin', se encontro ' end '
+error de sintaxis: se esperaba ' . ', se encontro ' end '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej16h.pas
+error de sintaxis: no se encontro una instruccion valida
+error de sintaxis: se esperaba ' ; ', se encontro ' end '
+error de sintaxis: se esperaba ' ; ', se encontro ' . '
+error de sintaxis: se esperaba ' end ', se encontro ' . '
+error de sintaxis: se esperaba ' ; ', se encontro ' . '
+error de sintaxis: se esperaba 'begin', se encontro ' . '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej16i.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej16j.pas
+error de sintaxis: no se encontro una instruccion valida
+error de sintaxis: se esperaba ' ; ', se encontro ' end '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej16k.pas
+error de sintaxis: se esperaba ' ; ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej17a.pas
+error de sintaxis: se esperaba ' ; ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej17b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' end '
+error de sintaxis: se esperaba ' ; ', se encontro ' end '
+error de sintaxis: se esperaba 'begin', se encontro ' end '
+error de sintaxis: se esperaba ' . ', se encontro ' end '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej17c.pas
+error de sintaxis: se esperaba 'begin', se encontro ' end '
+error de sintaxis: se esperaba ' ; ', se encontro ' end '
+error de sintaxis: se esperaba 'begin', se encontro ' end '
+error de sintaxis: se esperaba ' . ', se encontro ' end '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej17d.pas
+error de sintaxis: se esperaba 'begin', se encontro ' end '
+error de sintaxis: se esperaba ' ; ', se encontro ' end '
+error de sintaxis: se esperaba 'begin', se encontro ' end '
+error de sintaxis: se esperaba ' . ', se encontro ' end '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej17e.pas
+error de sintaxis: no se encontro una instruccion valida
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej17f.pas
+error de sintaxis: se esperaba ' end ', se encontro ' ; '
+error de sintaxis: se esperaba 'begin', se encontro ' end '
+error de sintaxis: se esperaba ' . ', se encontro ' end '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej18a.pas
+error de sintaxis: se esperaba ' end ', se encontro ' ; '
+error de sintaxis: se esperaba 'begin', se encontro ' end '
+error de sintaxis: se esperaba ' . ', se encontro ' end '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej18b.pas
+error de sintaxis: se esperaba ' end ', se encontro ' ; '
+error de sintaxis: se esperaba 'begin', se encontro ' end '
+error de sintaxis: se esperaba ' . ', se encontro ' end '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej18c.pas
+error de sintaxis: se esperaba ' end ', se encontro ' ; '
+error de sintaxis: se esperaba 'begin', se encontro ' end '
+error de sintaxis: se esperaba ' . ', se encontro ' end '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej19a.pas
+error de sintaxis: se espera un factor valido
+error de sintaxis: se esperaba ' ; ', se encontro ' None '
+error de sintaxis: se esperaba ' end ', se encontro ' None '
+error de sintaxis: se esperaba ' . ', se encontro ' None '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej19b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej20a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej20b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej20c.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej20d.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej20e.pas
+error de sintaxis: se espera un factor valido
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej21a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej21b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej22a.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej22b.pas
+error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej22c.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej22d.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej23a.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej23b.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej23c.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej23d.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej23e.pas
+error de sintaxis: la expresión no se inicio de manera correcta
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej23f.pas
+error de sintaxis: la expresión no se inicio de manera correcta
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej24a.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej24b.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej24c.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej24d.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej25a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej25b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej26a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej27a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej27b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej27c.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej28a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej28b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej29a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej29b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej30a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej30b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej30c.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej30d.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej30.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej31a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej31b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej31c.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej31.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej32a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej32b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej32c.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej32.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej33a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej33b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej34a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej34b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej34c.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej34d.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej35a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej36a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej36b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej36c.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej39a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej40a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej40b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej41a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej41b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej41c.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej41d.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej42a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej42b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej42c.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej43a.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej43b.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pruebas/Ej43c.pas
+error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: se esperaba ' . ', se encontro ' id '
+ANALISIS TERMINADO
