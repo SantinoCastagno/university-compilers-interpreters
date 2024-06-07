@@ -9,6 +9,7 @@ archivo = ''
 def imprimirPosiciones():
     row, col = obtener_posicion()
     print("\t\tfila:"+str(row)+"\tcolumna:"+str(col))
+    sys.exit(1)
 
 def m(terminal):
     if(terminal == preanalisis['v']):
@@ -469,5 +470,5 @@ if __name__ == "__main__":
     archivo = abrir_archivo(ruta_fuente)
     siguiente_terminal()
     programa()
-    print('ANALISIS TERMINADO')
+    print('analisis sintactico-lexico terminado, programa aceptado.')
    

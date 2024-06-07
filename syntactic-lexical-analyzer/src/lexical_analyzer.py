@@ -158,6 +158,8 @@ def construir_lexema(fuente):
                 return ""
             else:
                 print("Error: caracter no reconocido:"+ caracter)
+                print("\t\tfila:"+str(row)+"\tcolumna:"+str(col))
+                sys,exit(1)
         elif (caracter == " " or caracter == "\t"):       
             col = col + 1
         elif (caracter == "\n"):
