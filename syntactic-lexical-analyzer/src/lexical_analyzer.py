@@ -72,7 +72,7 @@ def construir_lexema(fuente):
                 lexema += caracter
                 caracter = fuente.read(1)
                 col = col + 1
-                return lexema + ", token('operadorRelacional', =)"
+                return lexema + ", token('operadorRelacional', '=')"
             elif (caracter =="<"):
                 lexema += caracter
                 caracter = fuente.read(1)
@@ -156,7 +156,8 @@ def construir_lexema(fuente):
                 caracter = fuente.read(1)
                 col = col + 1
                 return ""
-            print("Error: digit not recognized:"+ caracter)
+            else:
+                print("Error: caracter no reconocido:"+ caracter)
         elif (caracter == " " or caracter == "\t"):       
             col = col + 1
         elif (caracter == "\n"):

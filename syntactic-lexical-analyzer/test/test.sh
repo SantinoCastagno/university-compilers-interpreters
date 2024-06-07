@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIRECTORIO="./pruebas"
+DIRECTORIO="./pascal-src"
 
 if [ ! -d "$DIRECTORIO" ]; then
     echo "El directorio $DIRECTORIO no existe."
@@ -13,7 +13,7 @@ for ARCHIVO in "$DIRECTORIO"/*; do
     if [ -f "$ARCHIVO" ]; then
         echo "############################################################" >> ./log.txt
         echo "Analizando sintacticamente el fuente: $ARCHIVO" >> ./log.txt
-        python3 syntactic_analyzer.py $ARCHIVO >> ./log.txt
+        python3 ../src/syntactic_analyzer.py $ARCHIVO >> ./log.txt
     fi
 done
 

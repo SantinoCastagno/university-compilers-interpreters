@@ -1,10 +1,10 @@
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej01a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej01a.pas
 error de sintaxis: se esperaba 'program', se encontro ' id '
 		fila:1	columna:8
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej01b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej01b.pas
 error de sintaxis: se esperaba un id, se encontro una palabra reservada:  program
 		fila:1	columna:17
 error de sintaxis: se esperaba ' ; ', se encontro ' program '
@@ -13,39 +13,39 @@ error de sintaxis: no se ha declarado el inicio de la función principal del pro
 		fila:1	columna:17
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej01c.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej01c.pas
 error de sintaxis: se esperaba un id, se encontro una palabra reservada:  ;
 		fila:1	columna:11
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej02a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej02a.pas
 error de sintaxis: se esperaba un id, se encontro una palabra reservada:  ;
 		fila:1	columna:11
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej02b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej02b.pas
 error de sintaxis: se esperaba ' ; ', se encontro ' id '
 		fila:1	columna:23
 error de sintaxis: no se ha declarado el inicio de la función principal del programa
 		fila:1	columna:23
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej03a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej03a.pas
 error de sintaxis: no se ha declarado el inicio de la función principal del programa
 		fila:3	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej03b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej03b.pas
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej03c.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej03c.pas
 error de sintaxis: no se definieron las variables
 		fila:2	columna:8
 error de sintaxis: se esperaba ' ; ', se encontro ' var '
 		fila:2	columna:8
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej04a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej04a.pas
 error de sintaxis: se esperaba ' : ', se encontro ' id '
 		fila:2	columna:8
 error de sintaxis: solo se permite tipo integer o boolean
@@ -58,12 +58,12 @@ error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:2	columna:8
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej04b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej04b.pas
 error de sintaxis: se esperaba un id, se encontro una palabra reservada:  ,
 		fila:2	columna:8
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej04c.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej04c.pas
 error de sintaxis: se esperaba ' : ', se encontro ' id '
 		fila:2	columna:8
 error de sintaxis: solo se permite tipo integer o boolean
@@ -76,12 +76,12 @@ error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:2	columna:8
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej05a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej05a.pas
 error de sintaxis: se esperaba ' : ', se encontro ' integer '
 		fila:2	columna:17
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej05b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej05b.pas
 error de sintaxis: solo se permite tipo integer o boolean
 		fila:2	columna:12
 error de sintaxis: se esperaba ' ; ', se encontro ' : '
@@ -92,7 +92,7 @@ error de sintaxis: se esperaba ' . ', se encontro ' : '
 		fila:2	columna:12
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej06a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej06a.pas
 error de sintaxis: solo se permite tipo integer o boolean
 		fila:2	columna:18
 error de sintaxis: se esperaba ' ; ', se encontro ' program '
@@ -103,7 +103,7 @@ error de sintaxis: se esperaba ' . ', se encontro ' program '
 		fila:2	columna:18
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej06b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej06b.pas
 error de sintaxis: solo se permite tipo integer o boolean
 		fila:2	columna:17
 error de sintaxis: se esperaba ' ; ', se encontro ' id '
@@ -114,7 +114,7 @@ error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:2	columna:17
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej07a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej07a.pas
 error de sintaxis: solo se permite tipo integer o boolean
 		fila:2	columna:17
 error de sintaxis: se esperaba ' ; ', se encontro ' id '
@@ -125,7 +125,7 @@ error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:2	columna:17
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej08a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej08a.pas
 error de sintaxis: solo se permite tipo integer o boolean
 		fila:2	columna:20
 error de sintaxis: se esperaba ' ; ', se encontro ' procedure '
@@ -138,7 +138,7 @@ error de sintaxis: se esperaba 'begin', se encontro ' . '
 		fila:6	columna:6
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej08b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej08b.pas
 error de sintaxis: solo se permite tipo integer o boolean
 		fila:2	columna:14
 error de sintaxis: se esperaba ' ; ', se encontro ' enteroDato '
@@ -149,7 +149,7 @@ error de sintaxis: se esperaba ' . ', se encontro ' enteroDato '
 		fila:2	columna:14
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej08c.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej08c.pas
 error de sintaxis: solo se permite tipo integer o boolean
 		fila:2	columna:14
 error de sintaxis: se esperaba ' ; ', se encontro ' None '
@@ -160,7 +160,7 @@ error de sintaxis: se esperaba ' . ', se encontro ' None '
 		fila:2	columna:14
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej08d.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej08d.pas
 error de sintaxis: se esperaba ' : ', se encontro ' id '
 		fila:2	columna:13
 error de sintaxis: solo se permite tipo integer o boolean
@@ -173,14 +173,14 @@ error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:2	columna:13
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej09a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej09a.pas
 error de sintaxis: se esperaba ' ; ', se encontro ' . '
 		fila:8	columna:8
 error de sintaxis: se esperaba ' end ', se encontro ' . '
 		fila:8	columna:8
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej10a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej10a.pas
 error de sintaxis: se esperaba un id, se encontro una palabra reservada:  procedure
 		fila:4	columna:20
 error de sintaxis: se esperaba ' ; ', se encontro ' procedure '
@@ -191,14 +191,14 @@ error de sintaxis: se esperaba ' ; ', se encontro ' procedure '
 		fila:4	columna:20
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej10b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej10b.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:5	columna:6
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:5	columna:6
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej10c.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej10c.pas
 error de sintaxis: se esperaba un id, se encontro una palabra reservada:  function
 		fila:5	columna:18
 error de sintaxis: se esperaba ' : ', se encontro ' function '
@@ -213,14 +213,14 @@ error de sintaxis: se esperaba ' ; ', se encontro ' function '
 		fila:5	columna:18
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej10d.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej10d.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:5	columna:6
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:5	columna:6
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej10e.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej10e.pas
 error de sintaxis: se esperaba un id, se encontro una palabra reservada:  function
 		fila:5	columna:19
 error de sintaxis: se esperaba ' ; ', se encontro ' function '
@@ -231,7 +231,7 @@ error de sintaxis: se esperaba ' ; ', se encontro ' function '
 		fila:5	columna:19
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej11a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej11a.pas
 error de sintaxis: se esperaba ' ; ', se encontro ' : '
 		fila:5	columna:28
 error de sintaxis: se esperaba 'begin', se encontro ' : '
@@ -244,19 +244,19 @@ error de sintaxis: se esperaba ' . ', se encontro ' : '
 		fila:5	columna:28
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej11b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej11b.pas
 error de sintaxis: se esperaba ' ; ', se encontro ' begin '
 		fila:6	columna:6
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej11c.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej11c.pas
 error de sintaxis: se esperaba ' : ', se encontro ' ; '
 		fila:5	columna:27
 error de sintaxis: solo se permite tipo integer o boolean
 		fila:5	columna:27
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej11d.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej11d.pas
 error de sintaxis: solo se permite tipo integer o boolean
 		fila:5	columna:37
 error de sintaxis: se esperaba ' ; ', se encontro ' procedure '
@@ -269,7 +269,7 @@ error de sintaxis: se esperaba un id, se encontro una palabra reservada:  ;
 		fila:5	columna:38
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej12a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej12a.pas
 error de sintaxis: se esperaba 'begin', se encontro ' var '
 		fila:6	columna:4
 error de sintaxis: se esperaba ' ; ', se encontro ' var '
@@ -280,15 +280,15 @@ error de sintaxis: se esperaba ' . ', se encontro ' var '
 		fila:6	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej13a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej13a.pas
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej13b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej13b.pas
 error de sintaxis: se esperaba un id, se encontro una palabra reservada:  ,
 		fila:5	columna:18
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej13c.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej13c.pas
 error de sintaxis: se esperaba ' : ', se encontro ' id '
 		fila:5	columna:18
 error de sintaxis: solo se permite tipo integer o boolean
@@ -311,7 +311,7 @@ error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:5	columna:18
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej14a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej14a.pas
 error de sintaxis: se esperaba un id, se encontro una palabra reservada:  var
 		fila:4	columna:21
 error de sintaxis: se esperaba ' : ', se encontro ' var '
@@ -336,7 +336,7 @@ error de sintaxis: se esperaba ' . ', se encontro ' var '
 		fila:4	columna:21
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej15a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej15a.pas
 error de sintaxis: se esperaba ' : ', se encontro ' + '
 		fila:4	columna:20
 error de sintaxis: solo se permite tipo integer o boolean
@@ -359,13 +359,13 @@ error de sintaxis: se esperaba ' . ', se encontro ' + '
 		fila:4	columna:20
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej15b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej15b.pas
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej15c.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej15c.pas
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej15d.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej15d.pas
 error de sintaxis: la expresión no se inicio de manera correcta
 		fila:11	columna:15
 error de sintaxis: se esperaba ' ) ', se encontro ' None '
@@ -378,10 +378,10 @@ error de sintaxis: se esperaba ' . ', se encontro ' None '
 		fila:11	columna:15
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej15e.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej15e.pas
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej16a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej16a.pas
 error de sintaxis: se esperaba ' ; ', se encontro ' . '
 		fila:12	columna:5
 error de sintaxis: se esperaba ' end ', se encontro ' . '
@@ -392,7 +392,7 @@ error de sintaxis: se esperaba 'begin', se encontro ' . '
 		fila:12	columna:5
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej16b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej16b.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:5	columna:5
 error de sintaxis: se esperaba ' ; ', se encontro ' id '
@@ -403,7 +403,7 @@ error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:5	columna:5
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej16c.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej16c.pas
 error de sintaxis: se esperaba ' ; ', se encontro ' . '
 		fila:13	columna:5
 error de sintaxis: se esperaba ' end ', se encontro ' . '
@@ -414,33 +414,33 @@ error de sintaxis: se esperaba 'begin', se encontro ' . '
 		fila:13	columna:5
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej16d.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej16d.pas
 error de sintaxis: se esperaba ' ; ', se encontro ' end '
 		fila:10	columna:5
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej16e.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej16e.pas
 error de sintaxis: se esperaba 'begin', se encontro ' end '
 		fila:11	columna:5
 error de sintaxis: se esperaba ' . ', se encontro ' end '
 		fila:11	columna:5
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej16f.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej16f.pas
 error de sintaxis: se esperaba 'begin', se encontro ' end '
 		fila:11	columna:5
 error de sintaxis: se esperaba ' . ', se encontro ' end '
 		fila:11	columna:5
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej16g.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej16g.pas
 error de sintaxis: se esperaba 'begin', se encontro ' end '
 		fila:10	columna:5
 error de sintaxis: se esperaba ' . ', se encontro ' end '
 		fila:10	columna:5
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej16h.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej16h.pas
 error de sintaxis: no se encontro una instruccion valida
 		fila:8	columna:5
 error de sintaxis: se esperaba ' ; ', se encontro ' end '
@@ -455,27 +455,27 @@ error de sintaxis: se esperaba 'begin', se encontro ' . '
 		fila:12	columna:5
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej16i.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej16i.pas
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej16j.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej16j.pas
 error de sintaxis: no se encontro una instruccion valida
 		fila:8	columna:14
 error de sintaxis: se esperaba ' ; ', se encontro ' end '
 		fila:8	columna:14
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej16k.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej16k.pas
 error de sintaxis: se esperaba ' ; ', se encontro ' id '
 		fila:11	columna:10
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej17a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej17a.pas
 error de sintaxis: se esperaba ' ; ', se encontro ' id '
 		fila:11	columna:10
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej17b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej17b.pas
 error de sintaxis: se esperaba 'begin', se encontro ' end '
 		fila:5	columna:5
 error de sintaxis: se esperaba ' ; ', se encontro ' end '
@@ -486,7 +486,7 @@ error de sintaxis: se esperaba ' . ', se encontro ' end '
 		fila:5	columna:5
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej17c.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej17c.pas
 error de sintaxis: se esperaba 'begin', se encontro ' end '
 		fila:5	columna:5
 error de sintaxis: se esperaba ' ; ', se encontro ' end '
@@ -497,7 +497,7 @@ error de sintaxis: se esperaba ' . ', se encontro ' end '
 		fila:5	columna:5
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej17d.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej17d.pas
 error de sintaxis: se esperaba 'begin', se encontro ' end '
 		fila:5	columna:5
 error de sintaxis: se esperaba ' ; ', se encontro ' end '
@@ -508,12 +508,12 @@ error de sintaxis: se esperaba ' . ', se encontro ' end '
 		fila:5	columna:5
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej17e.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej17e.pas
 error de sintaxis: no se encontro una instruccion valida
 		fila:5	columna:8
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej17f.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej17f.pas
 error de sintaxis: se esperaba ' end ', se encontro ' ; '
 		fila:6	columna:13
 error de sintaxis: se esperaba 'begin', se encontro ' end '
@@ -522,7 +522,7 @@ error de sintaxis: se esperaba ' . ', se encontro ' end '
 		fila:7	columna:5
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej18a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej18a.pas
 error de sintaxis: se esperaba ' end ', se encontro ' ; '
 		fila:6	columna:13
 error de sintaxis: se esperaba 'begin', se encontro ' end '
@@ -531,7 +531,7 @@ error de sintaxis: se esperaba ' . ', se encontro ' end '
 		fila:7	columna:5
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej18b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej18b.pas
 error de sintaxis: se esperaba ' end ', se encontro ' ; '
 		fila:7	columna:14
 error de sintaxis: se esperaba 'begin', se encontro ' end '
@@ -540,7 +540,7 @@ error de sintaxis: se esperaba ' . ', se encontro ' end '
 		fila:8	columna:5
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej18c.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej18c.pas
 error de sintaxis: se esperaba ' end ', se encontro ' ; '
 		fila:7	columna:14
 error de sintaxis: se esperaba 'begin', se encontro ' end '
@@ -549,7 +549,7 @@ error de sintaxis: se esperaba ' . ', se encontro ' end '
 		fila:8	columna:5
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej19a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej19a.pas
 error de sintaxis: se espera un factor valido
 		fila:6	columna:14
 error de sintaxis: se esperaba ' ; ', se encontro ' None '
@@ -560,430 +560,446 @@ error de sintaxis: se esperaba ' . ', se encontro ' None '
 		fila:6	columna:14
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej19b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej19b.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej20a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej20a.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej20b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej20b.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej20c.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej20c.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej20d.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej20d.pas
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej20e.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej20e.pas
 error de sintaxis: se espera un factor valido
 		fila:6	columna:20
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej21a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej21a.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej21b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej21b.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej22a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej22a.pas
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej22b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej22b.pas
 error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
 		fila:12	columna:9
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej22c.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej22c.pas
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej22d.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej22d.pas
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej23a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej23a.pas
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej23b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej23b.pas
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej23c.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej23c.pas
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej23d.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej23d.pas
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej23e.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej23e.pas
 error de sintaxis: la expresión no se inicio de manera correcta
 		fila:14	columna:16
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej23f.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej23f.pas
 error de sintaxis: la expresión no se inicio de manera correcta
 		fila:14	columna:16
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej24a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej24a.pas
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej24b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej24b.pas
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej24c.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej24c.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej24d.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej24d.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej25a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej25a.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej25b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej25b.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej26a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej26a.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej27a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej27a.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej27b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej27b.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej27c.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej27c.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej28a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej28a.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej28b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej28b.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej29a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej29a.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej29b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej29b.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej30a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej30a.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej30b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej30b.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej30c.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej30c.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej30d.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej30d.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej30.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej30.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej31a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej31a.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej31b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej31b.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej31c.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej31c.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej31.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej31.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej32a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej32a.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej32b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej32b.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej32c.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej32c.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej32.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej32.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej33a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej33a.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej33b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej33b.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej34a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej34a.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej34b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej34b.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej34c.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej34c.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej34d.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej34d.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej35a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej35a.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej36a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej36a.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej36b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej36b.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej36c.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej36c.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej39a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej39a.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej40a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej40a.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej40b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej40b.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej41a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej41a.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej41b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej41b.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej41c.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej41c.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej41d.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej41d.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej42a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej42a.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej42b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej42b.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej42c.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej42c.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej43a.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej43a.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej43b.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej43b.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
 ANALISIS TERMINADO
 ############################################################
-Analizando sintacticamente el fuente: ./pruebas/Ej43c.pas
+Analizando sintacticamente el fuente: ./pascal-src/Ej43c.pas
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:4	columna:4
 error de sintaxis: se esperaba ' . ', se encontro ' id '
 		fila:4	columna:4
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/source_1.pas
+ANALISIS TERMINADO
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/source_2.pas
+error de sintaxis: se esperaba ' ; ', se encontro ' <> '
+		fila:11	columna:57
+error de sintaxis: se esperaba ' end ', se encontro ' <> '
+		fila:11	columna:57
+error de sintaxis: se esperaba ' ; ', se encontro ' <> '
+		fila:11	columna:57
+error de sintaxis: se esperaba 'begin', se encontro ' <> '
+		fila:11	columna:57
+error de sintaxis: se esperaba ' . ', se encontro ' <> '
+		fila:11	columna:57
 ANALISIS TERMINADO

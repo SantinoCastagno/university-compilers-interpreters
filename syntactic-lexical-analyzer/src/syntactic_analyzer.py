@@ -165,7 +165,7 @@ def parametros_formales_opcional():
 def parametros_formales():
     if preanalisis['v'] == '(':
         m('(');seccion_parametros_formales();parametros_formales_repetitiva();m(')')
-    else: 
+    else:
         print_debug('parametros_formales()')
         print("error de sintaxis: se esperaba '(', se encontro '",preanalisis['v'],"'")
         imprimirPosiciones()
