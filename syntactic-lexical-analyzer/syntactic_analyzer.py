@@ -1,23 +1,28 @@
 import inspect
 import sys
 import os
-from lexical_analyzer import obtener_siguiente_token
+from lexical_analyzer import obtener_siguiente_token, obtener_posicion
 
 preanalisis = {'v':''}
 archivo = ''
 
+def imprimirPosiciones():
+    row, col = obtener_posicion()
+    print("\t\tfila:"+str(row)+"\tcolumna:"+str(col))
 
 def m(terminal):
     if(terminal == preanalisis['v']):
         siguiente_terminal()
     else:
         print("error de sintaxis: se esperaba '",terminal,"', se encontro '",preanalisis['v'],"'")
+        imprimirPosiciones()
 
 def m_list(terminales):
     if(preanalisis['v'] in terminales):
         siguiente_terminal()
     else:
         print("error de sintaxis: se esperaba ",terminales)
+        imprimirPosiciones()
 
 
 def en_primeros(simbolo):
@@ -69,6 +74,7 @@ def programa():
     else:
         print_debug('programa()')
         print("error de sintaxis: se esperaba 'program', se encontro '",preanalisis['v'],"'")
+        imprimirPosiciones()
 
 def bloque():
     if en_primeros('declaraciones_variables_opcional') or en_primeros('declaraciones_subrutinas_opcional') or en_primeros('instruccion_compuesta'):
@@ -76,6 +82,7 @@ def bloque():
     else:
         print_debug('bloque()')
         print('error de sintaxis: no se ha declarado el inicio de la función principal del programa')
+        imprimirPosiciones()
 
 def declaraciones_variables_opcional():
     if en_primeros("declaraciones_variables"):
@@ -92,6 +99,7 @@ def declaraciones_variables():
     else:
         print_debug('declaraciones_variables()')
         print("error de sintaxis: se esperaba 'var', se encontro '",preanalisis['v'],"'")
+        imprimirPosiciones()
 
 def declaraciones_variables_repetitivas():
     if preanalisis['v'] == 'var':
@@ -103,6 +111,7 @@ def declaracion_variable():
     else:
         print_debug('declaracion_variable()')
         print("error de sintaxis: no se definieron las variables")
+        imprimirPosiciones()
 
 def tipo():
     if preanalisis['v'] == 'integer':
@@ -112,6 +121,7 @@ def tipo():
     else:
         print_debug('tipo()')
         print('error de sintaxis: solo se permite tipo integer o boolean')
+        imprimirPosiciones()
 
 def lista_identificadores():
     if en_primeros('identificador'):
@@ -119,6 +129,7 @@ def lista_identificadores():
     else:
         print_debug('lista_identificadores()')
         print('error de sintaxis: aca deberia ir un identificador')
+        imprimirPosiciones()
 
 def lista_identificadores_repetitiva():
     if preanalisis['v'] == ',':
@@ -136,6 +147,7 @@ def declaracion_procedimiento():
     else:
         print_debug('declaracion_procedimiento()')
         print("error de sintaxis: se esperaba 'procedure', se encontro '",preanalisis['v'],"'")
+        imprimirPosiciones()
 
 def declaracion_funcion():
     if preanalisis['v']=='function':
@@ -143,6 +155,7 @@ def declaracion_funcion():
     else:
         print_debug('declaracion_funcion()')
         print("error de sintaxis: se esperaba 'function', se encontro '",preanalisis['v'],"'")
+        imprimirPosiciones()
 
 
 def parametros_formales_opcional():
@@ -155,6 +168,7 @@ def parametros_formales():
     else:
         print_debug('parametros_formales()')
         print("error de sintaxis: se esperaba '(', se encontro '",preanalisis['v'],"'")
+        imprimirPosiciones()
 
 def parametros_formales_repetitiva():
     if preanalisis['v'] == ';':
@@ -171,6 +185,7 @@ def instruccion_compuesta():
     else:
         print_debug('instruccion_compuesta()')
         print("error de sintaxis: se esperaba 'begin', se encontro '",preanalisis['v'],"'")
+        imprimirPosiciones()
 
 def instruccion_compuesta_repetitiva():
     if en_primeros('instruccion'):
@@ -188,6 +203,7 @@ def instruccion():
     else:
         print_debug('instruccion()')
         print('error de sintaxis: no se encontro una instruccion valida')
+        imprimirPosiciones()
 
 def instruccion_aux():
     if en_primeros('asignacion'):
@@ -197,6 +213,7 @@ def instruccion_aux():
     else:
         print_debug('instruccion_aux()')
         print('error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento')
+        imprimirPosiciones()
 
 def asignacion():
     if preanalisis['v'] == ':=':
@@ -252,6 +269,7 @@ def lista_expresiones():
         expresion();lista_expresiones_repetitiva()
     else:
         print('error de sintaxis: lista_expresiones()') 
+        imprimirPosiciones()
 
 def lista_expresiones_repetitiva():
     if preanalisis['v'] ==',':
@@ -263,6 +281,7 @@ def expresion():
     else:
         print_debug('expresion()')
         print('error de sintaxis: la expresión no se inicio de manera correcta')
+        imprimirPosiciones()
 
 def relacion_opcional():
     if en_primeros('relacion'):
@@ -276,6 +295,7 @@ def relacion():
     else:
         print_debug('relacion()')
         print("error de sintaxis: se esperaba un operrador relacional, sea '=','<>','<=','<','>' o '>='")
+        imprimirPosiciones()
 
 def expresion_simple():
     if en_primeros('mas_menos_opcional') or  en_primeros('termino'):
@@ -283,6 +303,7 @@ def expresion_simple():
     else:
         print_debug('expresion_simple()')
         print('error de sintaxis: se espera un termino valido.')
+        imprimirPosiciones()
 
 
 def mas_menos_opcional():
@@ -305,6 +326,7 @@ def termino():
     else:
         print_debug('termino()')
         print('error de sintaxis: se espera un factor valido')
+        imprimirPosiciones()
 
 def termino_repetitiva():
     if preanalisis['v'] == '*':
@@ -326,6 +348,7 @@ def factor():
     else:
         print_debug('factor()')
         print('error de sintaxis: se espera un factor valido')
+        imprimirPosiciones()
 
 def factor_opcional():
     if en_primeros('llamada_funcion'):
@@ -343,6 +366,7 @@ def identificador():
     if preanalisis['v'] in reservadas:
         print_debug('identificador()')
         print('error de sintaxis: se esperaba un id, se encontro una palabra reservada: ',preanalisis['v'])
+        imprimirPosiciones()
     else:
         siguiente_terminal()
 
@@ -356,6 +380,7 @@ def numero():
         siguiente_terminal()
     else:
         print('error de sintaxis: numero()')
+        imprimirPosiciones()
 
 
 # AUX

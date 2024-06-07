@@ -7,6 +7,8 @@ if [ ! -d "$DIRECTORIO" ]; then
     exit 1
 fi
 
+rm ./log.txt
+
 for ARCHIVO in "$DIRECTORIO"/*; do
     if [ -f "$ARCHIVO" ]; then
         echo "############################################################" >> ./log.txt

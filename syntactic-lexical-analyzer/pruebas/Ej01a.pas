@@ -3,5 +3,4 @@ var
   a,b:integer;
  begin
    a:=9;
- end.
-
+ end.xDD
