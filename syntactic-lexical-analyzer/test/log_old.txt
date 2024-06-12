@@ -8,7 +8,7 @@ error de sintaxis: se esperaba un id, se encontro una palabra reservada:  progra
 		fila:1	columna:17
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej01c.pas
-Error: caracter no reconocido:©
+Error: caracter no reconocido:Â©
 		fila:1	columna:10
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej02a.pas
@@ -20,7 +20,7 @@ error de sintaxis: se esperaba ' ; ', se encontro ' id '
 		fila:1	columna:23
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej03a.pas
-error de sintaxis: no se ha declarado el inicio de la función principal del programa
+error de sintaxis: no se ha declarado el inicio de la funciÃ³n principal del programa
 		fila:3	columna:4
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej03b.pas
