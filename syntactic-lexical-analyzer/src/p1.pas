@@ -5,7 +5,7 @@ var
 
  begin
    a:=9;
-   if (a<2) then       {error ver !}
+   if (a <2) then       {error ver !}
       b:= 4;
 
  end.

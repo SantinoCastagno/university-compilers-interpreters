@@ -87,8 +87,8 @@ def construir_lexema(fuente):
                     caracter = fuente.read(1)
                     col = col + 1
                     return lexema + ", token('operadorRelacional', '<>')"
-                caracter = fuente.read(1)
-                col = col + 1
+                #caracter = fuente.read(1)
+                #col = col + 1
                 return lexema + ", token('operadorRelacional', '<')"
             elif (caracter == ">"):
                 lexema += caracter
@@ -99,8 +99,8 @@ def construir_lexema(fuente):
                     caracter = fuente.read(1)
                     col = col + 1
                     return lexema + ", token('operadorRelacional', '>=')"
-                caracter = fuente.read(1)
-                col = col + 1
+                #caracter = fuente.read(1)
+                #col = col + 1
                 return lexema + ", token('operadorRelacional', '>')"
             elif (caracter == "+"):
                 lexema += caracter

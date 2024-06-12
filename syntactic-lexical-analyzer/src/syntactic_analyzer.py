@@ -38,7 +38,7 @@ def en_primeros(simbolo):
 
 def siguiente_terminal():
     preanalisis['v'] = obtener_siguiente_token(archivo)
-    #print('SIGUIENTE LINEA: ',preanalisis['v'])
+    print('SIGUIENTE LINEA: ',preanalisis['v'])
     if preanalisis['v'] == None:
         return
     preanalisis['v'] = preanalisis['v'][preanalisis['v'].find('token'):]
