@@ -149,7 +149,8 @@ Analizando sintacticamente el fuente: ./pascal-src/Ej15c.pas
 analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej15d.pas
-analisis sintactico-lexico terminado, programa aceptado.
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:11	columna:16
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej15e.pas
 analisis sintactico-lexico terminado, programa aceptado.
@@ -234,7 +235,8 @@ error de sintaxis: se esperaba ' end ', se encontro ' ; '
 		fila:7	columna:14
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej19a.pas
-analisis sintactico-lexico terminado, programa aceptado.
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:6	columna:15
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej19b.pas
 analisis sintactico-lexico terminado, programa aceptado.
@@ -244,14 +246,16 @@ error de sintaxis: se espera un factor valido
 		fila:7	columna:17
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej20b.pas
-error de sintaxis: se espera un factor valido
-		fila:7	columna:26
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:7	columna:19
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej20c.pas
-analisis sintactico-lexico terminado, programa aceptado.
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:7	columna:19
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej20d.pas
-analisis sintactico-lexico terminado, programa aceptado.
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:6	columna:15
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej20e.pas
 error de sintaxis: se espera un factor valido
@@ -285,7 +289,8 @@ Analizando sintacticamente el fuente: ./pascal-src/Ej23b.pas
 analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej23c.pas
-analisis sintactico-lexico terminado, programa aceptado.
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:14	columna:18
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej23d.pas
 analisis sintactico-lexico terminado, programa aceptado.
@@ -315,149 +320,152 @@ error de sintaxis: se esperaba ' then ', se encontro ' else '
 		fila:9	columna:10
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej25b.pas
-error de sintaxis: se esperaba ' then ', se encontro ' else '
-		fila:10	columna:10
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej26a.pas
-error de sintaxis: se esperaba ' then ', se encontro ' else '
-		fila:10	columna:10
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej27a.pas
-error de sintaxis: se esperaba ' end ', se encontro ' else '
-		fila:13	columna:10
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej27b.pas
-error de sintaxis: se esperaba ' then ', se encontro ' ; '
-		fila:10	columna:21
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej27c.pas
-error de sintaxis: se esperaba ' end ', se encontro ' else '
-		fila:12	columna:10
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej28a.pas
-error de sintaxis: no se encontro una instruccion valida
-		fila:11	columna:10
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej28b.pas
-error de sintaxis: no se encontro una instruccion valida
-		fila:11	columna:12
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej29a.pas
-error de sintaxis: la expresion no se inicio de manera correcta
-		fila:10	columna:10
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej29b.pas
-analisis sintactico-lexico terminado, programa aceptado.
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej30.pas
-error de sintaxis: se esperaba ' ; ', se encontro ' end '
-		fila:21	columna:5
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej30a.pas
-error de sintaxis: se esperaba ' do ', se encontro ' if '
-		fila:10	columna:8
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej30b.pas
-error de sintaxis: se esperaba ' ; ', se encontro ' end '
-		fila:21	columna:5
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej30c.pas
-error de sintaxis: se esperaba ' ; ', se encontro ' end '
-		fila:21	columna:5
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej30d.pas
-error de sintaxis: se esperaba ' ) ', se encontro ' > '
-		fila:9	columna:20
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej31.pas
-error de sintaxis: se esperaba ' ; ', se encontro ' id '
-		fila:22	columna:13
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej31a.pas
-error de sintaxis: se esperaba ' ; ', se encontro ' id '
-		fila:22	columna:13
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej31b.pas
-error de sintaxis: no se encontro una instruccion valida
-		fila:9	columna:20
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej31c.pas
-error de sintaxis: se esperaba ' ; ', se encontro ' id '
-		fila:22	columna:13
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej32.pas
-error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
-		fila:9	columna:10
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej32a.pas
-error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
-		fila:9	columna:12
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej32b.pas
-error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
-		fila:9	columna:10
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej32c.pas
-error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
-		fila:9	columna:10
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej33a.pas
-error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
-		fila:9	columna:10
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej33b.pas
-error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
-		fila:9	columna:10
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej34a.pas
-error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
-		fila:9	columna:10
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej34b.pas
-error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
-		fila:9	columna:10
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej34c.pas
-error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
-		fila:9	columna:10
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej34d.pas
-error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
-		fila:9	columna:10
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej35a.pas
-error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
-		fila:9	columna:10
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej36a.pas
-error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
-		fila:9	columna:10
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej36b.pas
-error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
-		fila:9	columna:10
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej36c.pas
-error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
-		fila:9	columna:10
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej39a.pas
-error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
-		fila:9	columna:10
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej40a.pas
-error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
-		fila:9	columna:10
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej40b.pas
 error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
 		fila:8	columna:9
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej41a.pas
-analisis sintactico-lexico terminado, programa aceptado.
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej41b.pas
-analisis sintactico-lexico terminado, programa aceptado.
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej41c.pas
 error de sintaxis: se esperaba ' : ', se encontro ' id '
@@ -468,22 +476,28 @@ error de sintaxis: se esperaba ' ) ', se encontro ' var '
 		fila:6	columna:20
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej42a.pas
-analisis sintactico-lexico terminado, programa aceptado.
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej42b.pas
-analisis sintactico-lexico terminado, programa aceptado.
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej42c.pas
-analisis sintactico-lexico terminado, programa aceptado.
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej43a.pas
-analisis sintactico-lexico terminado, programa aceptado.
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej43b.pas
-analisis sintactico-lexico terminado, programa aceptado.
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej43c.pas
-analisis sintactico-lexico terminado, programa aceptado.
+error de sintaxis: se espera una operacion "+", "-" o "or"
+		fila:8	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/source_1.pas
 analisis sintactico-lexico terminado, programa aceptado.
