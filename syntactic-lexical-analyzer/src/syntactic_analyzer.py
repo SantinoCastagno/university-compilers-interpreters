@@ -38,7 +38,7 @@ def en_primeros(simbolo):
 
 def siguiente_terminal():
     preanalisis['v'] = obtener_siguiente_token(archivo)
-    print('SIGUIENTE LINEA: ',preanalisis['v'])
+    #print('SIGUIENTE LINEA: ',preanalisis['v'])
     if preanalisis['v'] == None:
         return
     preanalisis['v'] = preanalisis['v'][preanalisis['v'].find('token'):]
@@ -315,13 +315,17 @@ def mas_menos_opcional():
         m_list(terminales)
 
 def expresion_simple_repetitiva():
-    if en_primeros('mas_menos_or_opcional') or  en_primeros('termino'):
-        mas_menos_or_opcional();termino();expresion_simple_repetitiva()
+    if en_primeros('mas_menos_or') or  en_primeros('termino'):
+        mas_menos_or();termino();expresion_simple_repetitiva()
 
-def mas_menos_or_opcional():
+def mas_menos_or():
     terminales = ['+','-','or']
     if preanalisis['v'] in terminales:
         m_list(terminales)
+    else:
+        print_debug('mas_menos_or()')
+        print('error de sintaxis: se espera una operacion "+", "-" o "or"')
+        imprimirPosiciones()
 
 def termino():
     if en_primeros('factor'):
@@ -341,7 +345,7 @@ def termino_repetitiva():
 
 def factor():
     if en_primeros('identificador'):
-        identificador(); factor_opcional()
+       identificador(); factor_opcional()
     elif en_primeros('numero'):
         numero()
     elif preanalisis['v'] == '(': 
@@ -449,8 +453,8 @@ if __name__ == "__main__":
         'relacion':['=','<>','<=','<','>','>='],
         'expresion_simple':[mas_menos_opcional,termino],
         'mas_menos_opcional':['+','-',None],
-        'expresion_simple_repetitiva':[mas_menos_or_opcional,termino,None],
-        'mas_menos_or_opcional':['+','-','or',None],
+        'expresion_simple_repetitiva':[mas_menos_or,termino,None],
+        'mas_menos_or':['+','-','or',None],
         'termino':[factor],
         'termino_repetitiva':['*','/','and',None],
         'factor':[identificador,numero,'(','not'],
