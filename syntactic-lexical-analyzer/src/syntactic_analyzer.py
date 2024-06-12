@@ -60,7 +60,7 @@ def token(arg0,arg1):
         or arg0 == 'parentesis'
         or arg0 == 'operadorAritmetico'
         or arg0 == 'operadorRelacional'
-
+        or arg0 == 'booleanDato'
         ):
         return arg1
     if arg0 == 'enteroDato':
@@ -103,8 +103,10 @@ def declaraciones_variables():
         imprimirPosiciones()
 
 def declaraciones_variables_repetitivas():
-    if preanalisis['v'] == 'var':
-         m("var");declaracion_variable();m(';');declaraciones_variables_repetitivas()
+    #if preanalisis['v'] == 'var':
+    if en_primeros('declaracion_variable'): 
+         #m("var");
+         declaracion_variable();m(';');declaraciones_variables_repetitivas()
 
 def declaracion_variable():
     if en_primeros('lista_identificadores'):
@@ -281,7 +283,7 @@ def expresion():
         expresion_simple();relacion_opcional()
     else:
         print_debug('expresion()')
-        print('error de sintaxis: la expresión no se inicio de manera correcta')
+        print('error de sintaxis: la expresion no se inicio de manera correcta')
         imprimirPosiciones()
 
 def relacion_opcional():
@@ -455,7 +457,7 @@ if __name__ == "__main__":
         'factor_opcional':[llamada_funcion,None],
         'llamada_funcion':[lista_expresiones_opcional],
 
-        'identificador':['id'],
+        'identificador':['id','true','false'],
         'numero':['enteroDato']
     }
 

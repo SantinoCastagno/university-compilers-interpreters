@@ -25,9 +25,9 @@ def construir_lexema(fuente):
                     lexema += caracter
                     if (palabra in boolean_list):
                         if palabra == "true":
-                            return lexema + ", token('booleanDato', 'trueValor')"
+                            return lexema + ", token('booleanDato', 'true')"
                         else:
-                            return lexema + ", token('booleanDato', 'falseValor')"
+                            return lexema + ", token('booleanDato', 'false')"
                     caracter = fuente.read(1)
                     col = col + 1
                 if (palabra in keyword_list):

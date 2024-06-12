@@ -8,7 +8,7 @@ error de sintaxis: se esperaba un id, se encontro una palabra reservada:  progra
 		fila:1	columna:17
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej01c.pas
-Error: caracter no reconocido:©
+Error: caracter no reconocido:�
 		fila:1	columna:10
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej02a.pas
@@ -20,11 +20,13 @@ error de sintaxis: se esperaba ' ; ', se encontro ' id '
 		fila:1	columna:23
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej03a.pas
-error de sintaxis: no se ha declarado el inicio de la función principal del programa
+error de sintaxis: no se ha declarado el inicio de la funci�n principal del programa
 		fila:3	columna:4
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej03b.pas
-analisis sintactico-lexico terminado, programa aceptado.
+WTF
+error de sintaxis: se esperaba 'begin', se encontro ' var '
+		fila:3	columna:4
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej03c.pas
 error de sintaxis: no se definieron las variables
@@ -79,429 +81,524 @@ error de sintaxis: se esperaba ' : ', se encontro ' id '
 		fila:2	columna:13
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej09a.pas
+WTF
 error de sintaxis: se esperaba ' ; ', se encontro ' . '
 		fila:8	columna:8
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej10a.pas
+WTF
 error de sintaxis: se esperaba un id, se encontro una palabra reservada:  procedure
 		fila:4	columna:20
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej10b.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:5	columna:6
+WTF
+error de sintaxis: se esperaba ' : ', se encontro ' ( '
+		fila:5	columna:7
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej10c.pas
+WTF
 error de sintaxis: se esperaba un id, se encontro una palabra reservada:  function
 		fila:5	columna:18
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej10d.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:5	columna:6
+WTF
+error de sintaxis: se esperaba ' : ', se encontro ' ( '
+		fila:5	columna:7
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej10e.pas
+WTF
 error de sintaxis: se esperaba un id, se encontro una palabra reservada:  function
 		fila:5	columna:19
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej11a.pas
+WTF
 error de sintaxis: se esperaba ' ; ', se encontro ' : '
 		fila:5	columna:28
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej11b.pas
+WTF
 error de sintaxis: se esperaba ' ; ', se encontro ' begin '
 		fila:6	columna:6
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej11c.pas
+WTF
 error de sintaxis: se esperaba ' : ', se encontro ' ; '
 		fila:5	columna:27
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej11d.pas
+WTF
 error de sintaxis: solo se permite tipo integer o boolean
 		fila:5	columna:37
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej12a.pas
+WTF
 error de sintaxis: se esperaba 'begin', se encontro ' var '
 		fila:6	columna:4
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej13a.pas
+WTF
 analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej13b.pas
+WTF
 error de sintaxis: se esperaba un id, se encontro una palabra reservada:  ,
 		fila:5	columna:18
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej13c.pas
+WTF
 error de sintaxis: se esperaba ' : ', se encontro ' id '
 		fila:5	columna:18
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej14a.pas
+WTF
 error de sintaxis: se esperaba un id, se encontro una palabra reservada:  var
 		fila:4	columna:21
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej15a.pas
+WTF
 error de sintaxis: se esperaba ' : ', se encontro ' + '
 		fila:4	columna:20
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej15b.pas
+WTF
 analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej15c.pas
+WTF
 analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej15d.pas
-error de sintaxis: la expresión no se inicio de manera correcta
-		fila:11	columna:15
+WTF
+analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej15e.pas
+WTF
 analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej16a.pas
+WTF
 error de sintaxis: se esperaba ' ; ', se encontro ' . '
 		fila:12	columna:5
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej16b.pas
+WTF
 error de sintaxis: se esperaba 'begin', se encontro ' id '
 		fila:5	columna:5
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej16c.pas
+WTF
 error de sintaxis: se esperaba ' ; ', se encontro ' . '
 		fila:13	columna:5
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej16d.pas
+WTF
 error de sintaxis: se esperaba ' ; ', se encontro ' end '
 		fila:10	columna:5
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej16e.pas
+WTF
 error de sintaxis: se esperaba 'begin', se encontro ' end '
 		fila:11	columna:5
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej16f.pas
+WTF
 error de sintaxis: se esperaba 'begin', se encontro ' end '
 		fila:11	columna:5
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej16g.pas
+WTF
 error de sintaxis: se esperaba 'begin', se encontro ' end '
 		fila:10	columna:5
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej16h.pas
+WTF
 error de sintaxis: no se encontro una instruccion valida
 		fila:8	columna:5
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej16i.pas
+WTF
 analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej16j.pas
+WTF
 error de sintaxis: no se encontro una instruccion valida
 		fila:8	columna:14
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej16k.pas
+WTF
 error de sintaxis: se esperaba ' ; ', se encontro ' id '
 		fila:11	columna:10
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej17a.pas
+WTF
 error de sintaxis: se esperaba ' ; ', se encontro ' id '
 		fila:11	columna:10
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej17b.pas
+WTF
 error de sintaxis: se esperaba 'begin', se encontro ' end '
 		fila:5	columna:5
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej17c.pas
+WTF
 error de sintaxis: se esperaba 'begin', se encontro ' end '
 		fila:5	columna:5
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej17d.pas
+WTF
 error de sintaxis: se esperaba 'begin', se encontro ' end '
 		fila:5	columna:5
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej17e.pas
+WTF
 error de sintaxis: no se encontro una instruccion valida
 		fila:5	columna:8
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej17f.pas
+WTF
 error de sintaxis: se esperaba ' end ', se encontro ' ; '
 		fila:6	columna:13
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej18a.pas
+WTF
 error de sintaxis: se esperaba ' end ', se encontro ' ; '
 		fila:6	columna:13
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej18b.pas
+WTF
 error de sintaxis: se esperaba ' end ', se encontro ' ; '
 		fila:7	columna:14
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej18c.pas
+WTF
 error de sintaxis: se esperaba ' end ', se encontro ' ; '
 		fila:7	columna:14
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej19a.pas
-error de sintaxis: se espera un factor valido
-		fila:6	columna:14
+WTF
+analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej19b.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej20a.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+error de sintaxis: se espera un factor valido
+		fila:7	columna:17
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej20b.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+error de sintaxis: se espera un factor valido
+		fila:7	columna:26
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej20c.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej20d.pas
+WTF
 analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej20e.pas
+WTF
 error de sintaxis: se espera un factor valido
 		fila:6	columna:20
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej21a.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej21b.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+error de sintaxis: se espera un termino valido.
+		fila:8	columna:13
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej22a.pas
+WTF
 analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej22b.pas
+WTF
 error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
 		fila:12	columna:9
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej22c.pas
+WTF
 analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej22d.pas
+WTF
 analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej23a.pas
+WTF
 analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej23b.pas
+WTF
 analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej23c.pas
+WTF
 analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej23d.pas
+WTF
 analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej23e.pas
-error de sintaxis: la expresión no se inicio de manera correcta
+WTF
+error de sintaxis: la expresion no se inicio de manera correcta
 		fila:14	columna:16
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej23f.pas
-error de sintaxis: la expresión no se inicio de manera correcta
+WTF
+error de sintaxis: la expresion no se inicio de manera correcta
 		fila:14	columna:16
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej24a.pas
+WTF
 analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej24b.pas
+WTF
 analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej24c.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej24d.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej25a.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+error de sintaxis: se esperaba ' then ', se encontro ' else '
+		fila:9	columna:10
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej25b.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+error de sintaxis: se esperaba ' then ', se encontro ' else '
+		fila:10	columna:10
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej26a.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+error de sintaxis: se esperaba ' then ', se encontro ' else '
+		fila:10	columna:10
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej27a.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+error de sintaxis: se esperaba ' end ', se encontro ' else '
+		fila:13	columna:10
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej27b.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+error de sintaxis: se esperaba ' then ', se encontro ' ; '
+		fila:10	columna:21
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej27c.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+error de sintaxis: se esperaba ' end ', se encontro ' else '
+		fila:12	columna:10
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej28a.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+error de sintaxis: no se encontro una instruccion valida
+		fila:11	columna:10
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej28b.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+error de sintaxis: no se encontro una instruccion valida
+		fila:11	columna:12
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej29a.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+error de sintaxis: la expresion no se inicio de manera correcta
+		fila:10	columna:10
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej29b.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
-############################################################
-Analizando sintacticamente el fuente: ./pascal-src/Ej30a.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
-############################################################
-Analizando sintacticamente el fuente: ./pascal-src/Ej30b.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
-############################################################
-Analizando sintacticamente el fuente: ./pascal-src/Ej30c.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
-############################################################
-Analizando sintacticamente el fuente: ./pascal-src/Ej30d.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej30.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+error de sintaxis: se esperaba ' ; ', se encontro ' end '
+		fila:21	columna:5
 ############################################################
-Analizando sintacticamente el fuente: ./pascal-src/Ej31a.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+Analizando sintacticamente el fuente: ./pascal-src/Ej30a.pas
+WTF
+error de sintaxis: se esperaba ' do ', se encontro ' if '
+		fila:10	columna:8
 ############################################################
-Analizando sintacticamente el fuente: ./pascal-src/Ej31b.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+Analizando sintacticamente el fuente: ./pascal-src/Ej30b.pas
+WTF
+error de sintaxis: se esperaba ' ; ', se encontro ' end '
+		fila:21	columna:5
 ############################################################
-Analizando sintacticamente el fuente: ./pascal-src/Ej31c.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+Analizando sintacticamente el fuente: ./pascal-src/Ej30c.pas
+WTF
+error de sintaxis: se esperaba ' ; ', se encontro ' end '
+		fila:21	columna:5
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/Ej30d.pas
+WTF
+error de sintaxis: se esperaba ' ) ', se encontro ' > '
+		fila:9	columna:21
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej31.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+error de sintaxis: se esperaba ' ; ', se encontro ' id '
+		fila:22	columna:13
 ############################################################
-Analizando sintacticamente el fuente: ./pascal-src/Ej32a.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+Analizando sintacticamente el fuente: ./pascal-src/Ej31a.pas
+WTF
+error de sintaxis: se esperaba ' ; ', se encontro ' id '
+		fila:22	columna:13
 ############################################################
-Analizando sintacticamente el fuente: ./pascal-src/Ej32b.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+Analizando sintacticamente el fuente: ./pascal-src/Ej31b.pas
+WTF
+error de sintaxis: no se encontro una instruccion valida
+		fila:9	columna:20
 ############################################################
-Analizando sintacticamente el fuente: ./pascal-src/Ej32c.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+Analizando sintacticamente el fuente: ./pascal-src/Ej31c.pas
+WTF
+error de sintaxis: se esperaba ' ; ', se encontro ' id '
+		fila:22	columna:13
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej32.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
+		fila:9	columna:10
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/Ej32a.pas
+WTF
+error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
+		fila:9	columna:12
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/Ej32b.pas
+WTF
+error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
+		fila:9	columna:10
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/Ej32c.pas
+WTF
+error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
+		fila:9	columna:10
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej33a.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
+		fila:9	columna:10
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej33b.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
+		fila:9	columna:10
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej34a.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
+		fila:9	columna:10
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej34b.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
+		fila:9	columna:10
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej34c.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
+		fila:9	columna:10
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej34d.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
+		fila:9	columna:10
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej35a.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
+		fila:9	columna:10
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej36a.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
+		fila:9	columna:10
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej36b.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
+		fila:9	columna:10
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej36c.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
+		fila:9	columna:10
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej39a.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
+		fila:9	columna:10
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej40a.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
+		fila:9	columna:10
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej40b.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento
+		fila:8	columna:9
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej41a.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej41b.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej41c.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+error de sintaxis: se esperaba ' : ', se encontro ' id '
+		fila:6	columna:13
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej41d.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+error de sintaxis: se esperaba ' ) ', se encontro ' var '
+		fila:6	columna:20
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej42a.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej42b.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej42c.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej43a.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej43b.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej43c.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
-		fila:4	columna:4
+WTF
+analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/source_1.pas
+WTF
 analisis sintactico-lexico terminado, programa aceptado.
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/source_2.pas
+WTF
 error de sintaxis: se esperaba ' ; ', se encontro ' <> '
-		fila:11	columna:57
+		fila:10	columna:57

@@ -2,8 +2,7 @@ program source1;
 
 var
   numero1, numero2, suma, resta, multiplicacion, division: integer;
- 
-var relacion1,relacion2,relacion3: boolean;
+ relacion1,relacion2,relacion3: boolean;
 
 procedure miproc1(minum,otronum:integer;mibool,otrobool,ultimobool:boolean);
 begin
