@@ -71,7 +71,7 @@ def token(arg0,arg1):
 # PROGRAMAS Y BLOQUES
 def programa(): 
     if preanalisis['v'] == 'program':
-        m("program");identificador();m(';');bloque()
+        m("program");identificador();m(';');bloque();m('.')
     else:
         print_debug('programa()')
         print("error de sintaxis: se esperaba 'program', se encontro '",preanalisis['v'],"'")
@@ -79,7 +79,7 @@ def programa():
 
 def bloque():
     if en_primeros('declaraciones_variables_opcional') or en_primeros('declaraciones_subrutinas_opcional') or en_primeros('instruccion_compuesta'):
-        declaraciones_variables_opcional();declaraciones_subrutinas_opcional();instruccion_compuesta();m('.')
+        declaraciones_variables_opcional();declaraciones_subrutinas_opcional();instruccion_compuesta()#;m('.')
     else:
         print_debug('bloque()')
         print('error de sintaxis: no se ha declarado el inicio de la función principal del programa')
@@ -146,7 +146,7 @@ def declaraciones_subrutinas():
 
 def declaracion_procedimiento():
     if preanalisis['v'] == 'procedure':
-        m('procedure');identificador();parametros_formales_opcional();m(';');instruccion_compuesta()#bloque()
+        m('procedure');identificador();parametros_formales_opcional();m(';');bloque()#instruccion_compuesta()
     else:
         print_debug('declaracion_procedimiento()')
         print("error de sintaxis: se esperaba 'procedure', se encontro '",preanalisis['v'],"'")
@@ -154,7 +154,7 @@ def declaracion_procedimiento():
 
 def declaracion_funcion():
     if preanalisis['v']=='function':
-        m('function');identificador();parametros_formales_opcional();m(':');tipo();m(';');instruccion_compuesta()#bloque()
+        m('function');identificador();parametros_formales_opcional();m(':');tipo();m(';');bloque()#instruccion_compuesta()
     else:
         print_debug('declaracion_funcion()')
         print("error de sintaxis: se esperaba 'function', se encontro '",preanalisis['v'],"'")

@@ -120,8 +120,8 @@ error de sintaxis: solo se permite tipo integer o boolean
 		fila:5	columna:37
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej12a.pas
-error de sintaxis: se esperaba 'begin', se encontro ' var '
-		fila:6	columna:4
+error de sintaxis: se esperaba ' ; ', se encontro ' begin '
+		fila:7	columna:6
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej13a.pas
 analisis sintactico-lexico terminado, programa aceptado.
@@ -160,7 +160,7 @@ error de sintaxis: se esperaba ' ; ', se encontro ' . '
 		fila:12	columna:5
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej16b.pas
-error de sintaxis: se esperaba 'begin', se encontro ' id '
+error de sintaxis: no se ha declarado el inicio de la función principal del programa
 		fila:5	columna:5
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej16c.pas
@@ -203,15 +203,15 @@ error de sintaxis: se esperaba ' ; ', se encontro ' id '
 		fila:11	columna:10
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej17b.pas
-error de sintaxis: se esperaba 'begin', se encontro ' end '
+error de sintaxis: no se ha declarado el inicio de la función principal del programa
 		fila:5	columna:5
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej17c.pas
-error de sintaxis: se esperaba 'begin', se encontro ' end '
+error de sintaxis: no se ha declarado el inicio de la función principal del programa
 		fila:5	columna:5
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej17d.pas
-error de sintaxis: se esperaba 'begin', se encontro ' end '
+error de sintaxis: no se ha declarado el inicio de la función principal del programa
 		fila:5	columna:5
 ############################################################
 Analizando sintacticamente el fuente: ./pascal-src/Ej17e.pas
