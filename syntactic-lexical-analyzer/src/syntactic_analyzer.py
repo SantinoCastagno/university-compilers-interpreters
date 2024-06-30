@@ -223,14 +223,14 @@ def asignacion():
         m(':=');expresion()
     else:
         print_debug('asignacion()')
-        print("error de analisis: se esperaba ':=', se encontro '",preanalisis['v'],"'")
+        print("error de sintaxis: se esperaba ':=', se encontro '",preanalisis['v'],"'")
 
 def llamada_procedimiento():
     if en_primeros('lista_expresiones_opcional'):
         lista_expresiones_opcional()
     else:
         print_debug('llamada_procedimiento()')
-        print("error de analisis: No se cumple la estructura para llamar un procedimiento")
+        print("error de sintaxis: no se cumple la estructura para llamar un procedimiento")
 
 def lista_expresiones_opcional():
     if preanalisis['v'] == '(':
@@ -241,7 +241,7 @@ def instruccion_condicional():
         m('if');expresion();m('then');instruccion();else_opcional()
     else:
         print_debug('instruccion_condicional()')
-        print("error de analisis:  se esperaba'if', se encontro '",preanalisis['v'],"'")
+        print("error de sintaxis: se esperaba'if', se encontro '",preanalisis['v'],"'")
 
 
 def else_opcional():
@@ -252,8 +252,8 @@ def instruccion_repetitiva():
     if preanalisis['v'] == 'while':
         m('while');expresion();m('do');instruccion()
     else:
-        print_debug('error de analisis: else_opcional()')
-        print("error de analisis:  se esperaba 'while', se encontro '",preanalisis['v'],"'")
+        print_debug('error de sintaxis: else_opcional()')
+        print("error de sintaxis:  se esperaba 'while', se encontro '",preanalisis['v'],"'")
 
 
 # EXPRESIONES
