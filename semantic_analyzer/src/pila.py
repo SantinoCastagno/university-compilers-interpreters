@@ -1,4 +1,6 @@
 class Pila:
+    items = []
+
     def __init__(self):
         self.items = []
 
@@ -15,7 +17,7 @@ class Pila:
             return None  # O puedes lanzar una excepción si prefieres
 
     def ver_cima(self):
-        if not self.esta_vacia():
+        if not self.esta_vacia():            
             return self.items[-1]
         else:
             return None

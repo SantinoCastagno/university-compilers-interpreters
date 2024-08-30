@@ -79,9 +79,9 @@ def token(arg0,arg1):
         return tokens_basicos[arg0]
     
 # PROGRAMAS Y BLOQUES
-def programa(): 
+def programa(): # Primera funcion ejecutada
     if preanalisis['v'] == 'program':
-        pila_TLs.apilar(Tabla_simbolos())
+        pila_TLs.apilar(Tabla_simbolos()) # Se apila la tabla del entorno global
         m("program");identificador2('programa');m(';');bloque();m('.')
     else:
         print_debug('programa()')
@@ -173,7 +173,6 @@ def declaracion_funcion():
         print("error de sintaxis: se esperaba 'function', se encontro '",preanalisis['v'],"'")
         imprimirPosiciones()
 
-
 def parametros_formales_opcional():
     if en_primeros('parametros_formales'):
         parametros_formales()
@@ -256,7 +255,6 @@ def instruccion_condicional():
         print_debug('instruccion_condicional()')
         print("error de sintaxis: se esperaba'if', se encontro '",preanalisis['v'],"'")
 
-
 def else_opcional():
     if preanalisis['v'] == 'else':
         m('else');instruccion()   
@@ -268,9 +266,7 @@ def instruccion_repetitiva():
         print_debug('error de sintaxis: else_opcional()')
         print("error de sintaxis:  se esperaba 'while', se encontro '",preanalisis['v'],"'")
 
-
 # EXPRESIONES
-
 def lista_expresiones_procedimiento():
     if en_primeros('lista_expresiones'):
         lista_expresiones()
@@ -278,7 +274,6 @@ def lista_expresiones_procedimiento():
    #     identificador();lista_expresiones_procedimiento_repetitiva()
    # elif preanalisis['v'] == 'enteroDato':
    #     numero();lista_expresiones_procedimiento_repetitiva()
-
 
 def lista_expresiones():
     if en_primeros('expresion'):
@@ -400,19 +395,21 @@ def identificador2(atributo):
         imprimirPosiciones()
     else:
         colision_nombres(atributo)
-        pila_TLs.ver_cima().insertar(preanalisis['l'],atributo)
-        print(pila_TLs.print_cima(),'\n')
+        if(pila_TLs.tamano() < 2):
+            tipoScope = "global" 
+        else:
+            tipoScope = "local"
+        pila_TLs.ver_cima().insertar(nombre=preanalisis['l'], atributo=atributo, tipo_scope=tipoScope)
+        print(pila_TLs.print_cima(),'\n') # se imprime la tabla de simbolos al tope de la pila
         siguiente_terminal()
 
 def colision_nombres(atributo):
     l = preanalisis['l']
-    if (l in pila_TLs.print_cima().keys()
-        and pila_TLs.print_cima()[l]['atributo'] != atributo
-        ):
+    if (l in pila_TLs.print_cima().keys() and pila_TLs.print_cima()[l]['atributo'] != atributo):
         print('error semantico: mismo identificador de',atributo,'y' ,pila_TLs.print_cima()[l]['atributo'])
         imprimirPosiciones()
     elif (l in pila_TLs.print_cima().keys()):
-        print('error semantico: dos',atributo,'s con el mismo nombre')
+        print('error semantico: dos ' + atributo + 's ' + pila_TLs.print_cima()[l]['tipo_scope'] + 'es con el mismo nombre')
         imprimirPosiciones() 
 
 
@@ -428,9 +425,7 @@ def numero():
         print('error de sintaxis: numero()')
         imprimirPosiciones()
 
-
 # AUX
-
 def abrir_archivo(archivo):
     """Abre el archivo y devuelve el objeto del archivo."""
     try:
@@ -451,8 +446,6 @@ def leer_siguiente_linea(f):
             return None
     else:
         return None
-
-
 
 if __name__ == "__main__":
     primeros = {       
@@ -505,7 +498,7 @@ if __name__ == "__main__":
     }
 
     if len(sys.argv) != 2:
-        print("Uso: python main.py <ruta_del_fuente_origen>")
+        print("Utilizar: python main.py <ruta_del_fuente_origen>")
         sys.exit(1)
     
     global caracter

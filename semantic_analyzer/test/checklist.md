@@ -6,8 +6,8 @@
 - [x] 01A2 - Mismo identificador programa y procedimiento.
 - [x] 01A3 - Mismo identificador programa y función.
 - [x] 01B1 - Dos variables globales con el mismo nombre.
-- [ ] 01B2 - Dos variables locales con el mismo nombre.
-- [ ] 01C - Mismo identificador variable global y función.
+- [x] 01B2 - Dos variables locales con el mismo nombre.
+- [ ] 01C - Mismo identificador variable global y función. `falta colocar que la variable es global`
 - [ ] 01D - Mismo identificador variable global y procedimiento.
 - [ ] 01E - Mismo identificador variable local y función local.
 - [ ] 01F - Mismo identificador variable local y parámetro.
