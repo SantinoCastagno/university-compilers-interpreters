@@ -7,16 +7,18 @@
 - [x] 01A3 - Mismo identificador programa y función.
 - [x] 01B1 - Dos variables globales con el mismo nombre.
 - [x] 01B2 - Dos variables locales con el mismo nombre.
-- [ ] 01C - Mismo identificador variable global y función. `falta colocar que la variable es global`
-- [ ] 01D - Mismo identificador variable global y procedimiento.
-- [ ] 01E - Mismo identificador variable local y función local.
-- [ ] 01F - Mismo identificador variable local y parámetro.
-- [ ] 01G - Mismo identificador parámetro y función local.
+- [x] 01C - Mismo identificador variable global y función. 
+- [x] 01D - Mismo identificador variable global y procedimiento.
+- [x] 01E - Mismo identificador variable local y función local.
+- [x] 01F - Mismo identificador variable local y parámetro.
+- [x] 01G - Mismo identificador parámetro y función local.
 
 ## (b) Identificadores no definidos:
 
-- [ ] 02A1 - Identificador de procedimiento sin definir.
-- [ ] 02A2 - Uso en entorno local de identificador de variable no definido.
+- [x] 02A1 - Identificador de procedimiento sin definir.
+- [x] 02A2 - Uso en entorno local de identificador de variable no definido.
+(falta el texto, pero el error lo detecta)
+
 - [ ] 02A3 - Uso de identificador de función no definido en expresión aritmética.
 - [ ] 02A4 - Uso de identificador de función booleana no definido en condición de if.
 - [ ] 02A5 - Uso de identificador de función booleana no definido en condición de while.

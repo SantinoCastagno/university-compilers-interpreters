@@ -6,8 +6,8 @@ from symbol_table import Tabla_simbolos
 from pila import Pila
 
 preanalisis = {'v':'','l':''}
-archivo = ''
 pila_TLs = Pila()
+identificador_a_verificar_a_futuro = ''
 
 def imprimirPosiciones():
     row, col = obtener_posicion()
@@ -46,7 +46,7 @@ def siguiente_terminal():
         return
     preanalisis['v'] = preanalisis['v'][preanalisis['v'].find('token'):]
     preanalisis['v'] = eval(preanalisis['v'])
-    #print('SIGUIENTE TERMINAL:  v:',preanalisis['v'],' ,    l:',preanalisis['l'],'\n')
+    print('SIGUIENTE TERMINAL:  v:',preanalisis['v'],' ,    l:',preanalisis['l'],'\n')
 
 
 
@@ -82,6 +82,7 @@ def token(arg0,arg1):
 def programa(): # Primera funcion ejecutada
     if preanalisis['v'] == 'program':
         pila_TLs.apilar(Tabla_simbolos()) # Se apila la tabla del entorno global
+        pila_TLs.ver_cima().insertar(nombre='write', atributo='procedimiento', tipo_scope='global')
         m("program");identificador2('programa');m(';');bloque();m('.')
     else:
         print_debug('programa()')
@@ -121,7 +122,7 @@ def declaraciones_variables_repetitivas():
 
 def declaracion_variable():
     if en_primeros('lista_identificadores'):
-        lista_identificadores();m(':');tipo()
+        lista_identificadores('variable');m(':');tipo()
     else:
         print_debug('declaracion_variable()')
         print("error de sintaxis: no se definieron las variables")
@@ -137,17 +138,17 @@ def tipo():
         print('error de sintaxis: solo se permite tipo integer o boolean')
         imprimirPosiciones()
 
-def lista_identificadores():
+def lista_identificadores(atributo):
     if en_primeros('identificador'):
-        identificador2('variable');lista_identificadores_repetitiva()
+        identificador2(atributo);lista_identificadores_repetitiva(atributo)
     else:
         print_debug('lista_identificadores()')
         print('error de sintaxis: aca deberia ir un identificador')
         imprimirPosiciones()
 
-def lista_identificadores_repetitiva():
+def lista_identificadores_repetitiva(atributo):
     if preanalisis['v'] == ',':
-        m(','),identificador2('variable'),lista_identificadores_repetitiva()
+        m(','),identificador2(atributo),lista_identificadores_repetitiva(atributo)
 
 def declaraciones_subrutinas():
     if en_primeros('declaracion_procedimiento'):
@@ -160,6 +161,7 @@ def declaracion_procedimiento():
         m('procedure');identificador2('procedimiento')
         pila_TLs.apilar(Tabla_simbolos())
         parametros_formales_opcional();m(';');bloque()#instruccion_compuesta()
+        pila_TLs.desapilar()
     else:
         print_debug('declaracion_procedimiento()')
         print("error de sintaxis: se esperaba 'procedure', se encontro '",preanalisis['v'],"'")
@@ -167,7 +169,10 @@ def declaracion_procedimiento():
 
 def declaracion_funcion():
     if preanalisis['v']=='function':
-        m('function');identificador2('funcion');parametros_formales_opcional();m(':');tipo();m(';');bloque()#instruccion_compuesta()
+        m('function');identificador2('funcion')
+        pila_TLs.apilar(Tabla_simbolos())
+        parametros_formales_opcional();m(':');tipo();m(';');bloque()#instruccion_compuesta()
+        pila_TLs.desapilar()
     else:
         print_debug('declaracion_funcion()')
         print("error de sintaxis: se esperaba 'function', se encontro '",preanalisis['v'],"'")
@@ -191,7 +196,7 @@ def parametros_formales_repetitiva():
 
 def seccion_parametros_formales():
     if en_primeros('lista_identificadores'):
-        lista_identificadores();m(':');tipo()
+        lista_identificadores('parametro');m(':');tipo()
 
 # INSTRUCCIONES
 def instruccion_compuesta():
@@ -208,7 +213,7 @@ def instruccion_compuesta_repetitiva():
 
 def instruccion():
     if en_primeros('identificador'):
-        identificador();instruccion_aux()
+        identificador3();instruccion_aux()
     elif en_primeros('instruccion_compuesta'):
         instruccion_compuesta()
     elif en_primeros('instruccion_condicional'):
@@ -224,6 +229,7 @@ def instruccion_aux():
     if en_primeros('asignacion'):
         asignacion()
     elif en_primeros('llamada_procedimiento'):
+        subprograma_sin_definir('procedimiento')
         llamada_procedimiento()
     else:
         print_debug('instruccion_aux()')
@@ -353,7 +359,8 @@ def termino_repetitiva():
 
 def factor():
     if en_primeros('identificador'):
-       identificador2('variable'); factor_opcional()
+       identificador3();subprograma_sin_definir('variable')
+       factor_opcional()
     elif en_primeros('numero'):
         numero()
     elif preanalisis['v'] == '(': 
@@ -387,31 +394,80 @@ def identificador():
 
 def identificador2(atributo):
     reservadas = ['program' , ';' , '.' ,  'var' , ':' , 'integer' , 'boolean' , ',' , 'procedure' , 'function' , 
-'(' , ')' ,  'begin' , 'end' , ':=' , 'if' , 'then' , 'else' , 'while' , 'do' , '*' , '/' , 'and' ,
-'not']
+    '(' , ')' ,  'begin' , 'end' , ':=' , 'if' , 'then' , 'else' , 'while' , 'do' , '*' , '/' , 'and' ,
+    'not']
     if preanalisis['v'] in reservadas:
-        print_debug('identificador()')
+        print_debug('identificador2()')
         print('error de sintaxis: se esperaba un id, se encontro una palabra reservada: ',preanalisis['v'])
         imprimirPosiciones()
     else:
-        colision_nombres(atributo)
-        if(pila_TLs.tamano() < 2):
+        tipoScope = asignar_scope(atributo)
+        colision_nombres(atributo,tipoScope)
+        pila_TLs.ver_cima().insertar(nombre=preanalisis['l'], atributo=atributo, tipo_scope=tipoScope)
+        print('pos: ',pila_TLs.tamanio(),'--',pila_TLs.print_cima(),'\n') # se imprime la tabla de simbolos al tope de la pila
+        siguiente_terminal()
+
+def identificador3():
+    reservadas = ['program' , ';' , '.' ,  'var' , ':' , 'integer' , 'boolean' , ',' , 'procedure' , 'function' , 
+    '(' , ')' ,  'begin' , 'end' , ':=' , 'if' , 'then' , 'else' , 'while' , 'do' , '*' , '/' , 'and' ,
+    'not']
+    if preanalisis['v'] in reservadas:
+        print_debug('identificador3()')
+        print('error de sintaxis: se esperaba un id, se encontro una palabra reservada: ',preanalisis['v'])
+        imprimirPosiciones()
+    else:
+        global identificador_a_verificar_a_futuro
+        identificador_a_verificar_a_futuro=preanalisis['l']
+        siguiente_terminal()
+
+
+def subprograma_sin_definir(atributo):
+        id = identificador_a_verificar_a_futuro
+        pila_revertida = reversed(pila_TLs.items)
+        failed = True
+
+        for ts in pila_revertida:
+            ts = ts.tabla
+            if id in ts.keys():
+                if ts[id]['atributo'] == atributo:
+                    failed = False
+                else:
+                    print('no')
+                    break
+        
+        if failed:
+            print_debug('subprograma_sin_definir()')
+            print('error semantico: identificador de',atributo,'sin definir')
+            imprimirPosiciones()
+        return failed
+
+def asignar_scope(atributo):
+    '''si el atributo es de tipo variable, se le asigna su respectivo scope'''
+    tipoScope = None
+    if atributo == 'variable':
+        if(pila_TLs.tamanio() < 2):
             tipoScope = "global" 
         else:
             tipoScope = "local"
-        pila_TLs.ver_cima().insertar(nombre=preanalisis['l'], atributo=atributo, tipo_scope=tipoScope)
-        print(pila_TLs.print_cima(),'\n') # se imprime la tabla de simbolos al tope de la pila
-        siguiente_terminal()
+    elif atributo in ['funcion','procedimiento']:
+         if(pila_TLs.tamanio() >= 2):
+            tipoScope = "local"
+    return tipoScope
 
-def colision_nombres(atributo):
+def colision_nombres(atributo,tipoScope):
     l = preanalisis['l']
-    if (l in pila_TLs.print_cima().keys() and pila_TLs.print_cima()[l]['atributo'] != atributo):
-        print('error semantico: mismo identificador de',atributo,'y' ,pila_TLs.print_cima()[l]['atributo'])
-        imprimirPosiciones()
-    elif (l in pila_TLs.print_cima().keys()):
-        print('error semantico: dos ' + atributo + 's ' + pila_TLs.print_cima()[l]['tipo_scope'] + 'es con el mismo nombre')
-        imprimirPosiciones() 
+    
+         
+    if l in pila_TLs.print_cima().keys():
+        tipoScope1 = '' if tipoScope is None else ' '+tipoScope
+        tipoScope2 = ' '+pila_TLs.print_cima()[l]['tipo_scope'] if 'tipo_scope' in pila_TLs.print_cima()[l].keys() else ''
 
+        if (pila_TLs.print_cima()[l]['atributo'] != atributo):
+            print('error semantico: mismo identificador de',atributo+tipoScope1,'y',pila_TLs.print_cima()[l]['atributo']+tipoScope2)
+            imprimirPosiciones()
+        else:
+            print('error semantico: dos ' + atributo + 's ' + pila_TLs.print_cima()[l]['tipo_scope'] + 'es con el mismo nombre')
+            imprimirPosiciones() 
 
 def print_debug(nombre_func):
     activo = False

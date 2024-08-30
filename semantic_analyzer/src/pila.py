@@ -28,5 +28,5 @@ class Pila:
         else:
             return None
 
-    def tamano(self):
+    def tamanio(self):
         return len(self.items)
