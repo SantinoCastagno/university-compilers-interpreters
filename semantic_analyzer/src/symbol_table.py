@@ -1,7 +1,4 @@
-
-
 from typing import Union
-
 
 class Tabla_simbolos():
 
@@ -10,8 +7,7 @@ class Tabla_simbolos():
 
     def insertar(self,nombre,atributo,tipo_dato=None,n_parametros=None,
                  tipo_parametros=None,tipo_retorno=None):
-        '''
-        '''
+        
         self.tabla[nombre] = {'atributo':atributo}
 
         if tipo_dato is not None:
@@ -28,13 +24,9 @@ class Tabla_simbolos():
 
     
     def buscar(self,nombre):
-        '''
-        '''
         return self.tabla[nombre]
     
     def modificar_dato(self,nombre_atributo,nombres_datos,nuevos_valores_datos:Union[str,list]):
-        '''
-        '''
         if type(nombres_datos) == str:
             self.tabla[nombre_atributo][nombres_datos] =  nuevos_valores_datos
         elif type(nombres_datos) == list:
@@ -43,4 +35,3 @@ class Tabla_simbolos():
 
     def eliminar(self,nombre):
         del self.tabla[nombre]
-

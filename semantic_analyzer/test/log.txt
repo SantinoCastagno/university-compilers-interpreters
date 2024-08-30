@@ -1,0 +1,920 @@
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/Ej01A1.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+error semantico: mismo identificador de variable y programa
+		fila:3	columna:12
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/Ej01A2.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+error semantico: mismo identificador de procedimiento y programa
+		fila:5	columna:17
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/Ej01A3.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+error semantico: mismo identificador de funcion y programa
+		fila:5	columna:16
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/Ej01B1.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:4	columna:4
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/Ej01B2.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'algo': {'atributo': 'procedimiento'}} 
+
+{'a': {'atributo': 'variable'}} 
+
+{'a': {'atributo': 'variable'}, 'm': {'atributo': 'variable'}} 
+
+{'a': {'atributo': 'variable'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:6
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/Ej01C.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'nuevo': {'atributo': 'variable'}} 
+
+error semantico: mismo identificador de funcion y variable
+		fila:6	columna:15
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ01D.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'nuevo': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'nuevo': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ01E.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:6	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ01F.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:6	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ01G.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:6	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ01H.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:6	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ02A1.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'nuevo': {'atributo': 'procedimiento'}} 
+
+{'a': {'atributo': 'variable'}} 
+
+{'a': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:8	columna:12
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ02A2.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'nuevo': {'atributo': 'procedimiento'}} 
+
+{'a': {'atributo': 'variable'}} 
+
+{'a': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'a': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'm': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:8	columna:14
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ02A3.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'nuevo': {'atributo': 'procedimiento'}} 
+
+{'a': {'atributo': 'variable'}} 
+
+{'a': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:8	columna:9
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ02A4.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'nuevo': {'atributo': 'procedimiento'}} 
+
+{'a': {'atributo': 'variable'}} 
+
+{'a': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:8	columna:9
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ02A5.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'nuevo': {'atributo': 'procedimiento'}} 
+
+{'a': {'atributo': 'variable'}} 
+
+{'a': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:8	columna:9
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ03A1.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ03A2.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ03A.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:6	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ03B1.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ03B2.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ03C1.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ03C2.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ03C3.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ03D1.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ03D2.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ03E1.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ03E2.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ04A1.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ04A2.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ04A3.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ04B1.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ04B2.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ04B3.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ04B4.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ04B5.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ04B.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ04C1.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ04C2.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ04C3.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ04C4.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ04C5.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ04D1.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ04D2.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ04D3.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ04D4.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ04D5.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ05A1.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ05A2.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ05B1.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ05B2.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
+############################################################
+Analizando sintacticamente el fuente: ./pascal-src/EJ05C1.PAS
+{'prueba': {'atributo': 'programa'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}} 
+
+{'prueba': {'atributo': 'programa'}, 'a': {'atributo': 'variable'}, 'b': {'atributo': 'variable'}, 'j': {'atributo': 'variable'}, 'l': {'atributo': 'variable'}, 'algo': {'atributo': 'funcion'}, 'm': {'atributo': 'variable'}, 'n': {'atributo': 'variable'}} 
+
+error semantico: dos variable s con el mismo nombre
+		fila:7	columna:7
