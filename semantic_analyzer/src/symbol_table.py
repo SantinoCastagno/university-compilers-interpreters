@@ -17,7 +17,6 @@ class Tabla_simbolos():
             self.tabla[nombre]['tipo_retorno'] = tipo_retorno
         if tipo_scope is not None:
             self.tabla[nombre]['tipo_scope'] = tipo_scope
-        # print(self.tabla[nombre])
     
     def buscar(self,nombre):
         return self.tabla[nombre]
