@@ -10,7 +10,7 @@ begin
 end;
 
 begin
-  a:=9 + algo(a);
+  a:=9; {+ algo(a); lo comente porque sino detecta este y rompe}
   if salida(a)
     then nuevo(a*2)
   else nuevo(a-2);

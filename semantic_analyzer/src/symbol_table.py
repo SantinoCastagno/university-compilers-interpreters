@@ -4,9 +4,13 @@ class Tabla_simbolos():
     def __init__(self):
         self.tabla = {}
 
-    def insertar(self,nombre,atributo,tipo_dato=None,n_parametros=None,
+    def insertar(self,nombre,atributo,subatributo=None,tipo_dato=None,n_parametros=None,
                  tipo_parametros=None,tipo_retorno=None,tipo_scope=None):
         self.tabla[nombre] = {'atributo':atributo}
+
+        if subatributo is not None:
+            self.tabla[nombre]['subatributo'] = subatributo
+
         if tipo_dato is not None:
             self.tabla[nombre]['tipo_dato'] = tipo_dato
         if n_parametros is not None:

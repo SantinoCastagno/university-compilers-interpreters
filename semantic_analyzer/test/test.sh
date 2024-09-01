@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIRECTORIO="./pascal-src"
+DIRECTORIO="./files"
 
 if [ ! -d "$DIRECTORIO" ]; then
     echo "El directorio $DIRECTORIO no existe."

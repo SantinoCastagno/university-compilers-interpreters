@@ -19,18 +19,24 @@
 - [x] 02A2 - Uso en entorno local de identificador de variable no definido.
 (falta el texto, pero el error lo detecta)
 
-- [ ] 02A3 - Uso de identificador de función no definido en expresión aritmética.
-- [ ] 02A4 - Uso de identificador de función booleana no definido en condición de if.
-- [ ] 02A5 - Uso de identificador de función booleana no definido en condición de while.
-- [ ] 02B - Identificador de función sin definir.
+- [x] 02A3 - Uso de identificador de función no definido en expresión aritmética.
+  (falta el texto, pero el error lo detecta)
+
+- [x] 02A4 - Uso de identificador de función booleana no definido en condición de if.
+(falta el texto, pero el error lo detecta)
+
+- [x] 02A5 - Uso de identificador de función booleana no definido en condición de while.
+(falta el texto, pero el error lo detecta)
+
+- [ ] 02B - Identificador de función sin definir. (NO EXISTE)
 
 ## (c) Aridad no coincidente (Arity mismatch):
 
-- [ ] 03A - Pasaje de parámetro a una función sin parámetros.
-- [ ] 03A1 - Pasaje de un parámetro booleano a función con dos parámetros booleanos.
-- [ ] 03A2 - Pasaje de tres parámetros booleanos a función con dos parámetros booleanos.
-- [ ] 03B1 - Pasaje de dos parámetros numéricos a procedimiento con tres parámetros numéricos.
-- [ ] 03B2 - Pasaje de cuatro parámetros numéricos a procedimiento con tres parámetros numéricos.
+- [x] 03A - Pasaje de parámetro a una función sin parámetros.
+- [x] 03A1 - Pasaje de un parámetro booleano a función con dos parámetros booleanos.
+- [x] 03A2 - Pasaje de tres parámetros booleanos a función con dos parámetros booleanos.
+- [x] 03B1 - Pasaje de dos parámetros numéricos a procedimiento con tres parámetros numéricos.
+- [x] 03B2 - Pasaje de cuatro parámetros numéricos a procedimiento con tres parámetros numéricos.
 
 ## (d) Tipo no coincidente (Type mismatches)
 

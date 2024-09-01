@@ -2,7 +2,7 @@ program prueba ;{ Archivo Prueba C&I Semántico}
 var
   a, b: integer;
 
-function algo: integer;
+function algo : integer;
  var b:boolean;
 begin
   algo := a + 5;
