@@ -20,6 +20,10 @@ def imprimirPosiciones():
     row, col = obtener_posicion()
     logger.info("fila:"+str(row)+"\tcolumna:"+str(col))
     sys.exit(1)
+    
+############################################################################################
+############################## METODOS DEL ANALISIS SINTACTICO #############################
+############################################################################################
 
 def m(terminal):
     if(terminal == preanalisis['v']):
@@ -223,7 +227,7 @@ def instruccion_aux():
     if en_primeros('asignacion'):
         asignacion()
     elif en_primeros('llamada_procedimiento'):
-        identificador_sin_definir('procedimiento')
+        chequear_identificador_sin_definir('procedimiento')
         llamada_procedimiento()
     else:
         logger.debug('error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento')
@@ -343,7 +347,7 @@ def termino_repetitiva():
 
 def factor():
     if en_primeros('identificador'):
-       identificador3();identificador_sin_definir('variable')
+       identificador3();chequear_identificador_sin_definir('variable')
        factor_opcional()
     elif en_primeros('numero'):
         numero()
@@ -391,7 +395,7 @@ def identificador2(atributo):
         tipoScope = asignar_scope(atributo)
         colision_nombres(atributo,tipoScope)
         pila_TLs.ver_cima().insertar(nombre=preanalisis['l'], atributo=atributo, tipo_scope=tipoScope)
-        logger.debug('pos: ' + str(pila_TLs.tamanio()) + '--' + str(pila_TLs.print_cima())) # se imprime la tabla de simbolos al tope de la pila
+        #logger.debug('pos: ' + str(pila_TLs.tamanio()) + '--' + str(pila_TLs.print_cima())) # se imprime la tabla de simbolos al tope de la pila
         siguiente_terminal()
 
 def identificador3():
@@ -409,25 +413,29 @@ def identificador3():
 ############################################################################################
 ############################## METODOS DEL ANALISIS SEMANTICO ##############################
 ############################################################################################
-def identificador_sin_definir(atributo):
+def chequear_identificador_sin_definir(atributo):
     id = identificador_a_verificar_a_futuro
-    pila_revertida = reversed(pila_TLs.items) # Santino: esto no me parece que este bien, sinceramente
-    failed = True
-    for ts in pila_revertida: 
-        ts = ts.tabla
-        if id in ts.keys():
-            if ts[id]['atributo'] == atributo:
-                failed = False
-            else:
-                logger.warning('No')
-                break
-    if failed:
+    identificadorNoDetectado = True
+    i = pila_TLs.tamanio()-1
+    # se recorre la pila en orden inverso
+    while i>0 and identificadorNoDetectado:
+        tabla = pila_TLs.items[i].tabla
+        logger.debug(str(tabla))
+        if id in tabla.keys():
+            # chequea si el tipo de atributo del elemento actual es compatible considerando que los parametros y la variable lo son
+            logger.debug(atributo +"\t\t"+ str(id) +str(tabla[id]))
+            if (atributo == "variable" or atributo == "parametro") and (tabla[id]['atributo'] == "variable" or tabla[id]['atributo'] == "parametro"):
+                identificadorNoDetectado = False
+            elif (tabla[id]['atributo'] == atributo):
+                identificadorNoDetectado = False
+        i-=1
+    if identificadorNoDetectado:
         logger.info('error semantico: identificador de '+atributo +' sin definir')
         imprimirPosiciones()
-    return failed
-
+    return identificadorNoDetectado
+        
 def asignar_scope(atributo):
-    '''si el atributo es de tipo variable, se le asigna su respectivo scope'''
+    '''Si el atributo es de tipo variable, se le asigna su respectivo scope'''
     tipoScope = None
     if atributo == 'variable':
         if(pila_TLs.tamanio() < 2):
