@@ -17,12 +17,10 @@
 
 - [x] 02A1 - Identificador de procedimiento sin definir.
 - [x] 02A2 - Uso en entorno local de identificador de variable no definido.
-(falta el texto, pero el error lo detecta)
-
 - [ ] 02A3 - Uso de identificador de función no definido en expresión aritmética.
 - [ ] 02A4 - Uso de identificador de función booleana no definido en condición de if.
 - [ ] 02A5 - Uso de identificador de función booleana no definido en condición de while.
-- [ ] 02B - Identificador de función sin definir.
+- [ ] 02B - Identificador de función sin definir. (No existe este ejercicio)
 
 ## (c) Aridad no coincidente (Arity mismatch):
 
