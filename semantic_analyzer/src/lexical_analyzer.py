@@ -13,7 +13,6 @@ col = 1
 def construir_lexema(fuente):
     global caracter, row, col
     lexema = "lexema "
-    print(fuente)
     while caracter:
         if not (caracter == " " or caracter == "\t" or caracter == "\n"):
             if (caracter.isalpha()): 

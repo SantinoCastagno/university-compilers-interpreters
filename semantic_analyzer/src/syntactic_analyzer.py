@@ -16,9 +16,9 @@ pila_TLs = Pila()
 # MACROVARIABLES DE CONTROL SEMANTICO
 identificador_a_verificar_a_futuro = ''
 expresion_actual = '' # si la expresion actual a evaluar es aritmetica, condicional, repetitiva o ninguna (cadena vacia).
-
-contador_de_parametros = 0 # cuando se declara/invoca una funcion o procedimiento con parametros, se llevara el conteo de los mismos aca.
-subprograma_de_parametros_contados = '' # aca se guarda el nombre del subprograma cuyos parametros fueron contados, para acceder al mismo luego del conteo. 
+parametros = [] # cuando se declara/invoca una funcion o procedimiento con parametros, se llevara una lista de los mismos
+subprograma_de_parametros_contados = '' # aca se guarda el nombre del subprograma cuyos parametros fueron listados, para acceder al mismo luego de listarlos 
+tipo_parametros = ''
 
 def imprimirPosiciones():
     row, col = obtener_posicion()
@@ -53,14 +53,12 @@ def en_primeros(simbolo):
 
 def siguiente_terminal():
     preanalisis['v'] = obtener_siguiente_token(archivo)
-    #print('SIGUIENTE LINEA: ',preanalisis['v'])
+    print(f"{preanalisis['v']:<50}{preanalisis['l']:<20}")
     if preanalisis['v'] == None:
         return
     preanalisis['v'] = preanalisis['v'][preanalisis['v'].find('token'):]
     preanalisis['v'] = eval(preanalisis['v'])
     logger.debug('SIGUIENTE TERMINAL:  v:'+preanalisis['v']+' ,    l:'+preanalisis['l']+'\n')
-
-
 
 def token(arg0,arg1):
     tokens_basicos = {
@@ -97,9 +95,7 @@ def incializar_TL_global():
     pila_TLs.ver_cima().insertar(
         nombre='write',
         atributo='procedimiento',
-        tipo_scope='global',
-        n_parametros=1,
-        tipo_parametros=['string'])
+        tipo_scope='global')
     
     # se insertan TRUE y FALSE como variables
     pila_TLs.ver_cima().insertar(
@@ -215,7 +211,7 @@ def declaracion_funcion():
 def parametros_formales_opcional():
     if en_primeros('parametros_formales'):
         parametros_formales()
-    actualizar_cantidad_parametros_subprograma()
+    actualizar_parametros_subprograma()
 
 
 
@@ -232,8 +228,9 @@ def parametros_formales_repetitiva():
         m(';');seccion_parametros_formales();parametros_formales_repetitiva()
 
 def seccion_parametros_formales():
+    global tipo_parametros
     if en_primeros('lista_identificadores'):
-        lista_identificadores('variable','parametro');m(':');tipo()
+        lista_identificadores('variable','parametro');m(':');tipo_parametros=preanalisis['v'];tipo();
 
 # INSTRUCCIONES
 def instruccion_compuesta():
@@ -326,14 +323,14 @@ def lista_expresiones_procedimiento():
 
 def lista_expresiones():
     if en_primeros('expresion'):
-        expresion();sumar_parametro();lista_expresiones_repetitiva()
+        expresion();print("sumar_parametro()");sumar_parametro();lista_expresiones_repetitiva()
     else:
         print('error de sintaxis: lista_expresiones()') 
         imprimirPosiciones()
 
 def lista_expresiones_repetitiva():
     if preanalisis['v'] ==',':
-        m(',');expresion();sumar_parametro();lista_expresiones_repetitiva()
+        m(',');expresion();print("sumar_parametro()");sumar_parametro();lista_expresiones_repetitiva()
 
 def expresion():
     if en_primeros('expresion_simple'):
@@ -527,27 +524,30 @@ def guardar_nombre_subprograma_para_contar_parametros(nombre_subprograma = None)
     Se guarda el nombre del subprograma cuyos parametros seran contados.
     Luego del conteo, se volvera a acceder al elemento en la TL.
     '''
+    
     global subprograma_de_parametros_contados
-    global contador_de_parametros
+    global parametros
     
     if nombre_subprograma is None:
         nombre_subprograma =  preanalisis['l']
 
-    contador_de_parametros=0
+    parametros = []
     subprograma_de_parametros_contados = nombre_subprograma
 
 
 def sumar_parametro():
     '''Suma uno al contador de parametros formales para el subprograma que se esta declarando'''
-    global contador_de_parametros
-    contador_de_parametros +=1
+    global parametros
+    parametros.append(preanalisis['l'])
+    print(parametros, "append",  preanalisis['l'])
 
-
-def actualizar_cantidad_parametros_subprograma():
-    global contador_de_parametros
+def actualizar_parametros_subprograma():
     global subprograma_de_parametros_contados
-
-    pila_TLs.items[-2].modificar_dato(subprograma_de_parametros_contados,'n_parametros',contador_de_parametros)
+    global parametros
+    global tipo_parametros
+    print("actualizar parametros:\t"+ subprograma_de_parametros_contados + ":" + str(parametros))
+    print("tipo parametros:\t"+tipo_parametros)
+    pila_TLs.items[-2].modificar_dato(subprograma_de_parametros_contados,'parametros', parametros)
     #logger.debug('RESULTADO: '+pila_TLs.items[-2].tabla)
 
 # DETECCION DE ERRORES SEMANTICOS
@@ -614,9 +614,6 @@ def error_aridad(atributo):
         
     return failed
 
-
-
-
 # AUX
 def abrir_archivo(archivo):
     """Abre el archivo y devuelve el objeto del archivo."""
@@ -640,8 +637,6 @@ def leer_siguiente_linea(f):
         return None
 
 # metodos de debug
-
-
 def en(nombre_func):
     flag = False
     if flag:

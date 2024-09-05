@@ -4,8 +4,7 @@ class Tabla_simbolos():
     def __init__(self):
         self.tabla = {}
 
-    def insertar(self,nombre,atributo,subatributo=None,tipo_dato=None,n_parametros=None,
-                 tipo_parametros=None,tipo_retorno=None,tipo_scope=None):
+    def insertar(self,nombre,atributo,subatributo=None,tipo_dato=None, parametros=None,tipo_retorno=None,tipo_scope=None):
         self.tabla[nombre] = {'atributo':atributo}
 
         if subatributo is not None:
@@ -13,10 +12,8 @@ class Tabla_simbolos():
 
         if tipo_dato is not None:
             self.tabla[nombre]['tipo_dato'] = tipo_dato
-        if n_parametros is not None:
-            self.tabla[nombre]['n_parametros'] = n_parametros
-        if tipo_parametros is not None:
-            self.tabla[nombre]['tipo_parametros'] = tipo_parametros
+        if  parametros is not None:
+            self.tabla[nombre]['parametros'] = parametros
         if tipo_retorno is not None:
             self.tabla[nombre]['tipo_retorno'] = tipo_retorno
         if tipo_scope is not None:
@@ -25,6 +22,9 @@ class Tabla_simbolos():
     
     def buscar(self,nombre):
         return self.tabla[nombre]
+    
+    def agregar_parametro(self,nombre,parametro):
+        self.tabla[nombre]['parametros'].append(parametro)
     
     def modificar_dato(self,nombre_atributo,nombres_datos,nuevos_valores_datos:Union[str,list]):
         if type(nombres_datos) == str:
