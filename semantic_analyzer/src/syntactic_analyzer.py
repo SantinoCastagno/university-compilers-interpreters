@@ -4,6 +4,7 @@ import os
 from lexical_analyzer import obtener_siguiente_token, obtener_posicion
 from symbol_table import Tabla_simbolos
 from pila import Pila
+from collections import Counter
 from loguru import logger
 
 logger.remove()
@@ -545,10 +546,10 @@ def actualizar_parametros_subprograma():
     global subprograma_de_parametros_contados
     global parametros
     global tipo_parametros
-    print("actualizar parametros:\t"+ subprograma_de_parametros_contados + ":" + str(parametros))
-    print("tipo parametros:\t"+tipo_parametros)
-    pila_TLs.items[-2].modificar_dato(subprograma_de_parametros_contados,'parametros', parametros)
-    #logger.debug('RESULTADO: '+pila_TLs.items[-2].tabla)
+    paresOrdenadosParametros = [(parametro, tipo_parametros) for parametro in parametros]
+    print("actualizar parametros:\t"+ subprograma_de_parametros_contados + ":" + str(paresOrdenadosParametros))
+    pila_TLs.items[-2].modificar_dato(subprograma_de_parametros_contados,'parametros', paresOrdenadosParametros)
+    print('resultado: '+str(pila_TLs.items[-2].tabla))
 
 # DETECCION DE ERRORES SEMANTICOS
  
@@ -593,7 +594,8 @@ def identificador_sin_definir(atributo):
 
 def error_aridad(atributo):
     global subprograma_de_parametros_contados
-    global contador_de_parametros
+    global parametros
+    global tipo_parametros
 
     id = subprograma_de_parametros_contados
     pila_revertida = reversed(pila_TLs.items)
@@ -601,15 +603,34 @@ def error_aridad(atributo):
     for ts in pila_revertida:
         ts = ts.tabla
         if id in ts.keys():
-            n_parametros_formales = ts[id]['n_parametros']
-            if n_parametros_formales != contador_de_parametros:
+            parametros_formales = ts[id]['parametros']
+            # contar cada tipo de parametro (int o boolean)
+            contador_parametros_formales = Counter([elem[1] for elem in parametros_formales]) 
+            # agruparlos en pares ordenados
+            cantidad_por_tipo_parametros_formales = [(count, key) for key, count in contador_parametros_formales.items()]
+            
+            parametros_actuales = [(parametro, tipo_parametros) for parametro in parametros]
+            contador_parametros_actuales = Counter([elem[1] for elem in parametros_actuales]) 
+            cantidad_por_tipo_parametros_actuales = [(count, key) for key, count in contador_parametros_actuales.items()]
+            print("id:"+id)
+            print("PARAMETROS FORMALES:"+str(cantidad_por_tipo_parametros_formales))
+            print("PARAMETROS ACTUALES:"+str(cantidad_por_tipo_parametros_actuales))
+            # se compara las cantidades de ambos tipos de parametros sin importar el orden
+            if Counter(cantidad_por_tipo_parametros_formales) != Counter(cantidad_por_tipo_parametros_actuales):
                 failed = True
             break
-    
     if failed:
-        en('error_aridad()')
-        print('error semantico: se paso',contador_de_parametros,'parametro/s a'
-              ,atributo,'de',n_parametros_formales,'parametro/s')
+        descripcion_parametros_actuales = ""
+        for tipo_parametro in cantidad_por_tipo_parametros_actuales:
+            descripcion_parametros_actuales += str(tipo_parametro[0]) +  " parametro/s de tipo " + str(tipo_parametro[1])
+        if descripcion_parametros_actuales == "":
+            descripcion_parametros_actuales = "0 parametros"
+        descripcion_parametros_formales = ""
+        for tipo_parametro in cantidad_por_tipo_parametros_formales:
+            descripcion_parametros_formales += str(tipo_parametro[0]) + " parametro/s de tipo " +  str(tipo_parametro[1])
+        if descripcion_parametros_formales == "":
+            descripcion_parametros_formales = "0"
+        print('error semantico: se paso',descripcion_parametros_actuales,'al '+ atributo +' "'+ id + '" y se esperaban ' + descripcion_parametros_formales)
         imprimirPosiciones()
         
     return failed

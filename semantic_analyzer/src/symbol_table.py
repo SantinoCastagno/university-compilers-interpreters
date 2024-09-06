@@ -4,7 +4,7 @@ class Tabla_simbolos():
     def __init__(self):
         self.tabla = {}
 
-    def insertar(self,nombre,atributo,subatributo=None,tipo_dato=None, parametros=None,tipo_retorno=None,tipo_scope=None):
+    def insertar(self,nombre,atributo,subatributo=None,tipo_dato=None, parametros=[],tipo_retorno=None,tipo_scope=None):
         self.tabla[nombre] = {'atributo':atributo}
 
         if subatributo is not None:
