@@ -15,6 +15,7 @@ preanalisis = {'v':'','l':''}
 pila_TLs = Pila()
 
 # MACROVARIABLES DE CONTROL SEMANTICO
+ultimas_variables_declaradas = [] # lista de elementos que se utiliza para asignar el tipo de dato a las ultimas variables declaradas
 identificador_a_verificar_a_futuro = ''
 expresion_actual = '' # si la expresion actual a evaluar es aritmetica, condicional, repetitiva o ninguna (cadena vacia).
 parametros = [] # cuando se declara/invoca una funcion o procedimiento con parametros, se llevara una lista de los mismos
@@ -97,7 +98,6 @@ def incializar_TL_global():
         nombre='write',
         atributo='procedimiento',
         tipo_scope='global')
-    
     # se insertan TRUE y FALSE como variables
     pila_TLs.ver_cima().insertar(
         nombre='TRUE',
@@ -159,11 +159,14 @@ def declaracion_variable():
         print("error de sintaxis: no se definieron las variables")
         imprimirPosiciones()
 
-def tipo():
+def tipo(): # TODO: realiza asignacion de tipo al valor en la tabla de simbolos
+    global ultimas_variables_declaradas
     if preanalisis['v'] == 'integer':
         m('integer')
+        asignar_tipo_a_variables('integer')
     elif preanalisis['v'] == 'boolean':
         m('boolean')
+        asignar_tipo_a_variables('boolean')
     else:
         en('tipo()')
         print('error de sintaxis: solo se permite tipo integer o boolean')
@@ -324,14 +327,14 @@ def lista_expresiones_procedimiento():
 
 def lista_expresiones():
     if en_primeros('expresion'):
-        expresion();print("sumar_parametro()");sumar_parametro();lista_expresiones_repetitiva()
+        print("sumar_parametro_actual()"+preanalisis['l']);sumar_parametro_actual();expresion();lista_expresiones_repetitiva()
     else:
         print('error de sintaxis: lista_expresiones()') 
         imprimirPosiciones()
 
 def lista_expresiones_repetitiva():
     if preanalisis['v'] ==',':
-        m(',');expresion();print("sumar_parametro()");sumar_parametro();lista_expresiones_repetitiva()
+        m(',');print("sumar_parametro_actual()"+preanalisis['l']);sumar_parametro_actual();expresion();lista_expresiones_repetitiva()
 
 def expresion():
     if en_primeros('expresion_simple'):
@@ -362,7 +365,6 @@ def expresion_simple():
         en('expresion_simple()')
         print('error de sintaxis: se espera un termino valido.')
         imprimirPosiciones()
-
 
 def mas_menos_opcional():
     terminales = ['+','-']
@@ -449,6 +451,7 @@ def numero():
 
 # MANEJO DE IDENTIFICADORES
 def identificador():
+    global ultimas_variables_declaradas
     reservadas = ['program' , ';' , '.' ,  'var' , ':' , 'integer' , 'boolean' , ',' , 'procedure' , 'function' , 
 '(' , ')' ,  'begin' , 'end' , ':=' , 'if' , 'then' , 'else' , 'while' , 'do' , '*' , '/' , 'and' ,
 'not']
@@ -478,16 +481,20 @@ def cargar_identificador(atributo,subatributo=None):
         # se evaluan errores de colision de nombres
         colision_nombres(subatributo,tipoScope)
 
+        if atributo == 'variable':
+            ultimas_variables_declaradas.append(preanalisis['l'])
+            print("ultimas variables:"+str(ultimas_variables_declaradas))
         # si el elemento es un parametro, se debe sumar al contador de parametros del subprograma actual.
         if subatributo == 'parametro':
-            sumar_parametro()
+            sumar_parametro_formal()
         # si el elemento es un subprograma, se guarda su nombre y se inicializa su contador de parametros
         elif atributo in ['funcion','procedimiento']:
             guardar_nombre_subprograma_para_contar_parametros()
-
+        
         #se inserta en el TL
         pila_TLs.ver_cima().insertar(nombre=preanalisis['l'], atributo=atributo,subatributo=subatributo, tipo_scope=tipoScope)
-        logger.debug('pos: '+str(pila_TLs.tamanio())+'--'+str(pila_TLs.print_cima())+'\n') # se imprime la tabla de simbolos al tope de la pila
+        
+        # print('pos: '+str(pila_TLs.tamanio())+'--'+str(pila_TLs.print_cima())+'\n') # se imprime la tabla de simbolos al tope de la pila
         siguiente_terminal()
 
 def actualizar_identificador(nombre,nombres_datos,nuevos_valores_datos):
@@ -525,18 +532,30 @@ def guardar_nombre_subprograma_para_contar_parametros(nombre_subprograma = None)
     Se guarda el nombre del subprograma cuyos parametros seran contados.
     Luego del conteo, se volvera a acceder al elemento en la TL.
     '''
-    
     global subprograma_de_parametros_contados
     global parametros
-    
     if nombre_subprograma is None:
         nombre_subprograma =  preanalisis['l']
-
     parametros = []
     subprograma_de_parametros_contados = nombre_subprograma
 
+# funcion utilizada para sumar parametros a la lista de parametros actuales.
+# requiere que se busquen las variables en la tabla de simbolos para determinar su tipo
+def sumar_parametro_actual():
+    global parametros
+    id = preanalisis['l']
+    pila_revertida = reversed(pila_TLs.items)
+    tipo_dato = ""
+    for ts in pila_revertida:
+        ts = ts.tabla
+        if id in ts.keys():
+            print("DEBUG 1"+str(ts[id]))
+            tipo_dato = ts[id]['tipo_dato']
+    parametros.append(id, tipo_dato)
 
-def sumar_parametro():
+# funcion utilizada para sumar parametros a la lista de parametros actuales.
+# no requiere que se busquen las variables en la tabla de simbolos para determinar su tipo ya que se realiza en actualizar_parametros_subprograma()
+def sumar_parametro_formal():
     '''Suma uno al contador de parametros formales para el subprograma que se esta declarando'''
     global parametros
     parametros.append(preanalisis['l'])
@@ -549,7 +568,7 @@ def actualizar_parametros_subprograma():
     paresOrdenadosParametros = [(parametro, tipo_parametros) for parametro in parametros]
     print("actualizar parametros:\t"+ subprograma_de_parametros_contados + ":" + str(paresOrdenadosParametros))
     pila_TLs.items[-2].modificar_dato(subprograma_de_parametros_contados,'parametros', paresOrdenadosParametros)
-    print('resultado: '+str(pila_TLs.items[-2].tabla))
+    # print('resultado: '+str(pila_TLs.items[-2].tabla))
 
 # DETECCION DE ERRORES SEMANTICOS
  
@@ -581,8 +600,6 @@ def identificador_sin_definir(atributo):
                 else:
                     print('no')
                     break
-        
-
         if failed:
             texto_error = 'error semantico: identificador de '+atributo+' sin definir'
             if atributo == 'funcion':
@@ -600,40 +617,52 @@ def error_aridad(atributo):
     id = subprograma_de_parametros_contados
     pila_revertida = reversed(pila_TLs.items)
     failed = False
-    for ts in pila_revertida:
-        ts = ts.tabla
-        if id in ts.keys():
-            parametros_formales = ts[id]['parametros']
-            # contar cada tipo de parametro (int o boolean)
-            contador_parametros_formales = Counter([elem[1] for elem in parametros_formales]) 
-            # agruparlos en pares ordenados
-            cantidad_por_tipo_parametros_formales = [(count, key) for key, count in contador_parametros_formales.items()]
-            
-            parametros_actuales = [(parametro, tipo_parametros) for parametro in parametros]
-            contador_parametros_actuales = Counter([elem[1] for elem in parametros_actuales]) 
-            cantidad_por_tipo_parametros_actuales = [(count, key) for key, count in contador_parametros_actuales.items()]
-            print("id:"+id)
-            print("PARAMETROS FORMALES:"+str(cantidad_por_tipo_parametros_formales))
-            print("PARAMETROS ACTUALES:"+str(cantidad_por_tipo_parametros_actuales))
-            # se compara las cantidades de ambos tipos de parametros sin importar el orden
-            if Counter(cantidad_por_tipo_parametros_formales) != Counter(cantidad_por_tipo_parametros_actuales):
-                failed = True
-            break
-    if failed:
-        descripcion_parametros_actuales = ""
-        for tipo_parametro in cantidad_por_tipo_parametros_actuales:
-            descripcion_parametros_actuales += str(tipo_parametro[0]) +  " parametro/s de tipo " + str(tipo_parametro[1])
-        if descripcion_parametros_actuales == "":
-            descripcion_parametros_actuales = "0 parametros"
-        descripcion_parametros_formales = ""
-        for tipo_parametro in cantidad_por_tipo_parametros_formales:
-            descripcion_parametros_formales += str(tipo_parametro[0]) + " parametro/s de tipo " +  str(tipo_parametro[1])
-        if descripcion_parametros_formales == "":
-            descripcion_parametros_formales = "0"
-        print('error semantico: se paso',descripcion_parametros_actuales,'al '+ atributo +' "'+ id + '" y se esperaban ' + descripcion_parametros_formales)
-        imprimirPosiciones()
-        
+    if id != "write":  
+        for ts in pila_revertida:
+            ts = ts.tabla
+            if id in ts.keys():
+                # se obtienen los parametros formales declarados para el subprograma
+                parametros_formales = ts[id]['parametros']
+                # contar cada tipo de parametro (int o boolean)
+                contador_parametros_formales = Counter([elem[1] for elem in parametros_formales]) 
+                # agruparlos en pares ordenados
+                cantidad_por_tipo_parametros_formales = [(count, key) for key, count in contador_parametros_formales.items()]
+                
+                parametros_actuales = [(parametro, tipo_parametros) for parametro in parametros]
+                contador_parametros_actuales = Counter([elem[1] for elem in parametros_actuales]) 
+                cantidad_por_tipo_parametros_actuales = [(count, key) for key, count in contador_parametros_actuales.items()]
+                # se compara las cantidades de ambos tipos de parametros sin importar el orden
+                if Counter(cantidad_por_tipo_parametros_formales) != Counter(cantidad_por_tipo_parametros_actuales):
+                    failed = True
+                break
+        if failed:
+            descripcion_parametros_actuales = ""
+            for tipo_parametro in cantidad_por_tipo_parametros_actuales:
+                descripcion_parametros_actuales += str(tipo_parametro[0]) +  " parametro/s de tipo " + str(tipo_parametro[1])
+            if descripcion_parametros_actuales == "":
+                descripcion_parametros_actuales = "0 parametros"
+            descripcion_parametros_formales = ""
+            for tipo_parametro in cantidad_por_tipo_parametros_formales:
+                descripcion_parametros_formales += str(tipo_parametro[0]) + " parametro/s de tipo " +  str(tipo_parametro[1])
+            if descripcion_parametros_formales == "":
+                descripcion_parametros_formales = "0"
+            print('error semantico: pasaje de '+descripcion_parametros_actuales + ' a '+ atributo +' "'+ id + '" y se esperaba/n ' + descripcion_parametros_formales)
+            imprimirPosiciones()
+    else:
+        if len(parametros) != 1:
+            failed = True
+            print('error semantico: pasaje de '+descripcion_parametros_actuales + ' a '+ atributo +' "'+ id + '" y se esperaba 1 parametro')
     return failed
+
+def asignar_tipo_a_variables(tipo):
+    global ultimas_variables_declaradas
+    pila_revertida = reversed(pila_TLs.items)
+    for var in ultimas_variables_declaradas:
+        if var in pila_revertida[1].tabla.keys():
+            pila_revertida[1].tabla[var]['tipo_dato']=tipo
+        else:
+            print('error que no deberia ocurrir')
+    ultimas_variables_declaradas = []
 
 # AUX
 def abrir_archivo(archivo):
