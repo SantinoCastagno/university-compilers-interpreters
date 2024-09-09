@@ -9,7 +9,7 @@ from loguru import logger
 
 logger.remove()
 #logger.add(sys.stdout, level="DEBUG", format="{file}:{line} - {message}")
-# logger.add(sys.stdout, level="DEBUG", format="{message}")
+logger.add(sys.stdout, level="DEBUG")
 
 preanalisis = {'v':'','l':''}
 pila_TLs = Pila()
@@ -24,7 +24,7 @@ tipo_parametros = ''
 
 def imprimirPosiciones():
     row, col = obtener_posicion()
-    print("\t\tfila:"+str(row)+"\tcolumna:"+str(col))
+    logger.info("\t\tfila:"+str(row)+"\tcolumna:"+str(col))
     sys.exit(1)
     en
 
@@ -32,21 +32,21 @@ def m(terminal):
     if(terminal == preanalisis['v']):
         siguiente_terminal()
     else:
-        print("error de sintaxis: se esperaba '",terminal,"', se encontro '",preanalisis['v'],"'")
+        logger.info("error de sintaxis: se esperaba '",terminal,"', se encontro '",preanalisis['v'],"'")
         imprimirPosiciones()
 
 def m_list(terminales):
     if(preanalisis['v'] in terminales):
         siguiente_terminal()
     else:
-        print("error de sintaxis: se esperaba ",terminales)
+        logger.info("error de sintaxis: se esperaba ",terminales)
         imprimirPosiciones()
 
 
 def en_primeros(simbolo):
-    #print(simbolo)
+    #logger.info(simbolo)
     for primero in primeros[simbolo]:
-        #print(preanalisis['v'],',',primero,'--',type(primero))
+        #logger.info(preanalisis['v'],',',primero,'--',type(primero))
         if type(primero) == str and preanalisis['v'] == primero:
             return True
         elif callable(primero) and en_primeros(str(primero.__name__)):
@@ -55,12 +55,11 @@ def en_primeros(simbolo):
 
 def siguiente_terminal():
     preanalisis['v'] = obtener_siguiente_token(archivo)
-    print(f"{preanalisis['v']:<50}{preanalisis['l']:<20}")
+    logger.debug(f"{preanalisis['v']:<50}{preanalisis['l']:<20}")
     if preanalisis['v'] == None:
         return
     preanalisis['v'] = preanalisis['v'][preanalisis['v'].find('token'):]
     preanalisis['v'] = eval(preanalisis['v'])
-    logger.debug('SIGUIENTE TERMINAL:  v:'+preanalisis['v']+' ,    l:'+preanalisis['l']+'\n')
 
 def token(arg0,arg1):
     tokens_basicos = {
@@ -117,7 +116,7 @@ def programa(): # Primera funcion ejecutada
         m("program");cargar_identificador('programa');m(';');bloque();m('.')
     else:
         en('programa()')
-        print("error de sintaxis: se esperaba 'program', se encontro '",preanalisis['v'],"'")
+        logger.info("error de sintaxis: se esperaba 'program', se encontro '",preanalisis['v'],"'")
         imprimirPosiciones()
 
 def bloque():
@@ -125,7 +124,7 @@ def bloque():
         declaraciones_variables_opcional();declaraciones_subrutinas_opcional();instruccion_compuesta()#;m('.')
     else:
         en('bloque()')
-        print('error de sintaxis: no se ha declarado el inicio de la función principal del programa')
+        logger.info('error de sintaxis: no se ha declarado el inicio de la función principal del programa')
         imprimirPosiciones()
 
 def declaraciones_variables_opcional():
@@ -142,7 +141,7 @@ def declaraciones_variables():
         m("var");declaracion_variable();m(';');declaraciones_variables_repetitivas()
     else:
         en('declaraciones_variables()')
-        print("error de sintaxis: se esperaba 'var', se encontro '",preanalisis['v'],"'")
+        logger.info("error de sintaxis: se esperaba 'var', se encontro '",preanalisis['v'],"'")
         imprimirPosiciones()
 
 def declaraciones_variables_repetitivas():
@@ -156,7 +155,7 @@ def declaracion_variable():
         lista_identificadores('variable','variable');m(':');tipo()
     else:
         en('declaracion_variable()')
-        print("error de sintaxis: no se definieron las variables")
+        logger.info("error de sintaxis: no se definieron las variables")
         imprimirPosiciones()
 
 def tipo(): 
@@ -169,7 +168,7 @@ def tipo():
         asignar_tipo_a_variables('boolean')
     else:
         en('tipo()')
-        print('error de sintaxis: solo se permite tipo integer o boolean')
+        logger.info('error de sintaxis: solo se permite tipo integer o boolean')
         imprimirPosiciones()
 
 def lista_identificadores(atributo,subatributo):
@@ -177,7 +176,7 @@ def lista_identificadores(atributo,subatributo):
         cargar_identificador(atributo,subatributo);lista_identificadores_repetitiva(atributo,subatributo)
     else:
         en('lista_identificadores()')
-        print('error de sintaxis: aca deberia ir un identificador')
+        logger.info('error de sintaxis: aca deberia ir un identificador')
         imprimirPosiciones()
 
 def lista_identificadores_repetitiva(atributo,subatributo):
@@ -198,7 +197,7 @@ def declaracion_procedimiento():
         pila_TLs.desapilar()
     else:
         en('declaracion_procedimiento()')
-        print("error de sintaxis: se esperaba 'procedure', se encontro '",preanalisis['v'],"'")
+        logger.info("error de sintaxis: se esperaba 'procedure', se encontro '",preanalisis['v'],"'")
         imprimirPosiciones()
 
 def declaracion_funcion():
@@ -209,7 +208,7 @@ def declaracion_funcion():
         pila_TLs.desapilar()
     else:
         en('declaracion_funcion()')
-        print("error de sintaxis: se esperaba 'function', se encontro '",preanalisis['v'],"'")
+        logger.info("error de sintaxis: se esperaba 'function', se encontro '",preanalisis['v'],"'")
         imprimirPosiciones()
 
 def parametros_formales_opcional():
@@ -224,7 +223,7 @@ def parametros_formales():
         m('(');seccion_parametros_formales();parametros_formales_repetitiva();m(')')
     else:
         en('parametros_formales()')
-        print("error de sintaxis: se esperaba '(', se encontro '",preanalisis['v'],"'")
+        logger.info("error de sintaxis: se esperaba '(', se encontro '",preanalisis['v'],"'")
         imprimirPosiciones()
 
 def parametros_formales_repetitiva():
@@ -242,7 +241,7 @@ def instruccion_compuesta():
         m('begin');instruccion();m(';');instruccion_compuesta_repetitiva();m('end')
     else:
         en('instruccion_compuesta()')
-        print("error de sintaxis: se esperaba 'begin', se encontro '",preanalisis['v'],"'")
+        logger.info("error de sintaxis: se esperaba 'begin', se encontro '",preanalisis['v'],"'")
         imprimirPosiciones()
 
 def instruccion_compuesta_repetitiva():
@@ -265,7 +264,7 @@ def instruccion():
         instruccion_repetitiva()
     else:
         en('instruccion()')
-        print('error de sintaxis: no se encontro una instruccion valida')
+        logger.info('error de sintaxis: no se encontro una instruccion valida')
         imprimirPosiciones()
 
 def instruccion_aux():
@@ -276,7 +275,7 @@ def instruccion_aux():
         llamada_procedimiento()
     else:
         en('instruccion_aux()')
-        print('error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento')
+        logger.info('error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento')
         imprimirPosiciones()
 
 def asignacion():
@@ -284,7 +283,7 @@ def asignacion():
         m(':=');expresion()
     else:
         en('asignacion()')
-        print("error de sintaxis: se esperaba ':=', se encontro '",preanalisis['v'],"'")
+        logger.info("error de sintaxis: se esperaba ':=', se encontro '",preanalisis['v'],"'")
 
 def llamada_procedimiento():
     if en_primeros('lista_expresiones_opcional'):
@@ -292,7 +291,7 @@ def llamada_procedimiento():
         error_aridad('procedimiento')
     else:
         en('llamada_procedimiento()')
-        print("error de sintaxis: no se cumple la estructura para llamar un procedimiento")
+        logger.info("error de sintaxis: no se cumple la estructura para llamar un procedimiento")
 
 def lista_expresiones_opcional():
     if preanalisis['v'] == '(':
@@ -303,7 +302,7 @@ def instruccion_condicional():
         m('if');expresion();m('then');instruccion();else_opcional()
     else:
         en('instruccion_condicional()')
-        print("error de sintaxis: se esperaba'if', se encontro '",preanalisis['v'],"'")
+        logger.info("error de sintaxis: se esperaba'if', se encontro '",preanalisis['v'],"'")
 
 def else_opcional():
     if preanalisis['v'] == 'else':
@@ -314,7 +313,7 @@ def instruccion_repetitiva():
         m('while');expresion();m('do');instruccion()
     else:
         en('error de sintaxis: else_opcional()')
-        print("error de sintaxis:  se esperaba 'while', se encontro '",preanalisis['v'],"'")
+        logger.info("error de sintaxis:  se esperaba 'while', se encontro '",preanalisis['v'],"'")
 
 # EXPRESIONES
 def lista_expresiones_procedimiento():
@@ -327,21 +326,21 @@ def lista_expresiones_procedimiento():
 
 def lista_expresiones():
     if en_primeros('expresion'):
-        print("sumar_parametro_actual()"+preanalisis['l']);sumar_parametro_actual();expresion();lista_expresiones_repetitiva()
+        sumar_parametro_actual();expresion();lista_expresiones_repetitiva()
     else:
-        print('error de sintaxis: lista_expresiones()') 
+        logger.info('error de sintaxis: lista_expresiones()') 
         imprimirPosiciones()
 
 def lista_expresiones_repetitiva():
     if preanalisis['v'] ==',':
-        m(',');print("sumar_parametro_actual()"+preanalisis['l']);sumar_parametro_actual();expresion();lista_expresiones_repetitiva()
+        m(',');sumar_parametro_actual();expresion();lista_expresiones_repetitiva()
 
 def expresion():
     if en_primeros('expresion_simple'):
         expresion_simple();relacion_opcional()
     else:
         en('expresion()')
-        print('error de sintaxis: la expresion no se inicio de manera correcta')
+        logger.info('error de sintaxis: la expresion no se inicio de manera correcta')
         imprimirPosiciones()
 
 def relacion_opcional():
@@ -355,7 +354,7 @@ def relacion():
         m_list(terminales)
     else:
         en('relacion()')
-        print("error de sintaxis: se esperaba un operrador relacional, sea '=','<>','<=','<','>' o '>='")
+        logger.info("error de sintaxis: se esperaba un operrador relacional, sea '=','<>','<=','<','>' o '>='")
         imprimirPosiciones()
 
 def expresion_simple():
@@ -363,7 +362,7 @@ def expresion_simple():
         mas_menos_opcional();termino();expresion_simple_repetitiva()
     else:
         en('expresion_simple()')
-        print('error de sintaxis: se espera un termino valido.')
+        logger.info('error de sintaxis: se espera un termino valido.')
         imprimirPosiciones()
 
 def mas_menos_opcional():
@@ -386,7 +385,7 @@ def mas_menos_or():
         m_list(terminales)
     else:
         en('mas_menos_or()')
-        print('error de sintaxis: se espera una operacion "+", "-" o "or"')
+        logger.info('error de sintaxis: se espera una operacion "+", "-" o "or"')
         imprimirPosiciones()
 
 def termino():
@@ -394,7 +393,7 @@ def termino():
         factor();termino_repetitiva()
     else:
         en('termino()')
-        print('error de sintaxis: se espera un factor valido')
+        logger.info('error de sintaxis: se espera un factor valido')
         imprimirPosiciones()
 
 def termino_repetitiva():
@@ -423,7 +422,7 @@ def factor():
         m('not');factor()
     else:
         en('factor()')
-        print('error de sintaxis: se espera un factor valido')
+        logger.info('error de sintaxis: se espera un factor valido')
         imprimirPosiciones()
 
 def factor_opcional():
@@ -445,7 +444,7 @@ def numero():
     if preanalisis['v'] == 'enteroDato':
         siguiente_terminal()
     else:
-        print('error de sintaxis: numero()')
+        logger.info('error de sintaxis: numero()')
         imprimirPosiciones()
 
 
@@ -457,7 +456,7 @@ def identificador():
 'not']
     if preanalisis['v'] in reservadas:
         en('identificador()')
-        print('error de sintaxis: se esperaba un id, se encontro una palabra reservada: ',preanalisis['v'])
+        logger.info('error de sintaxis: se esperaba un id, se encontro una palabra reservada: ',preanalisis['v'])
         imprimirPosiciones()
     else:
         siguiente_terminal()
@@ -468,7 +467,7 @@ def cargar_identificador(atributo,subatributo=None):
     'not']
     if preanalisis['v'] in reservadas:
         en('cargar_identificador()')
-        print('error de sintaxis: se esperaba un id, se encontro una palabra reservada: ',preanalisis['v'])
+        logger.info('error de sintaxis: se esperaba un id, se encontro una palabra reservada: ',preanalisis['v'])
         imprimirPosiciones()
     else:
         # si no se especifica el subatributo, es porque es el mismo que el atributo
@@ -483,7 +482,6 @@ def cargar_identificador(atributo,subatributo=None):
 
         if atributo == 'variable':
             ultimas_variables_declaradas.append(preanalisis['l'])
-            print("ultimas variables:"+str(ultimas_variables_declaradas))
         # si el elemento es un parametro, se debe sumar al contador de parametros del subprograma actual.
         if subatributo == 'parametro':
             sumar_parametro_formal()
@@ -494,7 +492,7 @@ def cargar_identificador(atributo,subatributo=None):
         #se inserta en el TL
         pila_TLs.ver_cima().insertar(nombre=preanalisis['l'], atributo=atributo,subatributo=subatributo, tipo_scope=tipoScope)
         
-        # print('pos: '+str(pila_TLs.tamanio())+'--'+str(pila_TLs.print_cima())+'\n') # se imprime la tabla de simbolos al tope de la pila
+        # logger.info('pos: '+str(pila_TLs.tamanio())+'--'+str(pila_TLs.recuperar_cima())+'\n') # se imprime la tabla de simbolos al tope de la pila
         siguiente_terminal()
 
 def actualizar_identificador(nombre,nombres_datos,nuevos_valores_datos):
@@ -506,7 +504,7 @@ def guardar_identificador_a_verificar_a_futuro():
     'not']
     if preanalisis['v'] in reservadas:
         en('guardar_identificador_a_verificar_a_futuro()')
-        print('error de sintaxis: se esperaba un id, se encontro una palabra reservada: ',preanalisis['v'])
+        logger.info('error de sintaxis: se esperaba un id, se encontro una palabra reservada: ',preanalisis['v'])
         imprimirPosiciones()
     else:
         global identificador_a_verificar_a_futuro
@@ -549,7 +547,6 @@ def sumar_parametro_actual():
     for ts in pila_revertida:
         ts = ts.tabla
         if id in ts.keys():
-            print("DBG1:"+id+"\t"+str(ts[id]))
             tipo_dato = ts[id]['tipo_dato']
     parametros.append((id, tipo_dato))
 
@@ -559,31 +556,28 @@ def sumar_parametro_formal():
     '''Suma uno al contador de parametros formales para el subprograma que se esta declarando'''
     global parametros
     parametros.append(preanalisis['l'])
-    print(parametros, "append",  preanalisis['l'])
 
 def actualizar_parametros_subprograma():
     global subprograma_de_parametros_contados
     global parametros
     global tipo_parametros
     paresOrdenadosParametros = [(parametro, tipo_parametros) for parametro in parametros]
-    print("actualizar parametros:\t"+ subprograma_de_parametros_contados + ":" + str(paresOrdenadosParametros))
     pila_TLs.items[-2].modificar_dato(subprograma_de_parametros_contados,'parametros', paresOrdenadosParametros)
-    # print('resultado: '+str(pila_TLs.items[-2].tabla))
 
 # DETECCION DE ERRORES SEMANTICOS
  
 def colision_nombres(subatributo,tipoScope):
     l = preanalisis['l']
          
-    if l in pila_TLs.print_cima().keys():
+    if l in pila_TLs.recuperar_cima().keys():
         tipoScope1 = '' if tipoScope is None else ' '+tipoScope
-        tipoScope2 = ' '+pila_TLs.print_cima()[l]['tipo_scope'] if 'tipo_scope' in pila_TLs.print_cima()[l].keys() else ''
+        tipoScope2 = ' '+pila_TLs.recuperar_cima()[l]['tipo_scope'] if 'tipo_scope' in pila_TLs.recuperar_cima()[l].keys() else ''
 
-        if (pila_TLs.print_cima()[l]['subatributo'] != subatributo):
-            print('error semantico: mismo identificador de',subatributo+tipoScope1,'y',pila_TLs.print_cima()[l]['subatributo']+tipoScope2)
+        if (pila_TLs.recuperar_cima()[l]['subatributo'] != subatributo):
+            logger.info('error semantico: mismo identificador de',subatributo+tipoScope1,'y',pila_TLs.recuperar_cima()[l]['subatributo']+tipoScope2)
             imprimirPosiciones()
         else:
-            print('error semantico: dos ' + subatributo + 's ' + pila_TLs.print_cima()[l]['tipo_scope'] + 'es con el mismo nombre')
+            logger.info('error semantico: dos ' + subatributo + 's ' + pila_TLs.recuperar_cima()[l]['tipo_scope'] + 'es con el mismo nombre')
             imprimirPosiciones() 
 
 def identificador_sin_definir(atributo):
@@ -598,14 +592,14 @@ def identificador_sin_definir(atributo):
                 if ts[id]['atributo'] == atributo:
                     failed = False
                 else:
-                    print('no')
+                    logger.info('no')
                     break
         if failed:
             texto_error = 'error semantico: identificador de '+atributo+' sin definir'
             if atributo == 'funcion':
                 texto_error += ' en expresion ' + expresion_actual
             en('identificador_sin_definir()')
-            print(texto_error)
+            logger.info(texto_error)
             imprimirPosiciones()
         return failed
 
@@ -651,12 +645,12 @@ def error_aridad(atributo):
                   descripcion_parametros_formales += " y "
             if descripcion_parametros_formales == "":
                 descripcion_parametros_formales = "0"
-            print('error semantico: pasaje de '+descripcion_parametros_actuales + ' a '+ atributo +' "'+ id + '". Se esperaba/n ' + descripcion_parametros_formales)
+            logger.info('error semantico: pasaje de '+descripcion_parametros_actuales + ' a '+ atributo +' "'+ id + '". Se esperaba/n ' + descripcion_parametros_formales)
             imprimirPosiciones()
     else:
         if len(parametros) != 1:
             failed = True
-            print('error semantico: pasaje de '+descripcion_parametros_actuales + ' a '+ atributo +' "'+ id + '" . Se esperaba 1 parametro')
+            logger.info('error semantico: pasaje de '+descripcion_parametros_actuales + ' a '+ atributo +' "'+ id + '" . Se esperaba 1 parametro')
     return failed
 
 def asignar_tipo_a_variables(tipo):
@@ -664,9 +658,9 @@ def asignar_tipo_a_variables(tipo):
     for var in ultimas_variables_declaradas:
         if var in pila_TLs.items[-1].tabla.keys():
             pila_TLs.items[-1].tabla[var]['tipo_dato']=tipo
-            # print("#########DBG2##########\n"+str(pila_TLs.items[-1].tabla)+"\n#######################")
+            # logger.info("#########DBG2##########\n"+str(pila_TLs.items[-1].tabla)+"\n#######################")
         else:
-            print('error que no deberia ocurrir')
+            logger.info('error que no deberia ocurrir')
     ultimas_variables_declaradas = []
 
 # AUX
@@ -676,7 +670,7 @@ def abrir_archivo(archivo):
         f = open(archivo, 'r', encoding='utf-8')
         return f
     except IOError:
-        print("Error al abrir el archivo.")
+        logger.info("Error al abrir el archivo.")
         return None
     
 def leer_siguiente_linea(f):
@@ -695,7 +689,7 @@ def leer_siguiente_linea(f):
 def en(nombre_func):
     flag = False
     if flag:
-        print('en ',nombre_func)
+        logger.info('en ',nombre_func)
 
 
 if __name__ == "__main__":
@@ -749,7 +743,7 @@ if __name__ == "__main__":
     }
 
     if len(sys.argv) != 2:
-        print("Utilizar: python main.py <ruta_del_fuente_origen>")
+        logger.info("Utilizar: python main.py <ruta_del_fuente_origen>")
         sys.exit(1)
     
     global caracter
@@ -759,5 +753,5 @@ if __name__ == "__main__":
     archivo = abrir_archivo(ruta_fuente)
     siguiente_terminal()
     programa()
-    print('analisis sintactico-lexico terminado, programa aceptado.')
+    logger.info('analisis sintactico-lexico terminado, programa aceptado.')
    

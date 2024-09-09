@@ -22,7 +22,7 @@ class Pila:
         else:
             return None
 
-    def print_cima(self):
+    def recuperar_cima(self):
         if not self.esta_vacia():
             return self.items[-1].tabla
         else:
