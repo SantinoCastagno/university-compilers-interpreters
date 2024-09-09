@@ -9,7 +9,7 @@ from loguru import logger
 
 logger.remove()
 #logger.add(sys.stdout, level="DEBUG", format="{file}:{line} - {message}")
-#logger.add(sys.stdout, level="DEBUG", format="{message}")
+# logger.add(sys.stdout, level="DEBUG", format="{message}")
 
 preanalisis = {'v':'','l':''}
 pila_TLs = Pila()
@@ -159,7 +159,7 @@ def declaracion_variable():
         print("error de sintaxis: no se definieron las variables")
         imprimirPosiciones()
 
-def tipo(): # TODO: realiza asignacion de tipo al valor en la tabla de simbolos
+def tipo(): 
     global ultimas_variables_declaradas
     if preanalisis['v'] == 'integer':
         m('integer')
@@ -549,9 +549,9 @@ def sumar_parametro_actual():
     for ts in pila_revertida:
         ts = ts.tabla
         if id in ts.keys():
-            print("DEBUG 1"+str(ts[id]))
+            print("DBG1:"+id+"\t"+str(ts[id]))
             tipo_dato = ts[id]['tipo_dato']
-    parametros.append(id, tipo_dato)
+    parametros.append((id, tipo_dato))
 
 # funcion utilizada para sumar parametros a la lista de parametros actuales.
 # no requiere que se busquen las variables en la tabla de simbolos para determinar su tipo ya que se realiza en actualizar_parametros_subprograma()
@@ -628,8 +628,9 @@ def error_aridad(atributo):
                 # agruparlos en pares ordenados
                 cantidad_por_tipo_parametros_formales = [(count, key) for key, count in contador_parametros_formales.items()]
                 
-                parametros_actuales = [(parametro, tipo_parametros) for parametro in parametros]
+                parametros_actuales = [(parametro) for parametro in parametros]
                 contador_parametros_actuales = Counter([elem[1] for elem in parametros_actuales]) 
+                
                 cantidad_por_tipo_parametros_actuales = [(count, key) for key, count in contador_parametros_actuales.items()]
                 # se compara las cantidades de ambos tipos de parametros sin importar el orden
                 if Counter(cantidad_por_tipo_parametros_formales) != Counter(cantidad_por_tipo_parametros_actuales):
@@ -637,29 +638,33 @@ def error_aridad(atributo):
                 break
         if failed:
             descripcion_parametros_actuales = ""
-            for tipo_parametro in cantidad_por_tipo_parametros_actuales:
+            for index, tipo_parametro in enumerate(cantidad_por_tipo_parametros_actuales):
                 descripcion_parametros_actuales += str(tipo_parametro[0]) +  " parametro/s de tipo " + str(tipo_parametro[1])
+                if index < len(cantidad_por_tipo_parametros_actuales)-1:
+                  descripcion_parametros_actuales += " y "
             if descripcion_parametros_actuales == "":
                 descripcion_parametros_actuales = "0 parametros"
             descripcion_parametros_formales = ""
-            for tipo_parametro in cantidad_por_tipo_parametros_formales:
+            for index, tipo_parametro in enumerate(cantidad_por_tipo_parametros_formales):
                 descripcion_parametros_formales += str(tipo_parametro[0]) + " parametro/s de tipo " +  str(tipo_parametro[1])
+                if index < len(cantidad_por_tipo_parametros_formales)-1:
+                  descripcion_parametros_formales += " y "
             if descripcion_parametros_formales == "":
                 descripcion_parametros_formales = "0"
-            print('error semantico: pasaje de '+descripcion_parametros_actuales + ' a '+ atributo +' "'+ id + '" y se esperaba/n ' + descripcion_parametros_formales)
+            print('error semantico: pasaje de '+descripcion_parametros_actuales + ' a '+ atributo +' "'+ id + '". Se esperaba/n ' + descripcion_parametros_formales)
             imprimirPosiciones()
     else:
         if len(parametros) != 1:
             failed = True
-            print('error semantico: pasaje de '+descripcion_parametros_actuales + ' a '+ atributo +' "'+ id + '" y se esperaba 1 parametro')
+            print('error semantico: pasaje de '+descripcion_parametros_actuales + ' a '+ atributo +' "'+ id + '" . Se esperaba 1 parametro')
     return failed
 
 def asignar_tipo_a_variables(tipo):
     global ultimas_variables_declaradas
-    pila_revertida = reversed(pila_TLs.items)
     for var in ultimas_variables_declaradas:
-        if var in pila_revertida[1].tabla.keys():
-            pila_revertida[1].tabla[var]['tipo_dato']=tipo
+        if var in pila_TLs.items[-1].tabla.keys():
+            pila_TLs.items[-1].tabla[var]['tipo_dato']=tipo
+            # print("#########DBG2##########\n"+str(pila_TLs.items[-1].tabla)+"\n#######################")
         else:
             print('error que no deberia ocurrir')
     ultimas_variables_declaradas = []
