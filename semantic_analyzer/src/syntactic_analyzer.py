@@ -22,6 +22,12 @@ parametros = [] # cuando se declara/invoca una funcion o procedimiento con param
 subprograma_de_parametros_contados = '' # aca se guarda el nombre del subprograma cuyos parametros fueron listados, para acceder al mismo luego de listarlos 
 tipo_parametros = ''
 
+funcion_actual = {
+    'identificador':'',
+    'declaracion_retorno_encontrada': False
+}
+
+
 def imprimirPosiciones():
     row, col = obtener_posicion()
     logger.info("\t\tfila:"+str(row)+"\tcolumna:"+str(col))
@@ -189,11 +195,24 @@ def declaracion_procedimiento():
         imprimirPosiciones()
 
 def declaracion_funcion():
+    global funcion_actual 
     if preanalisis['v']=='function':
-        m('function');cargar_identificador('funcion')
+        m('function');
+        funcion_actual['identificador'] = preanalisis['l']
+        logger.warning("##### MOMENTO DE CAPTURA 2 #####")
+        logger.warning(funcion_actual['identificador'])
+        logger.warning("##############################")
+        cargar_identificador('funcion')
         pila_TLs.apilar(Tabla_simbolos())
-        parametros_formales_opcional();m(':');tipo();m(';');bloque()
-        pila_TLs.desapilar()
+        parametros_formales_opcional();m(':');tipo();m(';');bloque();
+        if funcion_actual['declaracion_retorno_encontrada'] == False:
+            logger.info("error semantico: no se declaro la instruccion de retorno.")
+            imprimirPosiciones()
+        else:  
+            logger.success("Si tenia valores de retorno.")
+            funcion_actual['identificador'] = ''
+            funcion_actual['declaracion_retorno_encontrada'] = True
+            pila_TLs.desapilar()
     else:
         logger.info("error de sintaxis: se esperaba 'function', se encontro '",preanalisis['v'],"'")
         imprimirPosiciones()
@@ -233,7 +252,11 @@ def instruccion_compuesta_repetitiva():
 
 def instruccion():
     global expresion_actual
+    global funcion_actual
     if en_primeros('identificador'):
+        if preanalisis['l']==funcion_actual['identificador']:
+            funcion_actual['declaracion_retorno_encontrada'] = True
+            # TODO: CHEQUEAR SI LA EXPRESION ES COMPATIBLE CON EL TIPO DE RETORNO
         registrar_subprograma_semanticamente()
         guardar_identificador_a_verificar_a_futuro()
         instruccion_aux()
@@ -251,9 +274,6 @@ def instruccion():
 
 def instruccion_aux():
     if en_primeros('asignacion'):
-        logger.warning("MOMENTO DE CAPTURA")
-        logger.warning(f"{preanalisis['v']:<50}{preanalisis['l']:<20}")
-        logger.warning(identificador_a_verificar_a_futuro)
         asignacion()
     elif en_primeros('llamada_procedimiento'):
         identificador_sin_definir('procedimiento')
@@ -542,7 +562,7 @@ def colision_nombres(subatributo,tipoScope):
         tipoScope2 = ' '+pila_TLs.recuperar_cima()[l]['tipo_scope'] if 'tipo_scope' in pila_TLs.recuperar_cima()[l].keys() else ''
 
         if (pila_TLs.recuperar_cima()[l]['subatributo'] != subatributo):
-            logger.info('error semantico: mismo identificador de',subatributo+tipoScope1,'y',pila_TLs.recuperar_cima()[l]['subatributo']+tipoScope2)
+            logger.info('error semantico: mismo identificador de ' + subatributo+tipoScope1 + ' y ' + pila_TLs.recuperar_cima()[l]['subatributo']+tipoScope2)
             imprimirPosiciones()
         else:
             logger.info('error semantico: dos ' + subatributo + 's ' + pila_TLs.recuperar_cima()[l]['tipo_scope'] + 'es con el mismo nombre')
