@@ -67,11 +67,8 @@ def siguiente_terminal():
     preanalisis['v'] = preanalisis['v'][preanalisis['v'].find('token'):]
     preanalisis['v'] = eval(preanalisis['v'])
     if (evaluando_expresion):
-        # TODO: Evaluar toda la expresion 
-        # Toda la expresion tiene que pertenecer al mismo tipo de datos. Es decir, o todo tipo entero o todo tipo boolean
-        # Chequear si conviene meter todo en una lista o unicamente comparar cada elemento con el primer elemento
-        # Esta funcionalidad se va a utilizar tanto para validad expresiones como para validar parametros como para validar retornos
-        elementos_expresion_actual.push()
+        elementos_expresion_actual.append((preanalisis['v'],preanalisis['l']))
+        
 
 def token(arg0,arg1):
     tokens_basicos = {
@@ -346,10 +343,14 @@ def expresion():
     global elementos_expresion_actual
     logger.error("##### COMIENZO DE EXPRESION #####")
     evaluando_expresion = True
+    elementos_expresion_actual.append((preanalisis['v'],preanalisis['l']))
     logger.error(f"{preanalisis['v']:<50}{preanalisis['l']:<20}")
     if en_primeros('expresion_simple'):
         expresion_simple();relacion_opcional()
         logger.error("##### FIN DE EXPRESION #####")
+        elementos_expresion_actual.pop()
+        logger.error(elementos_expresion_actual)
+        tipoSemanticoExpresion = chequearExpresionActualSemanticamente()
         elementos_expresion_actual = []
         evaluando_expresion = False
     else:
@@ -653,6 +654,15 @@ def error_aridad(atributo):
             failed = True
             logger.info('error semantico: pasaje de '+descripcion_parametros_actuales + ' a '+ atributo +' "'+ id + '" . Se esperaba 1 parametro')
     return failed
+
+def chequearExpresionActualSemanticamente():
+    global elementos_expresion_actual
+    # TODO: Evaluar toda la expresion 
+    # Toda la expresion tiene que pertenecer al mismo tipo de datos. Es decir, o todo tipo entero o todo tipo boolean
+    # Chequear si conviene meter todo en una lista o unicamente comparar cada elemento con el primer elemento
+    # Esta funcionalidad se va a utilizar tanto para validar expresiones como para validar parametros como para validar retornos
+    
+    
 
 def asignar_tipo_a_variables(tipo):
     global ultimas_variables_declaradas
