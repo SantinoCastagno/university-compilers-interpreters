@@ -18,6 +18,8 @@ pila_TLs = Pila()
 ultimas_variables_declaradas = [] # lista de elementos que se utiliza para asignar el tipo de dato a las ultimas variables declaradas
 identificador_a_verificar_a_futuro = ''
 expresion_actual = '' # si la expresion actual a evaluar es aritmetica, condicional, repetitiva o ninguna (cadena vacia).
+evaluando_expresion = False
+elementos_expresion_actual = []
 parametros = [] # cuando se declara/invoca una funcion o procedimiento con parametros, se llevara una lista de los mismos
 subprograma_de_parametros_contados = '' # aca se guarda el nombre del subprograma cuyos parametros fueron listados, para acceder al mismo luego de listarlos 
 tipo_parametros = ''
@@ -50,7 +52,6 @@ def m_list(terminales):
 
 def en_primeros(simbolo):
     for primero in primeros[simbolo]:
-        #logger.info(preanalisis['v'],',',primero,'--',type(primero))
         if type(primero) == str and preanalisis['v'] == primero:
             return True
         elif callable(primero) and en_primeros(str(primero.__name__)):
@@ -58,12 +59,19 @@ def en_primeros(simbolo):
     return False
 
 def siguiente_terminal():
+    global evaluando_expresion
     preanalisis['v'] = obtener_siguiente_token(archivo)
     logger.debug(f"{preanalisis['v']:<50}{preanalisis['l']:<20}")
     if preanalisis['v'] == None:
         return
     preanalisis['v'] = preanalisis['v'][preanalisis['v'].find('token'):]
     preanalisis['v'] = eval(preanalisis['v'])
+    if (evaluando_expresion):
+        # TODO: Evaluar toda la expresion 
+        # Toda la expresion tiene que pertenecer al mismo tipo de datos. Es decir, o todo tipo entero o todo tipo boolean
+        # Chequear si conviene meter todo en una lista o unicamente comparar cada elemento con el primer elemento
+        # Esta funcionalidad se va a utilizar tanto para validad expresiones como para validar parametros como para validar retornos
+        elementos_expresion_actual.push()
 
 def token(arg0,arg1):
     tokens_basicos = {
@@ -256,7 +264,9 @@ def instruccion():
     if en_primeros('identificador'):
         if preanalisis['l']==funcion_actual['identificador']:
             funcion_actual['declaracion_retorno_encontrada'] = True
-            # TODO: CHEQUEAR SI LA EXPRESION ES COMPATIBLE CON EL TIPO DE RETORNO
+            # TODO: chequear si la expresion es compatible con el tipo de retorno
+            #evaluarUltimaExpresionSemanticamente()
+            
         registrar_subprograma_semanticamente()
         guardar_identificador_a_verificar_a_futuro()
         instruccion_aux()
@@ -332,8 +342,16 @@ def lista_expresiones_repetitiva():
         m(',');sumar_parametro_actual();expresion();lista_expresiones_repetitiva()
 
 def expresion():
+    global evaluando_expresion
+    global elementos_expresion_actual
+    logger.error("##### COMIENZO DE EXPRESION #####")
+    evaluando_expresion = True
+    logger.error(f"{preanalisis['v']:<50}{preanalisis['l']:<20}")
     if en_primeros('expresion_simple'):
         expresion_simple();relacion_opcional()
+        logger.error("##### FIN DE EXPRESION #####")
+        elementos_expresion_actual = []
+        evaluando_expresion = False
     else:
         logger.info('error de sintaxis: la expresion no se inicio de manera correcta')
         imprimirPosiciones()
@@ -352,9 +370,6 @@ def relacion():
         imprimirPosiciones()
 
 def expresion_simple():
-    logger.error("MOMENTO DE CAPTURA")
-    logger.error(f"{preanalisis['v']:<50}{preanalisis['l']:<20}")
-    logger.error(identificador_a_verificar_a_futuro)
     if en_primeros('mas_menos_opcional') or  en_primeros('termino'):
         mas_menos_opcional();termino();expresion_simple_repetitiva()
     else:
@@ -479,7 +494,7 @@ def cargar_identificador(atributo,subatributo=None):
         elif atributo in ['funcion','procedimiento']:
             registrar_subprograma_semanticamente()
         
-        #se inserta en el TL
+        # se inserta en el TL
         pila_TLs.ver_cima().insertar(nombre=preanalisis['l'], atributo=atributo,subatributo=subatributo, tipo_scope=tipoScope)
         
         # logger.info('pos: '+str(pila_TLs.tamanio())+'--'+str(pila_TLs.recuperar_cima())+'\n') # se imprime la tabla de simbolos al tope de la pila
@@ -554,7 +569,6 @@ def actualizar_parametros_subprograma():
     pila_TLs.items[-2].modificar_dato(subprograma_de_parametros_contados,'parametros', paresOrdenadosParametros)
 
 # DETECCION DE ERRORES SEMANTICOS
- 
 def colision_nombres(subatributo,tipoScope):
     l = preanalisis['l']
     if l in pila_TLs.recuperar_cima().keys():
@@ -648,8 +662,6 @@ def asignar_tipo_a_variables(tipo):
         else:
             logger.info('error que no deberia ocurrir')
     ultimas_variables_declaradas = []
-    
-#def evaluarUltimaExpresionSemanticamente():
 
 # AUX
 def abrir_archivo(archivo):
