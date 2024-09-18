@@ -6,10 +6,8 @@ class Tabla_simbolos():
 
     def insertar(self,nombre,atributo,subatributo=None,tipo_dato=None, parametros=[],tipo_retorno=None,tipo_scope=None):
         self.tabla[nombre] = {'atributo':atributo}
-
         if subatributo is not None:
             self.tabla[nombre]['subatributo'] = subatributo
-
         if tipo_dato is not None:
             self.tabla[nombre]['tipo_dato'] = tipo_dato
         if  parametros is not None:
@@ -18,7 +16,6 @@ class Tabla_simbolos():
             self.tabla[nombre]['tipo_retorno'] = tipo_retorno
         if tipo_scope is not None:
             self.tabla[nombre]['tipo_scope'] = tipo_scope
-        # print(self.tabla[nombre])
     
     def buscar(self,nombre):
         return self.tabla[nombre]

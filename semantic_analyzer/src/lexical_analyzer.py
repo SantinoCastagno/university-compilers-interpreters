@@ -33,7 +33,6 @@ def construir_lexema(fuente):
                 if (palabra in keyword_list):
                     return lexema + ", token('keyword', '" + palabra + "')"
                 return lexema + ", token('id', '"+ lexema[7:] +"')"
-                #return lexema + ", token('id', 'id')"
 
             elif (caracter.isdigit()):
                 numero = str(caracter)
@@ -74,7 +73,7 @@ def construir_lexema(fuente):
                 lexema += caracter
                 caracter = fuente.read(1)
                 col = col + 1
-                return lexema + ", token('operadorRelacional', '=')"
+                return lexema + ", token('operadorRelacionalIndividual', '=')"
             elif (caracter =="<"):
                 lexema += caracter
                 caracter = fuente.read(1)
@@ -83,14 +82,12 @@ def construir_lexema(fuente):
                     lexema += caracter 
                     caracter = fuente.read(1)
                     col = col + 1
-                    return lexema + ", token('asignacion', '<=')"
+                    return lexema + ", token('operadorRelacional', '<=')"
                 elif (caracter == ">"):
                     lexema += caracter 
                     caracter = fuente.read(1)
                     col = col + 1
-                    return lexema + ", token('operadorRelacional', '<>')"
-                #caracter = fuente.read(1)
-                #col = col + 1
+                    return lexema + ", token('operadorRelacionalIndividual', '<>')"
                 return lexema + ", token('operadorRelacional', '<')"
             elif (caracter == ">"):
                 lexema += caracter
@@ -101,8 +98,6 @@ def construir_lexema(fuente):
                     caracter = fuente.read(1)
                     col = col + 1
                     return lexema + ", token('operadorRelacional', '>=')"
-                #caracter = fuente.read(1)
-                #col = col + 1
                 return lexema + ", token('operadorRelacional', '>')"
             elif (caracter == "+"):
                 lexema += caracter

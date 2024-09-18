@@ -18,6 +18,7 @@ pila_TLs = Pila()
 ultimas_variables_declaradas = [] # lista de elementos que se utiliza para asignar el tipo de dato a las ultimas variables declaradas
 identificador_a_verificar_a_futuro = ''
 expresion_actual = '' # si la expresion actual a evaluar es aritmetica, condicional, repetitiva o ninguna (cadena vacia).
+pila_expresiones = []
 evaluando_expresion = False
 elementos_expresion_actual = []
 parametros = [] # cuando se declara/invoca una funcion o procedimiento con parametros, se llevara una lista de los mismos
@@ -342,6 +343,9 @@ def expresion():
     global evaluando_expresion
     global elementos_expresion_actual
     logger.error("##### COMIENZO DE EXPRESION #####")
+    if (evaluando_expresion):
+        pila_expresiones.append(elementos_expresion_actual)
+        elementos_expresion_actual = []
     evaluando_expresion = True
     elementos_expresion_actual.append((preanalisis['v'],preanalisis['l']))
     logger.error(f"{preanalisis['v']:<50}{preanalisis['l']:<20}")
@@ -351,8 +355,11 @@ def expresion():
         elementos_expresion_actual.pop()
         logger.error(elementos_expresion_actual)
         tipoSemanticoExpresion = chequearExpresionActualSemanticamente()
-        elementos_expresion_actual = []
-        evaluando_expresion = False
+        if (len(pila_expresiones)>1):
+            elementos_expresion_actual = pila_expresiones.pop()
+        else:
+            elementos_expresion_actual = []
+            evaluando_expresion = False
     else:
         logger.info('error de sintaxis: la expresion no se inicio de manera correcta')
         imprimirPosiciones()
@@ -655,12 +662,52 @@ def error_aridad(atributo):
             logger.info('error semantico: pasaje de '+descripcion_parametros_actuales + ' a '+ atributo +' "'+ id + '" . Se esperaba 1 parametro')
     return failed
 
+# Toda la expresion tiene que pertenecer al mismo tipo de datos. Es decir, o todo tipo entero o todo tipo boolean
 def chequearExpresionActualSemanticamente():
     global elementos_expresion_actual
-    # TODO: Evaluar toda la expresion 
-    # Toda la expresion tiene que pertenecer al mismo tipo de datos. Es decir, o todo tipo entero o todo tipo boolean
-    # Chequear si conviene meter todo en una lista o unicamente comparar cada elemento con el primer elemento
-    # Esta funcionalidad se va a utilizar tanto para validar expresiones como para validar parametros como para validar retornos
+    componentesNumericos = ['enteroDato', 'operadorRelacional', 'operadorAritmetico', '+', '-']
+    componentesBooleanos = ['booleanDato', 'operadorRelacionalIndidual','operadorAritmetico']
+    
+    pila_revertida = reversed(pila_TLs.items)
+    failed = True
+    
+    tipo_expresion = None
+    expresion_valida = True
+    # Se compara cada elemento de la expresion con el primer elemento para verificar si son de tipos equivalentes
+    for elemento in elementos_expresion_actual:
+        # Si el elemento es un id, se debe chequear su tipo de dato en la tabla de simbolos  
+        id_value = elemento[1]
+        if elemento[0] == 'id':
+            for ts in pila_revertida:
+                ts = ts.tabla
+                if id_value in ts.keys():
+                    if tipo_expresion is None:
+                        tipo_expresion = ts[id_value]['tipo_dato']
+                    else:
+                        if tipo_expresion != ts[id_value]['tipo_dato']:
+                            expresion_valida = False
+        else:
+            if tipo_expresion is None:
+                if elemento[0] in componentesNumericos:
+                    tipo_expresion = 'integer'
+                elif elemento[0] in componentesBooleanos:
+                    tipo_expresion = 'boolean'
+                else:
+                    logger.error("El id no corresponde a ningun tipo de elemento, esto no deberia suceder.")
+            else:
+                if elemento[0] in componentesNumericos:
+                    tipo_expresion == 'integer'
+                elif elemento[0] in componentesBooleanos:
+                    tipo_expresion == 'boolean'
+                else:
+                    logger.error("El id no corresponde a ningun tipo de elemento, esto no deberia suceder.")
+    
+    if (not expresion_valida):
+        # TODO: Profundizar mas en el output
+        logger.info("La expresion no es valida.")
+    logger.success("La expresion da como resultado: "+tipo_expresion)
+    return tipo_expresion           
+    
     
     
 
