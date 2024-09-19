@@ -29,7 +29,9 @@ funcion_actual = {
     'declaracion_retorno_encontrada': False,
     'tipo_retorno': ''
 }
-
+procedimiento_actual = {
+    'identificador': '',
+}
 
 def imprimirPosiciones():
     row, col = obtener_posicion()
@@ -69,6 +71,9 @@ def siguiente_terminal():
     if (evaluando_expresion):
         if preanalisis['l'] == funcion_actual['identificador']:
             logger.success(f'error semantico: variable de retorno de funcion {funcion_actual["tipo_retorno"]} usada en expresion')
+            imprimirPosiciones()
+        elif preanalisis['l'] == procedimiento_actual['identificador']:
+            logger.success(f'error semantico: variable de retorno de funcion usada en procedimiento')
             imprimirPosiciones()
         elementos_expresion_actual.append((preanalisis['v'],preanalisis['l']))
         
@@ -195,11 +200,15 @@ def declaraciones_subrutinas():
         declaracion_funcion();m(";");declaraciones_subrutinas()
 
 def declaracion_procedimiento():
+    global procedimiento_actual
     if preanalisis['v'] == 'procedure':
-        m('procedure');cargar_identificador('procedimiento')
+        m('procedure')
+        procedimiento_actual['identificador']=preanalisis['l']
+        cargar_identificador('procedimiento')
         pila_TLs.apilar(Tabla_simbolos())
         parametros_formales_opcional();m(';');bloque()#instruccion_compuesta()
         pila_TLs.desapilar()
+        procedimiento_actual['identificador']=''
     else:
         logger.info("error de sintaxis: se esperaba 'procedure', se encontro '",preanalisis['v'],"'")
         imprimirPosiciones()
@@ -214,7 +223,6 @@ def declaracion_funcion():
         pila_TLs.apilar(Tabla_simbolos())
         parametros_formales_opcional();m(':');funcion_actual['tipo_retorno']=tipo();m(';');bloque();
         # chequear si no se encontro una declaracion de retorno para la funcion
-        
         if funcion_actual['declaracion_retorno_encontrada'] == False:
             logger.info(f'error semantico: funcion {funcion_actual["tipo_retorno"]} sin retorno.')
             imprimirPosiciones()
@@ -273,8 +281,9 @@ def instruccion():
         if preanalisis['l']==funcion_actual['identificador']:
             # Si coinciden, es porque se esta asignando un valor de retorno
             funcion_actual['declaracion_retorno_encontrada'] = True
-            # TODO: chequear si la expresion es compatible con el tipo de retorno
-            #evaluarUltimaExpresionSemanticamente()
+        elif preanalisis['l'] == procedimiento_actual['identificador']:
+            logger.success(f'error semantico: variable de retorno de funcion usada en procedimiento')
+            imprimirPosiciones()
             
         registrar_subprograma_semanticamente()
         guardar_identificador_a_verificar_a_futuro()
@@ -360,6 +369,9 @@ def expresion():
     evaluando_expresion = True
     if preanalisis['l'] == funcion_actual['identificador']:
         logger.success(f'error semantico: variable de retorno de funcion {funcion_actual["tipo_retorno"]} usada en expresion')
+        imprimirPosiciones()
+    elif preanalisis['l'] == procedimiento_actual['identificador']:
+        logger.success(f'error semantico: variable de retorno de funcion usada en procedimiento')
         imprimirPosiciones()
     elementos_expresion_actual.append((preanalisis['v'],preanalisis['l']))
     if en_primeros('expresion_simple'):

@@ -64,4 +64,4 @@
 - [x] 05A2 - Función numérica sin retorno
 - [x] 05B1 - Variable de retorno de función booleana usada en expresión
 - [x] 05B2 - Variable de retorno de función numérica usada en expresión
-- [ ] 05C1 - Variable de retorno de función usada en procedimiento
+- [x] 05C1 - Variable de retorno de función usada en procedimiento (verificar este error)
