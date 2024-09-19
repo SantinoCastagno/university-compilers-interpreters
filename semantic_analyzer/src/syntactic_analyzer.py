@@ -1,6 +1,4 @@
-import inspect
 import sys
-import os
 from lexical_analyzer import obtener_siguiente_token, obtener_posicion
 from symbol_table import Tabla_simbolos
 from pila import Pila
@@ -24,10 +22,12 @@ elementos_expresion_actual = []
 parametros = [] # cuando se declara/invoca una funcion o procedimiento con parametros, se llevara una lista de los mismos
 subprograma_de_parametros_contados = '' # aca se guarda el nombre del subprograma cuyos parametros fueron listados, para acceder al mismo luego de listarlos 
 tipo_parametros = ''
+tipo_semantico_ultima_expresion = ''
 
 funcion_actual = {
-    'identificador':'',
-    'declaracion_retorno_encontrada': False
+    'identificador': '',
+    'declaracion_retorno_encontrada': False,
+    'tipo_retorno': ''
 }
 
 
@@ -166,9 +166,11 @@ def tipo():
     if preanalisis['v'] == 'integer':
         m('integer')
         asignar_tipo_a_variables('integer')
+        return 'integer'
     elif preanalisis['v'] == 'boolean':
         m('boolean')
         asignar_tipo_a_variables('boolean')
+        return 'boolean'
     else:
         logger.info('error de sintaxis: solo se permite tipo integer o boolean')
         imprimirPosiciones()
@@ -202,22 +204,27 @@ def declaracion_procedimiento():
 
 def declaracion_funcion():
     global funcion_actual 
+    global tipo_semantico_ultima_expresion
     if preanalisis['v']=='function':
         m('function');
         funcion_actual['identificador'] = preanalisis['l']
-        logger.warning("##### MOMENTO DE CAPTURA 2 #####")
-        logger.warning(funcion_actual['identificador'])
-        logger.warning("##############################")
         cargar_identificador('funcion')
         pila_TLs.apilar(Tabla_simbolos())
-        parametros_formales_opcional();m(':');tipo();m(';');bloque();
+        parametros_formales_opcional();m(':');funcion_actual['tipo_retorno']=tipo();m(';');bloque();
+        # chequear si no se encontro una declaracion de retorno para la funcion
+        
         if funcion_actual['declaracion_retorno_encontrada'] == False:
-            logger.info("error semantico: no se declaro la instruccion de retorno.")
+            logger.info(f'error semantico: funcion {funcion_actual["tipo_retorno"]} sin retorno.')
+            imprimirPosiciones()
+        elif (funcion_actual['tipo_retorno'] != tipo_semantico_ultima_expresion):
+            logger.info("error semantico: el valor de la expresion y el tipo de retorno no coinciden.")
+            logger.info(funcion_actual['tipo_retorno'] + "\t" + tipo_semantico_ultima_expresion)
             imprimirPosiciones()
         else:  
-            logger.success("Si tenia valores de retorno.")
+            logger.success("Si tenia valores de retorno y coincidian.")
             funcion_actual['identificador'] = ''
-            funcion_actual['declaracion_retorno_encontrada'] = True
+            funcion_actual['declaracion_retorno_encontrada'] = False
+            funcion_actual['tipo_retorno'] = ''
             pila_TLs.desapilar()
     else:
         logger.info("error de sintaxis: se esperaba 'function', se encontro '",preanalisis['v'],"'")
@@ -260,7 +267,9 @@ def instruccion():
     global expresion_actual
     global funcion_actual
     if en_primeros('identificador'):
+        # Verificar si el identificador del primer elemento de la instruccion coincide con el identificar de la funcion
         if preanalisis['l']==funcion_actual['identificador']:
+            # Si coinciden, es porque se esta asignando un valor de retorno
             funcion_actual['declaracion_retorno_encontrada'] = True
             # TODO: chequear si la expresion es compatible con el tipo de retorno
             #evaluarUltimaExpresionSemanticamente()
@@ -342,19 +351,17 @@ def lista_expresiones_repetitiva():
 def expresion():
     global evaluando_expresion
     global elementos_expresion_actual
-    logger.error("##### COMIENZO DE EXPRESION #####")
+    global tipo_semantico_ultima_expresion
     if (evaluando_expresion):
         pila_expresiones.append(elementos_expresion_actual)
         elementos_expresion_actual = []
     evaluando_expresion = True
     elementos_expresion_actual.append((preanalisis['v'],preanalisis['l']))
-    logger.error(f"{preanalisis['v']:<50}{preanalisis['l']:<20}")
     if en_primeros('expresion_simple'):
         expresion_simple();relacion_opcional()
-        logger.error("##### FIN DE EXPRESION #####")
         elementos_expresion_actual.pop()
         logger.error(elementos_expresion_actual)
-        tipoSemanticoExpresion = chequearExpresionActualSemanticamente()
+        tipo_semantico_ultima_expresion = chequearExpresionActualSemanticamente()
         if (len(pila_expresiones)>1):
             elementos_expresion_actual = pila_expresiones.pop()
         else:

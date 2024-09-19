@@ -60,8 +60,8 @@
 
 ## (e) Problemas de subrutinas
 
-- [x] 05A1 - Función booleana sin retorno (falta identificar el tipo de dato del retorno)
-- [x] 05A2 - Función numérica sin retorno (falta identificar el tipo de dato del retorno)
+- [x] 05A1 - Función booleana sin retorno
+- [x] 05A2 - Función numérica sin retorno
 - [ ] 05B1 - Variable de retorno de función booleana usada en expresión
 - [ ] 05B2 - Variable de retorno de función numérica usada en expresión
 - [ ] 05C1 - Variable de retorno de función usada en procedimiento
