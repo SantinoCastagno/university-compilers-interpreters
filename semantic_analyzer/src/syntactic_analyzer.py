@@ -33,9 +33,8 @@ funcion_actual = {
 
 def imprimirPosiciones():
     row, col = obtener_posicion()
-    logger.info("\t\tfila:"+str(row)+"\tcolumna:"+str(col))
+    logger.success("\t\tfila:"+str(row)+"\tcolumna:"+str(col))
     sys.exit(1)
-    en
 
 def m(terminal):
     if(terminal == preanalisis['v']):
@@ -62,12 +61,15 @@ def en_primeros(simbolo):
 def siguiente_terminal():
     global evaluando_expresion
     preanalisis['v'] = obtener_siguiente_token(archivo)
-    logger.debug(f"{preanalisis['v']:<50}{preanalisis['l']:<20}")
+    logger.info(f"{preanalisis['v']:<50}{preanalisis['l']:<20}")
     if preanalisis['v'] == None:
         return
     preanalisis['v'] = preanalisis['v'][preanalisis['v'].find('token'):]
     preanalisis['v'] = eval(preanalisis['v'])
     if (evaluando_expresion):
+        if preanalisis['l'] == funcion_actual['identificador']:
+            logger.success(f'error semantico: variable de retorno de funcion {funcion_actual["tipo_retorno"]} usada en expresion')
+            imprimirPosiciones()
         elementos_expresion_actual.append((preanalisis['v'],preanalisis['l']))
         
 
@@ -356,6 +358,9 @@ def expresion():
         pila_expresiones.append(elementos_expresion_actual)
         elementos_expresion_actual = []
     evaluando_expresion = True
+    if preanalisis['l'] == funcion_actual['identificador']:
+        logger.success(f'error semantico: variable de retorno de funcion {funcion_actual["tipo_retorno"]} usada en expresion')
+        imprimirPosiciones()
     elementos_expresion_actual.append((preanalisis['v'],preanalisis['l']))
     if en_primeros('expresion_simple'):
         expresion_simple();relacion_opcional()
@@ -712,12 +717,10 @@ def chequearExpresionActualSemanticamente():
     if (not expresion_valida):
         # TODO: Profundizar mas en el output
         logger.info("La expresion no es valida.")
-    logger.success("La expresion da como resultado: "+tipo_expresion)
-    return tipo_expresion           
+        imprimirPosiciones()
+    logger.debug("La expresion da como resultado: "+tipo_expresion)
+    return tipo_expresion               
     
-    
-    
-
 def asignar_tipo_a_variables(tipo):
     global ultimas_variables_declaradas
     for var in ultimas_variables_declaradas:
@@ -727,7 +730,6 @@ def asignar_tipo_a_variables(tipo):
             logger.info('error que no deberia ocurrir')
     ultimas_variables_declaradas = []
 
-# AUX
 def abrir_archivo(archivo):
     """Abre el archivo y devuelve el objeto del archivo."""
     try:
