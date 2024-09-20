@@ -25,17 +25,19 @@ tipo_parametros = ''
 tipo_semantico_ultima_expresion = ''
 
 funcion_actual = {
+    'habilitado' : False,
     'identificador': '',
     'declaracion_retorno_encontrada': False,
     'tipo_retorno': ''
 }
 procedimiento_actual = {
+    'habilitado' : False,
     'identificador': '',
 }
 
 def imprimirPosiciones():
     row, col = obtener_posicion()
-    logger.success("\t\tfila:"+str(row)+"\tcolumna:"+str(col))
+    logger.success("\t\t\t\t\tfila:"+str(row)+"\tcolumna:"+str(col))
     sys.exit(1)
 
 def m(terminal):
@@ -69,10 +71,10 @@ def siguiente_terminal():
     preanalisis['v'] = preanalisis['v'][preanalisis['v'].find('token'):]
     preanalisis['v'] = eval(preanalisis['v'])
     if (evaluando_expresion):
-        if preanalisis['l'] == funcion_actual['identificador']:
+        if funcion_actual['habilitado'] and preanalisis['l'] == funcion_actual['identificador']:
             logger.success(f'error semantico: variable de retorno de funcion {funcion_actual["tipo_retorno"]} usada en expresion')
             imprimirPosiciones()
-        elif preanalisis['l'] == procedimiento_actual['identificador']:
+        elif procedimiento_actual['habilitado'] and preanalisis['l'] == procedimiento_actual['identificador']:
             logger.success(f'error semantico: variable de retorno de funcion usada en procedimiento')
             imprimirPosiciones()
         elementos_expresion_actual.append((preanalisis['v'],preanalisis['l']))
@@ -203,12 +205,14 @@ def declaracion_procedimiento():
     global procedimiento_actual
     if preanalisis['v'] == 'procedure':
         m('procedure')
-        procedimiento_actual['identificador']=preanalisis['l']
+        procedimiento_actual['habilitado'] = True
+        procedimiento_actual['identificador'] = preanalisis['l']
         cargar_identificador('procedimiento')
         pila_TLs.apilar(Tabla_simbolos())
         parametros_formales_opcional();m(';');bloque()#instruccion_compuesta()
         pila_TLs.desapilar()
         procedimiento_actual['identificador']=''
+        procedimiento_actual['habilitado'] = False
     else:
         logger.info("error de sintaxis: se esperaba 'procedure', se encontro '",preanalisis['v'],"'")
         imprimirPosiciones()
@@ -218,6 +222,7 @@ def declaracion_funcion():
     global tipo_semantico_ultima_expresion
     if preanalisis['v']=='function':
         m('function');
+        funcion_actual['habilitado'] = True
         funcion_actual['identificador'] = preanalisis['l']
         cargar_identificador('funcion')
         pila_TLs.apilar(Tabla_simbolos())
@@ -235,6 +240,7 @@ def declaracion_funcion():
             funcion_actual['identificador'] = ''
             funcion_actual['declaracion_retorno_encontrada'] = False
             funcion_actual['tipo_retorno'] = ''
+            funcion_actual['habilitado'] = False
             pila_TLs.desapilar()
     else:
         logger.info("error de sintaxis: se esperaba 'function', se encontro '",preanalisis['v'],"'")
@@ -367,17 +373,16 @@ def expresion():
         pila_expresiones.append(elementos_expresion_actual)
         elementos_expresion_actual = []
     evaluando_expresion = True
-    if preanalisis['l'] == funcion_actual['identificador']:
+    if funcion_actual['habilitado'] and preanalisis['l'] == funcion_actual['identificador']:
         logger.success(f'error semantico: variable de retorno de funcion {funcion_actual["tipo_retorno"]} usada en expresion')
         imprimirPosiciones()
-    elif preanalisis['l'] == procedimiento_actual['identificador']:
+    elif procedimiento_actual['habilitado'] and preanalisis['l'] == procedimiento_actual['identificador']:
         logger.success(f'error semantico: variable de retorno de funcion usada en procedimiento')
         imprimirPosiciones()
     elementos_expresion_actual.append((preanalisis['v'],preanalisis['l']))
     if en_primeros('expresion_simple'):
         expresion_simple();relacion_opcional()
         elementos_expresion_actual.pop()
-        logger.error(elementos_expresion_actual)
         tipo_semantico_ultima_expresion = chequearExpresionActualSemanticamente()
         if (len(pila_expresiones)>1):
             elementos_expresion_actual = pila_expresiones.pop()
@@ -608,10 +613,10 @@ def colision_nombres(subatributo,tipoScope):
         tipoScope2 = ' '+pila_TLs.recuperar_cima()[l]['tipo_scope'] if 'tipo_scope' in pila_TLs.recuperar_cima()[l].keys() else ''
 
         if (pila_TLs.recuperar_cima()[l]['subatributo'] != subatributo):
-            logger.info('error semantico: mismo identificador de ' + subatributo+tipoScope1 + ' y ' + pila_TLs.recuperar_cima()[l]['subatributo']+tipoScope2)
+            logger.success('error semantico: mismo identificador de ' + subatributo+tipoScope1 + ' y ' + pila_TLs.recuperar_cima()[l]['subatributo']+tipoScope2)
             imprimirPosiciones()
         else:
-            logger.info('error semantico: dos ' + subatributo + 's ' + pila_TLs.recuperar_cima()[l]['tipo_scope'] + 'es con el mismo nombre')
+            logger.success('error semantico: dos ' + subatributo + 's ' + pila_TLs.recuperar_cima()[l]['tipo_scope'] + 'es con el mismo nombre')
             imprimirPosiciones() 
 
 def identificador_sin_definir(atributo):
@@ -632,7 +637,7 @@ def identificador_sin_definir(atributo):
             texto_error = 'error semantico: identificador de '+atributo+' sin definir'
             if atributo == 'funcion':
                 texto_error += ' en expresion ' + expresion_actual
-            logger.info(texto_error)
+            logger.success(texto_error)
             imprimirPosiciones()
         return failed
 
@@ -678,12 +683,12 @@ def error_aridad(atributo):
                   descripcion_parametros_formales += " y "
             if descripcion_parametros_formales == "":
                 descripcion_parametros_formales = "0"
-            logger.info('error semantico: pasaje de '+descripcion_parametros_actuales + ' a '+ atributo +' "'+ id + '". Se esperaba/n ' + descripcion_parametros_formales)
+            logger.success('error semantico: pasaje de '+descripcion_parametros_actuales + ' a '+ atributo +' "'+ id + '". Se esperaba/n ' + descripcion_parametros_formales)
             imprimirPosiciones()
     else:
         if len(parametros) != 1:
             failed = True
-            logger.info('error semantico: pasaje de '+descripcion_parametros_actuales + ' a '+ atributo +' "'+ id + '" . Se esperaba 1 parametro')
+            logger.success('error semantico: pasaje de '+descripcion_parametros_actuales + ' a '+ atributo +' "'+ id + '" . Se esperaba 1 parametro')
     return failed
 
 # Toda la expresion tiene que pertenecer al mismo tipo de datos. Es decir, o todo tipo entero o todo tipo boolean
