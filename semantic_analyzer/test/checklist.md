@@ -17,16 +17,18 @@
 
 - [x] 02A1 - Identificador de procedimiento sin definir.
 - [x] 02A2 - Uso en entorno local de identificador de variable no definido. (falta el texto, pero el error lo detecta)
-- [x] 02A3 - Uso de identificador de función no definido en expresión aritmética. (falta el texto, pero el error lo detecta)
-- [x] 02A4 - Uso de identificador de función booleana no definido en condición de if. (falta el texto, pero el error lo detecta)
-- [x] 02A5 - Uso de identificador de función booleana no definido en condición de while. (falta el texto, pero el error lo detecta)
+- [x] 02A3 - Uso de identificador de función no definido en expresión aritmética. 
+- [x] 02A4 - Uso de identificador de función booleana no definido en condición de if.
+- [x] 02A5 - Uso de identificador de función booleana no definido en condición de while.
 - [ ] 02B - Identificador de función sin definir. (NO EXISTE)
 
 ## (c) Aridad no coincidente (Arity mismatch):
 
 - [x] 03A - Pasaje de parámetro a una función sin parámetros.
 - [x] 03A1 - Pasaje de un parámetro booleano a función con dos parámetros booleanos.
-- [ ] 03A2 - Pasaje de tres parámetros booleanos a función con dos parámetros booleanos. (averiguar sobre este ejercicio, no estoy seguro de si se debe poder psar expresiones)
+- [ ] 03A2 - Pasaje de tres parámetros booleanos a función con dos parámetros booleanos. 
+  - Funciona si se sustituye los boolean literales por variables de tipo boolean.
+  - Ver con Adriano.
 - [x] 03B1 - Pasaje de dos parámetros numéricos a procedimiento con tres parámetros numéricos.
 - [x] 03B2 - Pasaje de cuatro parámetros numéricos a procedimiento con tres parámetros numéricos.
 
@@ -34,7 +36,7 @@
 
 - [x] 03C1 - Pasaje de parámetros booleano y numérico a función con dos parámetros booleanos.
 - [x] 03C2 - Pasaje de parámetros numérico y booleano a función con dos parámetros booleanos.
-- [x] 03C3 - Pasaje de parámetros numérico y booleano a procedimiento con dos parámetros numéricos.
+- [ ] 03C3 - Pasaje de parámetros numérico y booleano a procedimiento con dos parámetros numéricos.
 - [ ] 03D1 - Pasaje de parámetros expresión booleana y expresion numérica a función con dos parámetros booleanos.
 - [ ] 03D2 - Pasaje de parámetros expresión booleana y booleano a función con dos parámetros booleanos.
 - [ ] 03E1 - Pasaje de parámetros expresión numérica y variable numérica a función con dos parámetros numéricos.

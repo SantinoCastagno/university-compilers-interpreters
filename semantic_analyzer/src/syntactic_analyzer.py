@@ -6,18 +6,16 @@ from collections import Counter
 from loguru import logger
 
 logger.remove()
-#logger.add(sys.stdout, level="DEBUG", format="{file}:{line} - {message}")
+# logger.add(sys.stdout, level="SUCCESS")
 logger.add(sys.stdout, level="DEBUG")
 
 preanalisis = {'v':'','l':''}
 pila_TLs = Pila()
-
 # MACROVARIABLES DE CONTROL SEMANTICO
 ultimas_variables_declaradas = [] # lista de elementos que se utiliza para asignar el tipo de dato a las ultimas variables declaradas
 identificador_a_verificar_a_futuro = ''
 expresion_actual = '' # si la expresion actual a evaluar es aritmetica, condicional, repetitiva o ninguna (cadena vacia).
 pila_expresiones = []
-evaluando_expresion = False
 elementos_expresion_actual = []
 parametros = [] # cuando se declara/invoca una funcion o procedimiento con parametros, se llevara una lista de los mismos
 subprograma_de_parametros_contados = '' # aca se guarda el nombre del subprograma cuyos parametros fueron listados, para acceder al mismo luego de listarlos 
@@ -63,14 +61,14 @@ def en_primeros(simbolo):
     return False
 
 def siguiente_terminal():
-    global evaluando_expresion
+    global elementos_expresion_actual
     preanalisis['v'] = obtener_siguiente_token(archivo)
-    logger.info(f"{preanalisis['v']:<50}{preanalisis['l']:<20}")
+    logger.debug(f"{preanalisis['v']:<50}{preanalisis['l']:<20}")
     if preanalisis['v'] == None:
         return
     preanalisis['v'] = preanalisis['v'][preanalisis['v'].find('token'):]
     preanalisis['v'] = eval(preanalisis['v'])
-    if (evaluando_expresion):
+    if (len(elementos_expresion_actual) > 0):
         if funcion_actual['habilitado'] and preanalisis['l'] == funcion_actual['identificador']:
             logger.success(f'error semantico: variable de retorno de funcion {funcion_actual["tipo_retorno"]} usada en expresion')
             imprimirPosiciones()
@@ -93,11 +91,10 @@ def token(arg0,arg1):
         or arg0 == 'parentesis'
         or arg0 == 'operadorAritmetico'
         or arg0 == 'operadorRelacional'
-        or arg0 == 'booleanDato'
         ):
         return arg1
     
-    if arg0 == 'enteroDato':
+    if arg0 == 'enteroDato' or arg0 == 'booleanDato':
         return arg0
     
     if arg0 == 'id':
@@ -236,7 +233,6 @@ def declaracion_funcion():
             logger.info(funcion_actual['tipo_retorno'] + "\t" + tipo_semantico_ultima_expresion)
             imprimirPosiciones()
         else:  
-            logger.success("Si tenia valores de retorno y coincidian.")
             funcion_actual['identificador'] = ''
             funcion_actual['declaracion_retorno_encontrada'] = False
             funcion_actual['tipo_retorno'] = ''
@@ -366,13 +362,11 @@ def lista_expresiones_repetitiva():
         m(',');sumar_parametro_actual();expresion();lista_expresiones_repetitiva()
 
 def expresion():
-    global evaluando_expresion
     global elementos_expresion_actual
     global tipo_semantico_ultima_expresion
-    if (evaluando_expresion):
+    if (len(elementos_expresion_actual) > 0):
         pila_expresiones.append(elementos_expresion_actual)
         elementos_expresion_actual = []
-    evaluando_expresion = True
     if funcion_actual['habilitado'] and preanalisis['l'] == funcion_actual['identificador']:
         logger.success(f'error semantico: variable de retorno de funcion {funcion_actual["tipo_retorno"]} usada en expresion')
         imprimirPosiciones()
@@ -381,16 +375,13 @@ def expresion():
         imprimirPosiciones()
     elementos_expresion_actual.append((preanalisis['v'],preanalisis['l']))
     if en_primeros('expresion_simple'):
-        expresion_simple();relacion_opcional()
+        expresion_simple();relacion_opcional();
         elementos_expresion_actual.pop()
         tipo_semantico_ultima_expresion = chequearExpresionActualSemanticamente()
-        if (len(pila_expresiones)>1):
+        if (len(pila_expresiones)>0):
             elementos_expresion_actual = pila_expresiones.pop()
-        else:
-            elementos_expresion_actual = []
-            evaluando_expresion = False
     else:
-        logger.info('error de sintaxis: la expresion no se inicio de manera correcta')
+        logger.success('error de sintaxis: la expresion no se inicio de manera correcta')
         imprimirPosiciones()
 
 def relacion_opcional():
@@ -655,15 +646,16 @@ def error_aridad(atributo):
             if id in ts.keys():
                 # se obtienen los parametros formales declarados para el subprograma
                 parametros_formales = ts[id]['parametros']
+                
                 # contar cada tipo de parametro (int o boolean)
                 contador_parametros_formales = Counter([elem[1] for elem in parametros_formales]) 
+                
                 # agruparlos en pares ordenados
                 cantidad_por_tipo_parametros_formales = [(count, key) for key, count in contador_parametros_formales.items()]
-                
                 parametros_actuales = [(parametro) for parametro in parametros]
                 contador_parametros_actuales = Counter([elem[1] for elem in parametros_actuales]) 
-                
                 cantidad_por_tipo_parametros_actuales = [(count, key) for key, count in contador_parametros_actuales.items()]
+                
                 # se compara las cantidades de ambos tipos de parametros sin importar el orden
                 if Counter(cantidad_por_tipo_parametros_formales) != Counter(cantidad_por_tipo_parametros_actuales):
                     failed = True
@@ -695,24 +687,26 @@ def error_aridad(atributo):
 def chequearExpresionActualSemanticamente():
     global elementos_expresion_actual
     componentesNumericos = ['enteroDato', 'operadorRelacional', 'operadorAritmetico', '+', '-']
-    componentesBooleanos = ['booleanDato', 'operadorRelacionalIndidual','operadorAritmetico']
+    componentesBooleanos = ['booleanDato', 'operadorRelacionalIndidual','operadorAritmetico', 'and', 'or']
     
     pila_revertida = reversed(pila_TLs.items)
-    failed = True
     
     tipo_expresion = None
     expresion_valida = True
-    # Se compara cada elemento de la expresion con el primer elemento para verificar si son de tipos equivalentes
+
+    # Se compara el tipo de dato de cada valor de la expresion para ver si son equivalentes
     for elemento in elementos_expresion_actual:
         # Si el elemento es un id, se debe chequear su tipo de dato en la tabla de simbolos  
-        id_value = elemento[1]
         if elemento[0] == 'id':
+            id_value = elemento[1]
             for ts in pila_revertida:
                 ts = ts.tabla
                 if id_value in ts.keys():
                     if tipo_expresion is None:
                         tipo_expresion = ts[id_value]['tipo_dato']
                     else:
+                        logger.critical(tipo_expresion)
+                        logger.critical(ts[id_value])
                         if tipo_expresion != ts[id_value]['tipo_dato']:
                             expresion_valida = False
         else:
@@ -722,20 +716,18 @@ def chequearExpresionActualSemanticamente():
                 elif elemento[0] in componentesBooleanos:
                     tipo_expresion = 'boolean'
                 else:
-                    logger.error("El id no corresponde a ningun tipo de elemento, esto no deberia suceder.")
+                    logger.error("El id no corresponde a ningun tipo de elemento, esto no deberia suceder." + elemento[0])
             else:
-                if elemento[0] in componentesNumericos:
-                    tipo_expresion == 'integer'
-                elif elemento[0] in componentesBooleanos:
-                    tipo_expresion == 'boolean'
-                else:
-                    logger.error("El id no corresponde a ningun tipo de elemento, esto no deberia suceder.")
+                if elemento[0] in componentesNumericos and tipo_expresion != 'integer':
+                    expresion_valida = False
+                elif elemento[0] in componentesBooleanos and tipo_expresion != 'boolean':
+                    expresion_valida = False
     
     if (not expresion_valida):
         # TODO: Profundizar mas en el output
         logger.info("La expresion no es valida.")
         imprimirPosiciones()
-    logger.debug("La expresion da como resultado: "+tipo_expresion)
+    logger.debug(f'{elementos_expresion_actual} {tipo_expresion}')
     return tipo_expresion               
     
 def asignar_tipo_a_variables(tipo):
