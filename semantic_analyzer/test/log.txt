@@ -1,171 +1,257 @@
 ############################################################
-Analizando sintacticamente el fuente: ./files/Ej01A1.PAS
-2024-09-21 17:15:30.810 | SUCCESS  | __main__:colision_nombres:608 - error semantico: mismo identificador de variable global y programa
-2024-09-21 17:15:30.810 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:3	columna:12
+Analizando ./test/files/Ej01A1.PAS
+
+SUCCESS  | error semantico: mismo identificador de variable global y programa
+SUCCESS  | fila:3 columna:12
 ############################################################
-Analizando sintacticamente el fuente: ./files/Ej01A2.PAS
-2024-09-21 17:15:30.883 | SUCCESS  | __main__:colision_nombres:608 - error semantico: mismo identificador de procedimiento y programa
-2024-09-21 17:15:30.884 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:5	columna:17
+Analizando ./test/files/Ej01A2.PAS
+
+SUCCESS  | error semantico: mismo identificador de procedimiento y programa
+SUCCESS  | fila:5 columna:17
 ############################################################
-Analizando sintacticamente el fuente: ./files/Ej01A3.PAS
-2024-09-21 17:15:30.956 | SUCCESS  | __main__:colision_nombres:608 - error semantico: mismo identificador de funcion y programa
-2024-09-21 17:15:30.956 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:5	columna:16
+Analizando ./test/files/Ej01A3.PAS
+
+SUCCESS  | error semantico: mismo identificador de funcion y programa
+SUCCESS  | fila:5 columna:16
 ############################################################
-Analizando sintacticamente el fuente: ./files/Ej01B1.PAS
-2024-09-21 17:15:31.027 | SUCCESS  | __main__:colision_nombres:611 - error semantico: dos variables globales con el mismo nombre
-2024-09-21 17:15:31.027 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:4	columna:4
+Analizando ./test/files/Ej01B1.PAS
+
+SUCCESS  | error semantico: dos variables globales con el mismo nombre
+SUCCESS  | fila:4 columna:4
 ############################################################
-Analizando sintacticamente el fuente: ./files/Ej01B2.PAS
-2024-09-21 17:15:31.099 | SUCCESS  | __main__:colision_nombres:611 - error semantico: dos variables locales con el mismo nombre
-2024-09-21 17:15:31.099 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:7	columna:6
+Analizando ./test/files/Ej01B2.PAS
+
+SUCCESS  | error semantico: dos variables locales con el mismo nombre
+SUCCESS  | fila:7 columna:6
 ############################################################
-Analizando sintacticamente el fuente: ./files/Ej01C.PAS
-2024-09-21 17:15:31.170 | SUCCESS  | __main__:colision_nombres:608 - error semantico: mismo identificador de funcion y variable global
-2024-09-21 17:15:31.170 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:6	columna:15
+Analizando ./test/files/Ej01C.PAS
+
+SUCCESS  | error semantico: mismo identificador de funcion y variable global
+SUCCESS  | fila:6 columna:15
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ01D.PAS
-2024-09-21 17:15:31.264 | SUCCESS  | __main__:colision_nombres:608 - error semantico: mismo identificador de procedimiento y variable global
-2024-09-21 17:15:31.264 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:12	columna:16
+Analizando ./test/files/EJ01D.PAS
+
+SUCCESS  | error semantico: mismo identificador de procedimiento y variable global
+SUCCESS  | fila:12 columna:16
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ01E.PAS
-2024-09-21 17:15:31.367 | SUCCESS  | __main__:colision_nombres:608 - error semantico: mismo identificador de funcion local y variable local
-2024-09-21 17:15:31.367 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:14	columna:12
+Analizando ./test/files/EJ01E.PAS
+
+SUCCESS  | error semantico: mismo identificador de funcion local y variable local
+SUCCESS  | fila:14 columna:12
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ01F.PAS
-2024-09-21 17:15:31.442 | SUCCESS  | __main__:colision_nombres:608 - error semantico: mismo identificador de variable local y parametro local
-2024-09-21 17:15:31.442 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:12	columna:7
+Analizando ./test/files/EJ01F.PAS
+
+SUCCESS  | error semantico: mismo identificador de variable local y parametro local
+SUCCESS  | fila:12 columna:7
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ01G.PAS
-2024-09-21 17:15:31.519 | SUCCESS  | __main__:colision_nombres:608 - error semantico: mismo identificador de funcion local y parametro local
-2024-09-21 17:15:31.519 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:14	columna:12
+Analizando ./test/files/EJ01G.PAS
+
+SUCCESS  | error semantico: mismo identificador de funcion local y parametro local
+SUCCESS  | fila:14 columna:12
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ01H.PAS
-2024-09-21 17:15:31.599 | SUCCESS  | __main__:colision_nombres:608 - error semantico: mismo identificador de procedimiento local y parametro local
-2024-09-21 17:15:31.600 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:14	columna:13
+Analizando ./test/files/EJ01H.PAS
+
+SUCCESS  | error semantico: mismo identificador de procedimiento local y parametro local
+SUCCESS  | fila:14 columna:13
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ02A1.PAS
-2024-09-21 17:15:31.680 | SUCCESS  | __main__:identificador_sin_definir:632 - error semantico: identificador de procedimiento sin definir
-2024-09-21 17:15:31.680 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:13	columna:8
+Analizando ./test/files/EJ02A1.PAS
+
+SUCCESS  | error semantico: identificador de procedimiento sin definir
+SUCCESS  | fila:13 columna:8
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ02A2.PAS
-2024-09-21 17:15:31.764 | SUCCESS  | __main__:identificador_sin_definir:632 - error semantico: identificador de variable sin definir
-2024-09-21 17:15:31.764 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:8	columna:13
+Analizando ./test/files/EJ02A2.PAS
+
+SUCCESS  | error semantico: identificador de variable sin definir
+SUCCESS  | fila:8 columna:13
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ02A3.PAS
-2024-09-21 17:15:31.843 | SUCCESS  | __main__:identificador_sin_definir:632 - error semantico: identificador de funcion sin definir en expresion aritmetica
-2024-09-21 17:15:31.843 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:13	columna:15
+Analizando ./test/files/EJ02A3.PAS
+
+SUCCESS  | error semantico: identificador de funcion sin definir en expresion aritmetica
+SUCCESS  | fila:13 columna:15
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ02A4.PAS
-2024-09-21 17:15:31.922 | SUCCESS  | __main__:identificador_sin_definir:632 - error semantico: identificador de funcion sin definir en expresion condicional
-2024-09-21 17:15:31.922 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:14	columna:13
+Analizando ./test/files/EJ02A4.PAS
+
+SUCCESS  | error semantico: identificador de funcion sin definir en expresion condicional
+SUCCESS  | fila:14 columna:13
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ02A5.PAS
-2024-09-21 17:15:32.000 | SUCCESS  | __main__:identificador_sin_definir:632 - error semantico: identificador de funcion sin definir en expresion repetitiva
-2024-09-21 17:15:32.000 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:14	columna:13
+Analizando ./test/files/EJ02A5.PAS
+
+SUCCESS  | error semantico: identificador de funcion sin definir en expresion repetitiva
+SUCCESS  | fila:14 columna:13
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ03A1.PAS
-2024-09-21 17:15:32.076 | SUCCESS  | __main__:error_aridad:679 - error semantico: pasaje de 1 parametro/s de tipo boolean a funcion "algo". Se esperaba/n 2 parametro/s de tipo boolean
-2024-09-21 17:15:32.077 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:18	columna:19
+Analizando ./test/files/EJ03A1.PAS
+
+SUCCESS  | error semantico: pasaje de 1 parametro/s de tipo boolean a funcion "algo". Se esperaba/n 2 parametro/s de tipo boolean
+SUCCESS  | fila:18 columna:19
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ03A2.PAS
-2024-09-21 17:15:32.155 | SUCCESS  | __main__:error_aridad:679 - error semantico: pasaje de 3 parametro/s de tipo boolean a funcion "algo". Se esperaba/n 2 parametro/s de tipo boolean
-2024-09-21 17:15:32.155 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:18	columna:30
+Analizando ./test/files/EJ03A2.PAS
+
+SUCCESS  | error de sintaxis: se espera un factor valido
+SUCCESS  | fila:18 columna:27
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ03A.PAS
-2024-09-21 17:15:32.232 | SUCCESS  | __main__:error_aridad:679 - error semantico: pasaje de 1 parametro/s de tipo integer a funcion "algo". Se esperaba/n 0
-2024-09-21 17:15:32.232 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:17	columna:19
+Analizando ./test/files/EJ03A.PAS
+
+SUCCESS  | error semantico: pasaje de 1 parametro/s de tipo integer a funcion "algo". Se esperaba/n 0
+SUCCESS  | fila:17 columna:19
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ03B1.PAS
+Analizando ./test/files/EJ03B1.PAS
+
+SUCCESS  | error semantico: pasaje de 2 parametro/s de tipo integer a procedimiento "nuevo". Se esperaba/n 3 parametro/s de tipo integer
+SUCCESS  | fila:19 columna:19
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ03B2.PAS
+Analizando ./test/files/EJ03B2.PAS
+
+SUCCESS  | error semantico: pasaje de 4 parametro/s de tipo integer a procedimiento "nuevo". Se esperaba/n 3 parametro/s de tipo integer
+SUCCESS  | fila:19 columna:23
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ03C1.PAS
-2024-09-21 17:15:32.475 | SUCCESS  | __main__:error_aridad:679 - error semantico: pasaje de 1 parametro/s de tipo boolean y 1 parametro/s de tipo integer a funcion "algo". Se esperaba/n 2 parametro/s de tipo boolean
-2024-09-21 17:15:32.476 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:18	columna:21
+Analizando ./test/files/EJ03C1.PAS
+
+SUCCESS  | error semantico: pasaje de 1 parametro/s de tipo boolean y 1 parametro/s de tipo integer a funcion "algo". Se esperaba/n 2 parametro/s de tipo boolean
+SUCCESS  | fila:18 columna:21
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ03C2.PAS
-2024-09-21 17:15:32.554 | SUCCESS  | __main__:error_aridad:679 - error semantico: pasaje de 1 parametro/s de tipo integer y 1 parametro/s de tipo boolean a funcion "algo". Se esperaba/n 2 parametro/s de tipo boolean
-2024-09-21 17:15:32.554 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:18	columna:21
+Analizando ./test/files/EJ03C2.PAS
+
+SUCCESS  | error semantico: pasaje de 1 parametro/s de tipo integer y 1 parametro/s de tipo boolean a funcion "algo". Se esperaba/n 2 parametro/s de tipo boolean
+SUCCESS  | fila:18 columna:21
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ03C3.PAS
+Analizando ./test/files/EJ03C3.PAS
+
+SUCCESS  | error semantico: pasaje de 1 parametro/s de tipo integer y 1 parametro/s de tipo boolean a procedimiento "nuevo". Se esperaba/n 2 parametro/s de tipo integer
+SUCCESS  | fila:19 columna:17
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ03D1.PAS
-2024-09-21 17:15:32.719 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:18	columna:25
+Analizando ./test/files/EJ03D1.PAS
+
+SUCCESS  | error de sintaxis: se espera un factor valido
+SUCCESS  | fila:18 columna:25
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ03D2.PAS
+Analizando ./test/files/EJ03D2.PAS
+
+SUCCESS  | error de sintaxis: se espera un factor valido
+SUCCESS  | fila:18 columna:25
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ03E1.PAS
-2024-09-21 17:15:32.873 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:18	columna:22
+Analizando ./test/files/EJ03E1.PAS
+
+SUCCESS  | error de sintaxis: se espera un factor valido
+SUCCESS  | fila:18 columna:26
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ03E2.PAS
-2024-09-21 17:15:32.948 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:18	columna:22
+Analizando ./test/files/EJ03E2.PAS
+
+SUCCESS  | error de sintaxis: se espera un factor valido
+SUCCESS  | fila:18 columna:26
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ04A1.PAS
-2024-09-21 17:15:33.027 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:9	columna:16
+Analizando ./test/files/EJ04A1.PAS
+
+SUCCESS  | error semantico: el valor de la expresion [integer] y el tipo de retorno [boolean] no coinciden.
+SUCCESS  | fila:10 columna:5
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ04A2.PAS
-2024-09-21 17:15:33.103 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:9	columna:20
+Analizando ./test/files/EJ04A2.PAS
+
+SUCCESS  | Error semantico: la expresion no es valida.
+SUCCESS  | fila:9 columna:23
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ04A3.PAS
-2024-09-21 17:15:33.178 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:9	columna:20
+Analizando ./test/files/EJ04A3.PAS
+
+SUCCESS  | Error semantico: la expresion no es valida.
+SUCCESS  | fila:9 columna:23
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ04B1.PAS
-2024-09-21 17:15:33.255 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:14	columna:15
+Analizando ./test/files/EJ04B1.PAS
+
+SUCCESS  | Error semantico: la expresion no es valida.
+SUCCESS  | fila:14 columna:19
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ04B2.PAS
-2024-09-21 17:15:33.332 | SUCCESS  | __main__:identificador_sin_definir:632 - error semantico: identificador de variable sin definir
-2024-09-21 17:15:33.332 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:14	columna:16
+Analizando ./test/files/EJ04B2.PAS
+
+SUCCESS  | error semantico: identificador de variable sin definir
+SUCCESS  | fila:14 columna:16
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ04B3.PAS
-2024-09-21 17:15:33.408 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:9	columna:14
+Analizando ./test/files/EJ04B3.PAS
+
+SUCCESS  | Error semantico: la expresion no es valida.
+SUCCESS  | fila:9 columna:14
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ04B4.PAS
-2024-09-21 17:15:33.485 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:9	columna:12
+Analizando ./test/files/EJ04B4.PAS
+
+SUCCESS  | Error semantico: la expresion no es valida.
+SUCCESS  | fila:10 columna:14
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ04B5.PAS
-2024-09-21 17:15:33.560 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:9	columna:14
+Analizando ./test/files/EJ04B5.PAS
+
+WARNING  | El id no corresponde a ningun tipo de elemento, esto no deberia suceder.(
+SUCCESS  | error semantico: variable de retorno de funcion integer usada en expresion
+SUCCESS  | fila:10 columna:7
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ04B.PAS
-2024-09-21 17:15:33.638 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:9	columna:12
+Analizando ./test/files/EJ04B.PAS
+
+SUCCESS  | error semantico: variable de retorno de funcion integer usada en expresion
+SUCCESS  | fila:10 columna:7
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ04C1.PAS
+Analizando ./test/files/EJ04C1.PAS
+
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ04C2.PAS
-2024-09-21 17:15:33.795 | SUCCESS  | __main__:expresion:372 - error semantico: variable de retorno de funcion integer usada en expresion
-2024-09-21 17:15:33.795 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:9	columna:10
+Analizando ./test/files/EJ04C2.PAS
+
+SUCCESS  | error semantico: variable de retorno de funcion integer usada en expresion
+SUCCESS  | fila:9 columna:10
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ04C3.PAS
+Analizando ./test/files/EJ04C3.PAS
+
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ04C4.PAS
-2024-09-21 17:15:33.953 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:9	columna:11
+Analizando ./test/files/EJ04C4.PAS
+
+WARNING  | El id no corresponde a ningun tipo de elemento, esto no deberia suceder.(
+SUCCESS  | Error semantico: la expresion no es valida.
+SUCCESS  | fila:10 columna:9
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ04C5.PAS
-2024-09-21 17:15:34.029 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:9	columna:11
+Analizando ./test/files/EJ04C5.PAS
+
+WARNING  | El id no corresponde a ningun tipo de elemento, esto no deberia suceder.(
+SUCCESS  | error semantico: variable de retorno de funcion integer usada en expresion
+SUCCESS  | fila:12 columna:7
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ04D1.PAS
+Analizando ./test/files/EJ04D1.PAS
+
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ04D2.PAS
-2024-09-21 17:15:34.185 | ERROR    | __main__:chequearExpresionActualSemanticamente:718 - El id no corresponde a ningun tipo de elemento, esto no deberia suceder.(
+Analizando ./test/files/EJ04D2.PAS
+
+WARNING  | El id no corresponde a ningun tipo de elemento, esto no deberia suceder.(
+Error: caracter no reconocido:
+		fila:26	columna:5
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ04D3.PAS
+Analizando ./test/files/EJ04D3.PAS
+
+Error: caracter no reconocido:
+		fila:26	columna:5
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ04D4.PAS
+Analizando ./test/files/EJ04D4.PAS
+
+Error: caracter no reconocido:
+		fila:26	columna:5
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ04D5.PAS
+Analizando ./test/files/EJ04D5.PAS
+
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ05A1.PAS
-2024-09-21 17:15:34.506 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:10	columna:5
+Analizando ./test/files/EJ05A1.PAS
+
+SUCCESS  | error semantico: funcion integer sin retorno.
+SUCCESS  | fila:10 columna:5
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ05A2.PAS
-2024-09-21 17:15:34.584 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:11	columna:6
+Analizando ./test/files/EJ05A2.PAS
+
+SUCCESS  | error semantico: funcion integer sin retorno.
+SUCCESS  | fila:11 columna:6
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ05B1.PAS
-2024-09-21 17:15:34.659 | SUCCESS  | __main__:siguiente_terminal:74 - error semantico: variable de retorno de funcion boolean usada en expresion
-2024-09-21 17:15:34.659 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:9	columna:26
+Analizando ./test/files/EJ05B1.PAS
+
+SUCCESS  | error semantico: variable de retorno de funcion boolean usada en expresion
+SUCCESS  | fila:9 columna:26
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ05B2.PAS
-2024-09-21 17:15:34.733 | SUCCESS  | __main__:siguiente_terminal:74 - error semantico: variable de retorno de funcion integer usada en expresion
-2024-09-21 17:15:34.733 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:9	columna:17
+Analizando ./test/files/EJ05B2.PAS
+
+SUCCESS  | error semantico: variable de retorno de funcion integer usada en expresion
+SUCCESS  | fila:9 columna:17
 ############################################################
-Analizando sintacticamente el fuente: ./files/EJ05C1.PAS
-2024-09-21 17:15:34.808 | SUCCESS  | __main__:imprimirPosiciones:39 - 					fila:10	columna:5
+Analizando ./test/files/EJ05C1.PAS
+
+SUCCESS  | error semantico: el valor de la expresion [integer] y el tipo de retorno [boolean] no coinciden.
+SUCCESS  | fila:10 columna:5
+############################################################

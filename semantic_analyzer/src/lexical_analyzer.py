@@ -3,8 +3,8 @@
 import os
 import sys
 
-keyword_list = ["program", "begin", "if", "else", "then", "while", "end", "and", "or", "var", "procedure", "function", "do", "integer", "boolean"]
-boolean_list = ["true", "false"]
+keyword_list = ["program", "begin", "if", "else", "then", "while", "end", "var", "procedure", "function", "do", "integer", "boolean", "AND", "OR"]
+boolean_list = ["TRUE", "FALSE"]
 
 caracter = " "
 row = 1
@@ -24,10 +24,10 @@ def construir_lexema(fuente):
                     palabra += caracter
                     lexema += caracter
                     if (palabra in boolean_list):
-                        if palabra == "true":
-                            return lexema + ", token('booleanDato', 'true')"
+                        if palabra == "TRUE":
+                            return lexema + ", token('booleanDato', 'TRUE')"
                         else:
-                            return lexema + ", token('booleanDato', 'false')"
+                            return lexema + ", token('booleanDato', 'FALSE')"
                     caracter = fuente.read(1)
                     col = col + 1
                 if (palabra in keyword_list):

@@ -15,7 +15,7 @@ begin
 end;
 
 begin
-   a:=9 + algo(l,l and TRUE,TRUE);
+   a:=9 + algo(l,l AND TRUE, TRUE);
    nuevo(a*2);
 end.
 
