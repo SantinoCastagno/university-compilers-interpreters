@@ -35,11 +35,16 @@
 - [x] 03C1 - Pasaje de parámetros booleano y numérico a función con dos parámetros booleanos.
 - [x] 03C2 - Pasaje de parámetros numérico y booleano a función con dos parámetros booleanos.
 - [x] 03C3 - Pasaje de parámetros numérico y booleano a procedimiento con dos parámetros numéricos.
-- [ ] 03D1 - Pasaje de parámetros expresión booleana y expresion numérica a función con dos parámetros booleanos.
-- [ ] 03D2 - Pasaje de parámetros expresión booleana y booleano a función con dos parámetros booleanos.
-- [ ] 03E1 - Pasaje de parámetros expresión numérica y variable numérica a función con dos parámetros numéricos.
-- [ ] 03E2 - Pasaje de parámetros expresión numérica y constante literal numérica a función con dos parámetros numéricos.
-- [ ] 04A1 - Uso de expresión booleana asignada como retorno de función numérica.
+- [x] 03D1 - Pasaje de parámetros expresión booleana y expresion numérica a función con dos parámetros booleanos.
+  - Falta aclarar que es de expresiones y no de variables simples (probablemente no es necesario).
+- [x] 03D2 - Pasaje de parámetros expresión booleana y booleano a función con dos parámetros booleanos.
+  - Falta aclarar que es de expresiones y no de variables simples (probablemente no es necesario).
+  - Fix: Pasaje de parámetros expresión numerica y booleano a procedimiento con dos parámetros númericos.
+- [x] 03E1 - Pasaje de parámetros expresión numérica y variable numérica a función con dos parámetros numéricos.
+  - El programa es correcto.
+- [x] 03E2 - Pasaje de parámetros expresión numérica y constante literal numérica a función con dos parámetros numéricos.
+  - El programa es correcto.
+- [x] 04A1 - Uso de expresión booleana asignada como retorno de función numérica.
 - [ ] 04A2 - Uso de expresión numérica asignada como retorno de función booleana.
 - [ ] 04A3 - Uso de operador booleano y variable booleana en expresión numérica asignada como retorno de función numérica.
 - [ ] 04B - Uso de operador y variables boolenadas y numéricas. (OK)
@@ -60,8 +65,8 @@
 
 ## (e) Problemas de subrutinas
 
-- [x] 05A1 - Función booleana sin retorno
-- [x] 05A2 - Función numérica sin retorno
-- [x] 05B1 - Variable de retorno de función booleana usada en expresión
-- [x] 05B2 - Variable de retorno de función numérica usada en expresión
-- [x] 05C1 - Variable de retorno de función usada en procedimiento (verificar este error)
+- [x] 05A1 - Función booleana sin retorno.
+- [x] 05A2 - Función numérica sin retorno.
+- [x] 05B1 - Variable de retorno de función booleana usada en expresión.
+- [x] 05B2 - Variable de retorno de función numérica usada en expresión.
+- [x] 05C1 - Variable de retorno de función usada en procedimiento.

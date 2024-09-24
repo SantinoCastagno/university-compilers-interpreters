@@ -63,9 +63,9 @@ def en_primeros(simbolo):
 def siguiente_terminal():
     global elementos_expresion_actual
     preanalisis['v'] = obtener_siguiente_token(archivo)
-    logger.debug(f"{preanalisis['v']:<50}{preanalisis['l']:<20}")
     if preanalisis['v'] == None:
         return
+    logger.debug(f"{preanalisis['v']:<50}{preanalisis['l']:<20}")
     preanalisis['v'] = preanalisis['v'][preanalisis['v'].find('token'):]
     preanalisis['v'] = eval(preanalisis['v'])
     if (len(elementos_expresion_actual) > 0):
@@ -229,7 +229,7 @@ def declaracion_funcion():
             logger.success(f'error semantico: funcion {funcion_actual["tipo_retorno"]} sin retorno.')
             imprimirPosiciones()
         elif (funcion_actual['tipo_retorno'] != tipo_semantico_ultima_expresion):
-            logger.success(f"error semantico: el valor de la expresion [{funcion_actual['tipo_retorno']}] y el tipo de retorno [{tipo_semantico_ultima_expresion}] no coinciden.")
+            logger.success(f"error semantico: el tipo de retorno [{funcion_actual['tipo_retorno']}] y el valor de la expresion [{tipo_semantico_ultima_expresion}] no coinciden.")
             imprimirPosiciones()
         else:
             # Se asigna el tipo de retorno a la funcion en la TS y se resetea la configuracion de la funcion actual
