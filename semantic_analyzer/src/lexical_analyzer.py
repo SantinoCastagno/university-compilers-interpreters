@@ -23,12 +23,12 @@ def construir_lexema(fuente):
                 while (caracter.isalpha() or caracter.isdigit()):
                     palabra += caracter
                     lexema += caracter
+                    caracter = fuente.read(1)
                     if (palabra in boolean_list):
                         if palabra == "TRUE":
                             return lexema + ", token('booleanDato', 'TRUE')"
                         else:
                             return lexema + ", token('booleanDato', 'FALSE')"
-                    caracter = fuente.read(1)
                     col = col + 1
                 if (palabra in keyword_list):
                     return lexema + ", token('keyword', '" + palabra + "')"

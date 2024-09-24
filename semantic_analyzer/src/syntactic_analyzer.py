@@ -354,18 +354,19 @@ def lista_expresiones_procedimiento():
 
 def lista_expresiones():
     if en_primeros('expresion'):
-        sumar_parametro_actual();expresion();lista_expresiones_repetitiva()
+        expresion();sumar_parametro_actual();lista_expresiones_repetitiva()
     else:
         logger.success('error de sintaxis: lista_expresiones()') 
         imprimirPosiciones()
 
 def lista_expresiones_repetitiva():
     if preanalisis['v'] ==',':
-        m(',');sumar_parametro_actual();expresion();lista_expresiones_repetitiva()
+        m(',');expresion();sumar_parametro_actual();lista_expresiones_repetitiva()
 
 def expresion():
     global elementos_expresion_actual
     global tipo_semantico_ultima_expresion
+    tipo_semantico_ultima_expresion = ''
     if (len(elementos_expresion_actual) > 0):
         pila_expresiones.append(elementos_expresion_actual)
         elementos_expresion_actual = []
@@ -454,12 +455,16 @@ def factor():
         factor_opcional()
     elif en_primeros('numero'):
         numero()
+    elif en_primeros('booleano'):
+        booleano()
     elif preanalisis['v'] == '(': 
         m('(');expresion();m(')')
     elif preanalisis['v'] == 'not':
         m('not');factor()
     else:
+        # sys._getframe().print_stack()
         logger.success('error de sintaxis: se espera un factor valido')
+        
         imprimirPosiciones()
 
 def factor_opcional():
@@ -482,6 +487,13 @@ def numero():
         siguiente_terminal()
     else:
         logger.success('error de sintaxis: numero()')
+        imprimirPosiciones()
+        
+def booleano():
+    if preanalisis['v'] == 'booleanDato':
+        siguiente_terminal()
+    else:
+        logger.success('error de sintaxis: booleano()')
         imprimirPosiciones()
         
 # MANEJO DE IDENTIFICADORES
@@ -568,14 +580,7 @@ def registrar_subprograma_semanticamente(nombre_subprograma = None):
 # requiere que se busquen las variables en la tabla de simbolos para determinar su tipo
 def sumar_parametro_actual():
     global parametros
-    id = preanalisis['l']
-    pila_revertida = reversed(pila_TLs.items)
-    tipo_dato = ""
-    for ts in pila_revertida:
-        ts = ts.tabla
-        if id in ts.keys():
-            tipo_dato = ts[id]['tipo_dato']
-    parametros.append((id, tipo_dato))
+    parametros.append(tipo_semantico_ultima_expresion)
 
 # funcion utilizada para sumar parametros a la lista de parametros actuales.
 # no requiere que se busquen las variables en la tabla de simbolos para determinar su tipo ya que se realiza en actualizar_parametros_subprograma()
@@ -617,7 +622,7 @@ def identificador_sin_definir(atributo):
                 if ts[id]['atributo'] == atributo:
                     failed = False
                 else:
-                    logger.warning('no')
+                    logger.warning('error semantico que no deberia ocurrir')
                     break
         if failed:
             texto_error = 'error semantico: identificador de '+atributo+' sin definir'
@@ -648,7 +653,7 @@ def error_aridad(atributo):
                 # agruparlos en pares ordenados
                 cantidad_por_tipo_parametros_formales = [(count, key) for key, count in contador_parametros_formales.items()]
                 parametros_actuales = [(parametro) for parametro in parametros]
-                contador_parametros_actuales = Counter([elem[1] for elem in parametros_actuales]) 
+                contador_parametros_actuales = Counter([elem for elem in parametros_actuales]) 
                 cantidad_por_tipo_parametros_actuales = [(count, key) for key, count in contador_parametros_actuales.items()]
                 
                 # se compara las cantidades de ambos tipos de parametros sin importar el orden
@@ -682,7 +687,7 @@ def error_aridad(atributo):
 def chequear_expresion_actual_semanticamente():
     global elementos_expresion_actual
     componentesNumericos = ['enteroDato', 'operadorRelacional', 'operadorAritmetico', '+', '-']
-    componentesBooleanos = ['booleanDato', 'operadorRelacionalIndidual','operadorAritmetico', 'AND', 'OR']
+    componentesBooleanos = ['booleanDato', 'operadorRelacionalIndidual', 'AND', 'OR']
     
     pila_revertida = reversed(pila_TLs.items)
     
@@ -804,12 +809,13 @@ if __name__ == "__main__":
         'mas_menos_or':['+','-','OR',None],
         'termino':[factor],
         'termino_repetitiva':['*','/','AND',None],
-        'factor':[identificador,numero,'(','not'],
+        'factor':[identificador,numero,booleano,'(','not'],
         'factor_opcional':[llamada_funcion,None],
         'llamada_funcion':[lista_expresiones_opcional],
 
-        'identificador':['id','TRUE','FALSE'],
-        'numero':['enteroDato']
+        'identificador':['id'],
+        'numero':['enteroDato'],
+        'booleano':['booleanDato']
     }
 
     if len(sys.argv) < 1:
