@@ -29,8 +29,7 @@ procedimiento_actual = {
     'identificador': '',
 }
 reservadas = ['program' , ';' , '.' ,  'var' , ':' , 'integer' , 'boolean' , ',' , 'procedure' , 'function' , 
-    '(' , ')' ,  'begin' , 'end' , ':=' , 'if' , 'then' , 'else' , 'while' , 'do' , '*' , '/' , 'AND' ,
-    'not']
+    '(' , ')' ,  'begin' , 'end' , ':=' , 'if' , 'then' , 'else' , 'while' , 'do' , '*' , '/' , 'AND']
 
 def imprimirPosiciones():
     row, col = obtener_posicion()
@@ -68,8 +67,9 @@ def siguiente_terminal():
     logger.debug(f"{preanalisis['v']:<50}{preanalisis['l']:<20}")
     preanalisis['v'] = preanalisis['v'][preanalisis['v'].find('token'):]
     preanalisis['v'] = eval(preanalisis['v'])
+    # TODO: Este chequeo se esta realizando en varios lugares. Se debe decidir entre dejar aca (lo que parece mas conveniente) y dejar en la definicion de la funcion. El mismo razonamiento se debe hacer al evaluar semanticamente las expresiones.
     if (len(elementos_expresion_actual) > 0):
-        if funcion_actual['habilitado'] and preanalisis['l'] == funcion_actual['identificador']:
+        if funcion_actual['habilitado'] and funcion_actual['declaracion_retorno_encontrada'] and preanalisis['l'] == funcion_actual['identificador']:
             logger.success(f'error semantico: variable de retorno de funcion {funcion_actual["tipo_retorno"]} usada en expresion')
             imprimirPosiciones()
         elif procedimiento_actual['habilitado'] and preanalisis['l'] == procedimiento_actual['identificador']:
@@ -459,8 +459,8 @@ def factor():
         booleano()
     elif preanalisis['v'] == '(': 
         m('(');expresion();m(')')
-    elif preanalisis['v'] == 'not':
-        m('not');factor()
+    elif preanalisis['v'] == 'NOT':
+        m('NOT');factor()
     else:
         # sys._getframe().print_stack()
         logger.success('error de sintaxis: se espera un factor valido')
@@ -686,8 +686,8 @@ def error_aridad(atributo):
 # Toda la expresion tiene que pertenecer al mismo tipo de datos. Es decir, o todo tipo entero o todo tipo boolean
 def chequear_expresion_actual_semanticamente():
     global elementos_expresion_actual
-    componentesNumericos = ['enteroDato', 'operadorRelacional', 'operadorAritmetico', '+', '-']
-    componentesBooleanos = ['booleanDato', 'operadorRelacionalIndidual', 'AND', 'OR']
+    componentesBooleanos = ['booleanDato', 'operadorRelacionalIndidual', 'AND', 'OR', 'NOT']
+    componentesNumericos = ['enteroDato', 'operadorRelacional', 'operadorRelacionalIndividual', 'operadorAritmetico', '+', '-', '*', '/']
     
     pila_revertida = reversed(pila_TLs.items)
     
@@ -709,21 +709,21 @@ def chequear_expresion_actual_semanticamente():
                             expresion_valida = False
         else:
             if tipo_expresion is None:
-                if elemento[0] in componentesNumericos:
-                    tipo_expresion = 'integer'
-                elif elemento[0] in componentesBooleanos:
+                if elemento[0] in componentesBooleanos:
                     tipo_expresion = 'boolean'
+                elif elemento[0] in componentesNumericos:
+                    tipo_expresion = 'integer'
                 else:
                     logger.warning("El id no corresponde a ningun tipo de elemento, esto no deberia suceder." + elemento[0])
             else:
-                if elemento[0] in componentesNumericos and tipo_expresion != 'integer':
+                if elemento[0] in componentesBooleanos and tipo_expresion != 'boolean':
                     expresion_valida = False
-                elif elemento[0] in componentesBooleanos and tipo_expresion != 'boolean':
+                elif elemento[0] in componentesNumericos and tipo_expresion != 'integer':
                     expresion_valida = False
     
     if (not expresion_valida):
         # TODO: Profundizar mas en el output
-        logger.success("Error semantico: la expresion no es valida.")
+        logger.success("error semantico: la expresion combina elementos de tipo booleano e integer.")
         imprimirPosiciones()
     logger.debug(f'{elementos_expresion_actual} {tipo_expresion}')
     return tipo_expresion               
@@ -809,7 +809,7 @@ if __name__ == "__main__":
         'mas_menos_or':['+','-','OR',None],
         'termino':[factor],
         'termino_repetitiva':['*','/','AND',None],
-        'factor':[identificador,numero,booleano,'(','not'],
+        'factor':[identificador,numero,booleano,'(','NOT'],
         'factor_opcional':[llamada_funcion,None],
         'llamada_funcion':[lista_expresiones_opcional],
 

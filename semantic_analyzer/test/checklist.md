@@ -45,14 +45,16 @@
 - [x] 03E2 - Pasaje de parámetros expresión numérica y constante literal numérica a función con dos parámetros numéricos.
   - El programa es correcto.
 - [x] 04A1 - Uso de expresión booleana asignada como retorno de función numérica.
-- [ ] 04A2 - Uso de expresión numérica asignada como retorno de función booleana.
-- [ ] 04A3 - Uso de operador booleano y variable booleana en expresión numérica asignada como retorno de función numérica.
-- [ ] 04B - Uso de operador y variables boolenadas y numéricas. (OK)
-- [ ] 04B1 - Uso de operador booleano con expresión de variables numéricas.
-- [ ] 04B2 - Uso de operador booleano con expresión de variables numéricas.
-- [ ] 04B3 - Uso de operador numérico con expresión de variables booleanas.
-- [ ] 04B4 - Uso de operador numérico con expresión de variables booleanas.
-- [ ] 04B5 - Uso de operadores numérico y booleano con expresión de variables booleanas.
+- [x] 04A2 - Uso de expresión numérica asignada como retorno de función booleana.
+  - fix: la expresion combina elementos de tipo booleano y numerico
+- [x] 04A3 - Uso de operador booleano y variable booleana en expresión numérica asignada como retorno de función numérica.
+  - fix: la expresion combina elementos de tipo booleano y numerico
+- [x] 04B - Uso de operador y variables boolenadas y numéricas. (OK)
+- [x] 04B1 - Uso de operador booleano con expresión de variables numéricas.
+- [x] 04B2 - Uso de operador booleano con expresión de variables numéricas.
+- [x] 04B3 - Uso de operador numérico con expresión de variables booleanas.
+- [x] 04B4 - Uso de operador numérico con expresión de variables booleanas.
+- [x] 04B5 - Uso de operadores numérico y booleano con expresión de variables booleanas.
 - [ ] 04C1 - Uso de variable numérica como condición de if.
 - [ ] 04C2 - Uso de función numérica como condición de if.
 - [ ] 04C3 - Uso de expresión numérica como condición de if.

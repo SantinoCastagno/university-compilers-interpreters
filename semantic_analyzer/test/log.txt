@@ -86,8 +86,8 @@ SUCCESS  | fila:18 columna:19
 ############################################################
 Analizando ./test/files/EJ03A2.PAS
 
-SUCCESS  | error de sintaxis: se espera un factor valido
-SUCCESS  | fila:18 columna:27
+SUCCESS  | error semantico: pasaje de 3 parametro/s de tipo boolean a funcion "algo". Se esperaba/n 2 parametro/s de tipo boolean
+SUCCESS  | fila:18 columna:34
 ############################################################
 Analizando ./test/files/EJ03A.PAS
 
@@ -121,72 +121,71 @@ SUCCESS  | fila:19 columna:17
 ############################################################
 Analizando ./test/files/EJ03D1.PAS
 
-SUCCESS  | error de sintaxis: se espera un factor valido
-SUCCESS  | fila:18 columna:25
+SUCCESS  | error semantico: pasaje de 1 parametro/s de tipo boolean y 1 parametro/s de tipo integer a funcion "algo". Se esperaba/n 2 parametro/s de tipo boolean
+SUCCESS  | fila:18 columna:27
 ############################################################
 Analizando ./test/files/EJ03D2.PAS
 
-SUCCESS  | error de sintaxis: se espera un factor valido
-SUCCESS  | fila:18 columna:25
+SUCCESS  | error semantico: pasaje de 1 parametro/s de tipo integer y 1 parametro/s de tipo boolean a procedimiento "nuevo". Se esperaba/n 2 parametro/s de tipo integer
+SUCCESS  | fila:19 columna:23
 ############################################################
 Analizando ./test/files/EJ03E1.PAS
 
-SUCCESS  | error de sintaxis: se espera un factor valido
-SUCCESS  | fila:18 columna:26
+SUCCESS  | analisis terminado, programa correcto.
 ############################################################
 Analizando ./test/files/EJ03E2.PAS
 
-SUCCESS  | error de sintaxis: se espera un factor valido
-SUCCESS  | fila:18 columna:26
+SUCCESS  | analisis terminado, programa correcto.
 ############################################################
 Analizando ./test/files/EJ04A1.PAS
 
-SUCCESS  | error semantico: el valor de la expresion [integer] y el tipo de retorno [boolean] no coinciden.
+SUCCESS  | error semantico: el tipo de retorno [integer] y el valor de la expresion [boolean] no coinciden.
 SUCCESS  | fila:10 columna:5
 ############################################################
 Analizando ./test/files/EJ04A2.PAS
 
-SUCCESS  | Error semantico: la expresion no es valida.
+SUCCESS  | error semantico: la expresion combina elementos de tipo booleano e integer.
 SUCCESS  | fila:9 columna:23
 ############################################################
 Analizando ./test/files/EJ04A3.PAS
 
-SUCCESS  | Error semantico: la expresion no es valida.
+SUCCESS  | error semantico: la expresion combina elementos de tipo booleano e integer.
 SUCCESS  | fila:9 columna:23
 ############################################################
 Analizando ./test/files/EJ04B1.PAS
 
-SUCCESS  | Error semantico: la expresion no es valida.
+SUCCESS  | error semantico: la expresion combina elementos de tipo booleano e integer.
 SUCCESS  | fila:14 columna:19
 ############################################################
 Analizando ./test/files/EJ04B2.PAS
 
-SUCCESS  | error semantico: identificador de variable sin definir
-SUCCESS  | fila:14 columna:16
+SUCCESS  | error semantico: la expresion combina elementos de tipo booleano e integer.
+SUCCESS  | fila:14 columna:18
 ############################################################
 Analizando ./test/files/EJ04B3.PAS
 
-SUCCESS  | Error semantico: la expresion no es valida.
+SUCCESS  | error semantico: la expresion combina elementos de tipo booleano e integer.
 SUCCESS  | fila:9 columna:14
 ############################################################
 Analizando ./test/files/EJ04B4.PAS
 
-SUCCESS  | Error semantico: la expresion no es valida.
+SUCCESS  | error semantico: la expresion combina elementos de tipo booleano e integer.
 SUCCESS  | fila:10 columna:14
 ############################################################
 Analizando ./test/files/EJ04B5.PAS
 
 WARNING  | El id no corresponde a ningun tipo de elemento, esto no deberia suceder.(
-SUCCESS  | error semantico: variable de retorno de funcion integer usada en expresion
-SUCCESS  | fila:10 columna:7
+SUCCESS  | error semantico: la expresion combina elementos de tipo booleano e integer.
+SUCCESS  | fila:9 columna:23
 ############################################################
 Analizando ./test/files/EJ04B.PAS
 
-SUCCESS  | error semantico: variable de retorno de funcion integer usada en expresion
-SUCCESS  | fila:10 columna:7
+SUCCESS  | error semantico: la expresion combina elementos de tipo booleano e integer.
+SUCCESS  | fila:20 columna:25
 ############################################################
 Analizando ./test/files/EJ04C1.PAS
 
+SUCCESS  | analisis terminado, programa correcto.
 ############################################################
 Analizando ./test/files/EJ04C2.PAS
 
@@ -195,21 +194,22 @@ SUCCESS  | fila:9 columna:10
 ############################################################
 Analizando ./test/files/EJ04C3.PAS
 
+SUCCESS  | analisis terminado, programa correcto.
 ############################################################
 Analizando ./test/files/EJ04C4.PAS
 
 WARNING  | El id no corresponde a ningun tipo de elemento, esto no deberia suceder.(
-SUCCESS  | Error semantico: la expresion no es valida.
+SUCCESS  | error semantico: la expresion combina elementos de tipo booleano e integer.
 SUCCESS  | fila:10 columna:9
 ############################################################
 Analizando ./test/files/EJ04C5.PAS
 
 WARNING  | El id no corresponde a ningun tipo de elemento, esto no deberia suceder.(
-SUCCESS  | error semantico: variable de retorno de funcion integer usada en expresion
-SUCCESS  | fila:12 columna:7
+SUCCESS  | analisis terminado, programa correcto.
 ############################################################
 Analizando ./test/files/EJ04D1.PAS
 
+SUCCESS  | analisis terminado, programa correcto.
 ############################################################
 Analizando ./test/files/EJ04D2.PAS
 
@@ -229,6 +229,7 @@ Error: caracter no reconocido:
 ############################################################
 Analizando ./test/files/EJ04D5.PAS
 
+SUCCESS  | analisis terminado, programa correcto.
 ############################################################
 Analizando ./test/files/EJ05A1.PAS
 
@@ -248,10 +249,10 @@ SUCCESS  | fila:9 columna:26
 Analizando ./test/files/EJ05B2.PAS
 
 SUCCESS  | error semantico: variable de retorno de funcion integer usada en expresion
-SUCCESS  | fila:9 columna:17
+SUCCESS  | fila:10 columna:17
 ############################################################
 Analizando ./test/files/EJ05C1.PAS
 
-SUCCESS  | error semantico: el valor de la expresion [integer] y el tipo de retorno [boolean] no coinciden.
+SUCCESS  | error semantico: el tipo de retorno [integer] y el valor de la expresion [boolean] no coinciden.
 SUCCESS  | fila:10 columna:5
 ############################################################
