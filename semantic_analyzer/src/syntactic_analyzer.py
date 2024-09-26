@@ -333,7 +333,11 @@ def lista_expresiones_opcional():
 
 def instruccion_condicional():
     if preanalisis['v'] == 'if':
-        m('if');expresion();m('then');instruccion();else_opcional()
+        m('if');expresion();
+        if (chequear_expresion_actual_semanticamente() == 'integer'):
+            logger.success("error semantico: uso de expresion integer como condición de if",preanalisis['v'],"'")
+            imprimirPosiciones()
+        m('then');instruccion();else_opcional()
     else:
         logger.success("error de sintaxis: se esperaba'if', se encontro '",preanalisis['v'],"'")
 
@@ -343,7 +347,11 @@ def else_opcional():
 
 def instruccion_repetitiva():
     if preanalisis['v'] == 'while':
-        m('while');expresion();m('do');instruccion()
+        m('while');expresion()
+        if (chequear_expresion_actual_semanticamente() == 'integer'):
+            logger.success("error semantico: uso de expresion integer como condición de while",preanalisis['v'],"'")
+            imprimirPosiciones()
+        m('do');instruccion()
     else:
         logger.success("error de sintaxis:  se esperaba 'while', se encontro '",preanalisis['v'],"'")
 
@@ -367,6 +375,7 @@ def expresion():
     global elementos_expresion_actual
     global tipo_semantico_ultima_expresion
     tipo_semantico_ultima_expresion = ''
+    elementos_expresion_actual = []
     if (len(elementos_expresion_actual) > 0):
         pila_expresiones.append(elementos_expresion_actual)
         elementos_expresion_actual = []

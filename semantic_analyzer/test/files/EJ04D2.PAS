@@ -23,4 +23,4 @@ procedure nuevo (b,c: integer);
 begin
    a:= 9 + algo(j, l);
    nuevo(a*2, b);
-end.
+end.

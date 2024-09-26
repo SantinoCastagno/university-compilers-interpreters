@@ -174,7 +174,6 @@ SUCCESS  | fila:10 columna:14
 ############################################################
 Analizando ./test/files/EJ04B5.PAS
 
-WARNING  | El id no corresponde a ningun tipo de elemento, esto no deberia suceder.(
 SUCCESS  | error semantico: la expresion combina elementos de tipo booleano e integer.
 SUCCESS  | fila:9 columna:23
 ############################################################
@@ -185,7 +184,8 @@ SUCCESS  | fila:20 columna:25
 ############################################################
 Analizando ./test/files/EJ04C1.PAS
 
-SUCCESS  | analisis terminado, programa correcto.
+SUCCESS  | error semantico: uso de expresion integer como condición de if
+SUCCESS  | fila:15 columna:9
 ############################################################
 Analizando ./test/files/EJ04C2.PAS
 
@@ -194,17 +194,16 @@ SUCCESS  | fila:9 columna:10
 ############################################################
 Analizando ./test/files/EJ04C3.PAS
 
-SUCCESS  | analisis terminado, programa correcto.
+SUCCESS  | error semantico: uso de expresion integer como condición de if
+SUCCESS  | fila:15 columna:9
 ############################################################
 Analizando ./test/files/EJ04C4.PAS
 
-WARNING  | El id no corresponde a ningun tipo de elemento, esto no deberia suceder.(
 SUCCESS  | error semantico: la expresion combina elementos de tipo booleano e integer.
 SUCCESS  | fila:10 columna:9
 ############################################################
 Analizando ./test/files/EJ04C5.PAS
 
-WARNING  | El id no corresponde a ningun tipo de elemento, esto no deberia suceder.(
 SUCCESS  | analisis terminado, programa correcto.
 ############################################################
 Analizando ./test/files/EJ04D1.PAS
@@ -213,23 +212,23 @@ SUCCESS  | analisis terminado, programa correcto.
 ############################################################
 Analizando ./test/files/EJ04D2.PAS
 
-WARNING  | El id no corresponde a ningun tipo de elemento, esto no deberia suceder.(
-Error: caracter no reconocido:
-		fila:26	columna:5
+SUCCESS  | error semantico: uso de expresion integer como condición de while
+SUCCESS  | fila:14 columna:20
 ############################################################
 Analizando ./test/files/EJ04D3.PAS
 
-Error: caracter no reconocido:
-		fila:26	columna:5
+SUCCESS  | error semantico: uso de expresion integer como condición de while
+SUCCESS  | fila:14 columna:14
 ############################################################
 Analizando ./test/files/EJ04D4.PAS
 
-Error: caracter no reconocido:
-		fila:26	columna:5
+SUCCESS  | error semantico: uso de expresion integer como condición de while
+SUCCESS  | fila:14 columna:14
 ############################################################
 Analizando ./test/files/EJ04D5.PAS
 
-SUCCESS  | analisis terminado, programa correcto.
+SUCCESS  | error semantico: uso de expresion integer como condición de while
+SUCCESS  | fila:14 columna:14
 ############################################################
 Analizando ./test/files/EJ05A1.PAS
 

@@ -4,12 +4,12 @@ var
   j,l:boolean;
 
 function algo(m,n:boolean): integer;
- var b:integer;
-begin
-  if m then b := a + 5 
-       else b := a - 5;
-end;
-
+  var b:integer;
+ begin
+   if m then b := a + 5 
+        else b := a - 5;
+ end;
+ 
 function algoBool(m,n:boolean): boolean;
  var b:boolean;
 begin
@@ -22,9 +22,9 @@ begin
 end;
 
 begin
-   if algobool(j,l) then
+    if algobool(j,l) then
       a:= 9 + algo(j AND TRUE, l);
-   else
+    else
       nuevo(a*2, b);
 end.
 

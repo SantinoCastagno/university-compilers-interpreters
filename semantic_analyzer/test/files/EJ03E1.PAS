@@ -18,4 +18,3 @@ begin
    a:= 9 + algo(j AND TRUE, l);
    nuevo(a*2, b);
 end.
-

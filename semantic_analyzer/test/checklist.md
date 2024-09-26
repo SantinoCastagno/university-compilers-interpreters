@@ -55,15 +55,17 @@
 - [x] 04B3 - Uso de operador numérico con expresión de variables booleanas.
 - [x] 04B4 - Uso de operador numérico con expresión de variables booleanas.
 - [x] 04B5 - Uso de operadores numérico y booleano con expresión de variables booleanas.
-- [ ] 04C1 - Uso de variable numérica como condición de if.
-- [ ] 04C2 - Uso de función numérica como condición de if.
-- [ ] 04C3 - Uso de expresión numérica como condición de if.
-- [ ] 04C4 - Uso de expresión booleana mal formada como condición de if.
-- [ ] 04C5 - Uso de expresión booleana bien formada como condición de if. (OK)
-- [ ] 04D1 - Uso de expresión booleana mal formada como condición de while.
-- [ ] 04D2 - Uso de expresión numérica como condición de while.
-- [ ] 04D3 - Uso de variable numérica como condición de while.
-- [ ] 04D4 - Uso de constante literal numérica como condición de while.
+- [x] 04C1 - Uso de variable numérica como condición de if.
+- [x] 04C2 - Uso de función numérica como condición de if.
+- [x] 04C3 - Uso de expresión numérica como condición de if.
+- [x] 04C4 - Uso de expresión booleana mal formada como condición de if.
+- [x] 04C5 - Uso de expresión booleana bien formada como condición de if. (OK)
+  - analisis terminado, programa correcto.
+- [x] 04D1 - Uso de expresión booleana mal formada como condición de while.
+  - fix: la expresion está bien formada y el programa es correcto.
+- [x] 04D2 - Uso de expresión numérica como condición de while.
+- [x] 04D3 - Uso de variable numérica como condición de while.
+- [x] 04D4 - Uso de constante literal numérica como condición de while.
 
 ## (e) Problemas de subrutinas
 

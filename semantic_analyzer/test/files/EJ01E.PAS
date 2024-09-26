@@ -24,4 +24,3 @@ begin
   a:=9;
   algo(a*2);
 end.
-
