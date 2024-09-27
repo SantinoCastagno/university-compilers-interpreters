@@ -695,8 +695,8 @@ def error_aridad(atributo):
 # Toda la expresion tiene que pertenecer al mismo tipo de datos. Es decir, o todo tipo entero o todo tipo boolean
 def chequear_expresion_actual_semanticamente():
     global elementos_expresion_actual
-    componentesBooleanos = ['booleanDato', 'operadorRelacionalIndidual', 'AND', 'OR', 'NOT']
-    componentesNumericos = ['enteroDato', 'operadorRelacional', 'operadorRelacionalIndividual', 'operadorAritmetico', '+', '-', '*', '/']
+    componentesBooleanos = ['booleanDato', '=', '<>', 'AND', 'OR', 'NOT']
+    componentesNumericos = ['enteroDato', '>', '<', '>=', '<=', '=', '<>', '+', '-', '*', '/']
     
     pila_revertida = reversed(pila_TLs.items)
     
@@ -729,6 +729,8 @@ def chequear_expresion_actual_semanticamente():
                     expresion_valida = False
                 elif elemento[0] in componentesNumericos and tipo_expresion != 'integer':
                     expresion_valida = False
+                elif elemento[0] not in componentesBooleanos and elemento[0] not in componentesNumericos:
+                    logger.warning("La operacion tiene elementos que no corresponden a ningun tipo.")
     
     if (not expresion_valida):
         # TODO: Profundizar mas en el output
