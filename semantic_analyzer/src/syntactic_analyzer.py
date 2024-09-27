@@ -67,10 +67,10 @@ def siguiente_terminal():
     # TODO: Este chequeo se esta realizando en varios lugares. Se debe decidir entre dejar aca (lo que parece mas conveniente) y dejar en la definicion de la funcion. El mismo razonamiento se debe hacer al evaluar semanticamente las expresiones.
     if (len(elementos_expresion_actual) > 0):
         if funcion_actual['habilitado'] and funcion_actual['declaracion_retorno_encontrada'] and preanalisis['l'] == funcion_actual['identificador']:
-            finalizar_analisis(f'error semantico: variable de retorno [{funcion_actual["tipo_retorno"]}] de funcion usada en expresion')
+            finalizar_analisis(f'error semantico: variable de retorno {funcion_actual["tipo_retorno"]} ['+funcion_actual['identificador']+'] de funcion usada en expresion')
 
         elif procedimiento_actual['habilitado'] and preanalisis['l'] == procedimiento_actual['identificador']:
-            finalizar_analisis(f'error semantico: variable de retorno usada en procedimiento')
+            finalizar_analisis(f'error semantico: variable de retorno usada en procedimiento ['+procedimiento_actual['identificador']+']')
 
         elementos_expresion_actual.append((preanalisis['v'],preanalisis['l']))
         
@@ -205,7 +205,7 @@ def declaracion_funcion():
         parametros_formales_opcional();m(':');funcion_actual['tipo_retorno']=tipo();m(';');bloque();
         # chequear si no se encontro una declaracion de retorno para la funcion
         if funcion_actual['declaracion_retorno_encontrada'] == False:
-            finalizar_analisis(f'error semantico: funcion {funcion_actual["tipo_retorno"]} sin retorno.')
+            finalizar_analisis(f'error semantico: funcion {funcion_actual["tipo_retorno"]} [{funcion_actual["identificador"]}] sin retorno.')
 
         elif (funcion_actual['tipo_retorno'] != tipo_semantico_ultima_expresion):
             finalizar_analisis(f"error semantico: el tipo de retorno [{funcion_actual['tipo_retorno']}] y el valor de la expresion [{tipo_semantico_ultima_expresion}] no coinciden.")
@@ -572,9 +572,9 @@ def colision_nombres(subatributo,tipoScope):
         tipoScope1 = '' if tipoScope is None else ' '+tipoScope
         tipoScope2 = ' '+pila_TLs.recuperar_cima()[l]['tipo_scope'] if 'tipo_scope' in pila_TLs.recuperar_cima()[l].keys() else ''
         if (pila_TLs.recuperar_cima()[l]['subatributo'] != subatributo):
-            finalizar_analisis('error semantico: mismo identificador de ' + subatributo+tipoScope1 + ' y ' + pila_TLs.recuperar_cima()[l]['subatributo']+tipoScope2)
+            finalizar_analisis('error semantico: mismo identificador de ' + subatributo+tipoScope1 + ' y ' + pila_TLs.recuperar_cima()[l]['subatributo']+tipoScope2 +' ['+l+']')
         else:
-            finalizar_analisis('error semantico: dos ' + subatributo + 's ' + pila_TLs.recuperar_cima()[l]['tipo_scope'] + 'es con el mismo nombre')
+            finalizar_analisis('error semantico: dos ' + subatributo + 's ' + pila_TLs.recuperar_cima()[l]['tipo_scope'] + ' con el mismo nombre ['+l+']')
  
 
 def identificador_sin_definir(atributo):
@@ -592,9 +592,9 @@ def identificador_sin_definir(atributo):
                     logger.warning('error semantico que no deberia ocurrir')
                     break
         if failed:
-            texto_error = 'error semantico: identificador de '+ atributo +' sin definir'
+            texto_error = 'error semantico: identificador de '+ atributo +' ['+id+'] sin definir '
             if atributo == 'funcion':
-                texto_error += ' en expresion ' + expresion_actual
+                texto_error += 'en expresion ' + expresion_actual
             finalizar_analisis(texto_error)
 
         return failed
@@ -642,12 +642,12 @@ def error_aridad(atributo):
                   descripcion_parametros_formales += " y "
             if descripcion_parametros_formales == "":
                 descripcion_parametros_formales = "0"
-            finalizar_analisis('error semantico: pasaje de '+descripcion_parametros_actuales + ' a '+ atributo +' "'+ id + '". Se esperaba/n ' + descripcion_parametros_formales)
+            finalizar_analisis('error semantico: pasaje de '+descripcion_parametros_actuales + ' a '+ atributo +' ['+ id + ']. Se esperaba/n ' + descripcion_parametros_formales)
 
     else:
         if len(parametros) != 1:
             failed = True
-            finalizar_analisis('error semantico: pasaje de '+descripcion_parametros_actuales + ' a '+ atributo +' "'+ id + '" . Se esperaba 1 parametro')
+            finalizar_analisis('error semantico: pasaje de '+descripcion_parametros_actuales + ' a '+ atributo +' ['+ id + '] . Se esperaba 1 parametro')
 
 
 # Toda la expresion tiene que pertenecer al mismo tipo de datos. Es decir, o todo tipo entero o todo tipo boolean
