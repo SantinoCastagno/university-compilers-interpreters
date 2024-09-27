@@ -35,8 +35,12 @@ def imprimirPosiciones():
     row, col = obtener_posicion()
     logger.success("fila:"+str(row)+" columna:"+str(col))
     sys.exit(1)
+    
+############################################################################################
+############################## METODOS DEL ANALISIS SINTACTICO #############################
+############################################################################################
 
-def m(terminal):
+def match(terminal):
     if(terminal == preanalisis['v']):
         siguiente_terminal()
     else:
@@ -44,7 +48,7 @@ def m(terminal):
         sys._getframe().print_stack()
         imprimirPosiciones()
 
-def m_list(terminales):
+def match_list(terminales):
     if(preanalisis['v'] in terminales):
         siguiente_terminal()
     else:
@@ -133,7 +137,7 @@ def programa(): # Primera funcion ejecutada
         logger.success("error de sintaxis: se esperaba 'program', se encontro '",preanalisis['v'],"'")
         imprimirPosiciones()
 
-def bloque():
+def bloque(entorno):
     if en_primeros('declaraciones_variables_opcional') or en_primeros('declaraciones_subrutinas_opcional') or en_primeros('instruccion_compuesta'):
         declaraciones_variables_opcional();declaraciones_subrutinas_opcional();instruccion_compuesta()
     else:
@@ -151,7 +155,7 @@ def declaraciones_subrutinas_opcional():
 # DECLARACIONES
 def declaraciones_variables():
     if preanalisis['v'] =='var':
-        m("var");declaracion_variable();m(';');declaraciones_variables_repetitivas()
+        match("var");declaracion_variable();match(';');declaraciones_variables_repetitivas()
     else:
         logger.success("error de sintaxis: se esperaba 'var', se encontro '",preanalisis['v'],"'")
         imprimirPosiciones()
@@ -194,9 +198,9 @@ def lista_identificadores_repetitiva(atributo,subatributo):
 
 def declaraciones_subrutinas():
     if en_primeros('declaracion_procedimiento'):
-        declaracion_procedimiento();m(";");declaraciones_subrutinas()
+        declaracion_procedimiento("procedimiento");match(";");declaraciones_subrutinas()
     elif en_primeros('declaracion_funcion'):
-        declaracion_funcion();m(";");declaraciones_subrutinas()
+        declaracion_funcion("funcion");match(";");declaraciones_subrutinas()
 
 def declaracion_procedimiento():
     global procedimiento_actual
@@ -206,7 +210,7 @@ def declaracion_procedimiento():
         procedimiento_actual['identificador'] = preanalisis['l']
         cargar_identificador('procedimiento')
         pila_TLs.apilar(Tabla_simbolos())
-        parametros_formales_opcional();m(';');bloque()#instruccion_compuesta()
+        parametros_formales_opcional();match(';');bloque(entorno)#instruccion_compuesta()
         pila_TLs.desapilar()
         procedimiento_actual['identificador']=''
         procedimiento_actual['habilitado'] = False
@@ -251,14 +255,14 @@ def parametros_formales_opcional():
 
 def parametros_formales():
     if preanalisis['v'] == '(':
-        m('(');seccion_parametros_formales();parametros_formales_repetitiva();m(')')
+        match('(');seccion_parametros_formales();parametros_formales_repetitiva();match(')')
     else:
         logger.success("error de sintaxis: se esperaba '(', se encontro '",preanalisis['v'],"'")
         imprimirPosiciones()
 
 def parametros_formales_repetitiva():
     if preanalisis['v'] == ';':
-        m(';');seccion_parametros_formales();parametros_formales_repetitiva()
+        match(';');seccion_parametros_formales();parametros_formales_repetitiva()
 
 def seccion_parametros_formales():
     global tipo_parametros
@@ -266,16 +270,16 @@ def seccion_parametros_formales():
         lista_identificadores('variable','parametro');m(':');tipo_parametros=preanalisis['v'];tipo();
 
 # INSTRUCCIONES
-def instruccion_compuesta():
+def instruccion_compuesta(entorno):
     if preanalisis['v'] == 'begin':
-        m('begin');instruccion();m(';');instruccion_compuesta_repetitiva();m('end')
+        match('begin');instruccion(entorno);match(';');instruccion_compuesta_repetitiva(entorno);match('end')
     else:
         logger.success("error de sintaxis: se esperaba 'begin', se encontro '",preanalisis['v'],"'")
         imprimirPosiciones()
 
-def instruccion_compuesta_repetitiva():
+def instruccion_compuesta_repetitiva(entorno):
     if en_primeros('instruccion'):
-        instruccion();m(';');instruccion_compuesta_repetitiva()
+        instruccion(entorno);match(';');instruccion_compuesta_repetitiva(entorno)
 
 def instruccion():
     global expresion_actual
@@ -304,9 +308,9 @@ def instruccion():
         logger.success('error de sintaxis: no se encontro una instruccion valida')
         imprimirPosiciones()
 
-def instruccion_aux():
+def instruccion_aux(entorno):
     if en_primeros('asignacion'):
-        asignacion()
+        asignacion(entorno="asignacion")
     elif en_primeros('llamada_procedimiento'):
         identificador_sin_definir('procedimiento')
         llamada_procedimiento()
@@ -314,22 +318,22 @@ def instruccion_aux():
         logger.success('error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento')
         imprimirPosiciones()
 
-def asignacion():
+def asignacion(entorno):
     if preanalisis['v'] == ':=':
-        m(':=');expresion()
+        match(':=');expresion("asignacion")
     else:
         logger.success("error de sintaxis: se esperaba ':=', se encontro '",preanalisis['v'],"'")
 
-def llamada_procedimiento():
+def llamada_procedimiento(entorno):
     if en_primeros('lista_expresiones_opcional'):
         lista_expresiones_opcional()
         error_aridad('procedimiento')
     else:
         logger.success("error de sintaxis: no se cumple la estructura para llamar un procedimiento")
 
-def lista_expresiones_opcional():
+def lista_expresiones_opcional(entorno):
     if preanalisis['v'] == '(':
-        m('(');lista_expresiones_procedimiento();m(')')
+        match('(');lista_expresiones_procedimiento(entorno);match(')')
 
 def instruccion_condicional():
     if preanalisis['v'] == 'if':
@@ -343,7 +347,7 @@ def instruccion_condicional():
 
 def else_opcional():
     if preanalisis['v'] == 'else':
-        m('else');instruccion()   
+        match('else');instruccion()   
 
 def instruccion_repetitiva():
     if preanalisis['v'] == 'while':
@@ -356,11 +360,11 @@ def instruccion_repetitiva():
         logger.success("error de sintaxis:  se esperaba 'while', se encontro '",preanalisis['v'],"'")
 
 # EXPRESIONES
-def lista_expresiones_procedimiento():
+def lista_expresiones_procedimiento(entorno):
     if en_primeros('lista_expresiones'):
         lista_expresiones()
 
-def lista_expresiones():
+def lista_expresiones(entorno):
     if en_primeros('expresion'):
         expresion();sumar_parametro_actual();lista_expresiones_repetitiva()
     else:
@@ -404,14 +408,14 @@ def relacion():
     # esta es una forma reducida de calcular el primero() y el match para cada elemento
     terminales = ['=','<>','<=','<','>','>=']
     if preanalisis['v'] in terminales:
-        m_list(terminales)
+        match_list(terminales)
     else:
         logger.success("error de sintaxis: se esperaba un operrador relacional, sea '=','<>','<=','<','>' o '>='")
         imprimirPosiciones()
 
-def expresion_simple():
+def expresion_simple(entorno):
     if en_primeros('mas_menos_opcional') or  en_primeros('termino'):
-        mas_menos_opcional();termino();expresion_simple_repetitiva()
+        mas_menos_opcional();termino(entorno);expresion_simple_repetitiva()
     else:
         logger.success('error de sintaxis: se espera un termino valido.')
         imprimirPosiciones()
@@ -419,12 +423,12 @@ def expresion_simple():
 def mas_menos_opcional():
     terminales = ['+','-']
     if preanalisis['v'] in terminales:
-        m_list(terminales)
+        match_list(terminales)
 
 def expresion_simple_repetitiva():
     global expresion_actual
     if en_primeros('mas_menos_or') or  en_primeros('termino'):
-        mas_menos_or();termino();expresion_simple_repetitiva()
+        mas_menos_or();termino("while");expresion_simple_repetitiva()
 
 def mas_menos_or():
     global expresion_actual
@@ -439,9 +443,9 @@ def mas_menos_or():
         logger.success('error de sintaxis: se espera una operacion "+", "-" o "OR"')
         imprimirPosiciones()
 
-def termino():
+def termino(entorno):
     if en_primeros('factor'):
-        factor();termino_repetitiva()
+        factor(entorno);termino_repetitiva()
     else:
         logger.success('error de sintaxis: se espera un factor valido')
         imprimirPosiciones()
@@ -458,7 +462,7 @@ def termino_repetitiva():
         expresion_actual = 'logica'
         m('AND');factor();termino_repetitiva()
 
-def factor():
+def factor(entorno):
     if en_primeros('identificador'):
         guardar_identificador_a_verificar_a_futuro()
         factor_opcional()
@@ -561,7 +565,7 @@ def guardar_identificador_a_verificar_a_futuro():
 
 
 def asignar_scope(atributo):
-    '''si el atributo es de tipo variable, se le asigna su respectivo scope'''
+    '''Si el atributo es de tipo variable, se le asigna su respectivo scope'''
     tipoScope = None
     if atributo == 'variable':
         if(pila_TLs.tamanio() < 2):
