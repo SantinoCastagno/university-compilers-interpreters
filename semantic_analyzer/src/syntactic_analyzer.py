@@ -3,6 +3,7 @@ from lexical_analyzer import obtener_siguiente_token, obtener_posicion
 from symbol_table import Tabla_simbolos
 from pila import Pila
 from collections import Counter
+import copy
 from loguru import logger
 
 preanalisis = {'v':'','l':''}
@@ -15,8 +16,9 @@ parametros = [] # cuando se declara/invoca una funcion o procedimiento con param
 subprograma_de_parametros_contados = '' # aca se guarda el nombre del subprograma cuyos parametros fueron listados, para acceder al mismo luego de listarlos 
 tipo_parametros = ''
 expresion_semantica_actual = {
- 'elementos' : [],
- 'tipo' : None
+    'elementos' : [],
+    'tipo' : None,
+    'disponible' : False
 }
 funcion_actual = {
     'habilitado' : False,
@@ -60,6 +62,15 @@ def en_primeros(simbolo):
 def siguiente_terminal():
     global expresion_semantica_actual
     elementos_no_evaluables_en_expresion = ['(', ')', ',', ';']
+    # Se realizan verificaciones en caso de que se este evaluando una expresion
+    if (expresion_semantica_actual['disponible'] and preanalisis['v'] not in elementos_no_evaluables_en_expresion):
+        # Se verifica si dentro de la expresion hay un componente que tenga el mismo identificador que un subprograma (en caso de encontrarse en uno)
+        if funcion_actual['habilitado'] and funcion_actual['declaracion_retorno_encontrada'] and preanalisis['l'] == funcion_actual['identificador']:
+            finalizar_analisis(f'error semantico: variable de retorno {funcion_actual["tipo_retorno"]} ['+funcion_actual['identificador']+'] de funcion usada en expresion')
+        elif procedimiento_actual['habilitado'] and preanalisis['l'] == procedimiento_actual['identificador']:
+            finalizar_analisis(f'error semantico: variable de retorno usada en procedimiento ['+procedimiento_actual['identificador']+']')
+            
+        verificar_tipo_elemento_en_expresion()
     
     preanalisis['v'] = obtener_siguiente_token(archivo)
     if preanalisis['v'] == None:
@@ -68,16 +79,7 @@ def siguiente_terminal():
     preanalisis['v'] = preanalisis['v'][preanalisis['v'].find('token'):]
     preanalisis['v'] = eval(preanalisis['v'])
 
-    # Se realizan verificaciones en caso de que se este evaluando una expresion
-    if (len(expresion_semantica_actual['elementos']) > 0 and preanalisis['v'] not in elementos_no_evaluables_en_expresion):
-         
-        # Se verifica si dentro de la expresion hay un componente que tenga el mismo identificador que un subprograma (en caso de encontrarse en uno)
-        if funcion_actual['habilitado'] and funcion_actual['declaracion_retorno_encontrada'] and preanalisis['l'] == funcion_actual['identificador']:
-            finalizar_analisis(f'error semantico: variable de retorno {funcion_actual["tipo_retorno"]} ['+funcion_actual['identificador']+'] de funcion usada en expresion')
-        elif procedimiento_actual['habilitado'] and preanalisis['l'] == procedimiento_actual['identificador']:
-            finalizar_analisis(f'error semantico: variable de retorno usada en procedimiento ['+procedimiento_actual['identificador']+']')
-            
-        verificar_tipo_elemento_en_expresion()
+    
         
         
 def verificar_tipo_elemento_en_expresion():
@@ -112,9 +114,9 @@ def verificar_tipo_elemento_en_expresion():
                 expresion_valida = False
             elif preanalisis['v'] not in componentesBooleanos and preanalisis['v'] not in componentesNumericos:
                 logger.warning("La operacion tiene elementos que no corresponden a ningun tipo.")
+    expresion_semantica_actual['elementos'].append((preanalisis['v'],preanalisis['l']))  
     if (not expresion_valida):
         finalizar_analisis("error semantico: la expresion combina elementos de tipo booleano e integer. ["+str(expresion_semantica_actual['elementos'])+"]")
-    expresion_semantica_actual['elementos'].append((preanalisis['v'],preanalisis['l']))  
     logger.error(expresion_semantica_actual)    
 
 def token(arg0,arg1):
@@ -254,7 +256,6 @@ def declaracion_funcion():
 
         else:
             # Se asigna el tipo de retorno a la funcion en la TS y se resetea la configuracion de la funcion actual
-            # TODO: asignar el tipo de retorno a la funcion
             asignar_tipo_funcion(funcion_actual['tipo_retorno'])
             funcion_actual['identificador'] = ''
             funcion_actual['declaracion_retorno_encontrada'] = False
@@ -345,7 +346,8 @@ def llamada_procedimiento():
 
 def lista_expresiones_opcional():
     if preanalisis['v'] == '(':
-        m('(');lista_expresiones_procedimiento();m(')')
+        m('(');
+        lista_expresiones_procedimiento();m(')')
 
 def instruccion_condicional():
     if preanalisis['v'] == 'if':
@@ -386,28 +388,26 @@ def lista_expresiones_repetitiva():
     if preanalisis['v'] ==',':
         m(',');expresion();sumar_parametro_actual();lista_expresiones_repetitiva()
 
+# FIXME: Corregir el stack de expresiones para que evalue correctamente el EJ03D1 
 def expresion():
     global expresion_semantica_actual
     expresion_semantica_actual['tipo'] = None
-    expresion_semantica_actual['elementos'] = []
+    pila_expresiones.append(expresion_semantica_actual)
+    logger.warning("LUEGO DE APILAR \t"+ str(len(pila_expresiones))+str(pila_expresiones))
     if funcion_actual['habilitado'] and preanalisis['l'] == funcion_actual['identificador']:
         finalizar_analisis(f'error semantico: variable de retorno de funcion {funcion_actual["tipo_retorno"]} usada en expresion')
     elif procedimiento_actual['habilitado'] and preanalisis['l'] == procedimiento_actual['identificador']:
-        finalizar_analisis(f'error semantico: variable de retorno usada en procedimiento')
-        
-    if (len(expresion_semantica_actual) > 0):
-        pila_expresiones.append(expresion_semantica_actual)
-        expresion_semantica_actual['tipo'] = None
-        expresion_semantica_actual['elementos'] = []
-    verificar_tipo_elemento_en_expresion()
+        finalizar_analisis(f'error semantico: variable de retorno usada en procedimiento')    
+    
+    expresion_semantica_actual['disponible'] = True
     if en_primeros('expresion_simple'):
-        expresion_simple();relacion_opcional();
-        
-        # expresion_semantica_actual['tipo'] = None
+        logger.warning("ANTES DE DESAPILAR \t"+ str(len(pila_expresiones)) + str(pila_expresiones))
+        expresion_semantica_actual = pila_expresiones.pop()
+        expresion_simple();
+        relacion_opcional();
+        expresion_semantica_actual['disponible'] = False
         expresion_semantica_actual['elementos'] = []
-        if (len(pila_expresiones)>0):
-            expresion_semantica_actual = pila_expresiones.pop()
-        # expresion_semantica_actual['tipo'] = chequear_expresion_semantica_actualmente()
+        
     else:
         finalizar_analisis('error de sintaxis: la expresion no se inicio de manera correcta')
 
@@ -474,6 +474,7 @@ def factor():
         guardar_identificador_a_verificar_a_futuro()
         factor_opcional()
     elif en_primeros('numero'):
+
         numero()
     elif en_primeros('booleano'):
         booleano()
