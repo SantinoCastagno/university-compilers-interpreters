@@ -87,6 +87,7 @@ def verificar_tipo_elemento_en_expresion():
     componentesBooleanos = ['booleanDato', '=', '<>', 'AND', 'OR', 'NOT']
     componentesNumericos = ['enteroDato', '>', '<', '>=', '<=', '=', '<>', '+', '-', '*', '/'] 
     # Se verifica que el siguiente terminal no sea de un tipo incompatible con los componentes anteriores en la expresion
+    
     pila_revertida = reversed(pila_TLs.items)
     expresion_valida = True
     # Si el elemento es un id, se debe chequear su tipo de dato en la tabla de simbolos  
@@ -99,6 +100,7 @@ def verificar_tipo_elemento_en_expresion():
                     expresion_semantica_actual['tipo'] = ts[id_value]['tipo_dato']
                 elif expresion_semantica_actual['tipo'] != ts[id_value]['tipo_dato']:
                     expresion_valida = False
+                break
     else:
         if expresion_semantica_actual['tipo'] is None:
             if preanalisis['v'] in componentesBooleanos:
@@ -116,8 +118,8 @@ def verificar_tipo_elemento_en_expresion():
                 logger.warning("La operacion tiene elementos que no corresponden a ningun tipo.")
     expresion_semantica_actual['elementos'].append((preanalisis['v'],preanalisis['l']))  
     if (not expresion_valida):
-        finalizar_analisis("error semantico: la expresion combina elementos de tipo booleano e integer. ["+str(expresion_semantica_actual['elementos'])+"]")
-    #logger.error(expresion_semantica_actual)    
+        finalizar_analisis("error semantico: la expresion combina elementos de tipo booleano e integer. "+str(expresion_semantica_actual['elementos']))
+    # logger.error(expresion_semantica_actual)    
 
 def token(arg0,arg1):
     tokens_basicos = {
@@ -350,8 +352,9 @@ def lista_expresiones_opcional():
 
 def instruccion_condicional():
     if preanalisis['v'] == 'if':
-        m('if');expresion();
-        if (expresion_actual == 'integer'):
+        m('if');
+        tipo_expresion_evaluada = expresion()
+        if (tipo_expresion_evaluada == 'integer'):
             finalizar_analisis("error semantico: uso de expresion integer como condición de if")
 
         m('then');instruccion();else_opcional()
@@ -364,10 +367,12 @@ def else_opcional():
 
 def instruccion_repetitiva():
     if preanalisis['v'] == 'while':
-        m('while');expresion()
-        if (expresion_actual == 'integer'):
+        m('while')
+        tipo_expresion_evaluada = expresion()
+        logger.warning("DBG 1 "+str(tipo_expresion_evaluada))
+        if (tipo_expresion_evaluada == 'integer'):
             finalizar_analisis("error semantico: uso de expresion integer como condición de while")
-
+        logger.warning("DBG 2 ")
         m('do');instruccion()
     else:
         finalizar_analisis("error de sintaxis:  se esperaba 'while', se encontro ["+preanalisis['v']+"]")
@@ -387,9 +392,9 @@ def lista_expresiones_repetitiva():
     if preanalisis['v'] ==',':
         m(',');expresion(sumandoParametroActual = True);lista_expresiones_repetitiva()
 
-# FIXME: Corregir el stack de expresiones para que evalue correctamente el EJ03D1 
 def expresion(evaluandoRetorno = False, sumandoParametroActual = False):
     global expresion_semantica_actual
+    tipo_expresion = None
     
     # Verificacion de que ya existe una expresion que se esta evaluando
     if (expresion_semantica_actual['disponible']):
@@ -415,7 +420,8 @@ def expresion(evaluandoRetorno = False, sumandoParametroActual = False):
             finalizar_analisis(f"error semantico: el tipo de retorno [{funcion_actual['tipo_retorno']}] y el valor de la expresion [{expresion_semantica_actual['tipo']}] no coinciden.")
         if (sumandoParametroActual):
             sumar_parametro_actual()
-        
+        tipo_expresion = expresion_semantica_actual['tipo']
+        logger.warning("TIPO EXPRESION ASIGNADO "+str(tipo_expresion))
         # Fin de evaluacion de expresion
         expresion_semantica_actual['elementos'] = []
         if (len(pila_expresiones)>0):
@@ -424,6 +430,7 @@ def expresion(evaluandoRetorno = False, sumandoParametroActual = False):
         else:
             expresion_semantica_actual['disponible'] = False
             expresion_semantica_actual['tipo'] = None
+        return tipo_expresion
     else:
         finalizar_analisis('error de sintaxis: la expresion no se inicio de manera correcta')
 
@@ -451,7 +458,6 @@ def mas_menos_opcional():
         m_list(terminales)
 
 def expresion_simple_repetitiva():
-    global expresion_actual
     if en_primeros('mas_menos_or') or en_primeros('termino'):
         mas_menos_or();termino();expresion_simple_repetitiva()
 
