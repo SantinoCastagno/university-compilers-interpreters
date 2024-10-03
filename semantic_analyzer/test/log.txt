@@ -256,3 +256,48 @@ Analizando ./files/EJ05C1.PAS
 SUCCESS  | error semantico: el tipo de retorno [INTEGER] y el valor de la expresion [BOOLEAN] no coinciden.
 SUCCESS  | fila:9 columna:19
 ############################################################
+Analizando ./files/EJ6A.PAS
+
+SUCCESS  | error semantico: identificador de procedimiento [read] sin definir 
+SUCCESS  | fila:16 columna:8
+############################################################
+Analizando ./files/EJ6B.PAS
+
+SUCCESS  | error semantico: identificador de procedimiento [prU2] sin definir 
+SUCCESS  | fila:14 columna:8
+############################################################
+Analizando ./files/EJ6C.PAS
+
+SUCCESS  | error semantico: variable de retorno de funcion usada en procedimiento
+SUCCESS  | fila:14 columna:11
+############################################################
+Analizando ./files/EJ6D.PAS
+
+SUCCESS  | error semantico: identificador de procedimiento [PRu2] sin definir 
+SUCCESS  | fila:10 columna:8
+############################################################
+Analizando ./files/EJ6E.PAS
+
+SUCCESS  | error de sintaxis: se esperaba [)] y se encontro [None]
+SUCCESS  | fila:8 columna:9
+############################################################
+Analizando ./files/EJ6F.PAS
+
+SUCCESS  | error de sintaxis: se esperaba [)] y se encontro [None]
+SUCCESS  | fila:8 columna:9
+############################################################
+Analizando ./files/EJ6G.PAS
+
+SUCCESS  | error de sintaxis: se esperaba [)] y se encontro [None]
+SUCCESS  | fila:9 columna:9
+############################################################
+Analizando ./files/EJ6H.PAS
+
+SUCCESS  | error semantico: uso de expresion INTEGER como condición de if
+SUCCESS  | fila:12 columna:15
+############################################################
+Analizando ./files/EJ6I.PAS
+
+SUCCESS  | error semantico: uso de expresion INTEGER como condición de if
+SUCCESS  | fila:10 columna:15
+############################################################
