@@ -43,7 +43,7 @@ def m(terminal):
     if(terminal == preanalisis['v']):
         siguiente_terminal()
     else:
-        finalizar_analisis("error de sintaxis: se esperaba ["+ terminal +"] y se encontro ["+preanalisis['v']+"]")
+        finalizar_analisis("error de sintaxis: se esperaba ["+ terminal +"] y se encontro ["+str(preanalisis['v'])+"]")
 
 def m_list(terminales):
     if(preanalisis['v'] in terminales):
@@ -81,7 +81,7 @@ def siguiente_terminal():
 
     
         
-        
+#FIXME: Se debe considerar que si existe un comparador de equivalencia entre dos valores numericos, el valor de la expresion resultante es booleano
 def verificar_tipo_elemento_en_expresion():
     global expresion_semantica_actual
     componentesBooleanos = ['booleanDato', '=', '<>', 'AND', 'OR', 'NOT']
@@ -136,6 +136,7 @@ def token(arg0,arg1):
         or arg0 == 'parentesis'
         or arg0 == 'operadorAritmetico'
         or arg0 == 'operadorRelacional'
+        or arg0 == 'operadorRelacionalIndividual'
         ):
         return arg1
     
@@ -155,6 +156,10 @@ def incializar_TL_global():
     # se inserta write como procedimiento
     pila_TLs.ver_cima().insertar(
         nombre='write',
+        atributo='procedimiento',
+        tipo_scope='global')
+    pila_TLs.ver_cima().insertar(
+        nombre='read',
         atributo='procedimiento',
         tipo_scope='global')
 
@@ -436,13 +441,14 @@ def relacion_opcional():
     if en_primeros('relacion'):
         relacion();expresion_simple()
 
+# TODO: Tal vez aca se pueda obtener que el valor de la expresion actual que se esta analizando da como resultado un boolean
 def relacion():
     # esta es una forma reducida de calcular el primero() y el match para cada elemento
     terminales = ['=','<>','<=','<','>','>=']
     if preanalisis['v'] in terminales:
         m_list(terminales)
     else:
-        finalizar_analisis("error de sintaxis: se esperaba un operrador relacional, sea '=','<>','<=','<','>' o '>='")
+        finalizar_analisis("error de sintaxis: se esperaba un operador relacional, sea '=','<>','<=','<','>' o '>='")
 
 def expresion_simple():
     if en_primeros('mas_menos_opcional') or en_primeros('termino'):
@@ -498,6 +504,7 @@ def factor():
     elif en_primeros('booleano'):
         booleano()
     elif preanalisis['v'] == '(': 
+        # FIXME: Se debe recuperar el valor que retorna la expresion analizada y agregar a la lista de valores de la expresion actual
         m('(')
         expresion(expresionFinal=False)
         m(')')
