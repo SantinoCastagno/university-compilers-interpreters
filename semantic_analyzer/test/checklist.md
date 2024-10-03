@@ -41,13 +41,14 @@
   - El programa es correcto.
 - [x] 03E2 - Pasaje de parámetros expresión numérica y constante literal numérica a función con dos parámetros numéricos.
   - El programa es correcto.
+
 - [x] 04A1 - Uso de expresión booleana asignada como retorno de función numérica.
 - [x] 04A2 - Uso de expresión numérica asignada como retorno de función booleana.
   - fix: la expresion combina elementos de tipo booleano y numerico
 - [x] 04A3 - Uso de operador booleano y variable booleana en expresión numérica asignada como retorno de función numérica.
   - fix: la expresion combina elementos de tipo booleano y numerico
 - [x] 04B - Uso de operador y variables boolenadas y numéricas.
-  - fix: no está correcto.
+  - fix: la expresion combina elementos de tipo booleano y numerico
 - [x] 04B1 - Uso de operador booleano con expresión de variables numéricas.
 - [x] 04B2 - Uso de operador booleano con expresión de variables numéricas.
 - [x] 04B3 - Uso de operador numérico con expresión de variables booleanas.
@@ -70,6 +71,7 @@
   - fix: funcion integer sin retorno.
 - [x] 05A2 - Función numérica sin retorno.
 - [x] 05B1 - Variable de retorno de función booleana usada en expresión.
+  - fix: la expresion combina elementos de tipo booleano y numerico
 - [x] 05B2 - Variable de retorno de función numérica usada en expresión.
 - [x] 05C1 - Variable de retorno de función usada en procedimiento.
   - fix: los tipos de retorno no coinciden.
