@@ -30,8 +30,8 @@ procedimiento_actual = {
     'habilitado' : False,
     'identificador': '',
 }
-reservadas = ['program' , ';' , '.' ,  'var' , ':' , 'integer' , 'boolean' , ',' , 'procedure' , 'function' , 
-    '(' , ')' ,  'begin' , 'end' , ':=' , 'if' , 'then' , 'else' , 'while' , 'do' , '*' , '/' , 'AND']
+reservadas = ['PROGRAM' , ';' , '.' ,  'VAR' , ':' , 'INTEGER' , 'BOOLEAN' , ',' , 'PROCEDURE' , 'FUNCTION' , 
+    '(' , ')' ,  'BEGIN' , 'END' , ':=' , 'IF' , 'THEN' , 'ELSE' , 'WHILE' , 'DO' , '*' , '/' , 'AND']
 
 def finalizar_analisis(mensaje_error):
     row, col = obtener_posicion()
@@ -105,22 +105,22 @@ def verificar_tipo_elemento_en_expresion():
     else:
         if expresion_semantica_actual['tipo'] is None:
             if preanalisis['v'] in componentesBooleanos:
-                expresion_semantica_actual['tipo'] = 'boolean'
+                expresion_semantica_actual['tipo'] = 'BOOLEAN'
             elif preanalisis['v'] in componentesNumericos:
-                expresion_semantica_actual['tipo'] = 'integer'
+                expresion_semantica_actual['tipo'] = 'INTEGER'
             else:
                 logger.warning("El id no corresponde a ningun tipo de elemento, esto no deberia suceder." + preanalisis['v'])
         else:
-            if preanalisis['v'] in componentesBooleanos and expresion_semantica_actual['tipo'] != 'boolean':
+            if preanalisis['v'] in componentesBooleanos and expresion_semantica_actual['tipo'] != 'BOOLEAN':
                 expresion_valida = False
-            elif preanalisis['v'] in componentesNumericos and expresion_semantica_actual['tipo'] != 'integer':
+            elif preanalisis['v'] in componentesNumericos and expresion_semantica_actual['tipo'] != 'INTEGER':
                 expresion_valida = False
             elif preanalisis['v'] not in componentesBooleanos and preanalisis['v'] not in componentesNumericos:
                 logger.warning("La operacion tiene elementos que no corresponden a ningun tipo.")
         expresion_semantica_actual['elementos'].append(preanalisis['v']) 
      
     if (not expresion_valida):
-        finalizar_analisis("error semantico: la expresion combina elementos de tipo booleano e integer. "+str(expresion_semantica_actual['elementos']))
+        finalizar_analisis("error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. "+str(expresion_semantica_actual['elementos']))
     # logger.error(expresion_semantica_actual)    
 
 def token(arg0,arg1):
@@ -160,9 +160,9 @@ def incializar_TL_global():
 
 # PROGRAMAS Y BLOQUES
 def programa(): # Primera funcion ejecutada
-    if preanalisis['v'] == 'program':
+    if preanalisis['v'] == 'PROGRAM':
         incializar_TL_global()
-        m("program");cargar_identificador('programa');m(';');bloque();m('.')
+        m("PROGRAM");cargar_identificador('programa');m(';');bloque();m('.')
     else:
         finalizar_analisis(f"error de sintaxis: se esperaba [program], se encontro [{preanalisis['v']}]")
 
@@ -182,10 +182,10 @@ def declaraciones_subrutinas_opcional():
 
 # DECLARACIONES
 def declaraciones_variables():
-    if preanalisis['v'] =='var':
-        m("var");declaracion_variable();m(';');declaraciones_variables_repetitivas()
+    if preanalisis['v'] =='VAR':
+        m("VAR");declaracion_variable();m(';');declaraciones_variables_repetitivas()
     else:
-        finalizar_analisis("error de sintaxis: se esperaba 'var', se encontro '",preanalisis['v'],"'")
+        finalizar_analisis("error de sintaxis: se esperaba 'VAR', se encontro '",preanalisis['v'],"'")
 
 def declaraciones_variables_repetitivas():
     if en_primeros('declaracion_variable'): 
@@ -199,16 +199,16 @@ def declaracion_variable():
 
 def tipo(): 
     global ultimas_variables_declaradas
-    if preanalisis['v'] == 'integer':
-        m('integer')
-        asignar_tipo_ultimas_variables('integer')
-        return 'integer'
-    elif preanalisis['v'] == 'boolean':
-        m('boolean')
-        asignar_tipo_ultimas_variables('boolean')
-        return 'boolean'
+    if preanalisis['v'] == 'INTEGER':
+        m('INTEGER')
+        asignar_tipo_ultimas_variables('INTEGER')
+        return 'INTEGER'
+    elif preanalisis['v'] == 'BOOLEAN':
+        m('BOOLEAN')
+        asignar_tipo_ultimas_variables('BOOLEAN')
+        return 'BOOLEAN'
     else:
-        finalizar_analisis('error de sintaxis: solo se permite tipo integer o boolean')
+        finalizar_analisis('error de sintaxis: solo se permite tipo INTEGER o boolean')
 
 def lista_identificadores(atributo,subatributo):
     if en_primeros('identificador'):
@@ -228,8 +228,8 @@ def declaraciones_subrutinas():
 
 def declaracion_procedimiento():
     global procedimiento_actual
-    if preanalisis['v'] == 'procedure':
-        m('procedure')
+    if preanalisis['v'] == 'PROCEDURE':
+        m('PROCEDURE')
         procedimiento_actual['habilitado'] = True
         procedimiento_actual['identificador'] = preanalisis['l']
         cargar_identificador('procedimiento')
@@ -244,8 +244,8 @@ def declaracion_procedimiento():
 def declaracion_funcion():
     global funcion_actual 
     global expresion_semantica_actual
-    if preanalisis['v']=='function':
-        m('function');
+    if preanalisis['v']=='FUNCTION':
+        m('FUNCTION');
         funcion_actual['habilitado'] = True
         funcion_actual['identificador'] = preanalisis['l']
         cargar_identificador('funcion')
@@ -288,8 +288,8 @@ def seccion_parametros_formales():
 
 # INSTRUCCIONES
 def instruccion_compuesta():
-    if preanalisis['v'] == 'begin':
-        m('begin');instruccion();m(';');instruccion_compuesta_repetitiva();m('end')
+    if preanalisis['v'] == 'BEGIN':
+        m('BEGIN');instruccion();m(';');instruccion_compuesta_repetitiva();m('END')
     else:
         finalizar_analisis("error de sintaxis: se esperaba 'begin', se encontro '",preanalisis['v'],"'")
 
@@ -353,27 +353,27 @@ def lista_expresiones_opcional():
         lista_expresiones_procedimiento();m(')')
 
 def instruccion_condicional():
-    if preanalisis['v'] == 'if':
-        m('if');
+    if preanalisis['v'] == 'IF':
+        m('IF');
         tipo_expresion_evaluada = expresion()
-        if (tipo_expresion_evaluada == 'integer'):
-            finalizar_analisis("error semantico: uso de expresion integer como condición de if")
+        if (tipo_expresion_evaluada == 'INTEGER'):
+            finalizar_analisis("error semantico: uso de expresion INTEGER como condición de if")
 
-        m('then');instruccion();else_opcional()
+        m('THEN');instruccion();else_opcional()
     else:
         finalizar_analisis("error de sintaxis: se esperaba'if', se encontro ["+preanalisis['v']+"]")
 
 def else_opcional():
-    if preanalisis['v'] == 'else':
-        m('else');instruccion()   
+    if preanalisis['v'] == 'ELSE':
+        m('ELSE');instruccion()   
 
 def instruccion_repetitiva():
-    if preanalisis['v'] == 'while':
-        m('while')
+    if preanalisis['v'] == 'WHILE':
+        m('WHILE')
         tipo_expresion_evaluada = expresion()
-        if (tipo_expresion_evaluada == 'integer'):
-            finalizar_analisis("error semantico: uso de expresion integer como condición de while")
-        m('do');instruccion()
+        if (tipo_expresion_evaluada == 'INTEGER'):
+            finalizar_analisis("error semantico: uso de expresion INTEGER como condición de while")
+        m('DO');instruccion()
     else:
         finalizar_analisis("error de sintaxis:  se esperaba 'while', se encontro ["+preanalisis['v']+"]")
 
@@ -463,7 +463,7 @@ def mas_menos_or():
     global expresion_actual
     terminales = ['+','-','OR']
     if preanalisis['v'] in terminales:
-        if preanalisis['v'] == '+' or preanalisis['v'] == 'm':
+        if preanalisis['v'] == '+' or preanalisis['v'] == '-':
             expresion_actual = 'aritmetica'
         elif preanalisis['v'] == 'OR':
             expresion_actual = 'logica'
@@ -759,35 +759,35 @@ if __name__ == "__main__":
     global caracter
 
     primeros = {       
-        "programa": ["program"],
+        "programa": ["PROGRAM"],
         "bloque":[declaraciones_variables_opcional,declaraciones_subrutinas_opcional,instruccion_compuesta],
         "declaraciones_variables_opcional": [declaraciones_variables,None],
         "declaraciones_subrutinas_opcional": [declaraciones_subrutinas,None],
 
-        "declaraciones_variables":["var"],
-        "declaraciones_variables_repetitiva":['var',None],
+        "declaraciones_variables":["VAR"],
+        "declaraciones_variables_repetitiva":['VAR',None],
         "declaracion_variable":[lista_identificadores],
-        "tipo": ["integer","boolean"],
+        "tipo": ["INTEGER","BOOLEAN"],
         "lista_identificadores":[identificador],
         "lista_identificadores_repetitiva":[",",None],
         "declaraciones_subrutinas":[declaracion_procedimiento,declaracion_funcion,None],
-        "declaracion_procedimiento":["procedure"],
-        "declaracion_funcion":["function"],
+        "declaracion_procedimiento":["PROCEDURE"],
+        "declaracion_funcion":["FUNCTION"],
         "parametros_formales_opcional":[parametros_formales,None],
         "parametros_formales":["("],
         "parametros_formales_repetitiva":[";",None],
         "seccion_parametros_formales":[lista_identificadores],
 
-        "instruccion_compuesta":['begin'],
+        "instruccion_compuesta":['BEGIN'],
         'instruccion_compuesta_repetitiva':[instruccion,None],
         'instruccion':[identificador,instruccion_compuesta,instruccion_condicional,instruccion_repetitiva],
         'instruccion_aux':[asignacion,llamada_procedimiento],
         'asignacion':[':='],
         'llamada_procedimiento':[lista_expresiones_opcional],
         'lista_expresiones_opcional':['(',None],
-        'instruccion_condicional':['if'],
-        'else_opcional':['else',None],
-        'instruccion_repetitiva':['while'],
+        'instruccion_condicional':['IF'],
+        'else_opcional':['ELSE',None],
+        'instruccion_repetitiva':['WHILE'],
 
         'lista_expresiones':[expresion],
         'lista_expresiones_repetitiva':[',',None],

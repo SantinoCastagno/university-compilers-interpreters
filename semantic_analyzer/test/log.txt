@@ -76,57 +76,57 @@ SUCCESS  | fila:14 columna:13
 ############################################################
 Analizando ./files/EJ02A5.PAS
 
-SUCCESS  | error semantico: identificador de funcion [not] sin definir en expresion repetitiva
-SUCCESS  | fila:14 columna:13
+SUCCESS  | error semantico: identificador de funcion [salida] sin definir en expresion repetitiva
+SUCCESS  | fila:14 columna:21
 ############################################################
 Analizando ./files/EJ03A1.PAS
 
-SUCCESS  | error semantico: pasaje de 1 parametro/s de tipo boolean a funcion [algo]. Se esperaba/n 2 parametro/s de tipo boolean
+SUCCESS  | error semantico: pasaje de 1 parametro/s de tipo BOOLEAN a funcion [algo]. Se esperaba/n 2 parametro/s de tipo BOOLEAN
 SUCCESS  | fila:18 columna:19
 ############################################################
 Analizando ./files/EJ03A2.PAS
 
-SUCCESS  | error semantico: pasaje de 3 parametro/s de tipo boolean a funcion [algo]. Se esperaba/n 2 parametro/s de tipo boolean
+SUCCESS  | error semantico: pasaje de 3 parametro/s de tipo BOOLEAN a funcion [algo]. Se esperaba/n 2 parametro/s de tipo BOOLEAN
 SUCCESS  | fila:18 columna:34
 ############################################################
 Analizando ./files/EJ03A.PAS
 
-SUCCESS  | error semantico: pasaje de 1 parametro/s de tipo integer a funcion [algo]. Se esperaba/n 0
+SUCCESS  | error semantico: pasaje de 1 parametro/s de tipo INTEGER a funcion [algo]. Se esperaba/n 0
 SUCCESS  | fila:17 columna:19
 ############################################################
 Analizando ./files/EJ03B1.PAS
 
-SUCCESS  | error semantico: pasaje de 2 parametro/s de tipo integer a procedimiento [nuevo]. Se esperaba/n 3 parametro/s de tipo integer
+SUCCESS  | error semantico: pasaje de 2 parametro/s de tipo INTEGER a procedimiento [nuevo]. Se esperaba/n 3 parametro/s de tipo INTEGER
 SUCCESS  | fila:19 columna:19
 ############################################################
 Analizando ./files/EJ03B2.PAS
 
-SUCCESS  | error semantico: pasaje de 4 parametro/s de tipo integer a procedimiento [nuevo]. Se esperaba/n 3 parametro/s de tipo integer
+SUCCESS  | error semantico: pasaje de 4 parametro/s de tipo INTEGER a procedimiento [nuevo]. Se esperaba/n 3 parametro/s de tipo INTEGER
 SUCCESS  | fila:19 columna:23
 ############################################################
 Analizando ./files/EJ03C1.PAS
 
-SUCCESS  | error semantico: pasaje de 1 parametro/s de tipo boolean y 1 parametro/s de tipo integer a funcion [algo]. Se esperaba/n 2 parametro/s de tipo boolean
+SUCCESS  | error semantico: pasaje de 1 parametro/s de tipo BOOLEAN y 1 parametro/s de tipo INTEGER a funcion [algo]. Se esperaba/n 2 parametro/s de tipo BOOLEAN
 SUCCESS  | fila:18 columna:21
 ############################################################
 Analizando ./files/EJ03C2.PAS
 
-SUCCESS  | error semantico: pasaje de 1 parametro/s de tipo integer y 1 parametro/s de tipo boolean a funcion [algo]. Se esperaba/n 2 parametro/s de tipo boolean
+SUCCESS  | error semantico: pasaje de 1 parametro/s de tipo INTEGER y 1 parametro/s de tipo BOOLEAN a funcion [algo]. Se esperaba/n 2 parametro/s de tipo BOOLEAN
 SUCCESS  | fila:18 columna:21
 ############################################################
 Analizando ./files/EJ03C3.PAS
 
-SUCCESS  | error semantico: pasaje de 1 parametro/s de tipo integer y 1 parametro/s de tipo boolean a procedimiento [nuevo]. Se esperaba/n 2 parametro/s de tipo integer
+SUCCESS  | error semantico: pasaje de 1 parametro/s de tipo INTEGER y 1 parametro/s de tipo BOOLEAN a procedimiento [nuevo]. Se esperaba/n 2 parametro/s de tipo INTEGER
 SUCCESS  | fila:19 columna:17
 ############################################################
 Analizando ./files/EJ03D1.PAS
 
-SUCCESS  | error semantico: pasaje de 1 parametro/s de tipo boolean y 1 parametro/s de tipo integer a funcion [algo]. Se esperaba/n 2 parametro/s de tipo boolean
+SUCCESS  | error semantico: pasaje de 1 parametro/s de tipo BOOLEAN y 1 parametro/s de tipo INTEGER a funcion [algo]. Se esperaba/n 2 parametro/s de tipo BOOLEAN
 SUCCESS  | fila:18 columna:27
 ############################################################
 Analizando ./files/EJ03D2.PAS
 
-SUCCESS  | error semantico: pasaje de 1 parametro/s de tipo integer y 1 parametro/s de tipo boolean a procedimiento [nuevo]. Se esperaba/n 2 parametro/s de tipo integer
+SUCCESS  | error semantico: pasaje de 1 parametro/s de tipo INTEGER y 1 parametro/s de tipo BOOLEAN a procedimiento [nuevo]. Se esperaba/n 2 parametro/s de tipo INTEGER
 SUCCESS  | fila:19 columna:23
 ############################################################
 Analizando ./files/EJ03E1.PAS
@@ -139,67 +139,67 @@ SUCCESS  | analisis terminado, programa correcto.
 ############################################################
 Analizando ./files/EJ04A1.PAS
 
-SUCCESS  | error semantico: el tipo de retorno [integer] y el valor de la expresion [boolean] no coinciden.
+SUCCESS  | error semantico: el tipo de retorno [INTEGER] y el valor de la expresion [BOOLEAN] no coinciden.
 SUCCESS  | fila:9 columna:19
 ############################################################
 Analizando ./files/EJ04A2.PAS
 
-SUCCESS  | error semantico: la expresion combina elementos de tipo booleano e integer. ['a', '+', 'enteroDato', 'AND']
+SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. ['a', '+', 'enteroDato', 'AND']
 SUCCESS  | fila:9 columna:20
 ############################################################
 Analizando ./files/EJ04A3.PAS
 
-SUCCESS  | error semantico: la expresion combina elementos de tipo booleano e integer. ['a', '+', 'enteroDato', 'AND']
+SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. ['a', '+', 'enteroDato', 'AND']
 SUCCESS  | fila:9 columna:20
 ############################################################
 Analizando ./files/EJ04B1.PAS
 
-SUCCESS  | error semantico: la expresion combina elementos de tipo booleano e integer. ['a', 'OR']
+SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. ['a', 'OR']
 SUCCESS  | fila:14 columna:15
 ############################################################
 Analizando ./files/EJ04B2.PAS
 
-SUCCESS  | error semantico: la expresion combina elementos de tipo booleano e integer. ['NOT', 'a']
+SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. ['NOT', 'a']
 SUCCESS  | fila:14 columna:16
 ############################################################
 Analizando ./files/EJ04B3.PAS
 
-SUCCESS  | error semantico: la expresion combina elementos de tipo booleano e integer. ['m', '-']
+SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. ['m', '-']
 SUCCESS  | fila:9 columna:11
 ############################################################
 Analizando ./files/EJ04B4.PAS
 
-SUCCESS  | error semantico: la expresion combina elementos de tipo booleano e integer. ['b', '*']
+SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. ['b', '*']
 SUCCESS  | fila:10 columna:11
 ############################################################
 Analizando ./files/EJ04B5.PAS
 
-SUCCESS  | error semantico: la expresion combina elementos de tipo booleano e integer. ['m', 'OR', 'n', '/']
+SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. ['m', 'OR', 'n', '/']
 SUCCESS  | fila:9 columna:20
 ############################################################
 Analizando ./files/EJ04B.PAS
 
-SUCCESS  | error semantico: la expresion combina elementos de tipo booleano e integer. ['j', '+']
+SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. ['j', '+']
 SUCCESS  | fila:20 columna:20
 ############################################################
 Analizando ./files/EJ04C1.PAS
 
-SUCCESS  | error semantico: uso de expresion integer como condición de if
+SUCCESS  | error semantico: uso de expresion INTEGER como condición de if
 SUCCESS  | fila:15 columna:9
 ############################################################
 Analizando ./files/EJ04C2.PAS
 
-SUCCESS  | error semantico: variable de retorno de funcion integer usada en expresion
+SUCCESS  | error semantico: variable de retorno de funcion INTEGER usada en expresion
 SUCCESS  | fila:9 columna:10
 ############################################################
 Analizando ./files/EJ04C3.PAS
 
-SUCCESS  | error semantico: uso de expresion integer como condición de if
+SUCCESS  | error semantico: uso de expresion INTEGER como condición de if
 SUCCESS  | fila:15 columna:9
 ############################################################
 Analizando ./files/EJ04C4.PAS
 
-SUCCESS  | error semantico: la expresion combina elementos de tipo booleano e integer. ['m', 'OR', 'n', '+']
+SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. ['m', 'OR', 'n', '+']
 SUCCESS  | fila:9 columna:15
 ############################################################
 Analizando ./files/EJ04C5.PAS
@@ -208,51 +208,51 @@ SUCCESS  | analisis terminado, programa correcto.
 ############################################################
 Analizando ./files/EJ04D1.PAS
 
-SUCCESS  | error semantico: la expresion combina elementos de tipo booleano e integer. ['j', '>']
+SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. ['j', '>']
 SUCCESS  | fila:14 columna:12
 ############################################################
 Analizando ./files/EJ04D2.PAS
 
-SUCCESS  | error semantico: uso de expresion integer como condición de while
-SUCCESS  | fila:14 columna:23
+SUCCESS  | error semantico: uso de expresion INTEGER como condición de while
+SUCCESS  | fila:14 columna:20
 ############################################################
 Analizando ./files/EJ04D3.PAS
 
-SUCCESS  | error semantico: uso de expresion integer como condición de while
+SUCCESS  | error semantico: uso de expresion INTEGER como condición de while
 SUCCESS  | fila:14 columna:14
 ############################################################
 Analizando ./files/EJ04D4.PAS
 
-SUCCESS  | error semantico: uso de expresion integer como condición de while
+SUCCESS  | error semantico: uso de expresion INTEGER como condición de while
 SUCCESS  | fila:14 columna:14
 ############################################################
 Analizando ./files/EJ04D5.PAS
 
-SUCCESS  | error semantico: uso de expresion integer como condición de while
+SUCCESS  | error semantico: uso de expresion INTEGER como condición de while
 SUCCESS  | fila:14 columna:14
 ############################################################
 Analizando ./files/EJ05A1.PAS
 
-SUCCESS  | error semantico: funcion integer [algo] sin retorno.
+SUCCESS  | error semantico: funcion INTEGER [algo] sin retorno.
 SUCCESS  | fila:10 columna:5
 ############################################################
 Analizando ./files/EJ05A2.PAS
 
-SUCCESS  | error semantico: funcion integer [algo] sin retorno.
+SUCCESS  | error semantico: funcion INTEGER [algo] sin retorno.
 SUCCESS  | fila:11 columna:6
 ############################################################
 Analizando ./files/EJ05B1.PAS
 
-SUCCESS  | error semantico: la expresion combina elementos de tipo booleano e integer. ['a', 'AND']
+SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. ['a', 'AND']
 SUCCESS  | fila:9 columna:16
 ############################################################
 Analizando ./files/EJ05B2.PAS
 
-SUCCESS  | error semantico: variable de retorno integer [algo] de funcion usada en expresion
+SUCCESS  | error semantico: variable de retorno INTEGER [algo] de funcion usada en expresion
 SUCCESS  | fila:10 columna:33
 ############################################################
 Analizando ./files/EJ05C1.PAS
 
-SUCCESS  | error semantico: el tipo de retorno [integer] y el valor de la expresion [boolean] no coinciden.
+SUCCESS  | error semantico: el tipo de retorno [INTEGER] y el valor de la expresion [BOOLEAN] no coinciden.
 SUCCESS  | fila:9 columna:19
 ############################################################

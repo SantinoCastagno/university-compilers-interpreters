@@ -11,7 +11,7 @@ end;
 
 begin
   a:=9; {+ algo(a); lo comente porque sino detecta este y rompe}
-  while not( salida(a) )
+  while NOT( salida(a) )
     nuevo(a-2);
 end.
 
