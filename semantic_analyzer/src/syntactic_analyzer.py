@@ -18,7 +18,7 @@ tipo_parametros = ''
 expresion_semantica_actual = {
     'elementos' : [],
     'tipo' : None,
-    'disponible' : False
+    'cantidad_ejecutandose' : 0
 }
 funcion_actual = {
     'habilitado' : False,
@@ -63,11 +63,12 @@ def siguiente_terminal():
     global expresion_semantica_actual
     elementos_no_evaluables_en_expresion = ['(', ')', ',', ';']
     # Se realizan verificaciones en caso de que se este evaluando una expresion
-    if (expresion_semantica_actual['disponible'] and preanalisis['v'] not in elementos_no_evaluables_en_expresion):
+    if ((expresion_semantica_actual['cantidad_ejecutandose']>0) and (preanalisis['v'] not in elementos_no_evaluables_en_expresion)):
         # Se verifica si dentro de la expresion hay un componente que tenga el mismo identificador que un subprograma (en caso de encontrarse en uno)
         if funcion_actual['habilitado'] and funcion_actual['declaracion_retorno_encontrada'] and preanalisis['l'] == funcion_actual['identificador']:
             finalizar_analisis(f'error semantico: variable de retorno {funcion_actual["tipo_retorno"]} ['+funcion_actual['identificador']+'] de funcion usada en expresion')
         elif procedimiento_actual['habilitado'] and preanalisis['l'] == procedimiento_actual['identificador']:
+            # FIXME: Este llamado lanza un error si un procedimiento se llama a si mismo de manera recursiva
             finalizar_analisis(f'error semantico: variable de retorno usada en procedimiento ['+procedimiento_actual['identificador']+']')
             
         verificar_tipo_elemento_en_expresion()
@@ -388,26 +389,34 @@ def lista_expresiones_procedimiento():
         lista_expresiones()
 
 def lista_expresiones():
+    global expresion_semantica_actual
     if en_primeros('expresion'):
-        expresion(sumandoParametroActual = True, apilar = True);lista_expresiones_repetitiva()
+        if expresion_semantica_actual['cantidad_ejecutandose']>0:
+            pila_expresiones.append(copy.copy(expresion_semantica_actual))
+            expresion(sumandoParametroActual = True)
+            expresion_semantica_actual = pila_expresiones.pop()
+        else:
+            expresion(sumandoParametroActual = True)
+        lista_expresiones_repetitiva()
     else:
         finalizar_analisis('error de sintaxis: lista_expresiones()') 
 
 def lista_expresiones_repetitiva():
-    if preanalisis['v'] ==',':
-        m(',');expresion(sumandoParametroActual = True, apilar = True);lista_expresiones_repetitiva()
-
-def expresion(evaluandoRetorno = False, sumandoParametroActual = False, apilar = False):
     global expresion_semantica_actual
-    tipo_expresion = None
-    
-    # Verificacion de que ya existe una expresion que se esta evaluando
-    if (apilar and expresion_semantica_actual['disponible']):
-        # Se apila la expresion que se estaba evaluando previamente para continuarlo luego
-        pila_expresiones.append(copy.copy(expresion_semantica_actual))
-        expresion_semantica_actual['tipo'] = None   
-        expresion_semantica_actual['elementos'] = []
-    
+    if preanalisis['v'] ==',':
+        m(',');
+        if expresion_semantica_actual['cantidad_ejecutandose']>0:
+            pila_expresiones.append(copy.copy(expresion_semantica_actual))
+            expresion(sumandoParametroActual = True)
+            expresion_semantica_actual = pila_expresiones.pop()
+        else:
+            expresion(sumandoParametroActual = True)
+        lista_expresiones_repetitiva()
+
+def expresion(evaluandoRetorno = False, sumandoParametroActual = False):
+    global expresion_semantica_actual
+    expresion_semantica_actual['tipo'] = None   
+    expresion_semantica_actual['elementos'] = []
     # Verificaciones de identificadores dentro de expresiones en subprogramas
     if funcion_actual['habilitado'] and preanalisis['l'] == funcion_actual['identificador']:
         finalizar_analisis(f'error semantico: variable de retorno de funcion {funcion_actual["tipo_retorno"]} usada en expresion')
@@ -416,15 +425,14 @@ def expresion(evaluandoRetorno = False, sumandoParametroActual = False, apilar =
     
     if en_primeros('expresion_simple'):
         # Se comienza a evaluar sintacticamente la expresion actual
-        expresion_semantica_actual['disponible'] = True
+        expresion_semantica_actual['cantidad_ejecutandose'] = expresion_semantica_actual['cantidad_ejecutandose'] + 1
+        
         expresion_simple()
         es_expresion_comparativa = relacion_opcional()
-        
         if es_expresion_comparativa:  
             tipo_expresion_resultado = "EXPRESION_BOOLEAN"
         else:
             tipo_expresion_resultado = f"EXPRESION_{expresion_semantica_actual['tipo']}"
-        logger.warning("TIPO EXPRESION RESULTADO:"+tipo_expresion_resultado)
         
         if (evaluandoRetorno and funcion_actual['tipo_retorno'] != expresion_semantica_actual['tipo']):
             finalizar_analisis(f"error semantico: el tipo de retorno [{funcion_actual['tipo_retorno']}] y el valor de la expresion [{expresion_semantica_actual['tipo']}] no coinciden.")
@@ -432,9 +440,7 @@ def expresion(evaluandoRetorno = False, sumandoParametroActual = False, apilar =
             sumar_parametro_actual()
         
         # Fin de evaluacion de expresion
-        if (len(pila_expresiones)>0):
-            expresion_semantica_actual = pila_expresiones.pop()
-
+        expresion_semantica_actual['cantidad_ejecutandose'] = expresion_semantica_actual['cantidad_ejecutandose'] - 1
         return tipo_expresion_resultado
     else:
         finalizar_analisis('error de sintaxis: la expresion no se inicio de manera correcta')
@@ -501,6 +507,7 @@ def termino_repetitiva():
         m('AND');factor();termino_repetitiva()
 
 def factor():
+    global expresion_semantica_actual
     if en_primeros('identificador'):
         guardar_identificador_a_verificar_a_futuro()
         factor_opcional()
@@ -511,16 +518,13 @@ def factor():
     elif preanalisis['v'] == '(': 
         # FIXME: Se debe recuperar el valor que retorna la expresion analizada y agregar a la lista de valores de la expresion actual
         pila_expresiones.append(copy.copy(expresion_semantica_actual))
-        expresion_semantica_actual['disponible'] = False
-        expresion_semantica_actual['tipo'] = None
-        expresion_semantica_actual['elementos'] = []
         m('(')
         valor_expresion_evaluada = expresion()
         m(')')
         expresion_semantica_actual = pila_expresiones.pop()
         expresion_semantica_actual['elementos'].append(valor_expresion_evaluada)
         if ((valor_expresion_evaluada == "EXPRESION_INTEGER" and expresion_semantica_actual['tipo'] == "BOOLEAN") or valor_expresion_evaluada == "EXPRESION_BOOLEAN" and expresion_semantica_actual['tipo'] == "INTEGER"):
-            finalizar_analisis('error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER.' + expresion_semantica_actual['elementos'])
+            finalizar_analisis('error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER.' + str(expresion_semantica_actual['elementos']))
         else: 
             logger.error("error semantico que no deberia ocurrir.")
             
