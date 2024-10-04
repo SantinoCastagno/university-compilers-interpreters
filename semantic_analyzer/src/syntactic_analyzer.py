@@ -84,8 +84,8 @@ def siguiente_terminal():
 #FIXME: Se debe considerar que si existe un comparador de equivalencia entre dos valores numericos, el valor de la expresion resultante es booleano
 def verificar_tipo_elemento_en_expresion():
     global expresion_semantica_actual
-    componentesBooleanos = ['booleanDato', '=', '<>', 'AND', 'OR', 'NOT']
-    componentesNumericos = ['enteroDato', '>', '<', '>=', '<=', '=', '<>', '+', '-', '*', '/'] 
+    componentesBooleanos = ['booleanDato', 'AND', 'OR', 'NOT']
+    componentesNumericos = ['enteroDato', '>', '<', '>=', '<=', '+', '-', '*', '/'] 
     # Se verifica que el siguiente terminal no sea de un tipo incompatible con los componentes anteriores en la expresion
     
     pila_revertida = reversed(pila_TLs.items)
@@ -360,8 +360,8 @@ def lista_expresiones_opcional():
 def instruccion_condicional():
     if preanalisis['v'] == 'IF':
         m('IF');
-        tipo_expresion_evaluada = expresion()
-        if (tipo_expresion_evaluada == 'INTEGER'):
+        valor_expresion_evaluada = expresion()
+        if (valor_expresion_evaluada == 'EXPRESION_INTEGER'):
             finalizar_analisis("error semantico: uso de expresion INTEGER como condición de if")
 
         m('THEN');instruccion();else_opcional()
@@ -375,8 +375,8 @@ def else_opcional():
 def instruccion_repetitiva():
     if preanalisis['v'] == 'WHILE':
         m('WHILE')
-        tipo_expresion_evaluada = expresion()
-        if (tipo_expresion_evaluada == 'INTEGER'):
+        valor_expresion_evaluada = expresion()
+        if (valor_expresion_evaluada == 'EXPRESION_INTEGER'):
             finalizar_analisis("error semantico: uso de expresion INTEGER como condición de while")
         m('DO');instruccion()
     else:
@@ -397,7 +397,7 @@ def lista_expresiones_repetitiva():
     if preanalisis['v'] ==',':
         m(',');expresion(sumandoParametroActual = True, apilar = True);lista_expresiones_repetitiva()
 
-def expresion(evaluandoRetorno = False, sumandoParametroActual = False, apilar = False, expresionFinal = True):
+def expresion(evaluandoRetorno = False, sumandoParametroActual = False, apilar = False):
     global expresion_semantica_actual
     tipo_expresion = None
     
@@ -417,29 +417,34 @@ def expresion(evaluandoRetorno = False, sumandoParametroActual = False, apilar =
     if en_primeros('expresion_simple'):
         # Se comienza a evaluar sintacticamente la expresion actual
         expresion_semantica_actual['disponible'] = True
-        expresion_simple();
-        relacion_opcional();        
+        expresion_simple()
+        es_expresion_comparativa = relacion_opcional()
+        
+        if es_expresion_comparativa:  
+            tipo_expresion_resultado = "EXPRESION_BOOLEAN"
+        else:
+            tipo_expresion_resultado = f"EXPRESION_{expresion_semantica_actual['tipo']}"
+        logger.warning("TIPO EXPRESION RESULTADO:"+tipo_expresion_resultado)
         
         if (evaluandoRetorno and funcion_actual['tipo_retorno'] != expresion_semantica_actual['tipo']):
             finalizar_analisis(f"error semantico: el tipo de retorno [{funcion_actual['tipo_retorno']}] y el valor de la expresion [{expresion_semantica_actual['tipo']}] no coinciden.")
         if (sumandoParametroActual):
             sumar_parametro_actual()
         
-        tipo_expresion = expresion_semantica_actual['tipo']
         # Fin de evaluacion de expresion
         if (len(pila_expresiones)>0):
             expresion_semantica_actual = pila_expresiones.pop()
-        elif expresionFinal:
-            expresion_semantica_actual['disponible'] = False
-            expresion_semantica_actual['tipo'] = None
-            expresion_semantica_actual['elementos'] = []
-        return tipo_expresion
+
+        return tipo_expresion_resultado
     else:
         finalizar_analisis('error de sintaxis: la expresion no se inicio de manera correcta')
 
 def relacion_opcional():
     if en_primeros('relacion'):
         relacion();expresion_simple()
+        return True
+    else:
+        return False
 
 # TODO: Tal vez aca se pueda obtener que el valor de la expresion actual que se esta analizando da como resultado un boolean
 def relacion():
@@ -505,9 +510,21 @@ def factor():
         booleano()
     elif preanalisis['v'] == '(': 
         # FIXME: Se debe recuperar el valor que retorna la expresion analizada y agregar a la lista de valores de la expresion actual
+        pila_expresiones.append(copy.copy(expresion_semantica_actual))
+        expresion_semantica_actual['disponible'] = False
+        expresion_semantica_actual['tipo'] = None
+        expresion_semantica_actual['elementos'] = []
         m('(')
-        expresion(expresionFinal=False)
+        valor_expresion_evaluada = expresion()
         m(')')
+        expresion_semantica_actual = pila_expresiones.pop()
+        expresion_semantica_actual['elementos'].append(valor_expresion_evaluada)
+        if ((valor_expresion_evaluada == "EXPRESION_INTEGER" and expresion_semantica_actual['tipo'] == "BOOLEAN") or valor_expresion_evaluada == "EXPRESION_BOOLEAN" and expresion_semantica_actual['tipo'] == "INTEGER"):
+            finalizar_analisis('error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER.' + expresion_semantica_actual['elementos'])
+        else: 
+            logger.error("error semantico que no deberia ocurrir.")
+            
+            
     elif preanalisis['v'] == 'NOT':
         m('NOT');factor()
     else:
