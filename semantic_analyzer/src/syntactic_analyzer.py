@@ -85,6 +85,7 @@ def siguiente_terminal():
 #FIXME: Se debe considerar que si existe un comparador de equivalencia entre dos valores numericos, el valor de la expresion resultante es booleano
 def verificar_tipo_elemento_en_expresion():
     global expresion_semantica_actual
+    componentesHibridos = ['=', '<>']
     componentesBooleanos = ['booleanDato', 'AND', 'OR', 'NOT']
     componentesNumericos = ['enteroDato', '>', '<', '>=', '<=', '+', '-', '*', '/'] 
     # Se verifica que el siguiente terminal no sea de un tipo incompatible con los componentes anteriores en la expresion
@@ -116,7 +117,7 @@ def verificar_tipo_elemento_en_expresion():
                 expresion_valida = False
             elif preanalisis['v'] in componentesNumericos and expresion_semantica_actual['tipo'] != 'INTEGER':
                 expresion_valida = False
-            elif preanalisis['v'] not in componentesBooleanos and preanalisis['v'] not in componentesNumericos:
+            elif preanalisis['v'] not in componentesBooleanos and preanalisis['v'] not in componentesNumericos and preanalisis['v'] not in componentesHibridos:
                 logger.warning("La operacion tiene elementos que no corresponden a ningun tipo.")
         expresion_semantica_actual['elementos'].append(preanalisis['v']) 
      
@@ -523,10 +524,17 @@ def factor():
         m(')')
         expresion_semantica_actual = pila_expresiones.pop()
         expresion_semantica_actual['elementos'].append(valor_expresion_evaluada)
-        if ((valor_expresion_evaluada == "EXPRESION_INTEGER" and expresion_semantica_actual['tipo'] == "BOOLEAN") or valor_expresion_evaluada == "EXPRESION_BOOLEAN" and expresion_semantica_actual['tipo'] == "INTEGER"):
+        if expresion_semantica_actual['tipo'] is None:
+            if valor_expresion_evaluada == "EXPRESION_INTEGER":
+                expresion_semantica_actual['tipo'] = "INTEGER"
+            elif valor_expresion_evaluada == "EXPRESION_BOOLEAN":
+                expresion_semantica_actual['tipo'] = "BOOLEAN"
+            else:
+                 logger.error("error semantico detectado.")
+        elif ((valor_expresion_evaluada == "EXPRESION_INTEGER" and expresion_semantica_actual['tipo'] == "BOOLEAN") or valor_expresion_evaluada == "EXPRESION_BOOLEAN" and expresion_semantica_actual['tipo'] == "INTEGER"):
             finalizar_analisis('error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER.' + str(expresion_semantica_actual['elementos']))
         else: 
-            logger.error("error semantico que no deberia ocurrir.")
+            logger.error("error semantico detectado.")
             
             
     elif preanalisis['v'] == 'NOT':
