@@ -163,7 +163,7 @@ def incializar_TL_global():
     pila_TLs.ver_cima().insertar(
         nombre='read',
         atributo='procedimiento',
-        tipo_scope='global')
+        tipo_scope='global'),
 
 # PROGRAMAS Y BLOQUES
 def programa(): # Primera funcion ejecutada
@@ -309,18 +309,18 @@ def instruccion():
     global funcion_actual
     if en_primeros('identificador'):
         evaluandoRetorno = False
+        identificador_izquierda_instruccion = preanalisis['v']
+        
         # Verificar si el identificador del primer elemento de la instruccion coincide con el identificar de la funcion
         if preanalisis['l']==funcion_actual['identificador']:
             # Si coinciden, es porque se esta asignando un valor de retorno
             funcion_actual['declaracion_retorno_encontrada'] = True
             evaluandoRetorno = True
-        elif preanalisis['l'] == procedimiento_actual['identificador']:
-            finalizar_analisis(f'error semantico: variable de retorno de funcion usada en procedimiento')
 
-            
         registrar_subprograma_semanticamente()
         guardar_identificador_a_verificar_a_futuro()
-        instruccion_aux(evaluandoRetorno=evaluandoRetorno)
+        
+        instruccion_aux(evaluandoRetorno=evaluandoRetorno, identificador_izquierda_instruccion=identificador_izquierda_instruccion)
     elif en_primeros('instruccion_compuesta'):
         instruccion_compuesta()
     elif en_primeros('instruccion_condicional'):
@@ -332,17 +332,19 @@ def instruccion():
     else:
         finalizar_analisis('error de sintaxis: no se encontro una instruccion valida')
 
-def instruccion_aux(evaluandoRetorno):
+def instruccion_aux(evaluandoRetorno, identificador_izquierda_instruccion):
     if en_primeros('asignacion'):
-        asignacion(evaluandoRetorno)
+        asignacion(evaluandoRetorno, identificador_izquierda_instruccion)
     elif en_primeros('llamada_procedimiento'):
         identificador_sin_definir('procedimiento')
         llamada_procedimiento()
     else:
         finalizar_analisis('error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento')
 
-def asignacion(evaluandoRetorno):
+def asignacion(evaluandoRetorno, identificar_izquierda_instruccion):
     if preanalisis['v'] == ':=':
+        if identificar_izquierda_instruccion == procedimiento_actual['identificador']:
+            finalizar_analisis(f'error semantico: variable de retorno de funcion usada en procedimiento')
         m(':=');expresion(evaluandoRetorno)
     else:
         finalizar_analisis("error de sintaxis: se esperaba ':=', se encontro '",preanalisis['v'],"'")
@@ -533,9 +535,6 @@ def factor():
                  logger.error("error semantico detectado.")
         elif ((valor_expresion_evaluada == "EXPRESION_INTEGER" and expresion_semantica_actual['tipo'] == "BOOLEAN") or valor_expresion_evaluada == "EXPRESION_BOOLEAN" and expresion_semantica_actual['tipo'] == "INTEGER"):
             finalizar_analisis('error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER.' + str(expresion_semantica_actual['elementos']))
-        else: 
-            logger.error("error semantico detectado.")
-            
             
     elif preanalisis['v'] == 'NOT':
         m('NOT');factor()
@@ -712,7 +711,7 @@ def error_aridad(atributo):
     id = subprograma_de_parametros_contados
     pila_revertida = reversed(pila_TLs.items)
     failed = False
-    if id != "write":  
+    if id != "write" and id != "read":  
         for ts in pila_revertida:
             ts = ts.tabla
             if id in ts.keys():

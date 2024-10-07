@@ -174,7 +174,7 @@ SUCCESS  | fila:10 columna:11
 ############################################################
 Analizando ./files/EJ04B5.PAS
 
-SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. ['m', 'OR', 'n', '/']
+SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. ['EXPRESION_BOOLEAN', '/']
 SUCCESS  | fila:9 columna:20
 ############################################################
 Analizando ./files/EJ04B.PAS
@@ -199,7 +199,7 @@ SUCCESS  | fila:15 columna:9
 ############################################################
 Analizando ./files/EJ04C4.PAS
 
-SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. ['m', 'OR', 'n', '+']
+SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. ['EXPRESION_BOOLEAN', '+']
 SUCCESS  | fila:9 columna:15
 ############################################################
 Analizando ./files/EJ04C5.PAS
