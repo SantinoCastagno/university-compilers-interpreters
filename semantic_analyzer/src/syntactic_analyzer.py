@@ -64,13 +64,6 @@ def siguiente_terminal():
     elementos_no_evaluables_en_expresion = ['(', ')', ',', ';']
     # Se realizan verificaciones en caso de que se este evaluando una expresion
     if ((expresion_semantica_actual['cantidad_ejecutandose']>0) and (preanalisis['v'] not in elementos_no_evaluables_en_expresion)):
-        # Se verifica si dentro de la expresion hay un componente que tenga el mismo identificador que un subprograma (en caso de encontrarse en uno)
-        if funcion_actual['habilitado'] and funcion_actual['declaracion_retorno_encontrada'] and preanalisis['l'] == funcion_actual['identificador']:
-            finalizar_analisis(f'error semantico: variable de retorno {funcion_actual["tipo_retorno"]} ['+funcion_actual['identificador']+'] de funcion usada en expresion')
-        elif procedimiento_actual['habilitado'] and preanalisis['l'] == procedimiento_actual['identificador']:
-            # FIXME: Este llamado lanza un error si un procedimiento se llama a si mismo de manera recursiva
-            finalizar_analisis(f'error semantico: variable de retorno usada en procedimiento ['+procedimiento_actual['identificador']+']')
-            
         verificar_tipo_elemento_en_expresion()
     
     preanalisis['v'] = obtener_siguiente_token(archivo)
@@ -80,16 +73,13 @@ def siguiente_terminal():
     preanalisis['v'] = preanalisis['v'][preanalisis['v'].find('token'):]
     preanalisis['v'] = eval(preanalisis['v'])
 
-    
-        
-#FIXME: Se debe considerar que si existe un comparador de equivalencia entre dos valores numericos, el valor de la expresion resultante es booleano
 def verificar_tipo_elemento_en_expresion():
     global expresion_semantica_actual
     componentesHibridos = ['=', '<>']
     componentesBooleanos = ['booleanDato', 'AND', 'OR', 'NOT']
     componentesNumericos = ['enteroDato', '>', '<', '>=', '<=', '+', '-', '*', '/'] 
-    # Se verifica que el siguiente terminal no sea de un tipo incompatible con los componentes anteriores en la expresion
     
+    # Se verifica que el siguiente terminal no sea de un tipo incompatible con los componentes anteriores en la expresion
     pila_revertida = reversed(pila_TLs.items)
     expresion_valida = True
     # Si el elemento es un id, se debe chequear su tipo de dato en la tabla de simbolos  
@@ -257,14 +247,15 @@ def declaracion_funcion():
         funcion_actual['identificador'] = preanalisis['l']
         cargar_identificador('funcion')
         pila_TLs.apilar(Tabla_simbolos())
-        parametros_formales_opcional();m(':');funcion_actual['tipo_retorno']=tipo();m(';');bloque();
+        parametros_formales_opcional();m(':');
+        funcion_actual['tipo_retorno']=tipo();
+        # Se asigna el tipo de retorno a la funcion en la TS y se resetea la configuracion de la funcion actual
+        asignar_tipo_funcion(funcion_actual['tipo_retorno'])
+        m(';');bloque();
         # chequear si no se encontro una declaracion de retorno para la funcion
         if funcion_actual['declaracion_retorno_encontrada'] == False:
             finalizar_analisis(f'error semantico: funcion {funcion_actual["tipo_retorno"]} [{funcion_actual["identificador"]}] sin retorno.')
-
         else:
-            # Se asigna el tipo de retorno a la funcion en la TS y se resetea la configuracion de la funcion actual
-            asignar_tipo_funcion(funcion_actual['tipo_retorno'])
             funcion_actual['identificador'] = ''
             funcion_actual['declaracion_retorno_encontrada'] = False
             funcion_actual['tipo_retorno'] = ''
@@ -311,15 +302,15 @@ def instruccion():
         evaluandoRetorno = False
         identificador_izquierda_instruccion = preanalisis['v']
         
+        # FIXME: verificar si el identificador es valido.
+        #identificador_sin_definir('variable')
         # Verificar si el identificador del primer elemento de la instruccion coincide con el identificar de la funcion
         if preanalisis['l']==funcion_actual['identificador']:
             # Si coinciden, es porque se esta asignando un valor de retorno
             funcion_actual['declaracion_retorno_encontrada'] = True
             evaluandoRetorno = True
-
         registrar_subprograma_semanticamente()
         guardar_identificador_a_verificar_a_futuro()
-        
         instruccion_aux(evaluandoRetorno=evaluandoRetorno, identificador_izquierda_instruccion=identificador_izquierda_instruccion)
     elif en_primeros('instruccion_compuesta'):
         instruccion_compuesta()
@@ -420,12 +411,6 @@ def expresion(evaluandoRetorno = False, sumandoParametroActual = False):
     global expresion_semantica_actual
     expresion_semantica_actual['tipo'] = None   
     expresion_semantica_actual['elementos'] = []
-    # Verificaciones de identificadores dentro de expresiones en subprogramas
-    if funcion_actual['habilitado'] and preanalisis['l'] == funcion_actual['identificador']:
-        finalizar_analisis(f'error semantico: variable de retorno de funcion {funcion_actual["tipo_retorno"]} usada en expresion')
-    elif procedimiento_actual['habilitado'] and preanalisis['l'] == procedimiento_actual['identificador']:
-        finalizar_analisis(f'error semantico: variable de retorno usada en procedimiento')    
-    
     if en_primeros('expresion_simple'):
         # Se comienza a evaluar sintacticamente la expresion actual
         expresion_semantica_actual['cantidad_ejecutandose'] = expresion_semantica_actual['cantidad_ejecutandose'] + 1
@@ -519,7 +504,6 @@ def factor():
     elif en_primeros('booleano'):
         booleano()
     elif preanalisis['v'] == '(': 
-        # FIXME: Se debe recuperar el valor que retorna la expresion analizada y agregar a la lista de valores de la expresion actual
         pila_expresiones.append(copy.copy(expresion_semantica_actual))
         m('(')
         valor_expresion_evaluada = expresion()
@@ -550,7 +534,6 @@ def factor_opcional():
         registrar_subprograma_semanticamente(identificador_a_verificar_a_futuro)
         llamada_funcion()
         error_aridad('funcion')
-
     else:
         identificador_sin_definir('variable')
 
