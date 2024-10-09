@@ -189,8 +189,8 @@ SUCCESS  | fila:15 columna:9
 ############################################################
 Analizando ./files/EJ04C2.PAS
 
-SUCCESS  | error semantico: variable de retorno de funcion INTEGER usada en expresion
-SUCCESS  | fila:9 columna:10
+SUCCESS  | error semantico: uso de expresion INTEGER como condición de if
+SUCCESS  | fila:10 columna:9
 ############################################################
 Analizando ./files/EJ04C3.PAS
 
@@ -248,8 +248,9 @@ SUCCESS  | fila:9 columna:16
 ############################################################
 Analizando ./files/EJ05B2.PAS
 
-SUCCESS  | error semantico: variable de retorno INTEGER [algo] de funcion usada en expresion
-SUCCESS  | fila:10 columna:33
+WARNING  | error semantico que no deberia ocurrir
+SUCCESS  | error semantico: identificador de variable [algo] sin definir 
+SUCCESS  | fila:10 columna:34
 ############################################################
 Analizando ./files/EJ05C1.PAS
 
@@ -258,46 +259,38 @@ SUCCESS  | fila:9 columna:19
 ############################################################
 Analizando ./files/EJ6A.PAS
 
-SUCCESS  | error semantico: pasaje de 1 parametro/s de tipo INTEGER a procedimiento [read]. Se esperaba/n 0
-SUCCESS  | fila:16 columna:11
+SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. ['enteroDato', '*', 'booleanDato']
+SUCCESS  | fila:18 columna:22
 ############################################################
 Analizando ./files/EJ6B.PAS
 
-SUCCESS  | error semantico: identificador de procedimiento [prU2] sin definir 
-SUCCESS  | fila:14 columna:8
+SUCCESS  | error semantico: pasaje de 0 parametros a procedimiento [pru2]. Se esperaba/n 1 parametro/s de tipo INTEGER
+SUCCESS  | fila:14 columna:10
 ############################################################
 Analizando ./files/EJ6C.PAS
 
-SUCCESS  | error semantico: variable de retorno de funcion usada en procedimiento
-SUCCESS  | fila:14 columna:11
+SUCCESS  | error semantico: pasaje de 5 parametro/s de tipo INTEGER a procedimiento [algo2]. Se esperaba/n 5 parametro/s de tipo BOOLEAN
+SUCCESS  | fila:14 columna:26
 ############################################################
 Analizando ./files/EJ6D.PAS
 
-SUCCESS  | error semantico: identificador de procedimiento [PRu2] sin definir 
-SUCCESS  | fila:10 columna:8
+SUCCESS  | analisis terminado, programa correcto.
 ############################################################
 Analizando ./files/EJ6E.PAS
 
-SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. ['r', '=']
-SUCCESS  | fila:8 columna:9
+SUCCESS  | error semantico: asignacion a funcion fuera del ambito de la misma.
+SUCCESS  | fila:34 columna:8
 ############################################################
 Analizando ./files/EJ6F.PAS
 
-SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. ['r', '=']
-SUCCESS  | fila:8 columna:9
+SUCCESS  | analisis terminado, programa correcto.
 ############################################################
 Analizando ./files/EJ6G.PAS
 
-SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. ['r', '=']
-SUCCESS  | fila:9 columna:9
+SUCCESS  | error semantico: asignacion a funcion fuera del ambito de la misma.
+SUCCESS  | fila:28 columna:8
 ############################################################
 Analizando ./files/EJ6H.PAS
 
-SUCCESS  | error semantico: uso de expresion INTEGER como condición de if
-SUCCESS  | fila:12 columna:15
-############################################################
-Analizando ./files/EJ6I.PAS
-
-SUCCESS  | error semantico: uso de expresion INTEGER como condición de if
-SUCCESS  | fila:10 columna:15
+SUCCESS  | analisis terminado, programa correcto.
 ############################################################

@@ -8,12 +8,12 @@ from loguru import logger
 
 preanalisis = {'v':'','l':''}
 pila_TLs = Pila()
-ultimas_variables_declaradas = [] # lista de elementos que se utiliza para asignar el tipo de dato a las ultimas variables declaradas
+ultimas_variables_declaradas = []           # lista de elementos que se utiliza para asignar el tipo de dato a las ultimas variables declaradas
 identificador_a_verificar_a_futuro = ''
-expresion_actual = '' # si la expresion actual a evaluar es aritmetica, condicional, repetitiva o ninguna (cadena vacia).
+expresion_actual = ''                       # si la expresion actual a evaluar es aritmetica, condicional, repetitiva o ninguna (cadena vacia).
 pila_expresiones = []
-parametros = [] # cuando se declara/invoca una funcion o procedimiento con parametros, se llevara una lista de los mismos
-subprograma_de_parametros_contados = '' # aca se guarda el nombre del subprograma cuyos parametros fueron listados, para acceder al mismo luego de listarlos 
+parametros = []                             # cuando se declara/invoca una funcion o procedimiento con parametros, se llevara una lista de los mismos
+subprograma_de_parametros_contados = ''     # aca se guarda el nombre del subprograma cuyos parametros fueron listados, para acceder al mismo luego de listarlos 
 tipo_parametros = ''
 expresion_semantica_actual = {
     'elementos' : [],
@@ -300,13 +300,9 @@ def instruccion():
     global funcion_actual
     if en_primeros('identificador'):
         evaluandoRetorno = False
-        identificador_izquierda_instruccion = preanalisis['v']
-        
-        # FIXME: verificar si el identificador es valido.
-        #identificador_sin_definir('variable')
-        # Verificar si el identificador del primer elemento de la instruccion coincide con el identificar de la funcion
+        identificador_izquierda_instruccion = preanalisis['l']
+        # Verificar si el identificador del primer elemento de la instruccion coincide con el identificador de la funcion
         if preanalisis['l']==funcion_actual['identificador']:
-            # Si coinciden, es porque se esta asignando un valor de retorno
             funcion_actual['declaracion_retorno_encontrada'] = True
             evaluandoRetorno = True
         registrar_subprograma_semanticamente()
@@ -332,13 +328,27 @@ def instruccion_aux(evaluandoRetorno, identificador_izquierda_instruccion):
     else:
         finalizar_analisis('error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento')
 
-def asignacion(evaluandoRetorno, identificar_izquierda_instruccion):
+def asignacion(evaluandoRetorno, identificador_izquierda_instruccion):
     if preanalisis['v'] == ':=':
-        if identificar_izquierda_instruccion == procedimiento_actual['identificador']:
-            finalizar_analisis(f'error semantico: variable de retorno de funcion usada en procedimiento')
+        if identificador_izquierda_instruccion == procedimiento_actual['identificador']:
+            finalizar_analisis(f'error semantico: variable de retorno de funcion usada en procedimiento.')
+        if (not evaluandoRetorno and sem_verificar_identificador_funcion(identificador_izquierda_instruccion)):
+            finalizar_analisis(f'error semantico: asignacion a funcion fuera del ambito de la misma.')
         m(':=');expresion(evaluandoRetorno)
     else:
         finalizar_analisis("error de sintaxis: se esperaba ':=', se encontro '",preanalisis['v'],"'")
+        
+def sem_verificar_identificador_funcion(identificador_izquierda_instruccion):
+    id = identificador_izquierda_instruccion
+    pila_revertida = reversed(pila_TLs.items)
+    failed = False
+
+    for ts in pila_revertida:
+        ts = ts.tabla
+        if id in ts.keys() and ts[id]['atributo'] == "funcion":
+            failed = True
+            break
+    return failed
 
 def llamada_procedimiento():
     if en_primeros('lista_expresiones_opcional'):
