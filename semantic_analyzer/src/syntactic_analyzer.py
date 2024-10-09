@@ -13,6 +13,7 @@ identificador_a_verificar_a_futuro = ''
 expresion_actual = ''                       # si la expresion actual a evaluar es aritmetica, condicional, repetitiva o ninguna (cadena vacia).
 pila_expresiones = []
 parametros = []                             # cuando se declara/invoca una funcion o procedimiento con parametros, se llevara una lista de los mismos
+paresOrdenadosParametros = []
 subprograma_de_parametros_contados = ''     # aca se guarda el nombre del subprograma cuyos parametros fueron listados, para acceder al mismo luego de listarlos 
 tipo_parametros = ''
 expresion_semantica_actual = {
@@ -209,13 +210,18 @@ def tipo():
 
 def lista_identificadores(atributo,subatributo):
     if en_primeros('identificador'):
-        cargar_identificador(atributo,subatributo);lista_identificadores_repetitiva(atributo,subatributo)
+        logger.warning("DBG1")
+        cargar_identificador(atributo,subatributo)
+        lista_identificadores_repetitiva(atributo,subatributo)
     else:
         finalizar_analisis('error de sintaxis: aca deberia ir un identificador')
 
 def lista_identificadores_repetitiva(atributo,subatributo):
     if preanalisis['v'] == ',':
-        m(','),cargar_identificador(atributo,subatributo),lista_identificadores_repetitiva(atributo,subatributo)
+        logger.warning("DBG2")
+        m(',')
+        cargar_identificador(atributo,subatributo)
+        lista_identificadores_repetitiva(atributo,subatributo)
 
 def declaraciones_subrutinas():
     if en_primeros('declaracion_procedimiento'):
@@ -267,7 +273,7 @@ def declaracion_funcion():
 def parametros_formales_opcional():
     if en_primeros('parametros_formales'):
         parametros_formales()
-    actualizar_parametros_subprograma()
+    establecer_parametros_subprograma()
 
 def parametros_formales():
     if preanalisis['v'] == '(':
@@ -282,7 +288,11 @@ def parametros_formales_repetitiva():
 def seccion_parametros_formales():
     global tipo_parametros
     if en_primeros('lista_identificadores'):
-        lista_identificadores('variable','parametro');m(':');tipo_parametros=preanalisis['v'];tipo();
+        lista_identificadores('variable','parametro')
+        m(':')
+        tipo_parametros=preanalisis['v']
+        actualizar_parametros_subprograma()
+        tipo()
 
 # INSTRUCCIONES
 def instruccion_compuesta():
@@ -450,7 +460,6 @@ def relacion_opcional():
     else:
         return False
 
-# TODO: Tal vez aca se pueda obtener que el valor de la expresion actual que se esta analizando da como resultado un boolean
 def relacion():
     # esta es una forma reducida de calcular el primero() y el match para cada elemento
     terminales = ['=','<>','<=','<','>','>=']
@@ -659,8 +668,17 @@ def actualizar_parametros_subprograma():
     global subprograma_de_parametros_contados
     global parametros
     global tipo_parametros
-    paresOrdenadosParametros = [(parametro, tipo_parametros) for parametro in parametros]
-    pila_TLs.items[-2].modificar_dato(subprograma_de_parametros_contados,'parametros', paresOrdenadosParametros)
+    global paresOrdenadosParametros
+    # FIXME: el error se encuentra aca, "parametros" tiene solamente el ultimo tipo de parametro con sus parametros respectivos, pisando los anteriores.
+    paresOrdenadosTemporal = [(parametro, tipo_parametros) for parametro in parametros]
+    paresOrdenadosParametros.extend(paresOrdenadosTemporal)
+    parametros = []
+    
+def establecer_parametros_subprograma():
+    global subprograma_de_parametros_contados
+    global paresOrdenadosParametros
+    pila_TLs.items[0].modificar_dato(subprograma_de_parametros_contados,'parametros', paresOrdenadosParametros)
+    paresOrdenadosParametros = []
 
 # DETECCION DE ERRORES SEMANTICOS
 def colision_nombres(subatributo,tipoScope):
@@ -697,6 +715,7 @@ def identificador_sin_definir(atributo):
         return failed
 
 def error_aridad(atributo):
+    global pila_TLs
     global subprograma_de_parametros_contados
     global parametros
     global tipo_parametros
@@ -705,8 +724,8 @@ def error_aridad(atributo):
     pila_revertida = reversed(pila_TLs.items)
     failed = False
     if id != "write" and id != "read":  
-        for ts in pila_revertida:
-            ts = ts.tabla
+        for ambito in pila_revertida:
+            ts = ambito.tabla
             if id in ts.keys():
                 # Se obtienen los parametros formales declarados para el subprograma
                 parametros_formales = ts[id]['parametros']
