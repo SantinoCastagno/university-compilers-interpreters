@@ -144,42 +144,42 @@ SUCCESS  | fila:9 columna:19
 ############################################################
 Analizando ./files/EJ04A2.PAS
 
-SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. ['a', '+', 'enteroDato', 'AND']
+SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER.
 SUCCESS  | fila:9 columna:20
 ############################################################
 Analizando ./files/EJ04A3.PAS
 
-SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. ['a', '+', 'enteroDato', 'AND']
+SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER.
 SUCCESS  | fila:9 columna:20
 ############################################################
 Analizando ./files/EJ04B1.PAS
 
-SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. ['a', 'OR']
+SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER.
 SUCCESS  | fila:14 columna:15
 ############################################################
 Analizando ./files/EJ04B2.PAS
 
-SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. ['NOT', 'a']
+SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER.
 SUCCESS  | fila:14 columna:16
 ############################################################
 Analizando ./files/EJ04B3.PAS
 
-SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. ['m', '-']
+SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER.
 SUCCESS  | fila:9 columna:11
 ############################################################
 Analizando ./files/EJ04B4.PAS
 
-SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. ['b', '*']
+SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER.
 SUCCESS  | fila:10 columna:11
 ############################################################
 Analizando ./files/EJ04B5.PAS
 
-SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. ['m', 'OR', 'n', '/']
+SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER.
 SUCCESS  | fila:9 columna:20
 ############################################################
 Analizando ./files/EJ04B.PAS
 
-SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. ['j', '+']
+SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER.
 SUCCESS  | fila:20 columna:20
 ############################################################
 Analizando ./files/EJ04C1.PAS
@@ -189,8 +189,8 @@ SUCCESS  | fila:15 columna:9
 ############################################################
 Analizando ./files/EJ04C2.PAS
 
-SUCCESS  | error semantico: variable de retorno de funcion INTEGER usada en expresion
-SUCCESS  | fila:9 columna:10
+SUCCESS  | error semantico: uso de expresion INTEGER como condición de if
+SUCCESS  | fila:10 columna:9
 ############################################################
 Analizando ./files/EJ04C3.PAS
 
@@ -199,7 +199,7 @@ SUCCESS  | fila:15 columna:9
 ############################################################
 Analizando ./files/EJ04C4.PAS
 
-SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. ['m', 'OR', 'n', '+']
+SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER.
 SUCCESS  | fila:9 columna:15
 ############################################################
 Analizando ./files/EJ04C5.PAS
@@ -208,7 +208,7 @@ SUCCESS  | analisis terminado, programa correcto.
 ############################################################
 Analizando ./files/EJ04D1.PAS
 
-SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. ['j', '>']
+SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER.
 SUCCESS  | fila:14 columna:12
 ############################################################
 Analizando ./files/EJ04D2.PAS
@@ -243,16 +243,53 @@ SUCCESS  | fila:11 columna:6
 ############################################################
 Analizando ./files/EJ05B1.PAS
 
-SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. ['a', 'AND']
+SUCCESS  | error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER.
 SUCCESS  | fila:9 columna:16
 ############################################################
 Analizando ./files/EJ05B2.PAS
 
-SUCCESS  | error semantico: variable de retorno INTEGER [algo] de funcion usada en expresion
-SUCCESS  | fila:10 columna:33
+WARNING  | error semantico que no deberia ocurrir
+SUCCESS  | error semantico: identificador de variable [algo] sin definir 
+SUCCESS  | fila:10 columna:34
 ############################################################
 Analizando ./files/EJ05C1.PAS
 
 SUCCESS  | error semantico: el tipo de retorno [INTEGER] y el valor de la expresion [BOOLEAN] no coinciden.
 SUCCESS  | fila:9 columna:19
+############################################################
+Analizando ./files/EJ6A.PAS
+
+SUCCESS  | analisis terminado, programa correcto.
+############################################################
+Analizando ./files/EJ6B.PAS
+
+SUCCESS  | error semantico: pasaje de 0 parametros a procedimiento [pru2]. Se esperaba/n 1 parametro/s de tipo INTEGER
+SUCCESS  | fila:14 columna:10
+############################################################
+Analizando ./files/EJ6C.PAS
+
+SUCCESS  | error de sintaxis: se espera una operacion "+", "-" o "OR"
+SUCCESS  | fila:32 columna:45
+############################################################
+Analizando ./files/EJ6D.PAS
+
+SUCCESS  | analisis terminado, programa correcto.
+############################################################
+Analizando ./files/EJ6E.PAS
+
+SUCCESS  | error semantico: asignacion a funcion fuera del ambito de la misma.
+SUCCESS  | fila:34 columna:8
+############################################################
+Analizando ./files/EJ6F.PAS
+
+SUCCESS  | analisis terminado, programa correcto.
+############################################################
+Analizando ./files/EJ6G.PAS
+
+SUCCESS  | error semantico: asignacion a funcion fuera del ambito de la misma.
+SUCCESS  | fila:28 columna:8
+############################################################
+Analizando ./files/EJ6H.PAS
+
+SUCCESS  | analisis terminado, programa correcto.
 ############################################################

@@ -32,7 +32,7 @@ def construir_lexema(fuente):
                     col = col + 1
                 if (palabra.upper() in keyword_list):
                     return lexema + ", token('keyword', '" + palabra.upper() + "')"
-                return lexema + ", token('id', '"+ lexema[7:] +"')"
+                return lexema + ", token('id', '"+ lexema[7:].lower() +"')"
 
             elif (caracter.isdigit()):
                 numero = str(caracter)
