@@ -17,7 +17,7 @@ end;
 Function factorial(r:integer):integer;
 begin
    
-  a:= pru(a);     {----> aca da error tb}
+  a:= pru(a);
 
   if r = 1 then
     factorial := 1
@@ -27,11 +27,11 @@ end;
 
 Begin
 
-  a:= pru(a);   {----> aca da error tb}
+  a:= pru(a);
 
 
   a:= local;
-  {pru:= 33;}
+  pru:= 33;
   local:= pru(33);
   a := factorial(3);
   write(a);

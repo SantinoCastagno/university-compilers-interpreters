@@ -27,5 +27,5 @@ Begin
   a:= local;
   pru:= 33;
   a := factorial(3);
-  writeln(a);
+  write(a);
 End.

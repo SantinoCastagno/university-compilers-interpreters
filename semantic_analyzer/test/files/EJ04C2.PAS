@@ -6,7 +6,7 @@ var
 function algo(m,n:boolean): integer;
  var b:integer;
 begin
-  if algo(m,n and TRUE) 
+  if algo(m,n and TRUE)
     then b := +1
     else b := -5;
   algo := a + 5;

@@ -113,7 +113,8 @@ def verificar_tipo_elemento_en_expresion():
         expresion_semantica_actual['elementos'].append(preanalisis['v']) 
      
     if (not expresion_valida):
-        finalizar_analisis("error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. "+str(expresion_semantica_actual['elementos']))
+        finalizar_analisis("error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER.")
+        #finalizar_analisis("error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER. "+str(expresion_semantica_actual['elementos']))
     # logger.error(expresion_semantica_actual)    
 
 def token(arg0,arg1):
@@ -210,7 +211,6 @@ def tipo():
 
 def lista_identificadores(atributo,subatributo):
     if en_primeros('identificador'):
-        logger.warning("DBG1")
         cargar_identificador(atributo,subatributo)
         lista_identificadores_repetitiva(atributo,subatributo)
     else:
@@ -218,7 +218,6 @@ def lista_identificadores(atributo,subatributo):
 
 def lista_identificadores_repetitiva(atributo,subatributo):
     if preanalisis['v'] == ',':
-        logger.warning("DBG2")
         m(',')
         cargar_identificador(atributo,subatributo)
         lista_identificadores_repetitiva(atributo,subatributo)
@@ -441,11 +440,10 @@ def expresion(evaluandoRetorno = False, sumandoParametroActual = False):
             tipo_expresion_resultado = "EXPRESION_BOOLEAN"
         else:
             tipo_expresion_resultado = f"EXPRESION_{expresion_semantica_actual['tipo']}"
-        
         if (evaluandoRetorno and funcion_actual['tipo_retorno'] != expresion_semantica_actual['tipo']):
             finalizar_analisis(f"error semantico: el tipo de retorno [{funcion_actual['tipo_retorno']}] y el valor de la expresion [{expresion_semantica_actual['tipo']}] no coinciden.")
         if (sumandoParametroActual):
-            sumar_parametro_actual()
+            sumar_parametro_actual(tipo_expresion_resultado)
         
         # Fin de evaluacion de expresion
         expresion_semantica_actual['cantidad_ejecutandose'] = expresion_semantica_actual['cantidad_ejecutandose'] - 1
@@ -651,11 +649,14 @@ def registrar_subprograma_semanticamente(nombre_subprograma = None):
 
 # funcion utilizada para sumar parametros a la lista de parametros actuales.
 # requiere que se busquen las variables en la tabla de simbolos para determinar su tipo
-def sumar_parametro_actual():
+def sumar_parametro_actual(tipo_expresion):
     global expresion_semantica_actual
     global parametros
-    #logger.warning("CONTANDO PARAMETRO "+str(expresion_semantica_actual['tipo']))
-    parametros.append(expresion_semantica_actual['tipo'])
+    if tipo_expresion == "EXPRESION_INTEGER":
+        tipo_parametro = "INTEGER"
+    elif tipo_expresion == "EXPRESION_BOOLEAN":
+        tipo_parametro = "BOOLEAN"
+    parametros.append(tipo_parametro)
 
 # funcion utilizada para sumar parametros a la lista de parametros actuales.
 # no requiere que se busquen las variables en la tabla de simbolos para determinar su tipo ya que se realiza en actualizar_parametros_subprograma()
@@ -669,7 +670,6 @@ def actualizar_parametros_subprograma():
     global parametros
     global tipo_parametros
     global paresOrdenadosParametros
-    # FIXME: el error se encuentra aca, "parametros" tiene solamente el ultimo tipo de parametro con sus parametros respectivos, pisando los anteriores.
     paresOrdenadosTemporal = [(parametro, tipo_parametros) for parametro in parametros]
     paresOrdenadosParametros.extend(paresOrdenadosTemporal)
     parametros = []

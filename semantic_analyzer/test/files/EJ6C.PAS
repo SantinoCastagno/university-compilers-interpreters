@@ -29,7 +29,7 @@ end;
 begin
      BB:= 77+AA > 44;
 
-          algo2( 2,3,4,4,5>6, 66);
+          algo2( 2,3,4,4,5>6, 66linlinnnnnnn);
   if AA > 7 then algo3(4 )
  else algo(88);
 
