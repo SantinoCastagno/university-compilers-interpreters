@@ -14,7 +14,7 @@ class Pila:
         if not self.esta_vacia():
             return self.items.pop()
         else:
-            return None  # O puedes lanzar una excepción si prefieres
+            return None
 
     def ver_cima(self):
         if not self.esta_vacia():            

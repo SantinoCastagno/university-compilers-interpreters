@@ -14,7 +14,7 @@ for ARCHIVO in "$DIRECTORIO"/*; do
         echo "############################################################" >> ./log.txt
         echo "Analizando $ARCHIVO" >> ./log.txt
         echo "" >> ./log.txt
-        python3 ../src/syntactic_analyzer.py $ARCHIVO SUCCESS>> ./log.txt
+        python3 ../src/syn_sem_analyzer.py $ARCHIVO SUCCESS>> ./log.txt
     fi
 done
 echo "############################################################" >> ./log.txt
