@@ -90,7 +90,10 @@ def verificar_tipo_elemento_en_expresion():
             ts = ts.tabla
             if id_value in ts.keys():
                 if expresion_semantica_actual['tipo'] is None:
-                    expresion_semantica_actual['tipo'] = ts[id_value]['tipo_dato']
+                    if(ts[id_value]['atributo'] == 'procedimiento'):
+                        finalizar_analisis("error semantico: se esta queriendo recuperar el tipo de valor de retorno de un procedimiento.")
+                    else:
+                        expresion_semantica_actual['tipo'] = ts[id_value]['tipo_dato']
                 elif expresion_semantica_actual['tipo'] != ts[id_value]['tipo_dato']:
                     expresion_valida = False
                 break
@@ -330,9 +333,14 @@ def instruccion():
 
 def instruccion_aux(evaluandoRetorno, identificador_izquierda_instruccion):
     if en_primeros('asignacion'):
+        if (not evaluandoRetorno):
+            if sem_verificar_identificador_funcion(identificador_izquierda_instruccion):
+                finalizar_analisis(f'error semantico: asignacion a funcion fuera del ambito de la misma.')
+            else:
+                sem_identificador_sin_definir("variable")
         asignacion(evaluandoRetorno, identificador_izquierda_instruccion)
     elif en_primeros('llamada_procedimiento'):
-        identificador_sin_definir('procedimiento')
+        sem_identificador_sin_definir('procedimiento')
         llamada_procedimiento()
     else:
         finalizar_analisis('error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento')
@@ -341,8 +349,6 @@ def asignacion(evaluandoRetorno, identificador_izquierda_instruccion):
     if preanalisis['v'] == ':=':
         if identificador_izquierda_instruccion == procedimiento_actual['identificador']:
             finalizar_analisis(f'error semantico: variable de retorno de funcion usada en procedimiento.')
-        if (not evaluandoRetorno and sem_verificar_identificador_funcion(identificador_izquierda_instruccion)):
-            finalizar_analisis(f'error semantico: asignacion a funcion fuera del ambito de la misma.')
         m(':=');expresion(evaluandoRetorno)
     else:
         finalizar_analisis("error de sintaxis: se esperaba ':=', se encontro '",preanalisis['v'],"'")
@@ -547,12 +553,12 @@ def factor():
 def factor_opcional():
     global identificador_a_verificar_a_futuro
     if en_primeros('llamada_funcion'):
-        identificador_sin_definir('funcion')
+        sem_identificador_sin_definir('funcion')
         registrar_subprograma_semanticamente(identificador_a_verificar_a_futuro)
         llamada_funcion()
         error_aridad('funcion')
     else:
-        identificador_sin_definir('variable')
+        sem_identificador_sin_definir('variable')
 
 def llamada_funcion():
     if en_primeros('lista_expresiones_opcional'):
@@ -692,7 +698,7 @@ def colision_nombres(subatributo,tipoScope):
             finalizar_analisis('error semantico: dos ' + subatributo + 's ' + pila_TLs.recuperar_cima()[l]['tipo_scope'] + ' con el mismo nombre ['+l+']')
  
 
-def identificador_sin_definir(atributo):
+def sem_identificador_sin_definir(atributo):
         global expresion_actual
         id = identificador_a_verificar_a_futuro
         pila_revertida = reversed(pila_TLs.items)
@@ -759,11 +765,20 @@ def error_aridad(atributo):
             if descripcion_parametros_formales == "":
                 descripcion_parametros_formales = "0"
             finalizar_analisis('error semantico: pasaje de '+descripcion_parametros_actuales + ' a '+ atributo +' ['+ id + ']. Se esperaba/n ' + descripcion_parametros_formales)
-
     else:
+        # Chequea si el llamado al procedimiento write/read cuenta con exactamente 1 parametro
         if len(parametros) != 1:
-            failed = True
-            finalizar_analisis('error semantico: pasaje de '+descripcion_parametros_actuales + ' a '+ atributo +' ['+ id + '] . Se esperaba 1 parametro')    
+            parametros_actuales = [(parametro) for parametro in parametros]
+            contador_parametros_actuales = Counter([elem for elem in parametros_actuales]) 
+            cantidad_por_tipo_parametros_actuales = [(count, key) for key, count in contador_parametros_actuales.items()]
+            descripcion_parametros_actuales = ""
+            for index, tipo_parametro in enumerate(cantidad_por_tipo_parametros_actuales):
+                descripcion_parametros_actuales += str(tipo_parametro[0]) +  " parametro/s de tipo " + str(tipo_parametro[1])
+                if index < len(cantidad_por_tipo_parametros_actuales)-1:
+                  descripcion_parametros_actuales += " y "
+            if descripcion_parametros_actuales == "":
+                descripcion_parametros_actuales = "0 parametros"
+            finalizar_analisis('error semantico: pasaje de '+descripcion_parametros_actuales + ' a '+ atributo +' ['+ id + ']. Se esperaba 1 parametro')    
     
 def asignar_tipo_ultimas_variables(tipo):
     global ultimas_variables_declaradas
