@@ -14,7 +14,7 @@ begin
 end;
 
 Begin
-  read(c);
+  read(h2);
   r2:= 66=55;
   pru2( ((c > -(5*4*r))) or (3<>5) and true or (r>2)  );
   if r2 then

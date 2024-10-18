@@ -765,11 +765,20 @@ def error_aridad(atributo):
             if descripcion_parametros_formales == "":
                 descripcion_parametros_formales = "0"
             finalizar_analisis('error semantico: pasaje de '+descripcion_parametros_actuales + ' a '+ atributo +' ['+ id + ']. Se esperaba/n ' + descripcion_parametros_formales)
-
     else:
+        # Chequea si el llamado al procedimiento write/read cuenta con exactamente 1 parametro
         if len(parametros) != 1:
-            failed = True
-            finalizar_analisis('error semantico: pasaje de '+descripcion_parametros_actuales + ' a '+ atributo +' ['+ id + '] . Se esperaba 1 parametro')    
+            parametros_actuales = [(parametro) for parametro in parametros]
+            contador_parametros_actuales = Counter([elem for elem in parametros_actuales]) 
+            cantidad_por_tipo_parametros_actuales = [(count, key) for key, count in contador_parametros_actuales.items()]
+            descripcion_parametros_actuales = ""
+            for index, tipo_parametro in enumerate(cantidad_por_tipo_parametros_actuales):
+                descripcion_parametros_actuales += str(tipo_parametro[0]) +  " parametro/s de tipo " + str(tipo_parametro[1])
+                if index < len(cantidad_por_tipo_parametros_actuales)-1:
+                  descripcion_parametros_actuales += " y "
+            if descripcion_parametros_actuales == "":
+                descripcion_parametros_actuales = "0 parametros"
+            finalizar_analisis('error semantico: pasaje de '+descripcion_parametros_actuales + ' a '+ atributo +' ['+ id + ']. Se esperaba 1 parametro')    
     
 def asignar_tipo_ultimas_variables(tipo):
     global ultimas_variables_declaradas

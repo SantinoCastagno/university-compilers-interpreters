@@ -260,7 +260,7 @@ SUCCESS  | fila:9 columna:19
 Analizando ./files/EJ6A.PAS
 
 SUCCESS  | error semantico: identificador de variable [h2] sin definir 
-SUCCESS  | fila:19 columna:8
+SUCCESS  | fila:17 columna:11
 ############################################################
 Analizando ./files/EJ6B.PAS
 
