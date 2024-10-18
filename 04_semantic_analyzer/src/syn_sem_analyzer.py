@@ -90,7 +90,10 @@ def verificar_tipo_elemento_en_expresion():
             ts = ts.tabla
             if id_value in ts.keys():
                 if expresion_semantica_actual['tipo'] is None:
-                    expresion_semantica_actual['tipo'] = ts[id_value]['tipo_dato']
+                    if(ts[id_value]['atributo'] == 'procedimiento'):
+                        finalizar_analisis("error semantico: se esta queriendo recuperar el tipo de valor de retorno de un procedimiento.")
+                    else:
+                        expresion_semantica_actual['tipo'] = ts[id_value]['tipo_dato']
                 elif expresion_semantica_actual['tipo'] != ts[id_value]['tipo_dato']:
                     expresion_valida = False
                 break
@@ -330,7 +333,11 @@ def instruccion():
 
 def instruccion_aux(evaluandoRetorno, identificador_izquierda_instruccion):
     if en_primeros('asignacion'):
-        sem_identificador_sin_definir("variable")
+        if (not evaluandoRetorno):
+            if sem_verificar_identificador_funcion(identificador_izquierda_instruccion):
+                finalizar_analisis(f'error semantico: asignacion a funcion fuera del ambito de la misma.')
+            else:
+                sem_identificador_sin_definir("variable")
         asignacion(evaluandoRetorno, identificador_izquierda_instruccion)
     elif en_primeros('llamada_procedimiento'):
         sem_identificador_sin_definir('procedimiento')
@@ -342,8 +349,6 @@ def asignacion(evaluandoRetorno, identificador_izquierda_instruccion):
     if preanalisis['v'] == ':=':
         if identificador_izquierda_instruccion == procedimiento_actual['identificador']:
             finalizar_analisis(f'error semantico: variable de retorno de funcion usada en procedimiento.')
-        if (not evaluandoRetorno and sem_verificar_identificador_funcion(identificador_izquierda_instruccion)):
-            finalizar_analisis(f'error semantico: asignacion a funcion fuera del ambito de la misma.')
         m(':=');expresion(evaluandoRetorno)
     else:
         finalizar_analisis("error de sintaxis: se esperaba ':=', se encontro '",preanalisis['v'],"'")

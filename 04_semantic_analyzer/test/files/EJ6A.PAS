@@ -7,9 +7,10 @@ procedure pru2(p: boolean);
 {procedure pru2(p: integer);}
 var r3: integer;
 begin
-  {pru:=18}
+  {pru3:=18}
   r3:= 66; 
-  r := 4;
+  {k := 0;}
+  {r := pru2(r2);}
 end;
 
 Begin
