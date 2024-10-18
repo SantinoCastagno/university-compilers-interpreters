@@ -330,9 +330,10 @@ def instruccion():
 
 def instruccion_aux(evaluandoRetorno, identificador_izquierda_instruccion):
     if en_primeros('asignacion'):
+        sem_identificador_sin_definir("variable")
         asignacion(evaluandoRetorno, identificador_izquierda_instruccion)
     elif en_primeros('llamada_procedimiento'):
-        identificador_sin_definir('procedimiento')
+        sem_identificador_sin_definir('procedimiento')
         llamada_procedimiento()
     else:
         finalizar_analisis('error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento')
@@ -547,12 +548,12 @@ def factor():
 def factor_opcional():
     global identificador_a_verificar_a_futuro
     if en_primeros('llamada_funcion'):
-        identificador_sin_definir('funcion')
+        sem_identificador_sin_definir('funcion')
         registrar_subprograma_semanticamente(identificador_a_verificar_a_futuro)
         llamada_funcion()
         error_aridad('funcion')
     else:
-        identificador_sin_definir('variable')
+        sem_identificador_sin_definir('variable')
 
 def llamada_funcion():
     if en_primeros('lista_expresiones_opcional'):
@@ -692,7 +693,7 @@ def colision_nombres(subatributo,tipoScope):
             finalizar_analisis('error semantico: dos ' + subatributo + 's ' + pila_TLs.recuperar_cima()[l]['tipo_scope'] + ' con el mismo nombre ['+l+']')
  
 
-def identificador_sin_definir(atributo):
+def sem_identificador_sin_definir(atributo):
         global expresion_actual
         id = identificador_a_verificar_a_futuro
         pila_revertida = reversed(pila_TLs.items)
