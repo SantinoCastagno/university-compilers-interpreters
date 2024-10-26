@@ -5,7 +5,10 @@ Program ejemplo ;
     var h:integer;
     begin
       if n<2 
-        then h:=g+n;
+        then 
+        begin
+        h:=g+n;
+        end
       else 
         begin  
         h:=g;
@@ -13,9 +16,10 @@ Program ejemplo ;
         k:=h;
         p(n-2,g);
         end;
-      write(n,g)
-      end
+      write(n,g);
+      end;
   
   begin
-  k:=0; p(3,k)
+  k:=0; 
+  p(3,k);
   end.
