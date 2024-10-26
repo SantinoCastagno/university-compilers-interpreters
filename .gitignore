@@ -1,2 +1,4 @@
 .vscode/launch.json
-semantic_analyzer/src/__pycache__/*
+*/__pycache__
+*/.pytest_cache
+*/src
