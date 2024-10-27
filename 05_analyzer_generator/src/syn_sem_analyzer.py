@@ -4,7 +4,7 @@ from loguru import logger
 from collections import Counter
 
 from lex_analyzer import lex_obtener_siguiente_token, lex_obtener_posicion
-from code_generator import gen_generar_codigo, gen_iniciar_generador, gen_cantidad_variables_declaradas
+from code_generator import gen_generar_codigo, gen_iniciar_generador, gen_cantidad_variables_declaradas, gen_nivel_lexico_procedimiento
 from symbol_table import Tabla_simbolos
 from pila import Pila
 
@@ -243,6 +243,7 @@ def declaracion_procedimiento():
     global procedimiento_actual
     if preanalisis['v'] == 'PROCEDURE':
         m('PROCEDURE')
+        gen_generar_codigo("ENPR",str(gen_nivel_lexico_procedimiento))
         procedimiento_actual['habilitado'] = True
         procedimiento_actual['identificador'] = preanalisis['l']
         cargar_identificador('procedimiento')
@@ -259,6 +260,7 @@ def declaracion_funcion():
     global expresion_semantica_actual
     if preanalisis['v']=='FUNCTION':
         m('FUNCTION');
+        gen_generar_codigo("ENPR",str(gen_nivel_lexico_procedimiento))
         funcion_actual['habilitado'] = True
         funcion_actual['identificador'] = preanalisis['l']
         cargar_identificador('funcion')

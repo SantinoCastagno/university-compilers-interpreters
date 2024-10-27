@@ -2,6 +2,7 @@ from loguru import logger
 
 ruta_destino = None
 gen_cantidad_variables_declaradas = 0 # cantidad de las variables declaradas del programa/subprograma actual, utilizada para reservar el espacio de memoria
+gen_nivel_lexico_procedimiento = 1
 
 def _gen_abrir_archivo():
     global ruta_destino
