@@ -4,7 +4,7 @@ from loguru import logger
 from collections import Counter
 
 from lex_analyzer import lex_obtener_siguiente_token, lex_obtener_posicion
-from code_generator import gen_generar_codigo, gen_iniciar_generador
+from code_generator import gen_generar_codigo, gen_iniciar_generador, gen_cantidad_variables_declaradas
 from symbol_table import Tabla_simbolos
 from pila import Pila
 
@@ -172,8 +172,9 @@ def programa(): # Primera funcion ejecutada
         finalizar_analisis(f"error de sintaxis: se esperaba [program], se encontro [{preanalisis['v']}]")
 
 def bloque():
+    global gen_cantidad_variables_declaradas
     if en_primeros('declaraciones_variables_opcional') or en_primeros('declaraciones_subrutinas_opcional') or en_primeros('instruccion_compuesta'):
-        declaraciones_variables_opcional();declaraciones_subrutinas_opcional();instruccion_compuesta()
+        declaraciones_variables_opcional();gen_generar_codigo("RMEM",str(gen_cantidad_variables_declaradas));gen_cantidad_variables_declaradas = 0;declaraciones_subrutinas_opcional();instruccion_compuesta()
     else:
         finalizar_analisis('error de sintaxis: no se ha declarado el inicio de la función principal del programa')
 
@@ -216,8 +217,11 @@ def tipo():
         finalizar_analisis('error de sintaxis: solo se permite tipo INTEGER o boolean')
 
 def lista_identificadores(atributo,subatributo):
+    global gen_cantidad_variables_declaradas
     if en_primeros('identificador'):
         cargar_identificador(atributo,subatributo)
+        if (subatributo=='variable'):
+            gen_cantidad_variables_declaradas = gen_cantidad_variables_declaradas + 1
         lista_identificadores_repetitiva(atributo,subatributo)
     else:
         finalizar_analisis('error de sintaxis: aca deberia ir un identificador')
@@ -226,6 +230,7 @@ def lista_identificadores_repetitiva(atributo,subatributo):
     if preanalisis['v'] == ',':
         m(',')
         cargar_identificador(atributo,subatributo)
+        logger.warning("contando variable");
         lista_identificadores_repetitiva(atributo,subatributo)
 
 def declaraciones_subrutinas():

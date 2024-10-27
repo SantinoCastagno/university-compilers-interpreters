@@ -2,7 +2,7 @@ Program ejemplo ;
   var k:integer;
   
   procedure p (n:integer; g:integer);
-    var h:integer;
+    var h,j:integer;
     begin
       if n<2 
         then 
