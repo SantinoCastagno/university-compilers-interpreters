@@ -3,6 +3,21 @@ from loguru import logger
 ruta_destino = None
 gen_cantidad_variables_declaradas = 0 # cantidad de las variables declaradas del programa/subprograma actual, utilizada para reservar el espacio de memoria
 gen_nivel_lexico_procedimiento = 1
+expresion_a_posfijo = ""
+codigo = {
+    '+':'SUMA',
+    '-':'SUST',
+    '*':'MULT',
+    '/':'DIVI',
+    'and':'CONJ',
+    'or':'DISJ',
+    '<':'CMME',
+    '>':'CMMA',
+    '=':'CMIG',
+    '<>':'CMDG',
+    '<=':'CMNI',
+    '>=':'CMYI'
+}
 
 def _gen_abrir_archivo():
     global ruta_destino
@@ -24,3 +39,44 @@ def gen_iniciar_generador(ruta):
     global ruta_destino
     ruta_destino = ruta
     _gen_abrir_archivo()
+
+
+def gen_infijo_a_posfijo(expression):
+    precedence = {
+        '<': 4, '<=': 4, '>': 4, '>=': 4, '=': 4, '<>': 4,
+        'or': 5, 'and': 6,
+        '+': 7, '-': 7, '*': 8, '/': 8
+    }
+    output = []
+    stack = []
+
+    for char in expression.split():
+
+        if (char.isalnum() or char in ['True','False']) and char not in precedence:  # Si es un operando (número o variable)
+            output.append(char)
+        elif char in precedence:  # Si es un operador
+            while (stack and stack[-1] != '(' and
+                   precedence[char] <= precedence[stack[-1]]):
+                output.append(stack.pop())
+            stack.append(char)
+
+        elif char == '(':
+            stack.append(char)
+        elif char == ')':
+            while stack and stack[-1] != '(':
+                output.append(stack.pop())
+            stack.pop()  # Elimina el '(' de la pila'''
+
+    while stack:
+        output.append(stack.pop())
+
+    return ' '.join(output)
+
+def gen_generar_codigos_expresion_posfija(expresion):
+    for elem in expresion.split():
+        if elem == 'id':
+            gen_generar_codigo('APVL',elem)
+        elif elem in ['enteroDato','booleanDato']:
+            gen_generar_codigo('APCT',elem)
+        else:
+            gen_generar_codigo(codigo[elem],elem)
