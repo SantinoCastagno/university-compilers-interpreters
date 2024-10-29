@@ -4,7 +4,7 @@ from loguru import logger
 from collections import Counter
 
 from lex_analyzer import lex_obtener_siguiente_token, lex_obtener_posicion
-from code_generator import gen_generar_codigo, gen_iniciar_generador, gen_cantidad_variables_declaradas, gen_nivel_lexico_procedimiento, expresion_a_posfijo, gen_infijo_a_posfijo,gen_generar_codigos_expresion_posfija
+from code_generator import gen_generar_codigo, gen_iniciar_generador, gen_cantidad_variables_declaradas, gen_nivel_lexico_procedimiento, expresion_a_posfijo, gen_infijo_a_posfijo,gen_generar_codigos_expresion_posfija,gen_get_cont_etq_saltos
 from symbol_table import Tabla_simbolos
 from pila import Pila
 
@@ -137,9 +137,11 @@ def token(arg0,arg1):
         or arg0 == 'operadorRelacional'
         or arg0 == 'operadorRelacionalIndividual'
         ):
+        preanalisis['l'] = arg1
         return arg1
     
     if arg0 == 'enteroDato' or arg0 == 'booleanDato':
+        preanalisis['l'] = arg1
         return arg0
     
     if arg0 == 'id':
@@ -392,24 +394,51 @@ def instruccion_condicional():
     if preanalisis['v'] == 'IF':
         m('IF');
         valor_expresion_evaluada = expresion()
+
+        l1 = gen_get_cont_etq_saltos()
+        gen_generar_codigo('DSVF',l1)
+
         if (valor_expresion_evaluada == 'EXPRESION_INTEGER'):
             finalizar_analisis("error semantico: uso de expresion INTEGER como condición de if")
 
-        m('THEN');instruccion();else_opcional()
+
+        m('THEN');instruccion();else_opcional(l1)
+
     else:
         finalizar_analisis("error de sintaxis: se esperaba'if', se encontro ["+preanalisis['v']+"]")
 
-def else_opcional():
+def else_opcional(l1):
     if preanalisis['v'] == 'ELSE':
-        m('ELSE');instruccion()   
+        m('ELSE');
+
+        l2 = gen_get_cont_etq_saltos()
+        gen_generar_codigo('DSVS',l2)
+        gen_generar_codigo('NADA',l1)
+
+        instruccion()
+        gen_generar_codigo('NADA',l2)
+    else:
+        gen_generar_codigo('NADA',l1)
+
+
 
 def instruccion_repetitiva():
     if preanalisis['v'] == 'WHILE':
         m('WHILE')
+        l1 = gen_get_cont_etq_saltos()
+        gen_generar_codigo('NADA',l1)
+
         valor_expresion_evaluada = expresion()
+        l2 = gen_get_cont_etq_saltos()
+        gen_generar_codigo('DSVF',l2)
+
         if (valor_expresion_evaluada == 'EXPRESION_INTEGER'):
             finalizar_analisis("error semantico: uso de expresion INTEGER como condición de while")
         m('DO');instruccion()
+
+        gen_generar_codigo('DSVS',l1)
+        gen_generar_codigo('NADA',l2)
+
     else:
         finalizar_analisis("error de sintaxis:  se esperaba 'while', se encontro ["+preanalisis['v']+"]")
 
@@ -492,7 +521,7 @@ def relacion():
     global expresion_a_posfijo
 
     if preanalisis['v'] in terminales:
-        expresion_a_posfijo += ' ' + preanalisis['v']
+        expresion_a_posfijo += ' ' + preanalisis['l']
         m_list(terminales)
     else:
         finalizar_analisis("error de sintaxis: se esperaba un operador relacional, sea '=','<>','<=','<','>' o '>='")
@@ -508,7 +537,7 @@ def mas_menos_opcional():
     global expresion_a_posfijo
 
     if preanalisis['v'] in terminales:
-        expresion_a_posfijo += ' ' + preanalisis['v']
+        expresion_a_posfijo += ' ' + preanalisis['l']
         m_list(terminales)
 
 def expresion_simple_repetitiva():
@@ -526,7 +555,7 @@ def mas_menos_or():
         elif preanalisis['v'] == 'OR':
             expresion_actual = 'logica'
 
-        expresion_a_posfijo += ' ' + preanalisis['v']
+        expresion_a_posfijo += ' ' + preanalisis['l']
         m_list(terminales)
     else:
         finalizar_analisis('error de sintaxis: se espera una operacion "+", "-" o "OR"')
@@ -543,17 +572,17 @@ def termino_repetitiva():
 
     if preanalisis['v'] == '*':
         expresion_actual = 'aritmetica'
-        expresion_a_posfijo += ' ' + preanalisis['v']
+        expresion_a_posfijo += ' ' + preanalisis['l']
         m('*');factor();termino_repetitiva()
 
     elif preanalisis['v'] == '/':
         expresion_actual = 'aritmetica'
-        expresion_a_posfijo += ' ' + preanalisis['v']
+        expresion_a_posfijo += ' ' + preanalisis['l']
         m('/');factor();termino_repetitiva()
 
     elif preanalisis['v'] == 'AND':
         expresion_actual = 'logica'
-        expresion_a_posfijo += ' ' + preanalisis['v']
+        expresion_a_posfijo += ' ' + preanalisis['l']
         m('AND');factor();termino_repetitiva()
 
 def factor():
@@ -573,12 +602,12 @@ def factor():
     elif preanalisis['v'] == '(': 
         pila_expresiones.append(copy.copy(expresion_semantica_actual))
 
-        expresion_a_posfijo += ' ' + preanalisis['v']
+        expresion_a_posfijo += ' ' + preanalisis['l']
         m('(')
 
         valor_expresion_evaluada = expresion()
 
-        expresion_a_posfijo += ' ' + preanalisis['v']
+        expresion_a_posfijo += ' ' + preanalisis['l']
         m(')')
 
         expresion_semantica_actual = pila_expresiones.pop()
@@ -594,7 +623,7 @@ def factor():
             finalizar_analisis('error semantico: la expresion combina elementos de tipo BOOLEANO e INTEGER.' + str(expresion_semantica_actual['elementos']))
             
     elif preanalisis['v'] == 'NOT':
-        expresion_a_posfijo += ' ' + preanalisis['v']
+        expresion_a_posfijo += ' ' + preanalisis['l']
         m('NOT');factor()
 
     else:
@@ -619,7 +648,7 @@ def llamada_funcion():
 def numero():
     global expresion_a_posfijo
     if preanalisis['v'] == 'enteroDato':
-        expresion_a_posfijo += ' ' + preanalisis['v']
+        expresion_a_posfijo += ' ' + preanalisis['l']
         siguiente_terminal()
     else:
         finalizar_analisis('error de sintaxis: numero()')
@@ -627,7 +656,7 @@ def numero():
 def booleano():
     global expresion_a_posfijo
     if preanalisis['v'] == 'booleanDato':
-        expresion_a_posfijo += ' ' + preanalisis['v']
+        expresion_a_posfijo += ' ' + preanalisis['l']
         siguiente_terminal()
     else:
         finalizar_analisis('error de sintaxis: booleano()')
@@ -683,7 +712,7 @@ def guardar_identificador_a_verificar_a_futuro():
         finalizar_analisis('error de sintaxis: se esperaba un id, se encontro una palabra reservada: ',preanalisis['v'])
     else:
         global identificador_a_verificar_a_futuro
-        expresion_a_posfijo += ' ' + preanalisis['v']
+        expresion_a_posfijo += ' ' + preanalisis['l']
         identificador_a_verificar_a_futuro=preanalisis['l']
         siguiente_terminal()
 

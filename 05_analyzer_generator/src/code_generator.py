@@ -3,6 +3,7 @@ from loguru import logger
 ruta_destino = None
 gen_cantidad_variables_declaradas = 0 # cantidad de las variables declaradas del programa/subprograma actual, utilizada para reservar el espacio de memoria
 gen_nivel_lexico_procedimiento = 1
+
 expresion_a_posfijo = ""
 codigo = {
     '+':'SUMA',
@@ -18,6 +19,8 @@ codigo = {
     '<=':'CMNI',
     '>=':'CMYI'
 }
+
+contador_etiquetas_saltos = 0
 
 def _gen_abrir_archivo():
     global ruta_destino
@@ -52,7 +55,7 @@ def gen_infijo_a_posfijo(expression):
 
     for char in expression.split():
 
-        if (char.isalnum() or char in ['True','False']) and char not in precedence:  # Si es un operando (número o variable)
+        if (char.isalnum() and char not in ['or','and']) :  # Si es un operando (número o variable)
             output.append(char)
         elif char in precedence:  # Si es un operador
             while (stack and stack[-1] != '(' and
@@ -74,9 +77,21 @@ def gen_infijo_a_posfijo(expression):
 
 def gen_generar_codigos_expresion_posfija(expresion):
     for elem in expresion.split():
-        if elem == 'id':
-            gen_generar_codigo('APVL',elem)
-        elif elem in ['enteroDato','booleanDato']:
+        if elem in ['True','False'] or intable(elem):
             gen_generar_codigo('APCT',elem)
-        else:
+        elif elem in codigo.keys():
             gen_generar_codigo(codigo[elem],elem)
+        else:
+            gen_generar_codigo('APVL',elem)
+
+def intable(valor):
+    try:
+        int(valor)
+        return True
+    except (ValueError, TypeError):
+        return False
+
+def gen_get_cont_etq_saltos():
+    global contador_etiquetas_saltos
+    contador_etiquetas_saltos += 1
+    return contador_etiquetas_saltos
