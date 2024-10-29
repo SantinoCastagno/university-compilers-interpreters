@@ -1,5 +1,7 @@
 from loguru import logger
 
+from pila import Pila
+
 ruta_destino = None
 gen_cantidad_variables_declaradas = 0 # cantidad de las variables declaradas del programa/subprograma actual, utilizada para reservar el espacio de memoria
 gen_nivel_lexico_procedimiento = 1
@@ -75,14 +77,15 @@ def gen_infijo_a_posfijo(expression):
 
     return ' '.join(output)
 
-def gen_generar_codigos_expresion_posfija(expresion):
+def gen_generar_codigos_expresion_posfija(expresion,pila_TLs:Pila):
     for elem in expresion.split():
         if elem in ['True','False'] or intable(elem):
             gen_generar_codigo('APCT',elem)
         elif elem in codigo.keys():
             gen_generar_codigo(codigo[elem],elem)
         else:
-            gen_generar_codigo('APVL',elem)
+            index,posicion = gen_get_nivel_lexico_y_posicion(elem,pila_TLs)
+            gen_generar_codigo('APVL',str(index)+','+str(posicion))
 
 def intable(valor):
     try:
@@ -95,3 +98,20 @@ def gen_get_cont_etq_saltos():
     global contador_etiquetas_saltos
     contador_etiquetas_saltos += 1
     return contador_etiquetas_saltos
+
+def gen_get_nivel_lexico_y_posicion(identificador_izquierda_instruccion,pila_TLs):
+    id = identificador_izquierda_instruccion
+    pila_invertida = reversed(pila_TLs.items)
+
+    posicion = -1
+    index = -1
+    for index,ts in enumerate(pila_invertida):
+        ts = ts.tabla
+        if id in ts.keys():
+            index = len(pila_TLs.items) - 1 - index
+            posicion = list(ts.keys()).index(id)
+            if index == 0:
+                posicion -= 1
+            break
+
+    return index,posicion

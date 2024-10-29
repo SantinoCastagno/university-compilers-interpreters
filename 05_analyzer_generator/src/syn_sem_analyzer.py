@@ -4,7 +4,7 @@ from loguru import logger
 from collections import Counter
 
 from lex_analyzer import lex_obtener_siguiente_token, lex_obtener_posicion
-from code_generator import gen_generar_codigo, gen_iniciar_generador, gen_cantidad_variables_declaradas, gen_nivel_lexico_procedimiento, expresion_a_posfijo, gen_infijo_a_posfijo,gen_generar_codigos_expresion_posfija,gen_get_cont_etq_saltos
+from code_generator import gen_generar_codigo, gen_iniciar_generador, gen_cantidad_variables_declaradas, gen_nivel_lexico_procedimiento, expresion_a_posfijo, gen_infijo_a_posfijo,gen_generar_codigos_expresion_posfija,gen_get_cont_etq_saltos,gen_get_nivel_lexico_y_posicion
 from symbol_table import Tabla_simbolos
 from pila import Pila
 
@@ -351,6 +351,9 @@ def instruccion_aux(evaluandoRetorno, identificador_izquierda_instruccion):
             else:
                 sem_identificador_sin_definir("variable")
         asignacion(evaluandoRetorno, identificador_izquierda_instruccion)
+
+        index, posicion = gen_get_nivel_lexico_y_posicion(identificador_izquierda_instruccion, pila_TLs)
+        gen_generar_codigo('ALVL',str(index)+','+str(posicion))
     elif en_primeros('llamada_procedimiento'):
         sem_identificador_sin_definir('procedimiento')
         llamada_procedimiento()
@@ -386,9 +389,16 @@ def llamada_procedimiento():
 
 def lista_expresiones_opcional():
     if preanalisis['v'] == '(':
+        nombre_proc = identificador_a_verificar_a_futuro
+        if nombre_proc == 'read':
+            gen_generar_codigo('LEER')
+
         m('(')
         lista_expresiones_procedimiento();
         m(')')
+
+        if nombre_proc == 'write':
+            gen_generar_codigo('IMPR')
 
 def instruccion_condicional():
     if preanalisis['v'] == 'IF':
@@ -502,7 +512,7 @@ def expresion(evaluandoRetorno = False, sumandoParametroActual = False):
         # se convierte la exprsion a posfijo
         posfijo = gen_infijo_a_posfijo(expresion_a_posfijo)
         print('POSFIJO: ',posfijo)
-        gen_generar_codigos_expresion_posfija(posfijo)
+        gen_generar_codigos_expresion_posfija(posfijo,pila_TLs)
 
         return tipo_expresion_resultado
     else:
@@ -697,7 +707,6 @@ def cargar_identificador(atributo,subatributo=None):
         
         # se inserta en el TL
         pila_TLs.ver_cima().insertar(nombre=preanalisis['l'], atributo=atributo,subatributo=subatributo, tipo_scope=tipoScope)
-        
         # finalizar_analisis('pos: '+str(pila_TLs.tamanio())+'--'+str(pila_TLs.recuperar_cima())+'\n') # se imprime la tabla de simbolos al tope de la pila
         siguiente_terminal()
 
