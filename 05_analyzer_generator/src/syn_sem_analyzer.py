@@ -232,7 +232,6 @@ def lista_identificadores_repetitiva(atributo,subatributo):
     if preanalisis['v'] == ',':
         m(',')
         cargar_identificador(atributo,subatributo)
-        logger.warning("contando variable");
         lista_identificadores_repetitiva(atributo,subatributo)
 
 def declaraciones_subrutinas():
@@ -242,15 +241,17 @@ def declaraciones_subrutinas():
         declaracion_funcion();m(";");declaraciones_subrutinas()
 
 def declaracion_procedimiento():
-    global procedimiento_actual
+    global procedimiento_actual, gen_nivel_lexico_procedimiento
     if preanalisis['v'] == 'PROCEDURE':
         m('PROCEDURE')
+        gen_nivel_lexico_procedimiento = gen_nivel_lexico_procedimiento + 1
         gen_generar_codigo("ENPR",str(gen_nivel_lexico_procedimiento))
         procedimiento_actual['habilitado'] = True
         procedimiento_actual['identificador'] = preanalisis['l']
         cargar_identificador('procedimiento')
         pila_TLs.apilar(Tabla_simbolos())
         parametros_formales_opcional();m(';');bloque()#instruccion_compuesta()
+        gen_nivel_lexico_procedimiento = gen_nivel_lexico_procedimiento - 1
         pila_TLs.desapilar()
         procedimiento_actual['identificador']=''
         procedimiento_actual['habilitado'] = False
@@ -485,6 +486,7 @@ def lista_expresiones_repetitiva():
 def expresion(evaluandoRetorno = False, sumandoParametroActual = False):
     global expresion_semantica_actual
     global expresion_a_posfijo
+    global funcion_actual, procedimiento_actual
     expresion_semantica_actual['tipo'] = None   
     expresion_semantica_actual['elementos'] = []
 
@@ -509,7 +511,7 @@ def expresion(evaluandoRetorno = False, sumandoParametroActual = False):
         # Fin de evaluacion de expresion
         expresion_semantica_actual['cantidad_ejecutandose'] = expresion_semantica_actual['cantidad_ejecutandose'] - 1
 
-        # se convierte la exprsion a posfijo
+        # se convierte la expresion a posfijo
         posfijo = gen_infijo_a_posfijo(expresion_a_posfijo)
         print('POSFIJO: ',posfijo)
         gen_generar_codigos_expresion_posfija(posfijo,pila_TLs)

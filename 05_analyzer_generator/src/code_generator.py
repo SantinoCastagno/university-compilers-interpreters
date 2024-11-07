@@ -4,7 +4,7 @@ from pila import Pila
 
 ruta_destino = None
 gen_cantidad_variables_declaradas = 0 # cantidad de las variables declaradas del programa/subprograma actual, utilizada para reservar el espacio de memoria
-gen_nivel_lexico_procedimiento = 1
+gen_nivel_lexico_procedimiento = 0
 
 expresion_a_posfijo = ""
 codigo = {
@@ -82,7 +82,7 @@ def gen_generar_codigos_expresion_posfija(expresion,pila_TLs:Pila):
         if elem in ['True','False'] or intable(elem):
             gen_generar_codigo('APCT',elem)
         elif elem in codigo.keys():
-            gen_generar_codigo(codigo[elem],elem)
+            gen_generar_codigo(codigo[elem])
         else:
             index,posicion = gen_get_nivel_lexico_y_posicion(elem,pila_TLs)
             gen_generar_codigo('APVL',str(index)+','+str(posicion))
@@ -102,16 +102,27 @@ def gen_get_cont_etq_saltos():
 def gen_get_nivel_lexico_y_posicion(identificador_izquierda_instruccion,pila_TLs):
     id = identificador_izquierda_instruccion
     pila_invertida = reversed(pila_TLs.items)
-
-    posicion = -1
+    logger.error(id)
+    ubicacion = -1
     index = -1
     for index,ts in enumerate(pila_invertida):
         ts = ts.tabla
         if id in ts.keys():
             index = len(pila_TLs.items) - 1 - index
-            posicion = list(ts.keys()).index(id)
-            if index == 0:
-                posicion -= 1
+            if (ts[id]['subatributo'] == "parametro"):
+                # Se cuenta la cantidad de parametros de la TS
+                cantidad_parametros = 0
+                posicion = 0
+                for index, key in enumerate(ts.keys()):
+                    logger.error("elemento actual:"+key)
+                    logger.error("posicion actual:"+str(index))
+                    if ts[key]['subatributo'] == "parametro":
+                        if key == id:
+                            posicion = index + 1
+                        cantidad_parametros = cantidad_parametros + 1
+                logger.error("cantidad_parametros:"+str(cantidad_parametros))
+                logger.error("posicion:"+str(posicion))
+                ubicacion = -(cantidad_parametros + 3 - posicion)
             break
 
-    return index,posicion
+    return index,ubicacion
