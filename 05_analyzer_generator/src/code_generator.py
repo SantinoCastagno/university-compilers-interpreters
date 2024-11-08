@@ -32,11 +32,11 @@ def _gen_abrir_archivo():
     except Exception as e:
         logger.error(f"Ocurrió un error al crear el archivo: {e}")
 
-def gen_generar_codigo(contenido_1, contenido_2 = ""):
+def gen_generar_codigo(contenido_1, contenido_2 = "", etiqueta_l = ""):
     global ruta_destino
     try:
         with open(ruta_destino, 'a', encoding='utf-8') as archivo:
-            archivo.write(f"{contenido_1}\t{contenido_2}\n")
+            archivo.write(f"{etiqueta_l}\t\t{contenido_1}\t{contenido_2}\n")
     except Exception as e:
         logger.error(f"Ocurrió un error al escribir el archivo: {e}")
 

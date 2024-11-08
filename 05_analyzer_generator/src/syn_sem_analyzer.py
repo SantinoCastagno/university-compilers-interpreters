@@ -244,14 +244,18 @@ def declaracion_procedimiento():
     global procedimiento_actual, gen_nivel_lexico_procedimiento
     if preanalisis['v'] == 'PROCEDURE':
         m('PROCEDURE')
+        l1 = gen_get_cont_etq_saltos()
+        gen_generar_codigo('DSVS',"l"+str(l1))
+        l2 = gen_get_cont_etq_saltos()
         gen_nivel_lexico_procedimiento = gen_nivel_lexico_procedimiento + 1
-        gen_generar_codigo("ENPR",str(gen_nivel_lexico_procedimiento))
+        gen_generar_codigo("ENPR",str(gen_nivel_lexico_procedimiento),"l"+str(l2))
         procedimiento_actual['habilitado'] = True
         procedimiento_actual['identificador'] = preanalisis['l']
         cargar_identificador('procedimiento')
         pila_TLs.apilar(Tabla_simbolos())
         parametros_formales_opcional();m(';');bloque()#instruccion_compuesta()
         gen_nivel_lexico_procedimiento = gen_nivel_lexico_procedimiento - 1
+        gen_generar_codigo('NADA',etiqueta_l = "l"+(str(l1)))
         pila_TLs.desapilar()
         procedimiento_actual['identificador']=''
         procedimiento_actual['habilitado'] = False
@@ -405,16 +409,11 @@ def instruccion_condicional():
     if preanalisis['v'] == 'IF':
         m('IF');
         valor_expresion_evaluada = expresion()
-
         l1 = gen_get_cont_etq_saltos()
-        gen_generar_codigo('DSVF',l1)
-
+        gen_generar_codigo('DSVF',"l"+str(l1))
         if (valor_expresion_evaluada == 'EXPRESION_INTEGER'):
             finalizar_analisis("error semantico: uso de expresion INTEGER como condición de if")
-
-
         m('THEN');instruccion();else_opcional(l1)
-
     else:
         finalizar_analisis("error de sintaxis: se esperaba'if', se encontro ["+preanalisis['v']+"]")
 
@@ -423,13 +422,12 @@ def else_opcional(l1):
         m('ELSE');
 
         l2 = gen_get_cont_etq_saltos()
-        gen_generar_codigo('DSVS',l2)
-        gen_generar_codigo('NADA',l1)
-
+        gen_generar_codigo('DSVS',"l"+(str(l2)))
+        gen_generar_codigo('NADA',etiqueta_l = "l"+(str(l1)))
         instruccion()
-        gen_generar_codigo('NADA',l2)
+        gen_generar_codigo('NADA',etiqueta_l = "l"+(str(l2)))
     else:
-        gen_generar_codigo('NADA',l1)
+        gen_generar_codigo('NADA',etiqueta_l = "l"+(str(l1)))
 
 
 
@@ -437,18 +435,18 @@ def instruccion_repetitiva():
     if preanalisis['v'] == 'WHILE':
         m('WHILE')
         l1 = gen_get_cont_etq_saltos()
-        gen_generar_codigo('NADA',l1)
+        gen_generar_codigo('NADA',"l"+(str(l1)))
 
         valor_expresion_evaluada = expresion()
         l2 = gen_get_cont_etq_saltos()
-        gen_generar_codigo('DSVF',l2)
+        gen_generar_codigo('DSVF',"l"+(str(l2)))
 
         if (valor_expresion_evaluada == 'EXPRESION_INTEGER'):
             finalizar_analisis("error semantico: uso de expresion INTEGER como condición de while")
         m('DO');instruccion()
 
-        gen_generar_codigo('DSVS',l1)
-        gen_generar_codigo('NADA',l2)
+        gen_generar_codigo('DSVS',"l"+(str(l1)))
+        gen_generar_codigo('NADA',"l"+(str(l2)))
 
     else:
         finalizar_analisis("error de sintaxis:  se esperaba 'while', se encontro ["+preanalisis['v']+"]")
