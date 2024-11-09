@@ -36,7 +36,7 @@ def gen_generar_codigo(contenido_1, contenido_2 = "", etiqueta_l = ""):
     global ruta_destino
     try:
         with open(ruta_destino, 'a', encoding='utf-8') as archivo:
-            archivo.write(f"{etiqueta_l}\t\t{contenido_1}\t{contenido_2}\n")
+            archivo.write(f"{etiqueta_l}\t{contenido_1}\t{contenido_2}\n")
     except Exception as e:
         logger.error(f"Ocurrió un error al escribir el archivo: {e}")
 
@@ -102,27 +102,23 @@ def gen_get_cont_etq_saltos():
 def gen_get_nivel_lexico_y_posicion(identificador_izquierda_instruccion,pila_TLs):
     id = identificador_izquierda_instruccion
     pila_invertida = reversed(pila_TLs.items)
-    logger.error(id)
-    ubicacion = -1
-    index = -1
-    for index,ts in enumerate(pila_invertida):
+    offset_variable = -1
+    nivel_lexico_procedimiento = -1
+    # Se busca el id en el stack de tabla de simbolos
+    for index, ts in enumerate(pila_invertida):
         ts = ts.tabla
         if id in ts.keys():
-            index = len(pila_TLs.items) - 1 - index
+            logger.warning("index:"+str(index))
+            nivel_lexico_procedimiento = len(pila_TLs.items) - index - 1
             if (ts[id]['subatributo'] == "parametro"):
                 # Se cuenta la cantidad de parametros de la TS
                 cantidad_parametros = 0
                 posicion = 0
                 for index, key in enumerate(ts.keys()):
-                    logger.error("elemento actual:"+key)
-                    logger.error("posicion actual:"+str(index))
                     if ts[key]['subatributo'] == "parametro":
                         if key == id:
                             posicion = index + 1
                         cantidad_parametros = cantidad_parametros + 1
-                logger.error("cantidad_parametros:"+str(cantidad_parametros))
-                logger.error("posicion:"+str(posicion))
-                ubicacion = -(cantidad_parametros + 3 - posicion)
+                offset_variable = -(cantidad_parametros + 3 - posicion)
             break
-
-    return index,ubicacion
+    return nivel_lexico_procedimiento, offset_variable

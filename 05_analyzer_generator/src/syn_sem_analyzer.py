@@ -511,7 +511,6 @@ def expresion(evaluandoRetorno = False, sumandoParametroActual = False):
 
         # se convierte la expresion a posfijo
         posfijo = gen_infijo_a_posfijo(expresion_a_posfijo)
-        print('POSFIJO: ',posfijo)
         gen_generar_codigos_expresion_posfija(posfijo,pila_TLs)
 
         return tipo_expresion_resultado
