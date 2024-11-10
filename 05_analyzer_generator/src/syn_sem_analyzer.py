@@ -251,10 +251,10 @@ def declaracion_procedimiento():
         gen_generar_codigo("ENPR",str(gen_nivel_lexico_procedimiento),"l"+str(l_subprograma))
         procedimiento_actual['habilitado'] = True
         procedimiento_actual['identificador'] = preanalisis['l']
-        gen_rotulos_subprogramas.append(procedimiento_actual['identificador'],l_subprograma)
+        gen_rotulos_subprogramas.append((procedimiento_actual['identificador'],l_subprograma))
         cargar_identificador('procedimiento')
         pila_TLs.apilar(Tabla_simbolos())
-        parametros_formales_opcional();m(';');bloque()#instruccion_compuesta()
+        parametros_formales_opcional();m(';');bloque()
         gen_nivel_lexico_procedimiento = gen_nivel_lexico_procedimiento - 1
         gen_generar_codigo('NADA',etiqueta_l = "l"+(str(l1)))
         pila_TLs.desapilar()
@@ -275,7 +275,7 @@ def declaracion_funcion():
         gen_generar_codigo("ENPR",str(gen_nivel_lexico_procedimiento),"l"+str(l_subprograma))
         funcion_actual['habilitado'] = True
         funcion_actual['identificador'] = preanalisis['l']
-        gen_rotulos_subprogramas.append(funcion_actual['identificador'],l_subprograma)
+        gen_rotulos_subprogramas.append((funcion_actual['identificador'],l_subprograma))
         cargar_identificador('funcion')
         pila_TLs.apilar(Tabla_simbolos())
         parametros_formales_opcional();m(':');
@@ -397,23 +397,24 @@ def llamada_procedimiento():
     if en_primeros('lista_expresiones_opcional'):
         lista_expresiones_opcional()
         sem_error_aridad('procedimiento')
-        # TODO: agregar rotulo l para hacer referencia al procedimiento. Posiblemente se deba buscar el procedimiento
-        gen_generar_codigo('LLPR')
+        # Buscar el rotulo asociado al procedimiento
+        rotulo = -1
+        for elem in gen_rotulos_subprogramas:
+            if (elem[0] == procedimiento_actual['identificador']):
+                rotulo = elem[1]
+                break
+        gen_generar_codigo('LLPR',"l"+str(rotulo))
     else:
         finalizar_analisis("error de sintaxis: no se cumple la estructura para llamar un procedimiento")
 
 def lista_expresiones_opcional():
     if preanalisis['v'] == '(':
         nombre_proc = identificador_a_verificar_a_futuro
-        if nombre_proc == 'read':
-            gen_generar_codigo('LEER')
-
         m('(')
         lista_expresiones_procedimiento();
         m(')')
 
-        if nombre_proc == 'write':
-            gen_generar_codigo('IMPR')
+        
 
 def instruccion_condicional():
     if preanalisis['v'] == 'IF':
@@ -520,6 +521,7 @@ def expresion(evaluandoRetorno = False, sumandoParametroActual = False):
         expresion_semantica_actual['cantidad_ejecutandose'] = expresion_semantica_actual['cantidad_ejecutandose'] - 1
 
         # se convierte la expresion a posfijo
+        logger.warning(expresion_a_posfijo)
         posfijo = gen_infijo_a_posfijo(expresion_a_posfijo)
         gen_generar_codigos_expresion_posfija(posfijo,pila_TLs)
 
@@ -663,6 +665,13 @@ def factor_opcional():
 def llamada_funcion():
     if en_primeros('lista_expresiones_opcional'):
         lista_expresiones_opcional()
+        # Buscar el rotulo asociado a la funcion
+        rotulo = -1
+        for elem in gen_rotulos_subprogramas:
+            if (elem[0] == funcion_actual['identificador']):
+                rotulo = elem[1]
+                break
+        gen_generar_codigo('LLPR',"l"+str(rotulo))
 
 def numero():
     global expresion_a_posfijo
@@ -885,7 +894,15 @@ def sem_error_aridad(atributo):
                   descripcion_parametros_actuales += " y "
             if descripcion_parametros_actuales == "":
                 descripcion_parametros_actuales = "0 parametros"
-            finalizar_analisis('error semantico: pasaje de '+descripcion_parametros_actuales + ' a '+ atributo +' ['+ id + ']. Se esperaba al menos 1 parametro')    
+            finalizar_analisis('error semantico: pasaje de '+descripcion_parametros_actuales + ' a '+ atributo +' ['+ id + ']. Se esperaba al menos 1 parametro')
+        else:
+            parametros_actuales = [(parametro) for parametro in parametros]
+            logger.warning(parametros_actuales)    
+            if id == 'write':
+                gen_generar_codigo('IMPR')
+            elif id == 'read':
+                gen_generar_codigo('LEER')
+            
     
 def sem_asignar_tipo_ultimas_variables(tipo):
     global ultimas_variables_declaradas

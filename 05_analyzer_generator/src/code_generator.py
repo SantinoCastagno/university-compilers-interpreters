@@ -110,7 +110,6 @@ def gen_get_nivel_lexico_y_posicion(identificador_izquierda_instruccion,pila_TLs
     for index, ts in enumerate(pila_invertida):
         ts = ts.tabla
         if id in ts.keys():
-            logger.warning("index:"+str(index))
             nivel_lexico_procedimiento = len(pila_TLs.items) - index - 1
             if (ts[id]['subatributo'] == "parametro"):
                 # Se cuenta la cantidad de parametros de la TS
