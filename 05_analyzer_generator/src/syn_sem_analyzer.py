@@ -4,7 +4,7 @@ from loguru import logger
 from collections import Counter
 
 from lex_analyzer import lex_obtener_siguiente_token, lex_obtener_posicion
-from code_generator import gen_generar_codigo, gen_iniciar_generador, gen_cantidad_variables_declaradas, gen_nivel_lexico_procedimiento, expresion_a_posfijo, gen_infijo_a_posfijo,gen_generar_codigos_expresion_posfija,gen_get_cont_etq_saltos,gen_get_nivel_lexico_y_posicion
+from code_generator import gen_generar_codigo, gen_iniciar_generador, gen_cantidad_variables_declaradas, gen_nivel_lexico_procedimiento, expresion_a_posfijo, gen_infijo_a_posfijo,gen_generar_codigos_expresion_posfija,gen_get_cont_etq_saltos,gen_get_nivel_lexico_y_posicion, gen_rotulos_subprogramas
 from symbol_table import Tabla_simbolos
 from pila import Pila
 
@@ -246,11 +246,12 @@ def declaracion_procedimiento():
         m('PROCEDURE')
         l1 = gen_get_cont_etq_saltos()
         gen_generar_codigo('DSVS',"l"+str(l1))
-        l2 = gen_get_cont_etq_saltos()
+        l_subprograma = gen_get_cont_etq_saltos()
         gen_nivel_lexico_procedimiento = gen_nivel_lexico_procedimiento + 1
-        gen_generar_codigo("ENPR",str(gen_nivel_lexico_procedimiento),"l"+str(l2))
+        gen_generar_codigo("ENPR",str(gen_nivel_lexico_procedimiento),"l"+str(l_subprograma))
         procedimiento_actual['habilitado'] = True
         procedimiento_actual['identificador'] = preanalisis['l']
+        gen_rotulos_subprogramas.append(procedimiento_actual['identificador'],l_subprograma)
         cargar_identificador('procedimiento')
         pila_TLs.apilar(Tabla_simbolos())
         parametros_formales_opcional();m(';');bloque()#instruccion_compuesta()
@@ -267,9 +268,14 @@ def declaracion_funcion():
     global expresion_semantica_actual
     if preanalisis['v']=='FUNCTION':
         m('FUNCTION');
-        gen_generar_codigo("ENPR",str(gen_nivel_lexico_procedimiento))
+        l1 = gen_get_cont_etq_saltos()
+        gen_generar_codigo('DSVS',"l"+str(l1))
+        l_subprograma = gen_get_cont_etq_saltos()
+        gen_nivel_lexico_procedimiento = gen_nivel_lexico_procedimiento + 1
+        gen_generar_codigo("ENPR",str(gen_nivel_lexico_procedimiento),"l"+str(l_subprograma))
         funcion_actual['habilitado'] = True
         funcion_actual['identificador'] = preanalisis['l']
+        gen_rotulos_subprogramas.append(funcion_actual['identificador'],l_subprograma)
         cargar_identificador('funcion')
         pila_TLs.apilar(Tabla_simbolos())
         parametros_formales_opcional();m(':');
@@ -281,6 +287,8 @@ def declaracion_funcion():
         if funcion_actual['declaracion_retorno_encontrada'] == False:
             finalizar_analisis(f'error semantico: funcion {funcion_actual["tipo_retorno"]} [{funcion_actual["identificador"]}] sin retorno.')
         else:
+            gen_nivel_lexico_procedimiento = gen_nivel_lexico_procedimiento - 1
+            gen_generar_codigo('NADA',etiqueta_l = "l"+(str(l1)))
             funcion_actual['identificador'] = ''
             funcion_actual['declaracion_retorno_encontrada'] = False
             funcion_actual['tipo_retorno'] = ''
@@ -389,6 +397,8 @@ def llamada_procedimiento():
     if en_primeros('lista_expresiones_opcional'):
         lista_expresiones_opcional()
         sem_error_aridad('procedimiento')
+        # TODO: agregar rotulo l para hacer referencia al procedimiento. Posiblemente se deba buscar el procedimiento
+        gen_generar_codigo('LLPR')
     else:
         finalizar_analisis("error de sintaxis: no se cumple la estructura para llamar un procedimiento")
 

@@ -5,6 +5,7 @@ from pila import Pila
 ruta_destino = None
 gen_cantidad_variables_declaradas = 0 # cantidad de las variables declaradas del programa/subprograma actual, utilizada para reservar el espacio de memoria
 gen_nivel_lexico_procedimiento = 0
+gen_rotulos_subprogramas = []
 
 expresion_a_posfijo = ""
 codigo = {
@@ -21,6 +22,7 @@ codigo = {
     '<=':'CMNI',
     '>=':'CMYI'
 }
+
 
 contador_etiquetas_saltos = 0
 
@@ -102,7 +104,7 @@ def gen_get_cont_etq_saltos():
 def gen_get_nivel_lexico_y_posicion(identificador_izquierda_instruccion,pila_TLs):
     id = identificador_izquierda_instruccion
     pila_invertida = reversed(pila_TLs.items)
-    offset_variable = -1
+    offset_variable = 0
     nivel_lexico_procedimiento = -1
     # Se busca el id en el stack de tabla de simbolos
     for index, ts in enumerate(pila_invertida):
@@ -121,4 +123,5 @@ def gen_get_nivel_lexico_y_posicion(identificador_izquierda_instruccion,pila_TLs
                         cantidad_parametros = cantidad_parametros + 1
                 offset_variable = -(cantidad_parametros + 3 - posicion)
             break
+    # logger.warning()
     return nivel_lexico_procedimiento, offset_variable
