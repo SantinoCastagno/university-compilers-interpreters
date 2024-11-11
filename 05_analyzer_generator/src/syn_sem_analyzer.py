@@ -4,7 +4,7 @@ from loguru import logger
 from collections import Counter
 
 from lex_analyzer import lex_obtener_siguiente_token, lex_obtener_posicion
-from code_generator import gen_generar_codigo, gen_iniciar_generador, gen_cantidad_variables_declaradas, gen_nivel_lexico_procedimiento, expresion_a_posfijo, gen_infijo_a_posfijo,gen_generar_codigos_expresion_posfija,gen_get_cont_etq_saltos,gen_get_nivel_lexico_y_posicion, gen_rotulos_subprogramas
+from code_generator import gen_generar_codigo, gen_iniciar_generador, gen_cantidad_variables_declaradas, gen_nivel_lexico_procedimiento, expresion_a_posfijo, gen_infijo_a_posfijo,gen_generar_codigos_expresion_posfija,gen_get_cont_etq_saltos,gen_get_nivel_lexico_y_posicion, gen_rotulos_subprogramas, gen_write_habilitado, gen_read_habilitado
 from symbol_table import Tabla_simbolos
 from pila import Pila
 
@@ -170,13 +170,20 @@ def programa(): # Primera funcion ejecutada
         gen_generar_codigo("INPP")
         incializar_TL_global()
         m("PROGRAM");cargar_identificador('programa');m(';');bloque();m('.')
+        gen_generar_codigo("PARA")
     else:
         finalizar_analisis(f"error de sintaxis: se esperaba [program], se encontro [{preanalisis['v']}]")
 
 def bloque():
     global gen_cantidad_variables_declaradas
     if en_primeros('declaraciones_variables_opcional') or en_primeros('declaraciones_subrutinas_opcional') or en_primeros('instruccion_compuesta'):
-        declaraciones_variables_opcional();gen_generar_codigo("RMEM",str(gen_cantidad_variables_declaradas));gen_cantidad_variables_declaradas = 0;declaraciones_subrutinas_opcional();instruccion_compuesta()
+        declaraciones_variables_opcional()
+        cant_variables = gen_cantidad_variables_declaradas
+        gen_generar_codigo("RMEM",str(cant_variables))
+        gen_cantidad_variables_declaradas = 0
+        declaraciones_subrutinas_opcional()
+        instruccion_compuesta()
+        gen_generar_codigo("LMEM",str(cant_variables))
     else:
         finalizar_analisis('error de sintaxis: no se ha declarado el inicio de la función principal del programa')
 
@@ -241,7 +248,7 @@ def declaraciones_subrutinas():
         declaracion_funcion();m(";");declaraciones_subrutinas()
 
 def declaracion_procedimiento():
-    global procedimiento_actual, gen_nivel_lexico_procedimiento
+    global procedimiento_actual, gen_nivel_lexico_procedimiento, parametros
     if preanalisis['v'] == 'PROCEDURE':
         m('PROCEDURE')
         l1 = gen_get_cont_etq_saltos()
@@ -255,6 +262,7 @@ def declaracion_procedimiento():
         cargar_identificador('procedimiento')
         pila_TLs.apilar(Tabla_simbolos())
         parametros_formales_opcional();m(';');bloque()
+        gen_generar_codigo('RTPR',str(gen_nivel_lexico_procedimiento)+','+str(len(parametros)))
         gen_nivel_lexico_procedimiento = gen_nivel_lexico_procedimiento - 1
         gen_generar_codigo('NADA',etiqueta_l = "l"+(str(l1)))
         pila_TLs.desapilar()
@@ -287,6 +295,7 @@ def declaracion_funcion():
         if funcion_actual['declaracion_retorno_encontrada'] == False:
             finalizar_analisis(f'error semantico: funcion {funcion_actual["tipo_retorno"]} [{funcion_actual["identificador"]}] sin retorno.')
         else:
+            gen_generar_codigo('RTPR',str(gen_nivel_lexico_procedimiento)+','+str(len(parametros)))
             gen_nivel_lexico_procedimiento = gen_nivel_lexico_procedimiento - 1
             gen_generar_codigo('NADA',etiqueta_l = "l"+(str(l1)))
             funcion_actual['identificador'] = ''
@@ -357,6 +366,7 @@ def instruccion():
         finalizar_analisis('error de sintaxis: no se encontro una instruccion valida')
 
 def instruccion_aux(evaluandoRetorno, identificador_izquierda_instruccion):
+    global gen_write_habilitado, gen_read_habilitado
     if en_primeros('asignacion'):
         if (not evaluandoRetorno):
             if sem_verificar_identificador_funcion(identificador_izquierda_instruccion):
@@ -369,7 +379,23 @@ def instruccion_aux(evaluandoRetorno, identificador_izquierda_instruccion):
         gen_generar_codigo('ALVL',str(index)+','+str(posicion))
     elif en_primeros('llamada_procedimiento'):
         sem_identificador_sin_definir('procedimiento')
+        if identificador_izquierda_instruccion == 'write':
+                gen_write_habilitado = True          
+        elif identificador_izquierda_instruccion == 'read':
+                gen_read_habilitado = True  
         llamada_procedimiento()
+        if identificador_izquierda_instruccion != 'write' and identificador_izquierda_instruccion != 'read':
+            # Buscar el rotulo asociado al procedimiento
+            rotulo = -1
+            for elem in gen_rotulos_subprogramas:
+                if (elem[0] == identificador_izquierda_instruccion):
+                    rotulo = elem[1]
+                    break
+            gen_generar_codigo('LLPR',"l"+str(rotulo))
+        if gen_write_habilitado == True:
+            gen_write_habilitado = False
+        if gen_read_habilitado == True:
+            gen_read_habilitado = False
     else:
         finalizar_analisis('error de sintaxis: se esperaba una asignacion o la llamada a un procedimiento')
 
@@ -397,13 +423,7 @@ def llamada_procedimiento():
     if en_primeros('lista_expresiones_opcional'):
         lista_expresiones_opcional()
         sem_error_aridad('procedimiento')
-        # Buscar el rotulo asociado al procedimiento
-        rotulo = -1
-        for elem in gen_rotulos_subprogramas:
-            if (elem[0] == procedimiento_actual['identificador']):
-                rotulo = elem[1]
-                break
-        gen_generar_codigo('LLPR',"l"+str(rotulo))
+        
     else:
         finalizar_analisis("error de sintaxis: no se cumple la estructura para llamar un procedimiento")
 
@@ -521,10 +541,12 @@ def expresion(evaluandoRetorno = False, sumandoParametroActual = False):
         expresion_semantica_actual['cantidad_ejecutandose'] = expresion_semantica_actual['cantidad_ejecutandose'] - 1
 
         # se convierte la expresion a posfijo
-        logger.warning(expresion_a_posfijo)
         posfijo = gen_infijo_a_posfijo(expresion_a_posfijo)
         gen_generar_codigos_expresion_posfija(posfijo,pila_TLs)
-
+        if (gen_write_habilitado):
+            gen_generar_codigo("IMPR")
+        elif (gen_read_habilitado):
+            gen_generar_codigo("LEER")
         return tipo_expresion_resultado
     else:
         finalizar_analisis('error de sintaxis: la expresion no se inicio de manera correcta')
@@ -895,13 +917,6 @@ def sem_error_aridad(atributo):
             if descripcion_parametros_actuales == "":
                 descripcion_parametros_actuales = "0 parametros"
             finalizar_analisis('error semantico: pasaje de '+descripcion_parametros_actuales + ' a '+ atributo +' ['+ id + ']. Se esperaba al menos 1 parametro')
-        else:
-            parametros_actuales = [(parametro) for parametro in parametros]
-            logger.warning(parametros_actuales)    
-            if id == 'write':
-                gen_generar_codigo('IMPR')
-            elif id == 'read':
-                gen_generar_codigo('LEER')
             
     
 def sem_asignar_tipo_ultimas_variables(tipo):

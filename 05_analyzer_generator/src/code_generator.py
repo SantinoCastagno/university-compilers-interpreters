@@ -6,6 +6,8 @@ ruta_destino = None
 gen_cantidad_variables_declaradas = 0 # cantidad de las variables declaradas del programa/subprograma actual, utilizada para reservar el espacio de memoria
 gen_nivel_lexico_procedimiento = 0
 gen_rotulos_subprogramas = []
+gen_write_habilitado = False
+gen_read_habilitado = False
 
 expresion_a_posfijo = ""
 codigo = {
