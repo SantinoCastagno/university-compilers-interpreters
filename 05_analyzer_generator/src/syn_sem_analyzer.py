@@ -179,6 +179,7 @@ def bloque():
     if en_primeros('declaraciones_variables_opcional') or en_primeros('declaraciones_subrutinas_opcional') or en_primeros('instruccion_compuesta'):
         declaraciones_variables_opcional()
         cant_variables = gen_cantidad_variables_declaradas
+        logger.debug(cant_variables)
         gen_generar_codigo("RMEM",str(cant_variables))
         gen_cantidad_variables_declaradas = 0
         declaraciones_subrutinas_opcional()
@@ -231,14 +232,19 @@ def lista_identificadores(atributo,subatributo):
         cargar_identificador(atributo,subatributo)
         if (subatributo=='variable'):
             gen_cantidad_variables_declaradas = gen_cantidad_variables_declaradas + 1
+            logger.debug("SUME VAR, AHORA SON"+str(gen_cantidad_variables_declaradas))
         lista_identificadores_repetitiva(atributo,subatributo)
     else:
         finalizar_analisis('error de sintaxis: aca deberia ir un identificador')
 
 def lista_identificadores_repetitiva(atributo,subatributo):
+    global gen_cantidad_variables_declaradas
     if preanalisis['v'] == ',':
         m(',')
         cargar_identificador(atributo,subatributo)
+        if (subatributo=='variable'):
+            gen_cantidad_variables_declaradas = gen_cantidad_variables_declaradas + 1
+            logger.debug("SUME VAR, AHORA SON"+str(gen_cantidad_variables_declaradas))
         lista_identificadores_repetitiva(atributo,subatributo)
 
 def declaraciones_subrutinas():
@@ -272,8 +278,7 @@ def declaracion_procedimiento():
         finalizar_analisis("error de sintaxis: se esperaba 'procedure', se encontro '",preanalisis['v'],"'")
 
 def declaracion_funcion():
-    global funcion_actual 
-    global expresion_semantica_actual
+    global expresion_semantica_actual,gen_nivel_lexico_procedimiento,funcion_actual
     if preanalisis['v']=='FUNCTION':
         m('FUNCTION');
         l1 = gen_get_cont_etq_saltos()
@@ -375,6 +380,7 @@ def instruccion_aux(evaluandoRetorno, identificador_izquierda_instruccion):
                 sem_identificador_sin_definir("variable")
         asignacion(evaluandoRetorno, identificador_izquierda_instruccion)
 
+        print('TO ALVL')
         index, posicion = gen_get_nivel_lexico_y_posicion(identificador_izquierda_instruccion, pila_TLs)
         gen_generar_codigo('ALVL',str(index)+','+str(posicion))
     elif en_primeros('llamada_procedimiento'):
