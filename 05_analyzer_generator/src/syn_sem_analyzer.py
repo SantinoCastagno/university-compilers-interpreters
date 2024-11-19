@@ -272,8 +272,7 @@ def declaracion_procedimiento():
         finalizar_analisis("error de sintaxis: se esperaba 'procedure', se encontro '",preanalisis['v'],"'")
 
 def declaracion_funcion():
-    global funcion_actual 
-    global expresion_semantica_actual
+    global funcion_actual, gen_nivel_lexico_procedimiento, parametros
     if preanalisis['v']=='FUNCTION':
         m('FUNCTION');
         l1 = gen_get_cont_etq_saltos()
@@ -685,12 +684,13 @@ def factor_opcional():
         sem_identificador_sin_definir('variable')
 
 def llamada_funcion():
+    global gen_rotulos_subprogramas, identificador_a_verificar_a_futuro
     if en_primeros('lista_expresiones_opcional'):
         lista_expresiones_opcional()
         # Buscar el rotulo asociado a la funcion
         rotulo = -1
         for elem in gen_rotulos_subprogramas:
-            if (elem[0] == funcion_actual['identificador']):
+            if (elem[0] == identificador_a_verificar_a_futuro):
                 rotulo = elem[1]
                 break
         gen_generar_codigo('LLPR',"l"+str(rotulo))
