@@ -691,12 +691,13 @@ def factor_opcional():
         sem_identificador_sin_definir('variable')
 
 def llamada_funcion():
+    global gen_rotulos_subprogramas,identificador_a_verificar_a_futuro
     if en_primeros('lista_expresiones_opcional'):
         lista_expresiones_opcional()
         # Buscar el rotulo asociado a la funcion
         rotulo = -1
         for elem in gen_rotulos_subprogramas:
-            if (elem[0] == funcion_actual['identificador']):
+            if (elem[0] ==identificador_a_verificar_a_futuro):
                 rotulo = elem[1]
                 break
         gen_generar_codigo('LLPR',"l"+str(rotulo))

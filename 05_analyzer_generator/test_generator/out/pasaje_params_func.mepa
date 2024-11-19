@@ -12,7 +12,7 @@ l2	ENPR	1
 l1	NADA	
 	APCT	3
 	APCT	4
-	LLPR	l-1
+	LLPR	l2
 	APCT	4
 	ALVL	0,0
 	LMEM	1
