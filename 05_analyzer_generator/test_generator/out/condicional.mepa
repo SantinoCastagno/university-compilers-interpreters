@@ -1,0 +1,17 @@
+	INPP	
+	RMEM	1
+	APCT	1
+	ALVL	0,0
+	APVL	0,0
+	APCT	1
+	CMIG	
+	DSVF	l1
+	APVL	-1,0
+	IMPR	
+	DSVS	l2
+l1	NADA	
+	APVL	-1,0
+	IMPR	
+l2	NADA	
+	LMEM	1
+	PARA	
