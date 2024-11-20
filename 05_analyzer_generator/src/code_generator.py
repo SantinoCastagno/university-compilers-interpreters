@@ -111,18 +111,36 @@ def gen_get_nivel_lexico_y_posicion(identificador_izquierda_instruccion,pila_TLs
     # Se busca el id en el stack de tabla de simbolos
     for index, ts in enumerate(pila_invertida):
         ts = ts.tabla
+
         if id in ts.keys():
             nivel_lexico_procedimiento = len(pila_TLs.items) - index - 1
-            if (ts[id]['subatributo'] == "parametro"):
+            if (ts[id]['subatributo'] in ["parametro","retorno"]):
                 # Se cuenta la cantidad de parametros de la TS
                 cantidad_parametros = 0
                 posicion = 0
                 for index, key in enumerate(ts.keys()):
-                    if ts[key]['subatributo'] == "parametro":
+                    if ts[key]['subatributo'] in ["parametro","retorno"]:
                         if key == id:
                             posicion = index + 1
                         cantidad_parametros = cantidad_parametros + 1
                 offset_variable = -(cantidad_parametros + 3 - posicion)
+            elif ts[id]['subatributo'] in ["variable"]:
+                aux_ts = {}
+                for index, key in enumerate(ts.keys()):
+                    if ts[key]['atributo'] == 'variable'and ts[key]['subatributo'] == 'variable':
+                        aux_ts[key] = ts[key]
+                offset_variable = list(aux_ts.keys()).index(id)
             break
+
     # logger.warning()
     return nivel_lexico_procedimiento, offset_variable
+
+def gen_cantidad_parametros_formales_procedimiento_siendo_declarado(pila_TLS:Pila):
+    aux_table = pila_TLS.ver_cima().tabla
+    cant = 0
+    for _,value in aux_table.items():
+        if value['subatributo'] == 'parametro':
+            cant += 1
+
+    #print('PILAAA',pila_TLS.ver_cima().tabla)
+    return str(cant)

@@ -1,5 +1,5 @@
 Program ejemplo;
-var m,n: integer;
+var m: integer;
 
 function f(n:integer; k:integer) : integer;
     var p,q:integer;
@@ -18,6 +18,5 @@ function f(n:integer; k:integer) : integer;
         write(n);
     end;
     begin
-        n := f(3,m);
-        write(n);
+        write(f(3,m));
     end.

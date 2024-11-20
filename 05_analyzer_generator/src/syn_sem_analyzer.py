@@ -4,7 +4,7 @@ from loguru import logger
 from collections import Counter
 
 from lex_analyzer import lex_obtener_siguiente_token, lex_obtener_posicion
-from code_generator import gen_generar_codigo, gen_iniciar_generador, gen_cantidad_variables_declaradas, gen_nivel_lexico_procedimiento, expresion_a_posfijo, gen_infijo_a_posfijo,gen_generar_codigos_expresion_posfija,gen_get_cont_etq_saltos,gen_get_nivel_lexico_y_posicion, gen_rotulos_subprogramas, gen_write_habilitado, gen_read_habilitado
+from code_generator import gen_generar_codigo, gen_iniciar_generador,gen_cantidad_parametros_formales_procedimiento_siendo_declarado, gen_cantidad_variables_declaradas, gen_nivel_lexico_procedimiento, expresion_a_posfijo, gen_infijo_a_posfijo,gen_generar_codigos_expresion_posfija,gen_get_cont_etq_saltos,gen_get_nivel_lexico_y_posicion, gen_rotulos_subprogramas, gen_write_habilitado, gen_read_habilitado
 from symbol_table import Tabla_simbolos
 from pila import Pila
 
@@ -25,6 +25,7 @@ expresion_semantica_actual = {
     'tipo' : None,
     'cantidad_ejecutandose' : 0
 }
+funcion_a_verificar_a_futuro = ''
 funcion_actual = {
     'habilitado' : False,
     'identificador': '',
@@ -280,9 +281,9 @@ def declaracion_procedimiento():
         finalizar_analisis("error de sintaxis: se esperaba 'procedure', se encontro '",preanalisis['v'],"'")
 
 def declaracion_funcion():
-    global funcion_actual, gen_nivel_lexico_procedimiento, parametros
+    global funcion_a_verificar_a_futuro,funcion_actual, gen_nivel_lexico_procedimiento, parametros
     if preanalisis['v']=='FUNCTION':
-        m('FUNCTION');
+        m('FUNCTION')
         l1 = gen_get_cont_etq_saltos()
         gen_generar_codigo('DSVS',"l"+str(l1))
         l_subprograma = gen_get_cont_etq_saltos()
@@ -290,9 +291,13 @@ def declaracion_funcion():
         gen_generar_codigo("ENPR",str(gen_nivel_lexico_procedimiento),"l"+str(l_subprograma))
         funcion_actual['habilitado'] = True
         funcion_actual['identificador'] = preanalisis['l']
+        funcion_a_verificar_a_futuro = preanalisis['l']
         gen_rotulos_subprogramas.append((funcion_actual['identificador'],l_subprograma))
         cargar_identificador('funcion')
+        
         pila_TLs.apilar(Tabla_simbolos())
+        pila_TLs.ver_cima().insertar(nombre=funcion_actual['identificador'], atributo='retorno',subatributo='retorno', tipo_scope='local',tipo_dato='INTEGER')
+        
         parametros_formales_opcional();m(':');
         funcion_actual['tipo_retorno']=tipo();
         # Se asigna el tipo de retorno a la funcion en la TS y se resetea la configuracion de la funcion actual
@@ -302,7 +307,7 @@ def declaracion_funcion():
         if funcion_actual['declaracion_retorno_encontrada'] == False:
             finalizar_analisis(f'error semantico: funcion {funcion_actual["tipo_retorno"]} [{funcion_actual["identificador"]}] sin retorno.')
         else:
-            gen_generar_codigo('RTPR',str(gen_nivel_lexico_procedimiento)+','+str(len(parametros)))
+            gen_generar_codigo('RTPR',str(gen_nivel_lexico_procedimiento)+','+gen_cantidad_parametros_formales_procedimiento_siendo_declarado(pila_TLs))#str(len(parametros)))
             gen_nivel_lexico_procedimiento = gen_nivel_lexico_procedimiento - 1
             gen_generar_codigo('NADA',etiqueta_l = "l"+(str(l1)))
             funcion_actual['identificador'] = ''
@@ -382,7 +387,6 @@ def instruccion_aux(evaluandoRetorno, identificador_izquierda_instruccion):
                 sem_identificador_sin_definir("variable")
         asignacion(evaluandoRetorno, identificador_izquierda_instruccion)
 
-        print('TO ALVL')
         index, posicion = gen_get_nivel_lexico_y_posicion(identificador_izquierda_instruccion, pila_TLs)
         gen_generar_codigo('ALVL',str(index)+','+str(posicion))
     elif en_primeros('llamada_procedimiento'):
@@ -701,16 +705,21 @@ def factor_opcional():
         sem_identificador_sin_definir('variable')
 
 def llamada_funcion():
-    global gen_rotulos_subprogramas, identificador_a_verificar_a_futuro
-    if en_primeros('lista_expresiones_opcional'):
+    global funcion_a_verificar_a_futuro,gen_rotulos_subprogramas, identificador_a_verificar_a_futuro
+    global parametros, stack_parametros, subprograma_de_parametros_contados, stack_subprogramas_parametros
+    if en_primeros('lista_expresiones_opcional'):              
+        gen_generar_codigo("RMEM",'1')
         lista_expresiones_opcional()
+
         # Buscar el rotulo asociado a la funcion
         rotulo = -1
         for elem in gen_rotulos_subprogramas:
-            if (elem[0] == identificador_a_verificar_a_futuro):
+            if (elem[0] == funcion_a_verificar_a_futuro):
                 rotulo = elem[1]
                 break
         gen_generar_codigo('LLPR',"l"+str(rotulo))
+
+
 
 def numero():
     global expresion_a_posfijo
@@ -862,7 +871,7 @@ def sem_identificador_sin_definir(atributo):
         for ts in pila_revertida:
             ts = ts.tabla
             if id in ts.keys():
-                if ts[id]['atributo'] == atributo:
+                if ts[id]['atributo'] == atributo or  ts[id]['atributo'] == 'retorno':
                     failed = False
                 else:
                     logger.warning('error semantico que no deberia ocurrir')
@@ -888,7 +897,7 @@ def sem_error_aridad(atributo):
     if id != "write" and id != "read":  
         for ambito in pila_revertida:
             ts = ambito.tabla
-            if id in ts.keys():
+            if id in ts.keys() and ts[id]['atributo'] != 'retorno':
                 # Se obtienen los parametros formales declarados para el subprograma
                 parametros_formales = ts[id]['parametros']
                 # Contar cada tipo de parametro (int o boolean)

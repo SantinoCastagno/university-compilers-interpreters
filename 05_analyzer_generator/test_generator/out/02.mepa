@@ -1,5 +1,5 @@
 	INPP	
-	RMEM	2
+	RMEM	1
 	DSVS	l1
 l2	ENPR	1
 	RMEM	2
@@ -8,25 +8,27 @@ l2	ENPR	1
 	CMME	
 	DSVF	l3
 	APVL	1,-4
-	ALVL	0,0
+	ALVL	1,-5
 	APCT	0
 	ALVL	1,0
 	DSVS	l4
 l3	NADA	
+	RMEM	1
 	APVL	1,-4
 	APCT	1
 	SUST	
 	APVL	1,0
-	LLPR	l-1
+	LLPR	l2
+	RMEM	1
 	APVL	1,-4
 	APCT	2
 	SUST	
+	APVL	1,1
+	LLPR	l2
+	APVL	1,1     !!! MAL, no va esto van suma (creo)
+	ALVL	1,-5
 	APVL	1,0
-	LLPR	l-1
-	APVL	1,0
-	ALVL	0,0
-	APVL	1,0
-	APVL	1,0
+	APVL	1,1
 	SUMA	
 	APCT	1
 	SUMA	
@@ -35,14 +37,15 @@ l4	NADA
 	APVL	1,-4
 	IMPR	
 	LMEM	2
-	RTPR	1,0
+	RTPR	1,2
 l1	NADA	
-	APCT	3
-	APVL	0,0
-	LLPR	l-1
-	APVL	0,0
-	ALVL	0,0
+	RMEM	1
+	APCT	3    !!
+	IMPR	     !!   problemas en la impresion
+	APVL	0,0   ...
+	IMPR	
+	LLPR	l2
 	APVL	0,0
 	IMPR	
-	LMEM	2
+	LMEM	1
 	PARA	
