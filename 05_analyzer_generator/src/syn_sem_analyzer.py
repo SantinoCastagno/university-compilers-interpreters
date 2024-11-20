@@ -13,10 +13,12 @@ pila_TLs = Pila()
 ultimas_variables_declaradas = []           # lista de elementos que se utiliza para asignar el tipo de dato a las ultimas variables declaradas
 identificador_a_verificar_a_futuro = ''
 expresion_actual = ''                       # si la expresion actual a evaluar es aritmetica, condicional, repetitiva o ninguna (cadena vacia).
-pila_expresiones = []
+stack_expresiones = []
 parametros = []                             # cuando se declara/invoca una funcion o procedimiento con parametros, se llevara una lista de los mismos
+stack_parametros = []
 paresOrdenadosParametros = []
 subprograma_de_parametros_contados = ''     # aca se guarda el nombre del subprograma cuyos parametros fueron listados, para acceder al mismo luego de listarlos 
+stack_subprogramas_parametros = []
 tipo_parametros = ''
 expresion_semantica_actual = {
     'elementos' : [],
@@ -426,10 +428,14 @@ def sem_verificar_identificador_funcion(identificador_izquierda_instruccion):
     return failed
 
 def llamada_procedimiento():
+    global parametros, stack_parametros, subprograma_de_parametros_contados, stack_subprogramas_parametros
     if en_primeros('lista_expresiones_opcional'):
+        stack_parametros.append(copy.copy(parametros))
+        stack_subprogramas_parametros.append(copy.copy(subprograma_de_parametros_contados))
         lista_expresiones_opcional()
+        subprograma_de_parametros_contados = stack_subprogramas_parametros.pop()
         sem_error_aridad('procedimiento')
-        
+        parametros = stack_parametros.pop()
     else:
         finalizar_analisis("error de sintaxis: no se cumple la estructura para llamar un procedimiento")
 
@@ -497,9 +503,9 @@ def lista_expresiones():
     global expresion_semantica_actual
     if en_primeros('expresion'):
         if expresion_semantica_actual['cantidad_ejecutandose']>0:
-            pila_expresiones.append(copy.copy(expresion_semantica_actual))
+            stack_expresiones.append(copy.copy(expresion_semantica_actual))
             expresion(sumandoParametroActual = True)
-            expresion_semantica_actual = pila_expresiones.pop()
+            expresion_semantica_actual = stack_expresiones.pop()
         else:
             expresion(sumandoParametroActual = True)
         lista_expresiones_repetitiva()
@@ -511,9 +517,9 @@ def lista_expresiones_repetitiva():
     if preanalisis['v'] ==',':
         m(',');
         if expresion_semantica_actual['cantidad_ejecutandose']>0:
-            pila_expresiones.append(copy.copy(expresion_semantica_actual))
+            stack_expresiones.append(copy.copy(expresion_semantica_actual))
             expresion(sumandoParametroActual = True)
-            expresion_semantica_actual = pila_expresiones.pop()
+            expresion_semantica_actual = stack_expresiones.pop()
         else:
             expresion(sumandoParametroActual = True)
         lista_expresiones_repetitiva()
@@ -649,7 +655,7 @@ def factor():
         booleano()
 
     elif preanalisis['v'] == '(': 
-        pila_expresiones.append(copy.copy(expresion_semantica_actual))
+        stack_expresiones.append(copy.copy(expresion_semantica_actual))
 
         expresion_a_posfijo += ' ' + preanalisis['l']
         m('(')
@@ -659,7 +665,7 @@ def factor():
         expresion_a_posfijo += ' ' + preanalisis['l']
         m(')')
 
-        expresion_semantica_actual = pila_expresiones.pop()
+        expresion_semantica_actual = stack_expresiones.pop()
         expresion_semantica_actual['elementos'].append(valor_expresion_evaluada)
         if expresion_semantica_actual['tipo'] is None:
             if valor_expresion_evaluada == "EXPRESION_INTEGER":
@@ -681,12 +687,16 @@ def factor():
         
 
 def factor_opcional():
-    global identificador_a_verificar_a_futuro
+    global identificador_a_verificar_a_futuro, parametros, stack_parametros, subprograma_de_parametros_contados, stack_subprogramas_parametros
     if en_primeros('llamada_funcion'):
         sem_identificador_sin_definir('funcion')
         sem_registrar_subprograma(identificador_a_verificar_a_futuro)
+        stack_parametros.append(copy.copy(parametros))
+        stack_subprogramas_parametros.append(copy.copy(subprograma_de_parametros_contados))
         llamada_funcion()
+        subprograma_de_parametros_contados = stack_subprogramas_parametros.pop()
         sem_error_aridad('funcion')
+        parametros = stack_parametros.pop()
     else:
         sem_identificador_sin_definir('variable')
 
@@ -872,6 +882,7 @@ def sem_error_aridad(atributo):
     global tipo_parametros
 
     id = subprograma_de_parametros_contados
+    logger.warning(id)
     pila_revertida = reversed(pila_TLs.items)
     failed = False
     if id != "write" and id != "read":  
