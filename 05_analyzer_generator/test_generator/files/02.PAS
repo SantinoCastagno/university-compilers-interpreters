@@ -15,7 +15,7 @@ function f(n:integer; k:integer) : integer;
                 f:= f(n-1,p)+f(n-2,q);
                 p:= p+q+1;
             end;
-        write(n);
+        write(n,k);
     end;
     begin
         write(f(3,m));

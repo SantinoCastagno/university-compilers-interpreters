@@ -25,7 +25,9 @@ l3	NADA
 	SUST	
 	APVL	1,1
 	LLPR	l2
-	APVL	1,1     !!! MAL, no va esto van suma (creo)
+	APVL	1,-5
+	APVL	1,-5
+	SUMA	
 	ALVL	1,-5
 	APVL	1,0
 	APVL	1,1
@@ -35,14 +37,14 @@ l3	NADA
 	ALVL	1,0
 l4	NADA	
 	APVL	1,-4
+	APVL	1,-3
 	IMPR	
 	LMEM	2
 	RTPR	1,2
 l1	NADA	
 	RMEM	1
-	APCT	3    !!
-	IMPR	     !!   problemas en la impresion
-	APVL	0,0   ...
+	APCT	3
+	APVL	0,0
 	IMPR	
 	LLPR	l2
 	APVL	0,0

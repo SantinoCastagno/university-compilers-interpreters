@@ -14,6 +14,7 @@ ultimas_variables_declaradas = []           # lista de elementos que se utiliza 
 identificador_a_verificar_a_futuro = ''
 expresion_actual = ''                       # si la expresion actual a evaluar es aritmetica, condicional, repetitiva o ninguna (cadena vacia).
 stack_expresiones = []
+stack_expresiones_posfijo = []
 parametros = []                             # cuando se declara/invoca una funcion o procedimiento con parametros, se llevara una lista de los mismos
 stack_parametros = []
 paresOrdenadosParametros = []
@@ -235,7 +236,6 @@ def lista_identificadores(atributo,subatributo):
         cargar_identificador(atributo,subatributo)
         if (subatributo=='variable'):
             gen_cantidad_variables_declaradas = gen_cantidad_variables_declaradas + 1
-            logger.debug("SUME VAR, AHORA SON"+str(gen_cantidad_variables_declaradas))
         lista_identificadores_repetitiva(atributo,subatributo)
     else:
         finalizar_analisis('error de sintaxis: aca deberia ir un identificador')
@@ -247,7 +247,6 @@ def lista_identificadores_repetitiva(atributo,subatributo):
         cargar_identificador(atributo,subatributo)
         if (subatributo=='variable'):
             gen_cantidad_variables_declaradas = gen_cantidad_variables_declaradas + 1
-            logger.debug("SUME VAR, AHORA SON"+str(gen_cantidad_variables_declaradas))
         lista_identificadores_repetitiva(atributo,subatributo)
 
 def declaraciones_subrutinas():
@@ -448,6 +447,7 @@ def lista_expresiones_opcional():
         nombre_proc = identificador_a_verificar_a_futuro
         m('(')
         lista_expresiones_procedimiento();
+        
         m(')')
 
         
@@ -502,13 +502,20 @@ def instruccion_repetitiva():
 def lista_expresiones_procedimiento():
     if en_primeros('lista_expresiones'):
         lista_expresiones()
+        if (gen_write_habilitado):
+            gen_generar_codigo("IMPR")
+            logger.error("IMPR")
+        elif (gen_read_habilitado):
+            gen_generar_codigo("LEER")
 
 def lista_expresiones():
-    global expresion_semantica_actual
+    global expresion_semantica_actual, expresion_a_posfijo
     if en_primeros('expresion'):
         if expresion_semantica_actual['cantidad_ejecutandose']>0:
             stack_expresiones.append(copy.copy(expresion_semantica_actual))
+            stack_expresiones_posfijo.append(copy.copy(expresion_a_posfijo))
             expresion(sumandoParametroActual = True)
+            expresion_a_posfijo = stack_expresiones_posfijo.pop()
             expresion_semantica_actual = stack_expresiones.pop()
         else:
             expresion(sumandoParametroActual = True)
@@ -517,12 +524,14 @@ def lista_expresiones():
         finalizar_analisis('error de sintaxis: lista_expresiones()') 
 
 def lista_expresiones_repetitiva():
-    global expresion_semantica_actual
+    global expresion_semantica_actual, expresion_a_posfijo
     if preanalisis['v'] ==',':
         m(',');
         if expresion_semantica_actual['cantidad_ejecutandose']>0:
             stack_expresiones.append(copy.copy(expresion_semantica_actual))
+            stack_expresiones_posfijo.append(copy.copy(expresion_a_posfijo))
             expresion(sumandoParametroActual = True)
+            expresion_a_posfijo = stack_expresiones_posfijo.pop()
             expresion_semantica_actual = stack_expresiones.pop()
         else:
             expresion(sumandoParametroActual = True)
@@ -557,12 +566,12 @@ def expresion(evaluandoRetorno = False, sumandoParametroActual = False):
         expresion_semantica_actual['cantidad_ejecutandose'] = expresion_semantica_actual['cantidad_ejecutandose'] - 1
 
         # se convierte la expresion a posfijo
+        # TODO: hay que corregir la manera en la que se generan las expresiones a posfijo porque no se estan considerando las expresiones stackeadas correctamente.
+        logger.warning(str(expresion_a_posfijo))
+        logger.warning(expresion_semantica_actual['elementos'])
         posfijo = gen_infijo_a_posfijo(expresion_a_posfijo)
+        logger.warning(str(posfijo))
         gen_generar_codigos_expresion_posfija(posfijo,pila_TLs)
-        if (gen_write_habilitado):
-            gen_generar_codigo("IMPR")
-        elif (gen_read_habilitado):
-            gen_generar_codigo("LEER")
         return tipo_expresion_resultado
     else:
         finalizar_analisis('error de sintaxis: la expresion no se inicio de manera correcta')
@@ -660,7 +669,7 @@ def factor():
 
     elif preanalisis['v'] == '(': 
         stack_expresiones.append(copy.copy(expresion_semantica_actual))
-
+        stack_expresiones_posfijo.append(copy.copy(expresion_a_posfijo))
         expresion_a_posfijo += ' ' + preanalisis['l']
         m('(')
 
@@ -668,7 +677,7 @@ def factor():
 
         expresion_a_posfijo += ' ' + preanalisis['l']
         m(')')
-
+        expresion_a_posfijo = stack_expresiones_posfijo.pop()
         expresion_semantica_actual = stack_expresiones.pop()
         expresion_semantica_actual['elementos'].append(valor_expresion_evaluada)
         if expresion_semantica_actual['tipo'] is None:
@@ -712,6 +721,7 @@ def llamada_funcion():
         lista_expresiones_opcional()
 
         # Buscar el rotulo asociado a la funcion
+        # FIXME: reubicar esta secion de codigo de ser necesario
         rotulo = -1
         for elem in gen_rotulos_subprogramas:
             if (elem[0] == funcion_a_verificar_a_futuro):
@@ -891,7 +901,6 @@ def sem_error_aridad(atributo):
     global tipo_parametros
 
     id = subprograma_de_parametros_contados
-    logger.warning(id)
     pila_revertida = reversed(pila_TLs.items)
     failed = False
     if id != "write" and id != "read":  
