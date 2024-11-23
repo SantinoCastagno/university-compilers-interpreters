@@ -269,8 +269,10 @@ def declaracion_procedimiento():
         gen_rotulos_subprogramas.append((procedimiento_actual['identificador'],l_subprograma))
         cargar_identificador('procedimiento')
         pila_TLs.apilar(Tabla_simbolos())
+        
         parametros_formales_opcional();m(';');bloque()
-        gen_generar_codigo('RTPR',str(gen_nivel_lexico_procedimiento)+','+str(len(parametros)))
+        
+        gen_generar_codigo('RTPR',str(gen_nivel_lexico_procedimiento)+','+str(gen_cantidad_parametros_formales_procedimiento_siendo_declarado(pila_TLs)))
         gen_nivel_lexico_procedimiento = gen_nivel_lexico_procedimiento - 1
         gen_generar_codigo('NADA',etiqueta_l = "l"+(str(l1)))
         pila_TLs.desapilar()
@@ -792,7 +794,6 @@ def guardar_identificador_a_verificar_a_futuro():
         finalizar_analisis('error de sintaxis: se esperaba un id, se encontro una palabra reservada: ',preanalisis['v'])
     else:
         global identificador_a_verificar_a_futuro
-        # FIXME: si es una funcion, posiblemente no se deba concatenar
         if (not sem_verificar_identificador_funcion(preanalisis['l'])):
             expresion_a_posfijo += ' ' + preanalisis['l']
         identificador_a_verificar_a_futuro=preanalisis['l']
