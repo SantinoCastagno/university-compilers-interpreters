@@ -444,10 +444,8 @@ def llamada_procedimiento():
 
 def lista_expresiones_opcional():
     if preanalisis['v'] == '(':
-        nombre_proc = identificador_a_verificar_a_futuro
         m('(')
         lista_expresiones_procedimiento();
-        
         m(')')
 
         
@@ -502,11 +500,6 @@ def instruccion_repetitiva():
 def lista_expresiones_procedimiento():
     if en_primeros('lista_expresiones'):
         lista_expresiones()
-        if (gen_write_habilitado):
-            gen_generar_codigo("IMPR")
-            logger.error("IMPR")
-        elif (gen_read_habilitado):
-            gen_generar_codigo("LEER")
 
 def lista_expresiones():
     global expresion_semantica_actual, expresion_a_posfijo
@@ -519,6 +512,10 @@ def lista_expresiones():
             expresion_semantica_actual = stack_expresiones.pop()
         else:
             expresion(sumandoParametroActual = True)
+            if (gen_write_habilitado):
+                gen_generar_codigo("IMPR")
+            elif (gen_read_habilitado):
+                gen_generar_codigo("LEER")
         lista_expresiones_repetitiva()
     else:
         finalizar_analisis('error de sintaxis: lista_expresiones()') 
@@ -535,6 +532,10 @@ def lista_expresiones_repetitiva():
             expresion_semantica_actual = stack_expresiones.pop()
         else:
             expresion(sumandoParametroActual = True)
+            if (gen_write_habilitado):
+                gen_generar_codigo("IMPR")
+            elif (gen_read_habilitado):
+                gen_generar_codigo("LEER")
         lista_expresiones_repetitiva()
 
 def expresion(evaluandoRetorno = False, sumandoParametroActual = False):
@@ -547,10 +548,8 @@ def expresion(evaluandoRetorno = False, sumandoParametroActual = False):
     if en_primeros('expresion_simple'):
         # Se inicializa la expresion infija
         expresion_a_posfijo = ''
-
         # Se comienza a evaluar sintacticamente la expresion actual
         expresion_semantica_actual['cantidad_ejecutandose'] = expresion_semantica_actual['cantidad_ejecutandose'] + 1
-        
         expresion_simple()
         es_expresion_comparativa = relacion_opcional()
         if es_expresion_comparativa:  
@@ -567,10 +566,7 @@ def expresion(evaluandoRetorno = False, sumandoParametroActual = False):
 
         # se convierte la expresion a posfijo
         # TODO: hay que corregir la manera en la que se generan las expresiones a posfijo porque no se estan considerando las expresiones stackeadas correctamente.
-        logger.warning(str(expresion_a_posfijo))
-        logger.warning(expresion_semantica_actual['elementos'])
         posfijo = gen_infijo_a_posfijo(expresion_a_posfijo)
-        logger.warning(str(posfijo))
         gen_generar_codigos_expresion_posfija(posfijo,pila_TLs)
         return tipo_expresion_resultado
     else:
@@ -656,7 +652,7 @@ def termino_repetitiva():
 def factor():
     global expresion_semantica_actual
     global expresion_a_posfijo
-
+    
     if en_primeros('identificador'):
         guardar_identificador_a_verificar_a_futuro()
         factor_opcional()
@@ -718,16 +714,15 @@ def llamada_funcion():
     global parametros, stack_parametros, subprograma_de_parametros_contados, stack_subprogramas_parametros
     if en_primeros('lista_expresiones_opcional'):              
         gen_generar_codigo("RMEM",'1')
-        lista_expresiones_opcional()
-
         # Buscar el rotulo asociado a la funcion
-        # FIXME: reubicar esta secion de codigo de ser necesario
         rotulo = -1
+        lista_expresiones_opcional()
         for elem in gen_rotulos_subprogramas:
             if (elem[0] == funcion_a_verificar_a_futuro):
                 rotulo = elem[1]
                 break
         gen_generar_codigo('LLPR',"l"+str(rotulo))
+        
 
 
 
@@ -797,7 +792,9 @@ def guardar_identificador_a_verificar_a_futuro():
         finalizar_analisis('error de sintaxis: se esperaba un id, se encontro una palabra reservada: ',preanalisis['v'])
     else:
         global identificador_a_verificar_a_futuro
-        expresion_a_posfijo += ' ' + preanalisis['l']
+        # FIXME: si es una funcion, posiblemente no se deba concatenar
+        if (not sem_verificar_identificador_funcion(preanalisis['l'])):
+            expresion_a_posfijo += ' ' + preanalisis['l']
         identificador_a_verificar_a_futuro=preanalisis['l']
         siguiente_terminal()
 

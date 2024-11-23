@@ -18,5 +18,5 @@ function f(n:integer; k:integer) : integer;
         write(n,k);
     end;
     begin
-        write(f(3,m));
+        write(f(3,m),m);
     end.
