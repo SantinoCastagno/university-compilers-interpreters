@@ -81,12 +81,15 @@ def gen_infijo_a_posfijo(expression):
 
     return ' '.join(output)
 
-def gen_generar_codigos_expresion_posfija(expresion,pila_TLs:Pila):
+def gen_generar_codigos_expresion_posfija(expresion,pila_TLs:Pila,gen_read_habilitado=False):
     for elem in expresion.split():
         if elem in ['True','False'] or intable(elem):
             gen_generar_codigo('APCT',elem)
         elif elem in codigo.keys():
             gen_generar_codigo(codigo[elem])
+        elif gen_read_habilitado:
+            index,posicion = gen_get_nivel_lexico_y_posicion(elem,pila_TLs)
+            gen_generar_codigo('ALVL',str(index)+','+str(posicion))
         else:
             index,posicion = gen_get_nivel_lexico_y_posicion(elem,pila_TLs)
             gen_generar_codigo('APVL',str(index)+','+str(posicion))

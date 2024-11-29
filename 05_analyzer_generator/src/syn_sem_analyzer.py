@@ -26,7 +26,8 @@ expresion_semantica_actual = {
     'tipo' : None,
     'cantidad_ejecutandose' : 0
 }
-funcion_a_verificar_a_futuro = ''
+funcion_a_verificar_a_futuro = '' # esta es al momento de DECLARAR una funcion
+funcion_llamada_a_verificar_a_futuro = '' # esta es al momento de invocar una funcion
 funcion_actual = {
     'habilitado' : False,
     'identificador': '',
@@ -184,11 +185,13 @@ def bloque():
         declaraciones_variables_opcional()
         cant_variables = gen_cantidad_variables_declaradas
         logger.debug(cant_variables)
-        gen_generar_codigo("RMEM",str(cant_variables))
+        if cant_variables > 0:
+            gen_generar_codigo("RMEM",str(cant_variables))
         gen_cantidad_variables_declaradas = 0
         declaraciones_subrutinas_opcional()
         instruccion_compuesta()
-        gen_generar_codigo("LMEM",str(cant_variables))
+        if cant_variables > 0:
+            gen_generar_codigo("LMEM",str(cant_variables))
     else:
         finalizar_analisis('error de sintaxis: no se ha declarado el inicio de la función principal del programa')
 
@@ -513,11 +516,12 @@ def lista_expresiones():
             expresion_a_posfijo = stack_expresiones_posfijo.pop()
             expresion_semantica_actual = stack_expresiones.pop()
         else:
+            if (gen_read_habilitado):
+                gen_generar_codigo("LEER")
             expresion(sumandoParametroActual = True)
             if (gen_write_habilitado):
-                gen_generar_codigo("IMPR")
-            elif (gen_read_habilitado):
-                gen_generar_codigo("LEER")
+                gen_generar_codigo("IMLN")
+            
         lista_expresiones_repetitiva()
     else:
         finalizar_analisis('error de sintaxis: lista_expresiones()') 
@@ -533,17 +537,19 @@ def lista_expresiones_repetitiva():
             expresion_a_posfijo = stack_expresiones_posfijo.pop()
             expresion_semantica_actual = stack_expresiones.pop()
         else:
+            if (gen_read_habilitado):
+                gen_generar_codigo("LEER")
             expresion(sumandoParametroActual = True)
             if (gen_write_habilitado):
-                gen_generar_codigo("IMPR")
-            elif (gen_read_habilitado):
-                gen_generar_codigo("LEER")
+                gen_generar_codigo("IMLN")
+
         lista_expresiones_repetitiva()
 
 def expresion(evaluandoRetorno = False, sumandoParametroActual = False):
     global expresion_semantica_actual
     global expresion_a_posfijo
     global funcion_actual, procedimiento_actual
+    global gen_read_habilitado
     expresion_semantica_actual['tipo'] = None   
     expresion_semantica_actual['elementos'] = []
 
@@ -569,7 +575,7 @@ def expresion(evaluandoRetorno = False, sumandoParametroActual = False):
         # se convierte la expresion a posfijo
         # TODO: hay que corregir la manera en la que se generan las expresiones a posfijo porque no se estan considerando las expresiones stackeadas correctamente.
         posfijo = gen_infijo_a_posfijo(expresion_a_posfijo)
-        gen_generar_codigos_expresion_posfija(posfijo,pila_TLs)
+        gen_generar_codigos_expresion_posfija(posfijo,pila_TLs,gen_read_habilitado)
         return tipo_expresion_resultado
     else:
         finalizar_analisis('error de sintaxis: la expresion no se inicio de manera correcta')
@@ -698,10 +704,11 @@ def factor():
         
 
 def factor_opcional():
-    global identificador_a_verificar_a_futuro, parametros, stack_parametros, subprograma_de_parametros_contados, stack_subprogramas_parametros
+    global funcion_llamada_a_verificar_a_futuro,identificador_a_verificar_a_futuro, parametros, stack_parametros, subprograma_de_parametros_contados, stack_subprogramas_parametros
     if en_primeros('llamada_funcion'):
+        funcion_llamada_a_verificar_a_futuro = identificador_a_verificar_a_futuro
         sem_identificador_sin_definir('funcion')
-        sem_registrar_subprograma(identificador_a_verificar_a_futuro)
+        sem_registrar_subprograma(funcion_llamada_a_verificar_a_futuro)
         stack_parametros.append(copy.copy(parametros))
         stack_subprogramas_parametros.append(copy.copy(subprograma_de_parametros_contados))
         llamada_funcion()
@@ -712,15 +719,16 @@ def factor_opcional():
         sem_identificador_sin_definir('variable')
 
 def llamada_funcion():
-    global funcion_a_verificar_a_futuro,gen_rotulos_subprogramas, identificador_a_verificar_a_futuro
+    global funcion_llamada_a_verificar_a_futuro,gen_rotulos_subprogramas
     global parametros, stack_parametros, subprograma_de_parametros_contados, stack_subprogramas_parametros
     if en_primeros('lista_expresiones_opcional'):              
-        gen_generar_codigo("RMEM",'1')
+        gen_generar_codigo("RMEM",'1') #TODO comente esto, rompere algo?
         # Buscar el rotulo asociado a la funcion
         rotulo = -1
         lista_expresiones_opcional()
+        print(funcion_llamada_a_verificar_a_futuro)
         for elem in gen_rotulos_subprogramas:
-            if (elem[0] == funcion_a_verificar_a_futuro):
+            if (elem[0] == funcion_llamada_a_verificar_a_futuro):
                 rotulo = elem[1]
                 break
         gen_generar_codigo('LLPR',"l"+str(rotulo))
